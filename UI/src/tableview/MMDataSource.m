@@ -215,5 +215,17 @@
     }
 }
 
+- (BOOL)isEmpty
+{
+    NSUInteger numberOfItems = 0;
+    for (int i = 0; i<[self.items count]; i++) {
+        NSArray *items = [self.items objectAtIndex:i];
+        numberOfItems += [items count];
+    }
+    
+    NSUInteger numberOfSections = [self.sections count];
+    return numberOfItems == 0 || numberOfSections == 0;
+}
+
 @end
 

@@ -192,7 +192,7 @@
     [_scrollableList.contentDataSource appendItems:items atSection:0];
     
     
-    [self didLoadDataSource];
+    [self reloadDataSource];
     
     
     [_refreshFooterView emRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];

@@ -119,4 +119,12 @@
  */
 - (void)registerCellForView:(UIView *)view;
 
+
+/**
+ *  是否空的数据
+ *
+ *  @return 是否为空数据
+ */
+- (BOOL)isEmpty;
+
 @end

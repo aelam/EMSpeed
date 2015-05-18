@@ -28,6 +28,8 @@ NSString *const EMScrollableListCellHighlightedNotification;
     UIView *_titleHeaderView;
     UIView *_contentHeaderView;
     
+    UIView *_emptyView;
+    
     //行情数据左右滚动提示视图
     UILabel *_scrollTipImageViewLeft;
     UILabel *_scrollTipImageViewRight;
@@ -41,13 +43,14 @@ NSString *const EMScrollableListCellHighlightedNotification;
 
 @property (nonatomic, strong, readonly) EMScrollableList *scrollableList;
 
+
 - (instancetype)init;
 
 /**
  *请求返回数据后加载数据
  *读取缓存数据后加载数据
  */
-- (void)didLoadDataSource;
+- (void)reloadDataSource;
 
 
 @end

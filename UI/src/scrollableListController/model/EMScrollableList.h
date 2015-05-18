@@ -11,6 +11,4 @@
 
 @interface EMScrollableList : NSObject <EMScrollableProtocol>
 
-
-
 @end

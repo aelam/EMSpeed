@@ -15,7 +15,7 @@
 @protocol EMScrollableProtocol <EMModelProtocol>
 
 @property (nonatomic, assign) CGFloat cellHeight;
-@property (nonatomic, assign, getter=isReloading) BOOL reloading;
+@property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, assign) BOOL didNeedsRequest;
 @property (nonatomic, strong) MMMutableDataSource *titleDataSource;
 @property (nonatomic, strong) MMMutableDataSource *contentDataSource;
@@ -43,6 +43,8 @@
 
 - (CGFloat)titleCellHeightAtIndex:(NSIndexPath *)indexPath;
 - (CGFloat)contentCellHeightAtIndex:(NSIndexPath *)indexPath;
+
+- (BOOL)isEmpty;
 
 @optional
 - (BOOL)hasMorePages; // 是否有下一页

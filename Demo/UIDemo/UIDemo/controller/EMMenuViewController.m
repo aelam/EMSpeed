@@ -38,7 +38,7 @@
 
 - (NSArray *)titles
 {
-    NSArray *titles = @[@"EMArrowButton 带箭头的按钮", @"EMLinkedButton 下划线跳转按钮", @"EMRoundButton 圆角按钮", @"EMBorderView 带有边框的视图", @"EMRadioControl 单选控制器", @"EMCheckBoxControl 多选控制器", @"EMMultiPagingView 页翻", @"EMStatusBarWindow 状态栏", @"UICollectionView 翻页", @"EMSegmentControl 选项卡", @"EMGuideViewController 引导", @"EMScrollableListViewController 列表"];
+    NSArray *titles = @[@"EMArrowButton 带箭头的按钮", @"EMLinkedButton 下划线跳转按钮", @"EMRoundButton 圆角按钮", @"EMBorderView 带有边框的视图", @"EMRadioControl 单选控制器", @"EMCheckBoxControl 多选控制器", @"EMMultiPagingView 页翻", @"EMStatusBarWindow 状态栏", @"UICollectionView 翻页", @"EMSegmentControl 选项卡", @"EMGuideViewController 引导", @"EMScrollableListViewController 列表", @"EMRefreshScrollableListViewController 列表"];
     return titles;
 }
 
@@ -107,8 +107,8 @@
                                       @"EMCollectionPagingViewController",
                                       @"EMSegmentViewController",
                                       @"EMGuideViewController",
+                                      @"EMScrollableListViewController",
                                       @"EMRefreshScrollableListViewController",
-//                                      @"EMScrollableListViewController",
                                       ];
     className = [controllerClassNames objectAtIndex:indexPath.row];
     UIViewController *vc = (UIViewController *)[[NSClassFromString(className) alloc] init];

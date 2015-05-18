@@ -69,7 +69,7 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (void)reloadPages:(MMMutableDataSource *)dataSource
 {
     // empty view
-    if (self.autoDisplayEmptyView && [self isEmptyDatasource:dataSource]) {
+    if (self.autoDisplayEmptyView && [dataSource isEmpty]) {
         [self.view addSubview:self.emptyView];
         self.emptyView.hidden = NO;
     }
@@ -142,17 +142,7 @@ const CGFloat kMMCellDefaultHeight = 44;
 
 - (BOOL)isEmptyDatasource
 {
-    return [self isEmptyDatasource:self.dataSource];
+    return [self.dataSource isEmpty];
 }
-
-- (BOOL)isEmptyDatasource:(MMDataSource *)dataSource
-{
-    if (dataSource) {
-        return [dataSource.items count] == 0 || [dataSource.sections count] == 0;
-    }
-    
-    return YES;
-}
-
 
 @end

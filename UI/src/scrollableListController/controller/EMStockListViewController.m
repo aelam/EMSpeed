@@ -351,11 +351,11 @@
  */
 - (void)requestDatasource
 {
-    _scrollableList.reloading = YES;
+    _scrollableList.isLoading = YES;
     
    NSOperation *operation =
     [_scrollableList modelWithBlock:^(NSOperation *operation, BOOL success) {
-        _scrollableList.reloading = NO;
+        _scrollableList.isLoading = NO;
         [_operationArray removeObject:operation];
         
         if (success)

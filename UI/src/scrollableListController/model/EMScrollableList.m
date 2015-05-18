@@ -16,7 +16,7 @@
 @implementation EMScrollableList
 
 @synthesize cellHeight;
-@synthesize reloading;
+@synthesize isLoading;
 @synthesize didNeedsRequest;
 @synthesize titleHeaderItem;
 @synthesize contentHeaderItem;
@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         self.cellHeight = 44;
-        self.reloading = NO;
+        self.isLoading = NO;
         self.didNeedsRequest = YES;
         
         int numberOfItems = 15;
@@ -39,12 +39,14 @@
             [items addObject:item];
         }
         self.titleDataSource = [[MMMutableDataSource alloc] initWithItems:@[items] sections:@[@""]];
-        
+
+
         items = [NSMutableArray array];
         for (int i=0; i<numberOfItems; i++) {
             EMContentListItem *item = [[EMContentListItem alloc] init];
             [items addObject:item];
         }
+        
         self.contentDataSource = [[MMMutableDataSource alloc] initWithItems:@[items] sections:@[@""]];
         
         self.titleHeaderItem = [[EMScrollableTableTitleHeaderItem alloc] init];
@@ -113,7 +115,9 @@
 
 - (CGFloat)tableViewHeaderHeight
 {
-    return MAX(self.titleHeaderItem.height, self.contentHeaderItem.height) ;
+    NSAssert(self.titleHeaderItem.height == self.contentHeaderItem.height, @"标题和内容header高度一致");
+    CGFloat height = self.titleHeaderItem.height;
+    return height == 0 ? 30 : height;
 }
 
 - (BOOL)hasMorePages
@@ -131,6 +135,16 @@
 {
     id<MMCellModel> model = [self.contentDataSource itemAtIndexPath:indexPath];
     return model.height;
+}
+
+- (id)modelWithBlock:(void (^)(NSOperation *operation, BOOL success))block
+{
+    return nil;
+}
+
+- (BOOL)isEmpty
+{
+   return (self.titleDataSource == nil && self.contentDataSource == nil) || ([self.titleDataSource isEmpty] && [self.contentDataSource isEmpty]);
 }
 
 @end

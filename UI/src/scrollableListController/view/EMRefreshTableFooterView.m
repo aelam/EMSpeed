@@ -17,8 +17,6 @@
     {
         _lastUpdatedLabel.frame = CGRectMake(0.0f, 30.0f, self.frame.size.width, 20.0f);
         _statusLabel.frame = CGRectMake(0.0f, 10.0f, self.frame.size.width, 20.0f);
-        
-        _lastUpdatedLabel.text = @"11111";
     }
     
     return self;
@@ -70,7 +68,7 @@
         if ([_delegate respondsToSelector:@selector(emRefreshTableFooterDataSourceIsLoading:)]) {
             _loading = [_delegate emRefreshTableFooterDataSourceIsLoading:self];
         }
-        NSLog(@"frame.size.height = %.f offset.y = %.f contentSize.height = %.f", scrollView.frame.size.height, scrollView.contentOffset.y, scrollView.contentSize.height);
+        
         if (_state == EMPullRefreshPulling && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height + EMRefreshTableHeaderView_HEIGHT) && !_loading) {
             [self setState:EMPullRefreshNormal];
         } else if (_state == EMPullRefreshNormal && scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + EMRefreshTableHeaderView_HEIGHT) && !_loading) {

@@ -17,11 +17,8 @@
 #import "MMCellModel.h"
 #import "MMCellUpdating.h"
 #import "EMScrollableCellProtocol.h"
+#import "MMTableEmptyView.h"
 
-
-#define kTitleTableViewWidth 90
-#define kContentTableViewWidth 300
-#define kTableHeaderHeight 30
 #define kScrollTipLabelSize CGSizeMake(10, 24)
 
 NSString *const EMScrollableListCellSelectedNotification = @"EMStocklistCellSelectedNotification";
@@ -30,12 +27,11 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 
 @interface EMScrollableListViewController ()
 {
+    BOOL _autoDisplayEmptyView;
 }
-@property (nonatomic, assign) CGFloat titleTableWidth;
-@property (nonatomic, assign) CGFloat contentTableWidth;
-@property (nonatomic, assign) CGFloat tableHeaderHeight;
-
+@property (nonatomic, assign) BOOL autoDisplayEmptyView;
 @end
+
 
 @implementation EMScrollableListViewController
 
@@ -55,13 +51,10 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 {
     self = [super init];
     if (self) {
+        self.autoDisplayEmptyView = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeSelectStatus:) name:EMScrollableListCellSelectedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeHighligtedStatus:) name:EMScrollableListCellHighlightedNotification object:nil];
-        
-        self.titleTableWidth = kTitleTableViewWidth;
-        self.contentTableWidth = kContentTableViewWidth;
-        self.tableHeaderHeight = kTableHeaderHeight;
         
         _scrollableList = [[EMScrollableList alloc] init];
     }
@@ -80,12 +73,11 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     [self loadTableView];
 }
 
-- (UIView *)createBackgroundView
+- (void)viewDidAppear:(BOOL)animated
 {
-    UIView *listBackgroundView = [[UIView alloc] init];
-    return listBackgroundView;
+    [super viewDidAppear:animated];
+    [self reloadDataSource];
 }
-
 
 /**
  *创建tableView
@@ -110,6 +102,12 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     
     [self registerTableViewCell];
     [self setViewConstraints];
+}
+
+- (UIView *)createBackgroundView
+{
+    UIView *listBackgroundView = [[UIView alloc] init];
+    return listBackgroundView;
 }
 
 - (UITableView *)createTitleTableView
@@ -152,18 +150,15 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     return contentScrollView;
 }
 
-- (void)registerTableViewCell
-{
-    [_titleTableView registerNib:[UINib nibWithNibName:@"EMNameListCell" bundle:nil] forCellReuseIdentifier:@"EMNameListCell"];
-    [_contentTableView registerNib:[UINib nibWithNibName:@"EMContentListCell" bundle:nil] forCellReuseIdentifier:@"EMContentListCell"];
-}
-
 - (UILabel *)createLeftScrollTipLabel
 {
     CGSize tipSize = kScrollTipLabelSize;
-    CGFloat originY = .5 * (self.tableHeaderHeight - tipSize.height);
+    CGFloat originX = [_scrollableList calculateTitleTableViewWidth:_contentScrollView.frame.size.width] - tipSize.width;
+    CGFloat originY = 0;//.5 * (self.tableHeaderHeight - tipSize.height);
+    CGPoint origin = CGPointMake(originX, originY);
+    
     UILabel *scrollTipImageViewLeft = [self scrollTipLabel:FAIconAngleLeft];
-    scrollTipImageViewLeft.frame = CGRectMake(kTitleTableViewWidth-tipSize.width, originY, tipSize.width, tipSize.height);
+    scrollTipImageViewLeft.frame = CGRectMake(origin.x, origin.y, tipSize.width, tipSize.height);
     scrollTipImageViewLeft.hidden = YES;
     
     return scrollTipImageViewLeft;
@@ -172,7 +167,7 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 - (UILabel *)createRightScrollTipLabel
 {
     CGSize tipSize = kScrollTipLabelSize;
-    CGFloat originY = .5 * (self.tableHeaderHeight - tipSize.height);
+    CGFloat originY = 0;//.5 * (self.tableHeaderHeight - tipSize.height);
     UILabel *scrollTipImageViewRight = [self scrollTipLabel:FAIconAngleRight];
     scrollTipImageViewRight.frame = CGRectMake(self.view.frame.size.width - tipSize.width, originY, tipSize.width, tipSize.height);
     
@@ -182,17 +177,24 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 - (UILabel *)scrollTipLabel:(FAIcon)faicon
 {
     UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor whiteColor];
+    label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];;
     label.text = [NSString fontAwesomeIconStringForEnum:faicon];
     label.font = [UIFont fontAwesomeFontOfSize:24];
     return label;
 }
 
+- (void)registerTableViewCell
+{
+    [_titleTableView registerNib:[UINib nibWithNibName:@"EMNameListCell" bundle:nil] forCellReuseIdentifier:@"EMNameListCell"];
+    [_contentTableView registerNib:[UINib nibWithNibName:@"EMContentListCell" bundle:nil] forCellReuseIdentifier:@"EMContentListCell"];
+}
+
 - (void)setViewConstraints
 {
     CGSize tipSize = CGSizeMake(10, 24);
-    CGFloat originY = .5 * (self.tableHeaderHeight - tipSize.height);
+    CGFloat headerHeight = [_scrollableList tableViewHeaderHeight];
+    CGFloat originY = .5 * (headerHeight - tipSize.height);
     
     [_backgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_contentScrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -211,7 +213,10 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
                                                                                 metrics:nil
                                                                                   views:NSDictionaryOfVariableBindings(_scrollTipImageViewRight)]];
     [_backgroundView addConstraints:tmpConstraints];
-    [_backgroundView em_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, kTitleTableViewWidth, 0, 0) subView:_contentScrollView];
+    
+    CGFloat titleTableViewWidth = [_scrollableList calculateTitleTableViewWidth:_contentScrollView.frame.size.width];
+    [_backgroundView em_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
+                                                subView:_contentScrollView];
     [self.view em_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
 }
 
@@ -220,172 +225,28 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     [super viewDidLayoutSubviews];
 }
 
-
-/**
- *重新加载priceHeaderView上的子视图（button）
- *先复用之前的button，后创建新的button，多余的button从原始图上移除
- *大盘指数、重点指数不支持排序
- *根据当前排序的正序、倒序分配指示箭头
- */
--(void)reloadContentHeaderView
-{
-//    NSArray* buttons = [NSArray arrayWithArray:[_priceHeaderView subviews]];
-//    CGFloat beginY = 0;
-//    CGFloat beginX = _stockList.xSpace;
-//    int reuseIndex = 0;
-//    for (int i = 0; i < _stockList.fieldsCount; i++)
-//    {
-//        EMPriceHeaderButton *button = nil;
-//        if (i < [buttons count])
-//        {
-//            button = [buttons objectAtIndex:i];
-//            reuseIndex++;
-//        }
-//        else
-//        {
-//            button = [[EMPriceHeaderButton alloc] init];
-//            [button addTarget:self action:@selector(doActionResort:) forControlEvents:UIControlEventTouchDown];
-//        }
-//		[button setTitle:_stockList.fieldsName[i] forState:UIControlStateNormal];
-//		button.fieldSort = _stockList.fieldsSort[i];
-//        button.fieldName = _stockList.fieldsName[i];
-//        button.frame = CGRectMake(beginX-.5*_stockList.xSpace, beginY, _stockList.fieldsWidths[i]+_stockList.xSpace, _priceHeaderView.frame.size.height);
-//        beginX += (_stockList.xSpace + _stockList.fieldsWidths[i]);
-//        
-//		if(_stockList.groupId != _group_zs && _stockList.groupId != _group_impzs && button.fieldSort != __sort_None)
-//        {
-//			if(button.fieldSort == abs(_stockList.sortId))
-//            {
-//                NSString *orderTag = (_stockList.sortId < 0) ? @"↑" : @"↓";
-//                [button setTitle:[NSString stringWithFormat:@"%@%@", button.fieldName,orderTag]
-//                        forState:UIControlStateNormal];
-//                _currentOrderButton = button;
-//			}
-//            [button setEnabled:YES];
-//		}
-//		else
-//        {
-//            [button setEnabled:NO];
-//        }
-//        [_priceHeaderView addSubview:button];
-//	}
-//    
-//    while (reuseIndex < [buttons count])
-//    {
-//        UIButton *button = [buttons objectAtIndex:reuseIndex];
-//        [button removeFromSuperview];
-//        reuseIndex++;
-//    }
-//
-//    [_priceHeaderView  bringSubviewToFront:_scrollTipImageViewLeft];
-//    [_priceHeaderView  bringSubviewToFront:_scrollTipImageViewRight];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Dispose of any resources that can be recreated.
-    if ([self isViewLoaded] && self.view.window == nil)
-    {
-//        [_stockList reset];
-        _titleTableView.delegate    = nil;
-        _titleTableView.dataSource  = nil;
-        _contentTableView.delegate   = nil;
-        _contentTableView.dataSource = nil;
-        _contentScrollView.delegate  = nil;
-        
-        _backgroundView = nil;
-        _titleHeaderView = nil;
-        _contentHeaderView = nil;
-        _titleTableView = nil;
-        _contentTableView = nil;
-        _contentScrollView = nil;
-//        _refreshHeaderView = nil;
-    }
-    [super didReceiveMemoryWarning];    
-}
-
-- (void)viewDidUnload
-{
-//    [_stockList reset];
-    _titleTableView.delegate    = nil;
-    _titleTableView.dataSource  = nil;
-    _contentTableView.delegate   = nil;
-    _contentTableView.dataSource = nil;
-    _contentScrollView.delegate  = nil;
-    _backgroundView = nil;
-    _titleHeaderView = nil;
-    _contentHeaderView = nil;
-    _titleTableView = nil;
-    _contentTableView = nil;
-    _contentScrollView = nil;
-//    _refreshHeaderView = nil;
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-#pragma mark -
-#pragma mark sort action
-
--(void)doActionResort:(EMPriceHeaderButton*)button
-{
-//    if (_currentOrderButton && [_currentOrderButton isEqual:button] == NO)
-//    {
-//        [_currentOrderButton setTitle:_currentOrderButton.fieldName forState:UIControlStateNormal];
-//    }
-//    
-//	int oldSordId = _stockList.sortId;
-//	if(abs(_stockList.sortId) == abs((int)button.fieldSort))
-//    {
-//		_stockList.sortId = -_stockList.sortId;
-//	}
-//	else
-//    {
-//		_stockList.sortId = (int)button.fieldSort;
-//	}
-//    
-//	if(oldSordId != _stockList.sortId)
-//	{
-//        if(button.fieldSort == abs(_stockList.sortId))
-//        {
-//            NSString *orderTag = (_stockList.sortId < 0) ? @"↑" : @"↓";
-//            [button setTitle:[NSString stringWithFormat:@"%@%@", button.fieldName,orderTag]
-//                    forState:UIControlStateNormal];
-//        }
-//        
-//        [self requestDatasource];
-//	}
-}
-
 #pragma mark -
 #pragma mark request
 
 /**
- *1、请求数据 _reloading 标记置为 YES
- *2、回包后将 _reloading 标记置为 NO
+ *1、请求数据 _isLoading 标记置为 YES
+ *2、回包后将 _isLoading 标记置为 NO
  *3、设置 _refreshHeaderView 完成加载
  *4、分发解析后数据，视图重新加载数据
  *5、判断是否需要自动更新行情数据
  */
 - (void)requestDatasource
 {
-    _scrollableList.reloading = YES;
+    _scrollableList.isLoading = YES;
     
    NSOperation *operation =
     [_scrollableList modelWithBlock:^(NSOperation *operation, BOOL success) {
-        _scrollableList.reloading = NO;
+        _scrollableList.isLoading = NO;
         [_operationArray removeObject:operation];
         
         if (success)
         {
-            [self didLoadDataSource];
+            [self reloadDataSource];
         }
     }];
     
@@ -401,47 +262,67 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
  *2、根据计算结果重新加载priceHeaderView
  *3、加载两个 TableView
  */
-- (void)didLoadDataSource
+- (void)reloadDataSource
 {
-    [self layoutContentTableView];
-    [self reloadContentHeaderView];
-    
-    [_titleTableView reloadData];
-    [_contentTableView reloadData];
+    if (self.autoDisplayEmptyView && [_scrollableList isEmpty]) {
+        [self.view addSubview:self.emptyView];
+        self.emptyView.hidden = NO;
+    }
+    else{
+        [self emptyView].hidden = YES;
+        [self layoutTableView];
+        [_titleTableView reloadData];
+        [_contentTableView reloadData];
+    }
 }
-
-
-- (void)layoutContentTableView
-{
-    CGFloat contentWidth = [_scrollableList calculateContentTableViewWidth:_contentScrollView.frame.size.width];
-    CGRect contentRect = _contentTableView.frame;
-    contentRect.size.width = contentWidth;
-    _contentTableView.frame = contentRect;
-    _contentScrollView.contentSize = CGSizeMake(contentWidth, _contentScrollView.frame.size.height);
-    _contentHeaderView.frame = CGRectMake(0, 0, contentWidth, self.tableHeaderHeight);
-}
-
 
 /**
  *加载缓存数据
  *如果有缓存且在盘后 返回NO
  *否则 返回yes
  */
-- (BOOL)loadCacheData
+- (BOOL)loadCachedData
 {
     if ([_scrollableList isCached])
     {
-        [self didLoadDataSource];
+        [self reloadDataSource];
     }
     return NO;
 }
+
+- (void)layoutTableView
+{
+    [self layoutTableViews];
+    [self layoutTableViewHeader];
+}
+
+- (void)layoutTableViews
+{
+    CGFloat contentWidth = [_scrollableList calculateContentTableViewWidth:_contentScrollView.frame.size.width];
+    CGRect contentRect = _contentTableView.frame;
+    contentRect.size.width = contentWidth;
+    _contentTableView.frame = contentRect;
+    _contentScrollView.contentSize = CGSizeMake(contentWidth, _contentScrollView.frame.size.height);
+}
+
+-(void)layoutTableViewHeader
+{
+    CGFloat headerHeight = [_scrollableList tableViewHeaderHeight];
+    CGFloat titleWidth = [_scrollableList calculateTitleTableViewWidth:_titleTableView.frame.size.width];
+    CGFloat contentWidth = [_scrollableList calculateContentTableViewWidth:_contentScrollView.frame.size.width];
+    
+    _titleHeaderView.frame = CGRectMake(0, 0, titleWidth, headerHeight);
+    _contentHeaderView.frame = CGRectMake(0, 0, contentWidth, headerHeight);
+}
+
 
 #pragma mark -
 #pragma mark UITableView datasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_scrollableList numberOfRowsInSection:section];
+    CGFloat numberOfRows = [_scrollableList numberOfRowsInSection:section];
+    return numberOfRows;
 }
 
 /**
@@ -532,7 +413,7 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.tableHeaderHeight;
+    return [_scrollableList tableViewHeaderHeight];
 }
 
 - (UIView *)headerWithTableView:(UITableView *)tableView
@@ -544,8 +425,10 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
         view = [[item.Class alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, headerHeight)];
     }
     else{
-        UINib *nib = [UINib nibWithNibName:item.reuseIdentify bundle:[NSBundle mainBundle]];
-        view = [[nib instantiateWithOwner:self options:0] lastObject];
+        if (item && [item.reuseIdentify length] > 0) {
+            UINib *nib = [UINib nibWithNibName:item.reuseIdentify bundle:[NSBundle mainBundle]];
+            view = [[nib instantiateWithOwner:self options:0] lastObject];
+        }
     }
     
     return view;
@@ -635,7 +518,7 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     }
     else
     {
-        [self didLoadDataSource];
+        [self reloadDataSource];
     }
 }
 
@@ -680,6 +563,53 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     
     UITableViewCell *cell = [otherTableView cellForRowAtIndexPath:currentCell.indexPath];
 	[cell setHighlighted:currentCell.highlighted];
+}
+
+# pragma mark - EmptyView
+
+- (UIView *)emptyView
+{
+    if (_emptyView == nil) {
+        _emptyView = [[MMTableEmptyView alloc] initWithFrame:self.view.bounds];
+    }
+    
+    return _emptyView;
+}
+
+- (void)setEmptyView:(UIView *)emptyView
+{
+    _emptyView = emptyView;
+}
+
+
+- (BOOL)isEmpty
+{
+    return [_scrollableList isEmpty];
+}
+
+
+#pragma mark -
+#pragma mark Memory Warning
+
+- (void)didReceiveMemoryWarning
+{
+    // Dispose of any resources that can be recreated.
+    if ([self isViewLoaded] && self.view.window == nil)
+    {
+        _titleTableView.delegate    = nil;
+        _titleTableView.dataSource  = nil;
+        _contentTableView.delegate   = nil;
+        _contentTableView.dataSource = nil;
+        _contentScrollView.delegate  = nil;
+        
+        _backgroundView = nil;
+        _titleHeaderView = nil;
+        _contentHeaderView = nil;
+        _titleTableView = nil;
+        _contentTableView = nil;
+        _contentScrollView = nil;
+    }
+    [super didReceiveMemoryWarning];
 }
 
 @end
