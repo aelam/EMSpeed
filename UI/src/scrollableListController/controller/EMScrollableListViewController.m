@@ -337,7 +337,7 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
 
     if ([tableView isEqual:_titleTableView])
     {
-        return [self nameTableView:tableView cellForRowAtIndexPath:indexPath];
+        return [self titleTableView:tableView cellForRowAtIndexPath:indexPath];
     }
     else
     {
@@ -345,7 +345,7 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     }
 }
 
-- (UITableViewCell *)nameTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)titleTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MMCellModel> item = [_scrollableList titleItemAtIndexPath:indexPath];
     return [self tableView:tableView item:item indexPath:indexPath];
@@ -440,8 +440,8 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     {
         if (_titleHeaderView == nil) {
             UIView *view = [self headerWithTableView:tableView
-                                 item:_scrollableList.titleHeaderItem
-                               height:[_scrollableList tableViewHeaderHeight]];
+                                                item:_scrollableList.titleHeaderItem
+                                              height:[_scrollableList tableViewHeaderHeight]];
             _titleHeaderView = view;
         }
         

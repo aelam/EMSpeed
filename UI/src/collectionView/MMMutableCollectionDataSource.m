@@ -26,30 +26,16 @@
         return;
     }
     
-    if (_sections==nil) {
-        _sections = [[[self sectionsClass] alloc] init];
-    }
-    if (_items==nil) {
-        _items = [[[self itemsClass] alloc] init];
-    }
     [_sections addObject:section];
     [_items addObject:items];
 }
 
 - (void)insertSection:(NSString *)section
                 items:(NSArray *)items
-       atSectionIndex:(int)index
+       atSectionIndex:(NSUInteger)index
 {
-    if (section==nil || items==nil || index<0
-        || ([_sections count]>0 && index>=[_sections count])) {
+    if (section==nil || items==nil || ([_sections count]>0 && index>=[_sections count])) {
         return;
-    }
-    
-    if (_sections==nil) {
-        _sections = [[[self sectionsClass] alloc] init];
-    }
-    if (_items==nil) {
-        _items = [[[self itemsClass] alloc] init];
     }
     
     [_sections insertObject:section atIndex:index];
@@ -104,20 +90,20 @@
     }
 }
 
-- (void)removeSection:(int)section
+- (void)removeSection:(NSUInteger)section
 {
-    if (section>=0 && [_items count]>section) {
+    if ([_items count]>section) {
         [_items removeObjectAtIndex:section];
         [_sections removeObjectAtIndex:section];
     }
 }
 
-- (void)appendItems:(NSArray *)items atSection:(int)section
+- (void)appendItems:(NSArray *)items atSection:(NSUInteger)section
 {
     if ([_sections count]==0 && section==0) {
         [self addNewSection:@"" withItems:items];
     }
-    else if ([items count]>0 && section >=0 && section <= [_sections count]-1) {
+    else if ([items count]>0 && section <= [_sections count]-1) {
         id originItems = [_items objectAtIndex:section];
         if ([originItems isKindOfClass:[NSArray class]]) {
             NSMutableArray *tmpItems = [NSMutableArray array];
@@ -130,7 +116,7 @@
 
 - (void)appendItems:(NSArray *)items atSectionTitle:(NSString *)title
 {
-    int sectionIndex = [self sectionIndexWithTitle:title];
+    NSUInteger sectionIndex = [self sectionIndexWithTitle:title];
     sectionIndex = (sectionIndex==-1) ? 0 : sectionIndex;
     [self appendItems:items atSection:sectionIndex];
 }

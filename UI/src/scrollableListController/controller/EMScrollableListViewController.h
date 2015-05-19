@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EMScrollableProtocol.h"
 #import "EMScrollableList.h"
 
 NSString *const EMScrollableListCellSelectedNotification;
 NSString *const EMScrollableListCellHighlightedNotification;
-
-
-@class EMBorderView;
 
 @interface EMScrollableListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {

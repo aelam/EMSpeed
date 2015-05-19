@@ -16,8 +16,20 @@
     
     self = [super init];
     if (self) {
-        _items = [[[self itemsClass] alloc] initWithArray:aItems];
-        _sections = [[[self sectionsClass] alloc] initWithArray:aSections];
+        if (aItems) {
+            _items = [[[self itemsClass] alloc] initWithArray:aItems];
+        }
+        else {
+            _items = [[[self itemsClass] alloc] init];
+        }
+        
+        
+        if (aSections) {
+            _sections = [[[self sectionsClass] alloc] initWithArray:aSections];
+        }
+        else {
+            _sections = [[[self sectionsClass] alloc] init];
+        }
     }
     return self;
 }
@@ -102,18 +114,18 @@
     return nil;
 }
 
-- (id<MMCollectionCellModel>)itemAtIndex:(int)index
+- (id<MMCollectionCellModel>)itemAtIndex:(NSUInteger)index
 {
     return [self itemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
 }
 
-- (NSString *)titleAtSection:(int)section
+- (NSString *)titleAtSection:(NSUInteger)section
 {
     assert(section>=0 && section<[_sections count]);
     return [_sections objectAtIndex:section];
 }
 
-- (int)sectionIndexWithTitle:(NSString *)title
+- (NSUInteger)sectionIndexWithTitle:(NSString *)title
 {
     for (int i=0; i<[_sections count]; i++) {
         NSString *str = [self titleAtSection:i];
@@ -122,10 +134,10 @@
         }
     }
     
-    return -1;
+    return NSNotFound;
 }
 
-- (NSArray *)itemsAtSection:(int)section
+- (NSArray *)itemsAtSection:(NSUInteger)section
 {
     NSAssert((section>=0 && section<[_sections count]), nil);
     
@@ -134,8 +146,8 @@
 
 - (NSArray *)itemsAtSectionWithTitle:(NSString *)title
 {
-    int section = [self sectionIndexWithTitle:title];
-    if (section!=-1) {
+    NSUInteger section = [self sectionIndexWithTitle:title];
+    if (section != NSNotFound) {
         return [self itemsAtSection:section];
     }
     

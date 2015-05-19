@@ -61,7 +61,7 @@
  *
  *  @return section的下标
  */
-- (int)sectionIndexWithTitle:(NSString *)title;
+- (NSUInteger)sectionIndexWithTitle:(NSString *)title;
 
 
 /**
@@ -71,7 +71,7 @@
  *
  *  @return section下面的items
  */
-- (NSArray *)itemsAtSection:(int)section;
+- (NSArray *)itemsAtSection:(NSUInteger)section;
 
 
 /**

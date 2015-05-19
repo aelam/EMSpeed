@@ -6,15 +6,17 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "EMHorizontalPagingView.h"
+#import "EMHorizontalCollectionView.h"
 #import "MMCollectionDataSource.h"
 
-@implementation EMHorizontalPagingView
+@implementation EMHorizontalCollectionView
 @synthesize collectionView = _collectionView;
 @synthesize pageControl = _pageControl;
 @synthesize dataSource = _dataSource;
 @synthesize alignment = _alignment;
 @synthesize pageControlEdgeInsets = _pageControlEdgeInsets;
+@synthesize enablePageControl = _enablePageControl;
+@synthesize delegate = _delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -30,9 +32,7 @@
         _collectionView.delegate = self;
         [self addSubview:_collectionView];
         
-        _pageControl = [[UIPageControl alloc] init];
-        _pageControl.hidesForSinglePage = YES;
-        [self addSubview:_pageControl];
+        _enablePageControl = YES;
         
         self.pageControlEdgeInsets = UIEdgeInsetsMake(0, 10, 10, 10);
         self.alignment = EMHorizontalPagingControlAlignmentLeft;
@@ -42,15 +42,33 @@
     return self;
 }
 
+
+- (UIPageControl *)pageControl
+{
+    if (_enablePageControl && _pageControl == nil) {
+        _pageControl = [[UIPageControl alloc] init];
+        _pageControl.hidesForSinglePage = YES;
+        [self addSubview:_pageControl];
+    }
+    
+    return _pageControl;
+}
+
+- (void)setEnablePageControl:(BOOL)enablePageControl
+{
+    _enablePageControl = enablePageControl;
+    _pageControl.hidden = !_enablePageControl;
+}
+
 - (void)setDataSource:(MMCollectionDataSource *)dataSource
 {
     _collectionView.dataSource = dataSource;
     [dataSource registerCellForView:_collectionView];
     
     if ([dataSource.sections count] > 0) {
-        _pageControl.numberOfPages = [[dataSource itemsAtSection:0] count];
+        self.pageControl.numberOfPages = [[dataSource itemsAtSection:0] count];
         int index = _collectionView.contentOffset.x/self.frame.size.width;
-        _pageControl.currentPage = index;
+        self.pageControl.currentPage = index;
     }
 }
 
@@ -68,22 +86,22 @@
     switch (self.alignment) {
         case EMHorizontalPagingControlAlignmentLeft:
         {
-            CGSize size = [_pageControl sizeForNumberOfPages:_pageControl.numberOfPages];
+            CGSize size = [self.pageControl sizeForNumberOfPages:self.pageControl.numberOfPages];
             CGPoint pageControlCenter = CGPointMake(ceilf(size.width/2.f)+_pageControlEdgeInsets.right, self.bounds.size.height-_pageControlEdgeInsets.bottom);
-            _pageControl.center = pageControlCenter;
+            self.pageControl.center = pageControlCenter;
         }
             break;
         case EMHorizontalPagingControlAlignmentCenter:
         {
             CGPoint pageControlCenter = CGPointMake(self.center.x, self.bounds.size.height-_pageControlEdgeInsets.bottom);
-            _pageControl.center = pageControlCenter;
+            self.pageControl.center = pageControlCenter;
         }
             break;
         case EMHorizontalPagingControlAlignmentRight:
         {
-            CGSize size = [_pageControl sizeForNumberOfPages:_pageControl.numberOfPages];
+            CGSize size = [self.pageControl sizeForNumberOfPages:self.pageControl.numberOfPages];
             CGPoint pageControlCenter = CGPointMake(self.bounds.size.width-ceilf(size.width/2.f)-_pageControlEdgeInsets.left, self.bounds.size.height-_pageControlEdgeInsets.bottom);
-            _pageControl.center = pageControlCenter;
+            self.pageControl.center = pageControlCenter;
         }
             break;
     }
@@ -103,17 +121,20 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.didTapBlock && [_collectionView.dataSource isKindOfClass:[MMCollectionDataSource class]]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(EMHorizontalCollectionView:didTapModel:atIndexPath:)]) {
+        
         MMCollectionDataSource *ds = (MMCollectionDataSource *)_collectionView.dataSource;
         id<MMCollectionCellModel> item = [ds itemAtIndexPath:indexPath];
-        self.didTapBlock(item, indexPath);
+        if (item) {
+            [self.delegate EMHorizontalCollectionView:self didTapModel:item atIndexPath:indexPath];
+        }
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int index = scrollView.contentOffset.x/self.frame.size.width;
-    _pageControl.currentPage = index;
+    self.pageControl.currentPage = index;
 }
 
 @end

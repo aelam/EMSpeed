@@ -129,7 +129,7 @@
 
 - (void)appendItems:(NSArray *)items atSectionTitle:(NSString *)title
 {
-    int sectionIndex = [self sectionIndexWithTitle:title];
+    NSUInteger sectionIndex = [self sectionIndexWithTitle:title];
     sectionIndex = (sectionIndex==-1) ? 0 : sectionIndex;
     [self appendItems:items atSection:sectionIndex];
 }

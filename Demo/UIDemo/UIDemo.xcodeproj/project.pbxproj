@@ -41,7 +41,7 @@
 		1865EE4A1AE790F90081866A /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED921AE790F90081866A /* UIImage+Utility.m */; };
 		1865EE4B1AE790F90081866A /* UITableView+CellAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED941AE790F90081866A /* UITableView+CellAction.m */; };
 		1865EE4C1AE790F90081866A /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED961AE790F90081866A /* UIView+AutoLayout.m */; };
-		1865EE4D1AE790F90081866A /* EMHorizontalPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9A1AE790F90081866A /* EMHorizontalPagingView.m */; };
+		1865EE4D1AE790F90081866A /* EMHorizontalCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9A1AE790F90081866A /* EMHorizontalCollectionView.m */; };
 		1865EE4E1AE790F90081866A /* EMImageCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9C1AE790F90081866A /* EMImageCollectionItem.m */; };
 		1865EE4F1AE790F90081866A /* EMImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9E1AE790F90081866A /* EMImageCollectionViewCell.m */; };
 		1865EE501AE790F90081866A /* EMImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865ED9F1AE790F90081866A /* EMImageCollectionViewCell.xib */; };
@@ -181,7 +181,6 @@
 		96C86A761AFB37A8005F6E75 /* EMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86A751AFB37A8005F6E75 /* EMMessage.m */; };
 		96C86A7C1AFB3BC5005F6E75 /* NSDate+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86A7B1AFB3BC5005F6E75 /* NSDate+Formatter.m */; };
 		96C86AD31AFC8BEC005F6E75 /* EMScrollableListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86ABC1AFC8BEC005F6E75 /* EMScrollableListViewController.m */; };
-		96C86AD41AFC8BEC005F6E75 /* EMStockListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86ABE1AFC8BEC005F6E75 /* EMStockListViewController.m */; };
 		96C86AD51AFC8BEC005F6E75 /* EMContentListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC11AFC8BEC005F6E75 /* EMContentListItem.m */; };
 		96C86AD61AFC8BEC005F6E75 /* EMNameListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC41AFC8BEC005F6E75 /* EMNameListItem.m */; };
 		96C86AD71AFC8BEC005F6E75 /* EMScrollableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC61AFC8BEC005F6E75 /* EMScrollableList.m */; };
@@ -284,8 +283,8 @@
 		1865ED941AE790F90081866A /* UITableView+CellAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellAction.m"; sourceTree = "<group>"; };
 		1865ED951AE790F90081866A /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		1865ED961AE790F90081866A /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
-		1865ED991AE790F90081866A /* EMHorizontalPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHorizontalPagingView.h; sourceTree = "<group>"; };
-		1865ED9A1AE790F90081866A /* EMHorizontalPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHorizontalPagingView.m; sourceTree = "<group>"; };
+		1865ED991AE790F90081866A /* EMHorizontalCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHorizontalCollectionView.h; sourceTree = "<group>"; };
+		1865ED9A1AE790F90081866A /* EMHorizontalCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHorizontalCollectionView.m; sourceTree = "<group>"; };
 		1865ED9B1AE790F90081866A /* EMImageCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMImageCollectionItem.h; sourceTree = "<group>"; };
 		1865ED9C1AE790F90081866A /* EMImageCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMImageCollectionItem.m; sourceTree = "<group>"; };
 		1865ED9D1AE790F90081866A /* EMImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMImageCollectionViewCell.h; sourceTree = "<group>"; };
@@ -566,8 +565,6 @@
 		96C86A7B1AFB3BC5005F6E75 /* NSDate+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Formatter.m"; sourceTree = "<group>"; };
 		96C86ABB1AFC8BEC005F6E75 /* EMScrollableListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMScrollableListViewController.h; sourceTree = "<group>"; };
 		96C86ABC1AFC8BEC005F6E75 /* EMScrollableListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMScrollableListViewController.m; sourceTree = "<group>"; };
-		96C86ABD1AFC8BEC005F6E75 /* EMStockListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMStockListViewController.h; sourceTree = "<group>"; };
-		96C86ABE1AFC8BEC005F6E75 /* EMStockListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMStockListViewController.m; sourceTree = "<group>"; };
 		96C86AC01AFC8BEC005F6E75 /* EMContentListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMContentListItem.h; sourceTree = "<group>"; };
 		96C86AC11AFC8BEC005F6E75 /* EMContentListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMContentListItem.m; sourceTree = "<group>"; };
 		96C86AC21AFC8BEC005F6E75 /* EMModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMModelProtocol.h; sourceTree = "<group>"; };
@@ -842,8 +839,8 @@
 		1865ED981AE790F90081866A /* collectionView */ = {
 			isa = PBXGroup;
 			children = (
-				1865ED991AE790F90081866A /* EMHorizontalPagingView.h */,
-				1865ED9A1AE790F90081866A /* EMHorizontalPagingView.m */,
+				1865ED991AE790F90081866A /* EMHorizontalCollectionView.h */,
+				1865ED9A1AE790F90081866A /* EMHorizontalCollectionView.m */,
 				1865ED9B1AE790F90081866A /* EMImageCollectionItem.h */,
 				1865ED9C1AE790F90081866A /* EMImageCollectionItem.m */,
 				1865ED9D1AE790F90081866A /* EMImageCollectionViewCell.h */,
@@ -1281,8 +1278,6 @@
 				96C86ABC1AFC8BEC005F6E75 /* EMScrollableListViewController.m */,
 				96C86AE91B032950005F6E75 /* EMRefreshScrollableListViewController.h */,
 				96C86AEA1B032950005F6E75 /* EMRefreshScrollableListViewController.m */,
-				96C86ABD1AFC8BEC005F6E75 /* EMStockListViewController.h */,
-				96C86ABE1AFC8BEC005F6E75 /* EMStockListViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1455,7 +1450,6 @@
 				1865EF251AE7929E0081866A /* EMCollectionViewTestItem2.m in Sources */,
 				1865EE4A1AE790F90081866A /* UIImage+Utility.m in Sources */,
 				1865ED811AE790EC0081866A /* pinyin.c in Sources */,
-				96C86AD41AFC8BEC005F6E75 /* EMStockListViewController.m in Sources */,
 				1865EEC81AE790FF0081866A /* EMThemeArrowButton.m in Sources */,
 				1865EE601AE790F90081866A /* EMPageModel.m in Sources */,
 				1860E0F71AE9EAE80050E633 /* UIButton+PPiAwesome.m in Sources */,
@@ -1596,7 +1590,7 @@
 				1865EE631AE790F90081866A /* EMMultiPagingMenu.m in Sources */,
 				1865EE4E1AE790F90081866A /* EMImageCollectionItem.m in Sources */,
 				1865EE641AE790F90081866A /* EMMultiPagingMenuController.m in Sources */,
-				1865EE4D1AE790F90081866A /* EMHorizontalPagingView.m in Sources */,
+				1865EE4D1AE790F90081866A /* EMHorizontalCollectionView.m in Sources */,
 				1865EF261AE7929E0081866A /* EMMenuTableViewCell.m in Sources */,
 				1865ED821AE790EC0081866A /* EMCoreFileManager.m in Sources */,
 				1865EE8A1AE790F90081866A /* MJRefreshLegendHeader.m in Sources */,

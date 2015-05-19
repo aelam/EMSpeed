@@ -8,6 +8,10 @@
 
 #import "EMRoundButton.h"
 
+const static CGFloat kRoundButtonCornerRadius = 4.f;
+const static CGFloat kRoundButtonBorderWidth = 1.f;
+
+
 @implementation EMRoundButton
 @synthesize corners = _corners;
 
@@ -18,8 +22,8 @@
     
     if (self) {
         _corners = UIRectCornerAllCorners;
-        _cornerRadius = 4.f;
-        _borderWidth = 1.f;
+        _cornerRadius = kRoundButtonCornerRadius;
+        _borderWidth = kRoundButtonBorderWidth;
         
         [self setAdjustsImageWhenHighlighted:NO];
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -34,8 +38,8 @@
     [super awakeFromNib];
     
     _corners = UIRectCornerAllCorners;
-    _cornerRadius = 4.f;
-    _borderWidth = 1.f;
+    _cornerRadius = kRoundButtonCornerRadius;
+    _borderWidth = kRoundButtonBorderWidth;
     
     [self setAdjustsImageWhenHighlighted:NO];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -78,7 +82,7 @@
     btn1.frame = frame;
     [btn1 setCorners:corners];
     btn1.cornerRadius = cornerRadius;
-    btn1.borderWidth = 1.f;
+    btn1.borderWidth = kRoundButtonBorderWidth;
     btn1.backgroundColor = normalStateColor;
     btn1.normalStateColor = normalStateColor;
     btn1.highLightStateColor = highLightStateColor;
@@ -86,6 +90,27 @@
     
     return btn1;
 }
+
+
++ (EMRoundButton *)roundButtonWithFrame:(CGRect)frame
+                                  color:(UIColor *)color
+{
+    EMRoundButton *btn1 = [EMRoundButton buttonWithType:UIButtonTypeCustom];
+    btn1.frame = frame;
+    [btn1 setCorners:UIRectCornerAllCorners];
+    btn1.cornerRadius = kRoundButtonCornerRadius;
+    btn1.borderWidth = kRoundButtonBorderWidth;
+    
+    UIColor *normalStateColor = color;
+    UIColor *highLightStateColor = color;
+    btn1.backgroundColor = normalStateColor;
+    btn1.normalStateColor = normalStateColor;
+    btn1.highLightStateColor = highLightStateColor;
+    [btn1 setBackgroundImage:[btn1 buttonImageFromColor:highLightStateColor] forState:UIControlStateHighlighted];
+    
+    return btn1;
+}
+
 
 
 - (void)setFrame:(CGRect)frame

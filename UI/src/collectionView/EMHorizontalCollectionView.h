@@ -20,10 +20,17 @@ typedef NS_ENUM(NSUInteger, EMHorizontalPagingControlAlignment)
 };
 
 
-typedef void (^horizontalPagingView_didTap_block)(id<MMCollectionCellModel> model, NSIndexPath *indexPath);
+@class EMHorizontalCollectionView;
+
+@protocol EMHorizontalCollectionViewDelegate <NSObject>
+
+- (void)EMHorizontalCollectionView:(EMHorizontalCollectionView *)collectionView
+                       didTapModel:(id<MMCollectionCellModel>)model
+                       atIndexPath:(NSIndexPath *)indexPath;
+@end
 
 
-@interface EMHorizontalPagingView : UIView <UICollectionViewDelegate, UIScrollViewDelegate>{
+@interface EMHorizontalCollectionView : UIView <UICollectionViewDelegate, UIScrollViewDelegate>{
     
     UICollectionView *_collectionView;
     UIPageControl *_pageControl;
@@ -31,16 +38,19 @@ typedef void (^horizontalPagingView_didTap_block)(id<MMCollectionCellModel> mode
     
     EMHorizontalPagingControlAlignment _alignment;
     UIEdgeInsets _pageControlEdgeInsets;
+    
+    __unsafe_unretained id<EMHorizontalCollectionViewDelegate> _delegate;
 }
 
 @property (nonatomic, strong, readonly) UICollectionView *collectionView;
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
+@property (nonatomic, assign) BOOL enablePageControl;
 
 @property (nonatomic, strong) MMCollectionDataSource *dataSource;
 @property (nonatomic, assign) EMHorizontalPagingControlAlignment alignment;
 @property (nonatomic, assign) UIEdgeInsets pageControlEdgeInsets;
 
-@property (nonatomic, strong) horizontalPagingView_didTap_block didTapBlock;
+@property (nonatomic, assign) id<EMHorizontalCollectionViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 

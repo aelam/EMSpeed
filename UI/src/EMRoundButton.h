@@ -63,5 +63,8 @@
                     highLightStateColor:(UIColor *)highLightStateColor;
 
 
++ (EMRoundButton *)roundButtonWithFrame:(CGRect)frame
+                                  color:(UIColor *)color;
+
 
 @end

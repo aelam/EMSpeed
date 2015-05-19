@@ -7,7 +7,12 @@
 //
 
 #import "EMBaseViewController.h"
+#import "EMHorizontalCollectionView.h"
 
-@interface EMCollectionPagingViewController : EMBaseViewController
+@interface EMCollectionPagingViewController : EMBaseViewController <EMHorizontalCollectionViewDelegate> {
+
+    EMHorizontalCollectionView *_pagingView0;
+    EMHorizontalCollectionView *_pagingView1;
+}
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "EMCollectionPagingViewController.h"
-#import "EMHorizontalPagingView.h"
+#import "EMHorizontalCollectionView.h"
 #import "EMImageCollectionItem.h"
 #import "MMCollectionDataSource.h"
 #import "EMCollectionViewTestItem.h"
@@ -32,7 +32,7 @@
 
 - (void)createPaging0
 {
-    EMHorizontalPagingView *pagingView = [[EMHorizontalPagingView alloc] initWithFrame:CGRectMake(0, 0, EMScreenWidth(), 140)];
+    EMHorizontalCollectionView *pagingView = [[EMHorizontalCollectionView alloc] initWithFrame:CGRectMake(0, 0, EMScreenWidth(), 140)];
     [self.view addSubview:pagingView];
     
     NSMutableArray *marr = [NSMutableArray array];
@@ -57,17 +57,15 @@
     _ds0 = [[MMCollectionDataSource alloc] initWithItems:@[items] sections:@[@""]];
     [pagingView setDataSource:_ds0];
     
-    pagingView.didTapBlock = ^(id<MMCollectionCellModel> model, NSIndexPath *indexPath) {
-        if ([model isKindOfClass:[EMImageCollectionItem class]]) {
-            NSLog(@"风格1 第%ld页", indexPath.row);
-        }
-    };
+    pagingView.delegate = self;
+    
+    _pagingView0 = pagingView;
 }
 
 
 - (void)createPaging1
 {
-    EMHorizontalPagingView *pagingView = [[EMHorizontalPagingView alloc] initWithFrame:CGRectMake(0, 150, EMScreenWidth(), 140)];
+    EMHorizontalCollectionView *pagingView = [[EMHorizontalCollectionView alloc] initWithFrame:CGRectMake(0, 150, EMScreenWidth(), 140)];
     [self.view addSubview:pagingView];
     
     NSMutableArray *marr = [NSMutableArray array];
@@ -96,8 +94,25 @@
     
     _ds1 = [[MMCollectionDataSource alloc] initWithItems:@[items] sections:@[@""]];
     [pagingView setDataSource:_ds1];
-    
-    pagingView.didTapBlock = ^(id<MMCollectionCellModel> model, NSIndexPath *indexPath) {
+    pagingView.delegate = self;
+    pagingView.enablePageControl = NO;
+    _pagingView1 = pagingView;
+
+}
+
+
+
+- (void)EMHorizontalCollectionView:(EMHorizontalCollectionView *)collectionView
+                       didTapModel:(id<MMCollectionCellModel>)model
+                       atIndexPath:(NSIndexPath *)indexPath
+{
+    if (collectionView == _pagingView0) {
+        if ([model isKindOfClass:[EMImageCollectionItem class]]) {
+            NSLog(@"风格1 第%ld页", indexPath.row);
+        }
+        
+    }
+    else if (collectionView == _pagingView1) {
         if ([model isKindOfClass:[EMCollectionViewTestItem class]]) {
             NSLog(@"风格1 第%ld页", indexPath.row);
         }
@@ -107,8 +122,9 @@
         if ([model isKindOfClass:[EMCollectionViewTestItem2 class]]) {
             NSLog(@"风格3 第%ld页", indexPath.row);
         }
-    };
+    }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

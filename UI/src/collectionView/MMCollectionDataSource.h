@@ -60,7 +60,7 @@
  *
  *  @return section标题
  */
-- (NSString *)titleAtSection:(int)section;
+- (NSString *)titleAtSection:(NSUInteger)section;
 
 /**
  *  根据section的标题取下标, 如果重复的返回第一个匹配的
@@ -69,7 +69,7 @@
  *
  *  @return section的下标
  */
-- (int)sectionIndexWithTitle:(NSString *)title;
+- (NSUInteger)sectionIndexWithTitle:(NSString *)title;
 
 
 /**
@@ -79,7 +79,7 @@
  *
  *  @return 该section下的items数组
  */
-- (NSArray *)itemsAtSection:(int)section;
+- (NSArray *)itemsAtSection:(NSUInteger)section;
 - (NSArray *)itemsAtSectionWithTitle:(NSString *)title;
 
 
@@ -87,7 +87,7 @@
 
 // 取某个EMBaseItem
 - (id <MMCollectionCellModel>)itemAtIndexPath:(NSIndexPath *)indexPath;
-- (id <MMCollectionCellModel>)itemAtIndex:(int)index;
+- (id <MMCollectionCellModel>)itemAtIndex:(NSUInteger)index;
 
 
 @end
