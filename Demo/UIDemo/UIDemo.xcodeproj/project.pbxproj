@@ -39,7 +39,6 @@
 		1865EE481AE790F90081866A /* UIBarButtonItem+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED8E1AE790F90081866A /* UIBarButtonItem+Custom.m */; };
 		1865EE491AE790F90081866A /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED901AE790F90081866A /* UIColor+HexString.m */; };
 		1865EE4A1AE790F90081866A /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED921AE790F90081866A /* UIImage+Utility.m */; };
-		1865EE4B1AE790F90081866A /* UITableView+CellAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED941AE790F90081866A /* UITableView+CellAction.m */; };
 		1865EE4C1AE790F90081866A /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED961AE790F90081866A /* UIView+AutoLayout.m */; };
 		1865EE4D1AE790F90081866A /* EMHorizontalCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9A1AE790F90081866A /* EMHorizontalCollectionView.m */; };
 		1865EE4E1AE790F90081866A /* EMImageCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED9C1AE790F90081866A /* EMImageCollectionItem.m */; };
@@ -177,6 +176,7 @@
 		1865EF861AE9CACE0081866A /* EMThemeSrollSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EF851AE9CACE0081866A /* EMThemeSrollSegmentedControl.m */; };
 		96759D801B0984BA00F136AD /* black.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7E1B0984BA00F136AD /* black.plist */; };
 		96759D811B0984BA00F136AD /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7F1B0984BA00F136AD /* default.plist */; };
+		96759D841B0AE79800F136AD /* UIColor+CIELAB.m in Sources */ = {isa = PBXBuildFile; fileRef = 96759D831B0AE79800F136AD /* UIColor+CIELAB.m */; };
 		96B9F1051AF704E1003A8228 /* MMTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B9F1041AF704E1003A8228 /* MMTableEmptyView.m */; };
 		96C86A761AFB37A8005F6E75 /* EMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86A751AFB37A8005F6E75 /* EMMessage.m */; };
 		96C86A7C1AFB3BC5005F6E75 /* NSDate+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86A7B1AFB3BC5005F6E75 /* NSDate+Formatter.m */; };
@@ -279,8 +279,6 @@
 		1865ED901AE790F90081866A /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		1865ED911AE790F90081866A /* UIImage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utility.h"; sourceTree = "<group>"; };
 		1865ED921AE790F90081866A /* UIImage+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utility.m"; sourceTree = "<group>"; };
-		1865ED931AE790F90081866A /* UITableView+CellAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+CellAction.h"; sourceTree = "<group>"; };
-		1865ED941AE790F90081866A /* UITableView+CellAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+CellAction.m"; sourceTree = "<group>"; };
 		1865ED951AE790F90081866A /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		1865ED961AE790F90081866A /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		1865ED991AE790F90081866A /* EMHorizontalCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHorizontalCollectionView.h; sourceTree = "<group>"; };
@@ -557,6 +555,8 @@
 		1865EF851AE9CACE0081866A /* EMThemeSrollSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMThemeSrollSegmentedControl.m; sourceTree = "<group>"; };
 		96759D7E1B0984BA00F136AD /* black.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = black.plist; sourceTree = "<group>"; };
 		96759D7F1B0984BA00F136AD /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
+		96759D821B0AE79800F136AD /* UIColor+CIELAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CIELAB.h"; sourceTree = "<group>"; };
+		96759D831B0AE79800F136AD /* UIColor+CIELAB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CIELAB.m"; sourceTree = "<group>"; };
 		96B9F1031AF704E1003A8228 /* MMTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableEmptyView.h; sourceTree = "<group>"; };
 		96B9F1041AF704E1003A8228 /* MMTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableEmptyView.m; sourceTree = "<group>"; };
 		96C86A741AFB37A8005F6E75 /* EMMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMessage.h; sourceTree = "<group>"; };
@@ -788,10 +788,10 @@
 				1865ED8E1AE790F90081866A /* UIBarButtonItem+Custom.m */,
 				1865ED8F1AE790F90081866A /* UIColor+HexString.h */,
 				1865ED901AE790F90081866A /* UIColor+HexString.m */,
+				96759D821B0AE79800F136AD /* UIColor+CIELAB.h */,
+				96759D831B0AE79800F136AD /* UIColor+CIELAB.m */,
 				1865ED911AE790F90081866A /* UIImage+Utility.h */,
 				1865ED921AE790F90081866A /* UIImage+Utility.m */,
-				1865ED931AE790F90081866A /* UITableView+CellAction.h */,
-				1865ED941AE790F90081866A /* UITableView+CellAction.m */,
 				1865ED951AE790F90081866A /* UIView+AutoLayout.h */,
 				1865ED961AE790F90081866A /* UIView+AutoLayout.m */,
 				96C86A741AFB37A8005F6E75 /* EMMessage.h */,
@@ -1455,7 +1455,6 @@
 				1860E0F71AE9EAE80050E633 /* UIButton+PPiAwesome.m in Sources */,
 				1865EF7F1AE8EB360081866A /* EMThemeSegmentSelectedIndicatorView.m in Sources */,
 				1865EE751AE790F90081866A /* MMMutableDataSource.m in Sources */,
-				1865EE4B1AE790F90081866A /* UITableView+CellAction.m in Sources */,
 				1865EE931AE790F90081866A /* SDWebImageDownloaderOperation.m in Sources */,
 				96C86AE71B00A3D4005F6E75 /* EMScrollableTableContentHeaderView.m in Sources */,
 				1865EF3F1AE8821D0081866A /* EMSegmentedControl.m in Sources */,
@@ -1557,6 +1556,7 @@
 				1865EE801AE790F90081866A /* UIImage+FontAwesome.m in Sources */,
 				1865EE941AE790F90081866A /* SDWebImageManager.m in Sources */,
 				96C86AF11B043D40005F6E75 /* EMScrollableListModel.m in Sources */,
+				96759D841B0AE79800F136AD /* UIColor+CIELAB.m in Sources */,
 				1865EEEC1AE791960081866A /* RNThemeManager.m in Sources */,
 				1865EE7A1AE790F90081866A /* BDKNotifyHUD.m in Sources */,
 				1865EE721AE790F90081866A /* EMStatusBarWindow.m in Sources */,

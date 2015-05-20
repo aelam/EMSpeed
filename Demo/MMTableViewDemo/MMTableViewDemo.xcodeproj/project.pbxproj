@@ -27,8 +27,6 @@
 		18309B6A1AEF93BF0057945D /* MMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B641AEF93BE0057945D /* MMTableViewController.m */; };
 		18309B901AF072B40057945D /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B721AF072B40057945D /* NSDate+String.m */; };
 		18309B911AF072B40057945D /* NSObject+Reflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B741AF072B40057945D /* NSObject+Reflect.m */; };
-		18309B931AF072B40057945D /* NSString+GTM.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B781AF072B40057945D /* NSString+GTM.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		18309B941AF072B40057945D /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B7A1AF072B40057945D /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18309B951AF072B40057945D /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B7C1AF072B40057945D /* NSString+Pinyin.m */; };
 		18309B961AF072B40057945D /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B7E1AF072B40057945D /* NSString+URLEncoding.m */; };
 		18309B971AF072B40057945D /* NSString+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B801AF072B40057945D /* NSString+Utility.m */; };
@@ -132,10 +130,6 @@
 		18309B721AF072B40057945D /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
 		18309B731AF072B40057945D /* NSObject+Reflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflect.h"; sourceTree = "<group>"; };
 		18309B741AF072B40057945D /* NSObject+Reflect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Reflect.m"; sourceTree = "<group>"; };
-		18309B771AF072B40057945D /* NSString+GTM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GTM.h"; sourceTree = "<group>"; };
-		18309B781AF072B40057945D /* NSString+GTM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GTM.m"; sourceTree = "<group>"; };
-		18309B791AF072B40057945D /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		18309B7A1AF072B40057945D /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		18309B7B1AF072B40057945D /* NSString+Pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Pinyin.h"; sourceTree = "<group>"; };
 		18309B7C1AF072B40057945D /* NSString+Pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Pinyin.m"; sourceTree = "<group>"; };
 		18309B7D1AF072B40057945D /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -325,10 +319,6 @@
 				18309B721AF072B40057945D /* NSDate+String.m */,
 				18309B731AF072B40057945D /* NSObject+Reflect.h */,
 				18309B741AF072B40057945D /* NSObject+Reflect.m */,
-				18309B771AF072B40057945D /* NSString+GTM.h */,
-				18309B781AF072B40057945D /* NSString+GTM.m */,
-				18309B791AF072B40057945D /* NSString+HTML.h */,
-				18309B7A1AF072B40057945D /* NSString+HTML.m */,
 				18309B7B1AF072B40057945D /* NSString+Pinyin.h */,
 				18309B7C1AF072B40057945D /* NSString+Pinyin.m */,
 				18309B7D1AF072B40057945D /* NSString+URLEncoding.h */,
@@ -671,13 +661,11 @@
 				18309BD31AF086630057945D /* MMInfoItem3.m in Sources */,
 				18309B521AEF93B50057945D /* MJRefreshLegendHeader.m in Sources */,
 				18309B541AEF93B50057945D /* UIScrollView+MJRefresh.m in Sources */,
-				18309B931AF072B40057945D /* NSString+GTM.m in Sources */,
 				18309BD91AF086630057945D /* MMInfoCell2.m in Sources */,
 				18309BCF1AF086630057945D /* MMVIPTableController.m in Sources */,
 				96BC73891A9F104E0020E5A1 /* AFHTTPRequestOperationManager.m in Sources */,
 				96BC730F1A9F0AFC0020E5A1 /* main.m in Sources */,
 				18309BD41AF086630057945D /* MMInfoModel.m in Sources */,
-				18309B941AF072B40057945D /* NSString+HTML.m in Sources */,
 				96BC738E1A9F104E0020E5A1 /* AFURLRequestSerialization.m in Sources */,
 				18309B651AEF93BF0057945D /* MMDataSource.m in Sources */,
 				18309B9D1AF072B40057945D /* EMCoreSDKAvailability.m in Sources */,

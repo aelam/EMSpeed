@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
  *  @param popupView 弹框界面
  *  @param sender    事件传递的控件
  */
-- (void)EMArtPopView:(EMArtPopupView *)popupView didPressAction:(id)sender; // 点击事件
+- (void)EMArtPopView:(EMArtPopupView *)popupView didPressed:(id)sender; // 点击事件
 
 
 /**
@@ -91,13 +91,13 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
 /**
  *  转屏时, 默认会消失
  */
-@property (nonatomic, assign) BOOL dismissWhenDeviceRotation;
+@property (nonatomic, assign, getter=isDismissWhenDeviceRotation) BOOL dismissWhenDeviceRotation;
 
 
 /**
  *  进入后台时, 默认会消失
  */
-@property (nonatomic, assign) BOOL dismissWhenEnterBackground;
+@property (nonatomic, assign, getter=isDismissWhenEnterBackground) BOOL dismissWhenEnterBackground;
 
 
 /**
@@ -109,7 +109,7 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
 /**
  *  背景填充颜色, 默认为白色
  */
-@property (nonatomic, strong) UIColor *fillBGColor;
+@property (nonatomic, strong) UIColor *fillBackgroundColor;
 
 
 /**

@@ -94,4 +94,13 @@
 - (CGSize)em_sizeWithFont:(UIFont *)font;
 
 
+/**
+ *  画文字
+ *
+ *  @param rect      区域
+ *  @param attribute 属性
+ */
+- (void)em_drawInRect:(CGRect)rect
+       withAttributes:(NSDictionary *)attribute;
+
 @end

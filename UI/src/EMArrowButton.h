@@ -27,14 +27,14 @@ typedef NS_ENUM(NSInteger, EMArrowButtonPosition) {
  */
 @interface  EMArrowButton: UIButton
 {
-    EMArrowDirection _direct;
+    EMArrowDirection _direction;
 }
 
 
 /**
  *  箭头方向
  */
-@property (nonatomic, assign) EMArrowDirection direct;
+@property (nonatomic, assign) EMArrowDirection direction;
 
 
 /**
@@ -84,6 +84,20 @@ typedef NS_ENUM(NSInteger, EMArrowButtonPosition) {
  */
 @property (nonatomic, strong) UIImage *imgArrow;
 
+
+
+/**
+ *  通用的按钮
+ *
+ *  @param frame  尺寸
+ *  @param title  标题
+ *  @param direct 剪头方向
+ *
+ *  @return 按钮
+ */
++ (instancetype)buttonWithFrame:(CGRect)frame
+                          title:(NSString *)title
+                      direction:(EMArrowDirection)direct;
 
 @end
 

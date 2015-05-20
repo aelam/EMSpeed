@@ -8,19 +8,21 @@
 
 #import "EMArrowButton.h"
 
+#define kDefaultArrowButtonColor    RGB(183, 183, 183)
+#define kDefaultArrowButtonSize     CGSizeMake(6, 6)
 
 @implementation EMArrowButton
-@synthesize direct = _direct;
+@synthesize direction = _direction;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _direct = EMArrowDirectionDown;
+        _direction = EMArrowDirectionDown;
         _arrowPos = EMArrowButtonPositionRight;
         
         self.arrowColor = [UIColor darkGrayColor];
-        self.arrowHighlightedColor = RGB(183, 183, 183);
+        self.arrowHighlightedColor = kDefaultArrowButtonColor;
         
         self.arrowShadowColor = [UIColor lightGrayColor];
         self.arrowHighlightedShadowColor = [UIColor blackColor];
@@ -29,15 +31,25 @@
     return self;
 }
 
++ (instancetype)buttonWithFrame:(CGRect)frame
+                          title:(NSString *)title
+                      direction:(EMArrowDirection)direction
+{
+    EMArrowButton *button = [[[self class] alloc] initWithFrame:frame];
+    button.direction = direction;
+    [button setTitle:title forState:UIControlStateNormal];
+    return button;
+}
+
 -(void)awakeFromNib
 {
     [super awakeFromNib];
     
-    _direct = EMArrowDirectionDown;
+    _direction = EMArrowDirectionDown;
     _arrowPos = EMArrowButtonPositionRight;
     
     self.arrowColor = [UIColor darkGrayColor];
-    self.arrowHighlightedColor = RGB(183, 183, 183);
+    self.arrowHighlightedColor = kDefaultArrowButtonColor;
     
     self.arrowShadowColor = [UIColor lightGrayColor];
     self.arrowHighlightedShadowColor = [UIColor blackColor];
@@ -52,13 +64,19 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGPoint origin = [self calcArrowButtonOrigin];
+    [self drawArrowAtPoint:origin];
+}
+
+- (CGPoint)calcArrowButtonOrigin
+{
     
     CGFloat begin_x = 0;
     CGFloat begin_y = 0;
     
     if (self.arrowSize.width <= 0 || self.arrowSize.height <= 0) {
-        self.arrowSize = CGSizeMake(6, 6);
+        self.arrowSize = kDefaultArrowButtonSize;
     }
     
     if (self.arrowOrigin.x != 0 || self.arrowOrigin.y != 0) {
@@ -85,8 +103,15 @@
     begin_x = ceilf(begin_x);
     begin_y = ceilf(begin_y);
     
+    return CGPointMake(begin_x, begin_y);
+}
+
+- (void)drawArrowAtPoint:(CGPoint)origin
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     if (self.imgArrow) {
-        [self.imgArrow drawInRect:CGRectMake(begin_x, begin_y,self.arrowSize.width, self.arrowSize.height)];
+        [self.imgArrow drawInRect:CGRectMake(origin.x, origin.y, self.arrowSize.width, self.arrowSize.height)];
     }
     else{
         //绘制一层三角阴影
@@ -94,10 +119,10 @@
             UIColor *shadowColor = self.arrowShadowColor ? self.arrowShadowColor : self.arrowHighlightedShadowColor;
             UIColor *HighlightedShadowColor = self.arrowHighlightedShadowColor ? self.arrowHighlightedShadowColor : self.arrowShadowColor;
             
-            CGDrawFillTrianle(context, _direct, CGRectMake(begin_x, begin_y+1, self.arrowSize.width, self.arrowSize.height), self.highlighted ? HighlightedShadowColor : shadowColor);
+            CGDrawFillTrianle(context, _direction, CGRectMake(origin.x, origin.y+1, self.arrowSize.width, self.arrowSize.height), self.highlighted ? HighlightedShadowColor : shadowColor);
         }
         
-        CGDrawFillTrianle(context, _direct, CGRectMake(begin_x, begin_y,self.arrowSize.width, self.arrowSize.height),
+        CGDrawFillTrianle(context, _direction, CGRectMake(origin.x, origin.y, self.arrowSize.width, self.arrowSize.height),
                           self.highlighted ? self.arrowHighlightedColor : self.arrowColor);
     }
 }

@@ -7,6 +7,7 @@
 //
 
 #import "EMRoundButton.h"
+#import "UIColor+CIELAB.h"
 
 const static CGFloat kRoundButtonCornerRadius = 4.f;
 const static CGFloat kRoundButtonBorderWidth = 1.f;
@@ -95,20 +96,20 @@ const static CGFloat kRoundButtonBorderWidth = 1.f;
 + (EMRoundButton *)roundButtonWithFrame:(CGRect)frame
                                   color:(UIColor *)color
 {
-    EMRoundButton *btn1 = [EMRoundButton buttonWithType:UIButtonTypeCustom];
-    btn1.frame = frame;
-    [btn1 setCorners:UIRectCornerAllCorners];
-    btn1.cornerRadius = kRoundButtonCornerRadius;
-    btn1.borderWidth = kRoundButtonBorderWidth;
+    EMRoundButton *btn = [EMRoundButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = frame;
+    [btn setCorners:UIRectCornerAllCorners];
+    btn.cornerRadius = kRoundButtonCornerRadius;
+    btn.borderWidth = kRoundButtonBorderWidth;
     
     UIColor *normalStateColor = color;
-    UIColor *highLightStateColor = color;
-    btn1.backgroundColor = normalStateColor;
-    btn1.normalStateColor = normalStateColor;
-    btn1.highLightStateColor = highLightStateColor;
-    [btn1 setBackgroundImage:[btn1 buttonImageFromColor:highLightStateColor] forState:UIControlStateHighlighted];
+    UIColor *highLightStateColor = [color offsetWithLightness:-20.f a:0 b:0 alpha:0];
+    btn.backgroundColor = normalStateColor;
+    btn.normalStateColor = normalStateColor;
+    btn.highLightStateColor = highLightStateColor;
+    [btn setBackgroundImage:[btn buttonImageFromColor:highLightStateColor] forState:UIControlStateHighlighted];
     
-    return btn1;
+    return btn;
 }
 
 

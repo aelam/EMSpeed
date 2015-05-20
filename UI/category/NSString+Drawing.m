@@ -15,18 +15,18 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 
 
 - (void)em_drawAtPoint:(CGPoint)point
-           withFont:(UIFont *)font
-              color:(UIColor *)color
-           aligment:(int)aligment
+              withFont:(UIFont *)font
+                 color:(UIColor *)color
+              aligment:(int)aligment
 {
     [self em_drawAtPoint:point withFont:font color:color aligment:aligment lineHeight:0];
 }
 
 - (void)em_drawAtPoint:(CGPoint)point
-             withFont:(UIFont *)font
-                color:(UIColor *)color
-             aligment:(int)aligment
-           lineHeight:(CGFloat)lineHeight
+              withFont:(UIFont *)font
+                 color:(UIColor *)color
+              aligment:(int)aligment
+            lineHeight:(CGFloat)lineHeight
 {
     CGRect rect =  Point2Rect(point, aligment, font);
     aligment = aligment&3;//排除自定义的排序类型
@@ -34,88 +34,58 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 }
 
 - (void)em_drawInRect:(CGRect)rect
-          withFont:(UIFont *)font
-             color:(UIColor *)color
-          aligment:(int)aligment
+             withFont:(UIFont *)font
+                color:(UIColor *)color
+             aligment:(int)aligment
 {
     [self em_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:0];
 }
 
 
 - (void)em_drawInRect:(CGRect)rect
-          withFont:(UIFont *)font
-             color:(UIColor *)color
-          aligment:(int)aligment
-        lineHeight:(CGFloat)lineHeight
+             withFont:(UIFont *)font
+                color:(UIColor *)color
+             aligment:(int)aligment
+           lineHeight:(CGFloat)lineHeight
 {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
-    if(EMOSVersion() >= 7)
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.alignment = aligment;
+    if (lineHeight > 0)
     {
-        NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
-        paragraph.alignment = aligment;
-        if (lineHeight > 0)
-        {
-            paragraph.lineSpacing = lineHeight;   
-        }
+        paragraph.lineSpacing = lineHeight;
+    }
+    
+    NSDictionary *attribute = [NSDictionary dictionaryWithObjectsAndKeys:
+                               color,NSForegroundColorAttributeName,
+                               font,NSFontAttributeName,
+                               paragraph,NSParagraphStyleAttributeName,nil];
+    [self drawInRect:rect withAttributes:attribute];
+}
 
-        NSDictionary *attribute = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   color,NSForegroundColorAttributeName,
-                                   font,NSFontAttributeName,
-                                   paragraph,NSParagraphStyleAttributeName,nil];
-        [self drawInRect:rect withAttributes:attribute];
-    }
-    else
-    {
-        [color set];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        [self drawInRect:rect withFont:font lineBreakMode:NSLineBreakByCharWrapping alignment:aligment];
-#pragma clang diagnostic pop
-    }
-#else
-    [color set];
-    [self drawInRect:rect withFont:font lineBreakMode:NSLineBreakByCharWrapping alignment:aligment];
-#endif
+- (void)em_drawInRect:(CGRect)rect
+       withAttributes:(NSDictionary *)attribute
+{
+    [self drawInRect:rect withAttributes:attribute];
 }
 
 /**
  *默认行高、默认靠左绘制
  */
 - (void)em_drawInRect:(CGRect)rect
-          withFont:(UIFont *)font
-             color:(UIColor *)color
+             withFont:(UIFont *)font
+                color:(UIColor *)color
 {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < NIIOS_7_0
-
     NSDictionary *attribute = [NSDictionary dictionaryWithObjectsAndKeys:
                                color,NSForegroundColorAttributeName,
                                font,NSFontAttributeName,nil];
     [self drawInRect:rect withAttributes:attribute];
-#else
-    [color set];
-    
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self drawInRect:rect withFont:font lineBreakMode:NSLineBreakByCharWrapping alignment:NSTextAlignmentLeft];
-#pragma clang diagnostic pop
-    
-#endif
 }
-
 
 
 - (CGSize)em_sizeWithFont:(UIFont *)font
 {
-    if ([self respondsToSelector:@selector(sizeWithAttributes:)]) {
-        NSDictionary *attributes = @{NSFontAttributeName: font};
-        return [self sizeWithAttributes:attributes];
-    }
-    else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        return [self sizeWithFont:font];
-#pragma clang diagnostic pop
-    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    return [self sizeWithAttributes:attributes];
 }
 
 

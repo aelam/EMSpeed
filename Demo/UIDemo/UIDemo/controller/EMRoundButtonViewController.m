@@ -84,6 +84,13 @@
     btn7.tag = 7;
     [self.view addSubview:btn7];
     
+    
+    EMRoundButton *btn8 = [EMRoundButton roundButtonWithFrame:CGRectMake(20, 270, 120, 40) color:[UIColor blueColor]];
+    [btn8 setTitle:@"通用的按钮" forState:UIControlStateNormal];
+    [btn8 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btn8.tag = 8;
+    [self.view addSubview:btn8];
+    
 }
 
 - (void)didReceiveMemoryWarning {

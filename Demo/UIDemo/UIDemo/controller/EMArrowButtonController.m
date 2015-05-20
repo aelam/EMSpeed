@@ -40,7 +40,7 @@
     [self loadBtn3];
     [self loadBtn4];
     [self loadBtn5];
-    
+    [self loadBtn6];
 }
 
 - (void)loadBtn0
@@ -117,6 +117,16 @@
     btn5.layer.borderColor = [UIColor blueColor].CGColor;
     btn5.layer.borderWidth = 1.f;
     [self.view addSubview:btn5];
+}
+
+- (void)loadBtn6
+{
+    EMThemeArrowButton *btn6 = [EMThemeArrowButton buttonWithFrame:CGRectMake(10, 260, 100, 30)
+                                                             title:@"股票代码"
+                                                         direction:EMArrowDirectionDown];
+    btn6.layer.borderColor = [UIColor blueColor].CGColor;
+    btn6.layer.borderWidth = 1.f;
+    [self.view addSubview:btn6];
 }
 
 @end

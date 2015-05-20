@@ -8,6 +8,8 @@
 
 #import "EMBorderView.h"
 
+#define kDefaultBorderColor RGB(0xe5, 0xe5, 0xe5)
+
 @implementation EMBorderView
 
 
@@ -16,7 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        self.borderColor = [UIColor grayColor];//RGB(0xe5, 0xe5, 0xe5);
+        self.borderColor = kDefaultBorderColor;
         self.border = EMBorderStyleAll;
     }
     return self;
@@ -25,12 +27,16 @@
 - (void)awakeFromNib
 {
     self.backgroundColor = [UIColor whiteColor];
-    self.borderColor = [UIColor grayColor];//RGB(0xe5, 0xe5, 0xe5);
+    self.borderColor = kDefaultBorderColor;
     self.border = EMBorderStyleAll;
 }
 
 
 - (void)drawRect:(CGRect)rect {
+    
+    if (self.border == EMBorderStyleNone) {
+        return;
+    }
     
     rect = UIEdgeInsetsInsetRect(rect, self.contentInsets);
     

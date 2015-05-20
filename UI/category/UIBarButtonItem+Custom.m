@@ -14,58 +14,32 @@
 
 @implementation EMBarButtonItem
 
-- (instancetype)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action
+- (instancetype)initWithImage:(UIImage *)image
+                    tintColor:(UIColor *)tintColor
+                        style:(UIBarButtonItemStyle)style
+                       target:(id)target
+                       action:(SEL)action
 {
-    if (EMOSVersion() >= 7.0)
-    {
-        self = [super initWithImage:image style:style target:target action:action];
-        if (self) {
-            self.tintColor = RGB(0x46, 0x90, 0xef);
-            
-        }
-        return self;
-    }
-    else
-    {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:image forState:UIControlStateNormal];
-        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        button.frame = CGRectMake(0, 0, 40, 30);
-        //        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    self = [super initWithImage:image style:style target:target action:action];
+    if (self) {
+        self.tintColor = tintColor;//RGB(0x46, 0x90, 0xef);
         
-#ifdef DEBUGCOLOR
-        button.backgroundColor = [UIColor redColor];
-#endif
-        id item = [[UIBarButtonItem alloc] initWithCustomView:button];
-        return item;
     }
+    return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action
+- (instancetype)initWithTitle:(NSString *)title
+                    tintColor:(UIColor *)tintColor
+                        style:(UIBarButtonItemStyle)style
+                       target:(id)target
+                       action:(SEL)action
 {
-    if (EMOSVersion() >= 7.0)
-    {
-        self = [super initWithTitle:title style:style target:target action:action];
-        if (self) {
-            self.tintColor = RGB(0x46, 0x90, 0xef);
-        }
-        return self;
+    self = [super initWithTitle:title style:style target:target action:action];
+    if (self) {
+        self.tintColor = tintColor;//RGB(0x46, 0x90, 0xef);
     }
-    else
-    {
-        UIButton* button = [UIButton  buttonWithType:UIButtonTypeCustom];
-        [button setTitle:title forState:UIControlStateNormal];
-        [button setTitleColor:RGB(0x46, 0x90, 0xef) forState:UIControlStateNormal];
-        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-        button.titleLabel.font = [UIFont systemFontOfSize:16.0f];
-        button.frame = CGRectMake(0, 0, 60, 30);
-#ifdef DEBUGCOLOR
-        button.backgroundColor = [UIColor redColor];
-#endif
-        return [self initWithCustomView:button];
-    }
+    return self;
 }
-#pragma clang diagnostic pop
 
 @end
 
@@ -88,14 +62,7 @@
     UIBarButtonItem *item2 =[[EMBarButtonItem alloc] initWithImage:image2
                                                              style:UIBarButtonItemStylePlain
                                                             target:target2 action:action2];
-    
-#ifdef DEBUGCOLOR
-    button.backgroundColor = [UIColor redColor];
-#endif
-    if (EMOSVersion() >= 7.0)
-    {
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    }
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
     return [NSArray arrayWithObjects:item2,item1,nil];
 }

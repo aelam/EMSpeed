@@ -44,7 +44,7 @@ static EMArtPopupView *__artPopView;
         self.dismissWhenEnterBackground = YES;
         _kArrowSize = 8.f;
         
-        self.fillBGColor = [UIColor whiteColor];
+        self.fillBackgroundColor = [UIColor whiteColor];
         self.borderColor = [UIColor lightGrayColor];
     }
     return self;
@@ -329,7 +329,7 @@ static EMArtPopupView *__artPopView;
     CGFloat R0 = 0.267, G0 = 0.303, B0 = 0.335;
     CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
     
-    UIColor *tintColor = self.fillBGColor;
+    UIColor *tintColor = self.fillBackgroundColor;
     if (tintColor) {
         
         CGFloat a;

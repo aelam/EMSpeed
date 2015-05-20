@@ -12,6 +12,7 @@
  *  可选边缘线显示 枚举类型
  */
 typedef NS_OPTIONS(NSUInteger, EMBorderStyle){
+    EMBorderStyleNone   = 0,
     EMBorderStyleLeft   = 1 << 0,
     EMBorderStyleRight  = 1 << 1,
     EMBorderStyleTop    = 1 << 2,
