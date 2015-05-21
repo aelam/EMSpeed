@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
 /**
  *  圆角
  */
-@property (nonatomic, assign) float cornerRound;
+@property (nonatomic, assign) float cornerRadius;
 
 
 /**
@@ -124,12 +124,6 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
 @property (nonatomic, weak) id<EMArtPopupViewDelegate> actionDelegate;
 
 
-/**
- *  单例
- *
- *  @return EMArtPopupView单例
- */
-+ (EMArtPopupView *)sharedArtPopView;
 
 // 如有点击事件, contentView需要实现EMArtPopupViewAction协议
 
@@ -153,7 +147,7 @@ typedef NS_ENUM(NSInteger, EMArtPopupViewArrowDirection) {
  *
  *  @param animated 是否动画
  */
-+ (void)dismiss:(BOOL)animated;
+- (void)dismiss:(BOOL)animated;
 
 @end
 

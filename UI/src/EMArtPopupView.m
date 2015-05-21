@@ -7,11 +7,10 @@
 #import "EMArtPopupView.h"
 
 
-static EMArtPopupView *__artPopView;
-
 
 @interface EMArtPopupView() {
     BOOL _isParentViewScrollEnabled;
+    CGRect _fromRect;
 }
 
 @end
@@ -19,27 +18,15 @@ static EMArtPopupView *__artPopView;
 
 @implementation EMArtPopupView
 
-+ (instancetype)sharedArtPopView
-{
-    @synchronized(self){
-        if (__artPopView==nil) {
-            __artPopView = [[EMArtPopupView alloc] init];
-        }
-    }
-    
-    return __artPopView;
-}
 
 - (instancetype)init
 {
-    NSAssert(!__artPopView, @"singleton object");
-    
     self = [super initWithFrame:CGRectZero];
     if(self) {
         self.backgroundColor = [UIColor clearColor];
         self.opaque = YES;
         self.alpha = 0;
-        self.cornerRound = 4.f;
+        self.cornerRadius = 4.f;
         self.dismissWhenDeviceRotation = YES;
         self.dismissWhenEnterBackground = YES;
         _kArrowSize = 8.f;
@@ -60,49 +47,46 @@ static EMArtPopupView *__artPopView;
                        fromRect:(CGRect)rect
                        delegate:(id<EMArtPopupViewDelegate>)delegate
 {
-    [[EMArtPopupView sharedArtPopView] showContent:contentView inView:parentView fromRect:rect delegate:delegate];
-    return [EMArtPopupView sharedArtPopView];
+    
+    EMArtPopupView *popupView = [[EMArtPopupView alloc] init];
+    [popupView showContent:contentView inView:parentView fromRect:rect delegate:delegate];
+    
+    return popupView;
 }
 
-+ (void)dismiss:(BOOL)animated
-{
-    [[EMArtPopupView sharedArtPopView] dismiss:animated];
-}
 
 - (void)showContent:(EMArtPopupContentView *)contentView
              inView:(UIView *)parentView
            fromRect:(CGRect)rect
            delegate:(id<EMArtPopupViewDelegate>)delegate
 {
-    [self dismiss:NO];
-    
     _actionDelegate = delegate;
+    contentView.actionDelegate = delegate;
+    _fromRect = rect;
+    
     _contentView = contentView;
     _parentView = parentView;
+    _overlayView = [[EMArtPopupOverlay alloc] initWithFrame:parentView.bounds];
     
-    if (delegate) {
-        contentView.actionDelegate = delegate;
-    }
+    [self parentViewScrollDisable];
     
-    if ([parentView isKindOfClass:[UIScrollView class]]) {
-        _isParentViewScrollEnabled = ((UIScrollView *)parentView).scrollEnabled;
-        ((UIScrollView *)parentView).scrollEnabled = NO;
-    }
-    
+    [_parentView addSubview:_overlayView];
+    [_overlayView addSubview:self];
     [self addSubview:_contentView];
     
-    [self setupFrameInView:parentView fromRect:rect];
+    [self runFadeInAnimation];
     
-    EMArtPopupOverlay *overlay = [[EMArtPopupOverlay alloc] initWithFrame:parentView.bounds];
-    [overlay addSubview:self];
-    [parentView addSubview:overlay];
-    _overlayView = overlay;
-    
-    _contentView.hidden = YES;
+//    [self setNeedsDisplay];
+}
+
+- (void)runFadeInAnimation
+{
+    [self setupFrameInView:_parentView fromRect:_fromRect];
     const CGRect toFrame = self.frame;
     self.frame = (CGRect){self.arrowPoint, 1, 1};
     
     self.alpha = 0.f;
+    _contentView.hidden = YES;
     [UIView animateWithDuration:0.2
                      animations:^(void) {
                          
@@ -112,7 +96,15 @@ static EMArtPopupView *__artPopView;
                      } completion:^(BOOL completed) {
                          _contentView.hidden = NO;
                      }];
-    [self setNeedsDisplay];
+}
+
+- (void)parentViewScrollDisable
+{
+    if ([_parentView isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *parentScrollView = (UIScrollView *)_parentView;
+        _isParentViewScrollEnabled = parentScrollView.scrollEnabled;
+        parentScrollView.scrollEnabled = NO;
+    }
 }
 
 - (void)dismiss:(BOOL) animated
@@ -120,7 +112,6 @@ static EMArtPopupView *__artPopView;
     if (self.superview) {
         
         if (animated) {
-            
             _contentView.hidden = YES;
             const CGRect toFrame = (CGRect){self.arrowPoint, 1, 1};
             
@@ -150,7 +141,6 @@ static EMArtPopupView *__artPopView;
     }
     _parentView = nil;
     _overlayView = nil;
-    __artPopView = nil;
     
     if (self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(EMArtPopupViewDidDismissed:)]) {
         [self.actionDelegate EMArtPopupViewDidDismissed:self];
@@ -424,7 +414,7 @@ static EMArtPopupView *__artPopView;
     const CGRect bodyFrame = {X0, Y0, X1 - X0, Y1 - Y0};
     
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:bodyFrame
-                                                          cornerRadius:self.cornerRound];
+                                                          cornerRadius:self.cornerRadius];
     
     const CGFloat locations[] = {0, 1};
     const CGFloat components[] = {
@@ -553,7 +543,6 @@ static EMArtPopupView *__artPopView;
         for (UIView *v in self.subviews) {
             if ([v isKindOfClass:[EMArtPopupView class]]
                 && [v respondsToSelector:@selector(dismiss:)]) {
-                
                 [v performSelector:@selector(dismiss:) withObject:@(YES)];
             }
         }
