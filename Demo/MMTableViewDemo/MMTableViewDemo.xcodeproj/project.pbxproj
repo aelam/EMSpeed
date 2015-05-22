@@ -418,10 +418,10 @@
 				94F488F11B0624E900FCD516 /* EMParseableObject.m */,
 				94F488E91B0624E900FCD516 /* EMHTTPRequestModel.h */,
 				94F488EA1B0624E900FCD516 /* EMHTTPRequestModel.m */,
-				94F488EB1B0624E900FCD516 /* EMHTTPResponse.h */,
-				94F488EC1B0624E900FCD516 /* EMHTTPResponse.m */,
 				94F488EE1B0624E900FCD516 /* EMParseableObject+CellModel.h */,
 				94F488EF1B0624E900FCD516 /* EMParseableObject+CellModel.m */,
+				94F488EB1B0624E900FCD516 /* EMHTTPResponse.h */,
+				94F488EC1B0624E900FCD516 /* EMHTTPResponse.m */,
 			);
 			path = src;
 			sourceTree = "<group>";

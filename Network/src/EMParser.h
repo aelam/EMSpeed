@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  数据解析的协议, 可将数组或单个JSON解析成对应的对象
+ *  数据解析协议, 可将数组或单个JSON解析成对应的对象
  */
 
 @protocol EMParser <NSObject>

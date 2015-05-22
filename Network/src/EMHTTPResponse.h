@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  HTTP响应对象
+    包含原始数据, 如果是标准格式, 会将status, updatetime, message, data,
+    解析后的JSON数据在responseData中, 如果非标准格式, 则responseData为nil
+ */
+
 @interface EMHTTPResponse : NSObject {
     
 }

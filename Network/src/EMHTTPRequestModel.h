@@ -9,35 +9,24 @@
 #import "AFNetworking.h"
 
 @class EMHTTPResponse;
-@protocol EMHTTPResponseParse <NSObject>
 
 /**
- *  解析HTTP请求返回的对象, 如果是标准格式下, 只需要实现这个方法就可以了, 所有数据已保存在EMHTTResponse中
- *
- *  @param response  经过解析的EMHTTResponse对象
- *  @param URLString HTTP请求的URL
- *
- *  @return 是否解析成功
+ *  HTTP请求的Model, 具有收发包功能, 
+    子类只需要实现方法parseHTTPResponse:URL: 即可
  */
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
-                      URL:(NSString *)URLString;
-
-@end
-
-
-@interface EMHTTPRequestModel : NSObject <EMHTTPResponseParse>
+@interface EMHTTPRequestModel : NSObject
 
 - (AFHTTPRequestOperation *)GET:(NSString *)URLString
                           param:(NSDictionary *)param
                           block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
-
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
                            param:(NSDictionary *)param
                            block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
+
 /**
- *  解析HTTP请求返回的对象, 如果是标准格式下, 只需要实现这个方法就可以了, 所有数据已保存在EMHTTResponse中
+ *  解析HTTP请求返回的对象, 如果是标准格式下, 子类只需要实现这个方法就可以了, 所有数据已保存在EMHTTResponse的responseData或originData中
  *
  *  @param response  经过解析的EMHTTResponse对象
  *  @param URLString HTTP请求的URL

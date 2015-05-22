@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
     cs.source_files  = "Network/**/*.{h,m,c,swift}"
     cs.resources     = "Network/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
-    cs.dependency "AFNetworking", "~> 1.4"
+    cs.dependency "AFNetworking", "~> 2.5.1”
   end
 
   s.subspec 'UI' do |cs|

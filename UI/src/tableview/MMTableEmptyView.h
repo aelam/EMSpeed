@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  空的View
+ */
 @interface MMTableEmptyView : UIView
 
 @property (nonatomic, strong) UILabel *textlabel;

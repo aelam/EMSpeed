@@ -10,6 +10,9 @@
 #import "MMCellModel.h"
 #import "EMParseableObject+CellModel.h"
 
+/**
+ *  cell model 解析协议, 主要是在EMParser扩展出解析CellModel的功能
+ */
 @protocol EMCellModelParser <EMParser>
 
 @optional
