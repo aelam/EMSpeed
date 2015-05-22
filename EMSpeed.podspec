@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.author             = { "Emoney" => "ios@emoney.com" }
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.platform     = :ios
+  s.platform     = :ios, "7.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source       = { :git => "https://github.com/emoneycn/emspeed", :tag => "#{s.version}" }
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
     cs.source_files  = "Network/**/*.{h,m,c,swift}"
     cs.resources     = "Network/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
-    cs.dependency "AFNetworking", "~> 2.5.1”
+    cs.dependency "AFNetworking", "~> 2.5.1"
   end
 
   s.subspec 'UI' do |cs|
