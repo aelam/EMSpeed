@@ -184,7 +184,6 @@
 		96C86AD51AFC8BEC005F6E75 /* EMContentListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC11AFC8BEC005F6E75 /* EMContentListItem.m */; };
 		96C86AD61AFC8BEC005F6E75 /* EMNameListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC41AFC8BEC005F6E75 /* EMNameListItem.m */; };
 		96C86AD71AFC8BEC005F6E75 /* EMScrollableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC61AFC8BEC005F6E75 /* EMScrollableList.m */; };
-		96C86AD81AFC8BEC005F6E75 /* EMStockListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86AC91AFC8BEC005F6E75 /* EMStockListModel.m */; };
 		96C86AD91AFC8BEC005F6E75 /* EMContentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86ACC1AFC8BEC005F6E75 /* EMContentListCell.m */; };
 		96C86ADA1AFC8BEC005F6E75 /* EMContentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C86ACD1AFC8BEC005F6E75 /* EMContentListCell.xib */; };
 		96C86ADB1AFC8BEC005F6E75 /* EMNameListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C86ACF1AFC8BEC005F6E75 /* EMNameListCell.m */; };
@@ -573,8 +572,6 @@
 		96C86AC51AFC8BEC005F6E75 /* EMScrollableList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMScrollableList.h; sourceTree = "<group>"; };
 		96C86AC61AFC8BEC005F6E75 /* EMScrollableList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMScrollableList.m; sourceTree = "<group>"; };
 		96C86AC71AFC8BEC005F6E75 /* EMScrollableProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMScrollableProtocol.h; sourceTree = "<group>"; };
-		96C86AC81AFC8BEC005F6E75 /* EMStockListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMStockListModel.h; sourceTree = "<group>"; };
-		96C86AC91AFC8BEC005F6E75 /* EMStockListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMStockListModel.m; sourceTree = "<group>"; };
 		96C86ACB1AFC8BEC005F6E75 /* EMContentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMContentListCell.h; sourceTree = "<group>"; };
 		96C86ACC1AFC8BEC005F6E75 /* EMContentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMContentListCell.m; sourceTree = "<group>"; };
 		96C86ACD1AFC8BEC005F6E75 /* EMContentListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMContentListCell.xib; sourceTree = "<group>"; };
@@ -1296,8 +1293,6 @@
 				96C86AC61AFC8BEC005F6E75 /* EMScrollableList.m */,
 				96C86AEF1B043D40005F6E75 /* EMScrollableListModel.h */,
 				96C86AF01B043D40005F6E75 /* EMScrollableListModel.m */,
-				96C86AC81AFC8BEC005F6E75 /* EMStockListModel.h */,
-				96C86AC91AFC8BEC005F6E75 /* EMStockListModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1523,7 +1518,6 @@
 				1865EF231AE7929E0081866A /* EMMenuItem.m in Sources */,
 				1865EE481AE790F90081866A /* UIBarButtonItem+Custom.m in Sources */,
 				1865EE491AE790F90081866A /* UIColor+HexString.m in Sources */,
-				96C86AD81AFC8BEC005F6E75 /* EMStockListModel.m in Sources */,
 				1865EE811AE790F90081866A /* MCSegmentedControl.m in Sources */,
 				1865EE621AE790F90081866A /* EMMultiPagingBaseController.m in Sources */,
 				1865ED841AE790EC0081866A /* EMCoreMetrics.m in Sources */,
