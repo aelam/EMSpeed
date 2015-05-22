@@ -11,6 +11,7 @@
 
 @implementation EMParseableObject(CellModel)
 
+
 + (id<MMCellModel>)cellModelWithData:(NSDictionary *)dictionary
                       cellModelClass:(Class)cls
 {
@@ -21,6 +22,7 @@
     
     return cellModel;
 }
+
 
 + (NSMutableArray *)cellModelsWithArray:(NSArray *)array
                          cellModelClass:(Class)cls

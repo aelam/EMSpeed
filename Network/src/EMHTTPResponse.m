@@ -8,42 +8,50 @@
 
 #import "EMHTTPResponse.h"
 
+@interface EMHTTPResponse() {
+    
+}
++ (NSDateFormatter *)updateTimeFormatter;
+@end
+
 @implementation EMHTTPResponse
 
 
 + (instancetype)responseWithObject:(id)object
 {
-    if ([EMHTTPResponse isEMStandardResponse:object]) {
-        return [EMHTTPResponse responseWithResponse:object];
-    }
-    else {
-        return [EMHTTPResponse responseWithResponseObject:object];
-    }
-    
-    return nil;
-}
-
-
-+ (instancetype)responseWithResponseObject:(NSDictionary *)responseObject {
-    EMHTTPResponse *response = [[EMHTTPResponse alloc] init];
-    response.responseData = responseObject;
-    
-    return response;
+    return [EMHTTPResponse responseWithResponse:object];
 }
 
 
 + (instancetype)responseWithResponse:(NSDictionary *)responseObject {
+    
+    if (responseObject == nil) {
+        return nil;
+    }
+    
     EMHTTPResponse *response = [[EMHTTPResponse alloc] init];
-    response.status = [responseObject[@"status"] integerValue];
-    NSDateFormatter *formatter = [self updateTimeFormatter];
-    response.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];
-    response.responseData = responseObject[@"data"];
-    response.message = responseObject[@"message"];
+    response.originData = responseObject;
+    
+    if ([EMHTTPResponse isEMStandardResponse:responseObject]) {
+        response.status = [responseObject[@"status"] integerValue];
+        NSDateFormatter *formatter = [self updateTimeFormatter];
+        response.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];
+        response.responseData = responseObject[@"data"];
+        response.message = responseObject[@"message"];
+    }
     
     return response;
 }
 
-
++ (NSDateFormatter *)updateTimeFormatter {
+    static NSDateFormatter *_dateFormatter = nil;
+    if (_dateFormatter == nil) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    }
+    
+    return _dateFormatter;
+}
 
 + (BOOL)isEMStandardResponse:(id)responseObject
 {
@@ -58,15 +66,8 @@
     return NO;
 }
 
-
-+ (NSDateFormatter *)updateTimeFormatter {
-    static NSDateFormatter *_dateFormatter = nil;
-    if (_dateFormatter == nil) {
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    }
-    
-    return _dateFormatter;
-}
-
 @end
+
+
+
+

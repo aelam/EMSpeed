@@ -186,12 +186,10 @@
 		1835D30F1AF226B5008E4FD8 /* MMVIPTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVIPTableViewController.h; sourceTree = "<group>"; };
 		1835D3101AF226B5008E4FD8 /* MMVIPTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVIPTableViewController.m; sourceTree = "<group>"; };
 		1835D3111AF226B5008E4FD8 /* MMVIPTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMVIPTableViewController.xib; sourceTree = "<group>"; };
-		94F488E81B0624E900FCD516 /* EMCellModelParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCellModelParser.h; sourceTree = "<group>"; };
 		94F488E91B0624E900FCD516 /* EMHTTPRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPRequestModel.h; sourceTree = "<group>"; };
 		94F488EA1B0624E900FCD516 /* EMHTTPRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHTTPRequestModel.m; sourceTree = "<group>"; };
 		94F488EB1B0624E900FCD516 /* EMHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPResponse.h; sourceTree = "<group>"; };
 		94F488EC1B0624E900FCD516 /* EMHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHTTPResponse.m; sourceTree = "<group>"; };
-		94F488ED1B0624E900FCD516 /* EMHTTPResponseParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPResponseParse.h; sourceTree = "<group>"; };
 		94F488EE1B0624E900FCD516 /* EMParseableObject+CellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EMParseableObject+CellModel.h"; sourceTree = "<group>"; };
 		94F488EF1B0624E900FCD516 /* EMParseableObject+CellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EMParseableObject+CellModel.m"; sourceTree = "<group>"; };
 		94F488F01B0624E900FCD516 /* EMParseableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMParseableObject.h; sourceTree = "<group>"; };
@@ -415,17 +413,15 @@
 		94F488E71B0624E900FCD516 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				94F488E81B0624E900FCD516 /* EMCellModelParser.h */,
+				94F488F21B0624E900FCD516 /* EMParser.h */,
+				94F488F01B0624E900FCD516 /* EMParseableObject.h */,
+				94F488F11B0624E900FCD516 /* EMParseableObject.m */,
 				94F488E91B0624E900FCD516 /* EMHTTPRequestModel.h */,
 				94F488EA1B0624E900FCD516 /* EMHTTPRequestModel.m */,
 				94F488EB1B0624E900FCD516 /* EMHTTPResponse.h */,
 				94F488EC1B0624E900FCD516 /* EMHTTPResponse.m */,
-				94F488ED1B0624E900FCD516 /* EMHTTPResponseParse.h */,
 				94F488EE1B0624E900FCD516 /* EMParseableObject+CellModel.h */,
 				94F488EF1B0624E900FCD516 /* EMParseableObject+CellModel.m */,
-				94F488F01B0624E900FCD516 /* EMParseableObject.h */,
-				94F488F11B0624E900FCD516 /* EMParseableObject.m */,
-				94F488F21B0624E900FCD516 /* EMParser.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

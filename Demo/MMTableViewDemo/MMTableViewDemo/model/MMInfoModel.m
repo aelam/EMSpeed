@@ -21,7 +21,7 @@
 - (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
                       URL:(NSString *)URLString
 {
-    id responseObject = response.responseData;
+    id responseObject = response.originData;
     
     if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
         
@@ -56,9 +56,15 @@
 
 @implementation MMInfoModel2
 
-- (BOOL)parseResponseObject:(id)responseObject
-                        URL:(NSString *)URLString
+- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+                      URL:(NSString *)URLString
 {
+    if (response == nil) {
+        return nil;
+    }
+    
+    NSDictionary *responseObject = response.originData;
+    
     if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
         
         NSArray *array = [responseObject objectForKey:@"o"];
@@ -86,9 +92,15 @@
 
 @implementation MMInfoModel3
 
-- (BOOL)parseResponseObject:(id)responseObject
-                        URL:(NSString *)URLString
+- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+                      URL:(NSString *)URLString
 {
+    if (response == nil) {
+        return nil;
+    }
+    
+    NSDictionary *responseObject = response.originData;
+    
     if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
         
         NSArray *array = [responseObject objectForKey:@"o"];

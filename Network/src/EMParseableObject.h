@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "EMParser.h"
 
+/**
+ *  数据解析的对象
+ */
 @interface EMParseableObject : NSObject <EMParser>
 
 

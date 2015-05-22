@@ -121,12 +121,12 @@
 
 - (void)loadBtn6
 {
-    EMThemeArrowButton *btn6 = [EMThemeArrowButton buttonWithFrame:CGRectMake(10, 260, 100, 30)
-                                                             title:@"股票代码"
-                                                         direction:EMArrowDirectionDown];
-    btn6.layer.borderColor = [UIColor blueColor].CGColor;
-    btn6.layer.borderWidth = 1.f;
-    [self.view addSubview:btn6];
+//    EMThemeArrowButton *btn6 = [EMThemeArrowButton buttonWithFrame:CGRectMake(10, 260, 100, 30)
+//                                                             title:@"股票代码"
+//                                                         direction:EMArrowDirectionDown];
+//    btn6.layer.borderColor = [UIColor blueColor].CGColor;
+//    btn6.layer.borderWidth = 1.f;
+//    [self.view addSubview:btn6];
 }
 
 @end

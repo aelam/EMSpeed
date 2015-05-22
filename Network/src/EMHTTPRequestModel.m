@@ -42,7 +42,7 @@ static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
         
         EMHTTPResponse *response = [EMHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(responseObject, operation, flag);
+        block(response, operation, flag);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -63,7 +63,7 @@ static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
         
         EMHTTPResponse *response = [EMHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(responseObject, operation, flag);
+        block(response, operation, flag);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

@@ -12,6 +12,7 @@
 
 /**
     箭头按钮位置
+ *  如果箭头没有显示出来，请查看按钮的bounds和文字的内容是否合适
  */
 
 typedef NS_ENUM(NSInteger, EMArrowButtonPosition) {
@@ -27,14 +28,14 @@ typedef NS_ENUM(NSInteger, EMArrowButtonPosition) {
  */
 @interface  EMArrowButton: UIButton
 {
-    EMArrowDirection _direction;
+    EMArrowDirection _direct;
 }
 
 
 /**
  *  箭头方向
  */
-@property (nonatomic, assign) EMArrowDirection direction;
+@property (nonatomic, assign) EMArrowDirection direct;
 
 
 /**
@@ -84,20 +85,6 @@ typedef NS_ENUM(NSInteger, EMArrowButtonPosition) {
  */
 @property (nonatomic, strong) UIImage *imgArrow;
 
-
-
-/**
- *  通用的按钮
- *
- *  @param frame  尺寸
- *  @param title  标题
- *  @param direct 剪头方向
- *
- *  @return 按钮
- */
-+ (instancetype)buttonWithFrame:(CGRect)frame
-                          title:(NSString *)title
-                      direction:(EMArrowDirection)direct;
 
 @end
 
