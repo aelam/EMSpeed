@@ -8,6 +8,7 @@
 
 #import "EMSrollSegmentedControl.h"
 #import "EMSegmentCellFactory.h"
+#import "EMCore.h"
 
 @implementation EMSrollSegmentedControl
 

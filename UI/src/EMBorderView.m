@@ -7,6 +7,7 @@
 //
 
 #import "EMBorderView.h"
+#import "EMCore.h"
 
 #define kDefaultBorderColor RGB(0xe5, 0xe5, 0xe5)
 

@@ -17,26 +17,38 @@
  *  创建自定义的导航条按钮
  *
  *  @param image  图片
+ *  @param tintColor 颜色
  *  @param style  按钮风格
  *  @param target 事件对象
  *  @param action 事件方法
  *
  *  @return 导航条按钮
  */
-- (instancetype)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action;
+
+- (instancetype)initWithImage:(UIImage *)image
+                    tintColor:(UIColor *)tintColor
+                        style:(UIBarButtonItemStyle)style
+                       target:(id)target
+                       action:(SEL)action;
 
 
 /**
  *  创建自定义的导航条按钮
  *
  *  @param title  标题
+ *  @param tintColor 颜色
  *  @param style  按钮风格
  *  @param target 事件对象
  *  @param action 事件方法
  *
  *  @return 导航条按钮
  */
-- (instancetype)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action;
+
+- (instancetype)initWithTitle:(NSString *)title
+                    tintColor:(UIColor *)tintColor
+                        style:(UIBarButtonItemStyle)style
+                       target:(id)target
+                       action:(SEL)action;
 
 @end
 

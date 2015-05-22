@@ -8,6 +8,7 @@
 
 #import "EMRefreshTableHeaderView.h"
 #import "EMContext.h"
+#import "EMCore.h"
 
 
 @interface EMRefreshTableHeaderView (Private)

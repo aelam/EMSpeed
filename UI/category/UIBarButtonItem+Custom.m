@@ -7,7 +7,7 @@
 //
 
 #import "UIBarButtonItem+Custom.h"
-
+#import "EMCore.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"

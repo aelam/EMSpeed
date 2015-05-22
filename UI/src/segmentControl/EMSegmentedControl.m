@@ -11,6 +11,7 @@
 #import "UIColor+HexString.h"
 #import "EMCoreMetrics.h"
 #import "EMTextSegmentCell.h"
+#import "EMCore.h"
 
 
 @interface EMSegmentedControl()

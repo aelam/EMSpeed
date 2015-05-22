@@ -7,7 +7,7 @@
 //
 
 #import "EMSegmentedControl.h"
-#import "EMThemeSegmentedControl.h"
+
 
 @interface EMSrollSegmentedControl : EMSegmentedControl<UIGestureRecognizerDelegate>
 {

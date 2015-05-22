@@ -9,6 +9,7 @@
 #import "EMTextSegmentCell.h"
 #import "NSString+drawing.h"
 #import "EMContext.h"
+#import "EMCore.h"
 
 @interface EMTextSegmentCellObject()
 @property (nonatomic, assign) Class cellClass;

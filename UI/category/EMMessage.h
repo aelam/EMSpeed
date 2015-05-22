@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <MessageUI/MessageUI.h>
 
 /**
  *  发短信

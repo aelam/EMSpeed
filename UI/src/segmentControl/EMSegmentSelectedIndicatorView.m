@@ -7,7 +7,7 @@
 //
 
 #import "EMSegmentSelectedIndicatorView.h"
-
+#import "EMCore.h"
 
 @implementation EMSegmentSelectedIndicatorView
 @synthesize selectedRect = _selectedRect;

@@ -9,6 +9,7 @@
 #import "EMWebPopupView.h"
 #import "UIImage+utility.h"
 #import "EMContext.h"
+#import "EMCore.h"
 
 const CGFloat kWebPopupAutoDismissSeconds   = 1.5f;
 const CGFloat kWebPopupTitleYOffset         = 15.0f;

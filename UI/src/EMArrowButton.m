@@ -7,7 +7,7 @@
 //
 
 #import "EMArrowButton.h"
-
+#import "EMCore.h"
 
 @implementation EMArrowButton
 @synthesize direct = _direct;

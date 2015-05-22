@@ -8,6 +8,7 @@
 
 #import "EMProgressDownloadButton.h"
 #import "EMContext.h"
+#import "EMCore.h"
 
 @interface EMProgressDownloadButton () {
     float _progress;
