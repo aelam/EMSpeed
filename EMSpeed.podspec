@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/emoneycn/emspeed", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/emoneycn/emspeed"} #, :tag => "#{s.version}" }
 
 
   s.subspec 'Core' do |cs|
@@ -45,10 +45,24 @@ Pod::Spec.new do |s|
     cs.dependency "AFNetworking", "~> 2.5.1"
   end
 
+  s.subspec 'FontAwesome+iOS' do |cs|
+    cs.source_files  = "FontAwesome+iOS/**/*.{h,m,c,swift}"
+    cs.resources     = "FontAwesome+iOS/resource/**/*.*"
+  end
+
+
   s.subspec 'UI' do |cs|
     cs.source_files  = "UI/**/*.{h,m,c,swift}"
     cs.resources     = "UI/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
+    cs.dependency 'EMSpeed/FontAwesome+iOS'
+
+    cs.dependency 'PPiFlatSegmentedControl', '~> 1.4.0'
+    cs.dependency 'SDWebImage', '~> 3.7.2'
+    cs.dependency 'MJRefresh', '~> 1.4.6'
+    cs.dependency 'BDKNotifyHUD', '~> 1.1.0'
+    cs.dependency 'MCSegmentedControl', '~> 0.0.1'
+    cs.dependency 'StyledPageControl', '~> 1.0'
   end
 
   s.subspec 'ThemeManager' do |cs|
