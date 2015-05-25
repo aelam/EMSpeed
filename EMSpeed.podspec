@@ -38,6 +38,8 @@ Pod::Spec.new do |s|
     #cs.frameworks = "SomeFramework", "AnotherFramework"
   end
 
+  # ------------------------------------------------------------------------------
+
   s.subspec 'Network' do |cs|
     cs.source_files  = "Network/**/*.{h,m,c,swift}"
     cs.resources     = "Network/resource/**/*.*"
@@ -45,24 +47,47 @@ Pod::Spec.new do |s|
     cs.dependency "AFNetworking", "~> 2.5.1"
   end
 
+  # ------------------------------------------------------------------------------
+
   s.subspec 'FontAwesome+iOS' do |cs|
     cs.source_files  = "FontAwesome+iOS/**/*.{h,m,c,swift}"
     cs.resources     = "FontAwesome+iOS/resource/**/*.*"
   end
 
+  s.subspec 'PPiFlatSegmentedControl' do |cs|
+    cs.source_files  = "PPiFlatSegmentedControl/**/*.{h,m,c,swift}"
+    cs.resources     = "PPiFlatSegmentedControl/resource/**/*.*"
+  end
 
+  s.subspec 'BDKNotifyHUD' do |cs|
+    cs.source_files  = "BDKNotifyHUD/**/*.{h,m,c,swift}"
+    cs.resources     = "BDKNotifyHUD/resource/**/*.*"
+  end
+
+  s.subspec 'MCSegmentedControl' do |cs|
+    cs.source_files  = "MCSegmentedControl/**/*.{h,m,c,swift}"
+    cs.resources     = "MCSegmentedControl/resource/**/*.*"
+  end
+
+  s.subspec 'StyledPageControl' do |cs|
+    cs.source_files  = "StyledPageControl/**/*.{h,m,c,swift}"
+    cs.resources     = "StyledPageControl/resource/**/*.*"
+  end
+
+  # ------------------------------------------------------------------------------
   s.subspec 'UI' do |cs|
     cs.source_files  = "UI/**/*.{h,m,c,swift}"
     cs.resources     = "UI/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
     cs.dependency 'EMSpeed/FontAwesome+iOS'
 
-    cs.dependency 'PPiFlatSegmentedControl', '~> 1.4.0'
+    cs.dependency 'EMSpeed/PPiFlatSegmentedControl'
+    cs.dependency 'EMSpeed/BDKNotifyHUD'
+    cs.dependency 'EMSpeed/MCSegmentedControl'
+    cs.dependency 'EMSpeed/StyledPageControl'
+
     cs.dependency 'SDWebImage', '~> 3.7.2'
     cs.dependency 'MJRefresh', '~> 1.4.6'
-    cs.dependency 'BDKNotifyHUD', '~> 1.1.0'
-    cs.dependency 'MCSegmentedControl', '~> 0.0.1'
-    cs.dependency 'StyledPageControl', '~> 1.0'
   end
 
   s.subspec 'ThemeManager' do |cs|
