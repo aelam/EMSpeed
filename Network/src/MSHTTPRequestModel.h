@@ -8,21 +8,21 @@
 
 #import "AFNetworking.h"
 
-@class EMHTTPResponse;
+@class MSHTTPResponse;
 
 /**
  *  HTTP请求的Model, 具有收发包功能, 
     子类只需要实现方法parseHTTPResponse:URL: 即可
  */
-@interface EMHTTPRequestModel : NSObject
+@interface MSHTTPRequestModel : NSObject
 
 - (AFHTTPRequestOperation *)GET:(NSString *)URLString
                           param:(NSDictionary *)param
-                          block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
+                          block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
                            param:(NSDictionary *)param
-                           block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
+                           block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
 
 /**
@@ -33,7 +33,7 @@
  *
  *  @return 是否解析成功
  */
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString;
 
 

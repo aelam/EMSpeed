@@ -73,8 +73,8 @@
 //        if (cell == nil)
 //        {
 //            if ([identifier length] > 0) {
-//                NSString *path = EMPathForBundleResource([NSBundle mainBundle], [NSString stringWithFormat:@"%@.xib", identifier]);
-//                BOOL isXibExist = EMIsFileExistAtPath(path);
+//                NSString *path = MSPathForBundleResource([NSBundle mainBundle], [NSString stringWithFormat:@"%@.xib", identifier]);
+//                BOOL isXibExist = MSIsFileExistAtPath(path);
 //                if (isXibExist) {
 //                    NSArray *cells = [[NSBundle mainBundle] loadNibNamed:identifier owner:nil options:nil];
 //                    if ([cells count] > 0) {

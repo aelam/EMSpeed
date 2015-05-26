@@ -16,7 +16,7 @@ extern "C" {
      *
      *  @return bundle信息
      */
-    NSString *EMBundleIdenfiter();
+    NSString *MSBundleIdenfiter();
     
     
     /**
@@ -24,7 +24,7 @@ extern "C" {
      *
      *  @return 应用显示的名称
      */
-    NSString* EMAppDisplayName();
+    NSString* MSAppDisplayName();
     
     
     /**
@@ -32,7 +32,7 @@ extern "C" {
      *
      *  @return 版本号
      */
-    NSString* EMAppVersion();
+    NSString* MSAppVersion();
     
     
     
@@ -41,7 +41,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号
      */
-    float EMOSVersion(void);
+    float MSOSVersion(void);
     
     
     
@@ -50,7 +50,7 @@ extern "C" {
      *
      *  @return 当前是否是竖屏
      */
-    BOOL EMIsPortrait();
+    BOOL MSIsPortrait();
     
     
     /**
@@ -58,7 +58,7 @@ extern "C" {
      *
      *  @return 当前是否是横屏
      */
-    BOOL EMIsLandscape();
+    BOOL MSIsLandscape();
     
     
     
@@ -69,7 +69,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号, 是否小于输入版本号
      */
-    BOOL EMOSVersionLessThan(float version);
+    BOOL MSOSVersionLessThan(float version);
     
     
     /**
@@ -79,7 +79,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号, 是否等于输入版本号
      */
-    BOOL EMOSVersionEqual(float version);
+    BOOL MSOSVersionEqual(float version);
     
     
     /**
@@ -89,7 +89,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号, 是否大于输入版本号
      */
-    BOOL EMOSVersionMoreThan(float version);
+    BOOL MSOSVersionMoreThan(float version);
     
     
     /**
@@ -99,7 +99,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号, 是否小于等于输入版本号
      */
-    BOOL EMOSVersionEqualOrLessThan(float version);
+    BOOL MSOSVersionEqualOrLessThan(float version);
     
     
     /**
@@ -109,7 +109,7 @@ extern "C" {
      *
      *  @return 当前iOS版本号, 是否大于等于输入版本号
      */
-    BOOL EMOSVersionEqualOrMoreThan(float version);
+    BOOL MSOSVersionEqualOrMoreThan(float version);
     
     
 #ifdef __cplusplus

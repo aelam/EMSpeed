@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Ryan Wang. All rights reserved.
 //
 
-#import "EMParseableObject.h"
+#import "MSParseableObject.h"
 
-@implementation EMParseableObject
+@implementation MSParseableObject
 
 
 + (NSMutableArray *)parseArray:(NSArray *)array
@@ -37,7 +37,7 @@
     
     NSMutableArray *objects = [NSMutableArray array];
     for (NSDictionary *e in array) {
-        id<EMParser> m = [[self alloc]init];
+        id<MSParser> m = [[self alloc]init];
         [m parse:e options:options];
         [objects addObject:m];
     }

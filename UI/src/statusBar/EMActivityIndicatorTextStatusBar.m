@@ -16,7 +16,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    frame = CGRectMake(0, 0, EMScreenWidth(), EMStatusBarHeight());
+    frame = CGRectMake(0, 0, MSScreenWidth(), MSStatusBarHeight());
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];

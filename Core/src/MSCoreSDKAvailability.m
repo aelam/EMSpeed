@@ -10,7 +10,7 @@
 #import "MSCoreMetrics.h"
 
 
-BOOL EMIsPad(void)
+BOOL MSIsPad(void)
 {
     static NSInteger isPad = -1;
     if (isPad < 0) {
@@ -20,7 +20,7 @@ BOOL EMIsPad(void)
 }
 
 
-BOOL EMIsPhone(void)
+BOOL MSIsPhone(void)
 {
     static NSInteger isPhone = -1;
     if (isPhone < 0) {
@@ -30,25 +30,25 @@ BOOL EMIsPhone(void)
 }
 
 
-BOOL EMIsRetina(void)
+BOOL MSIsRetina(void)
 {
-    return EMScreenScale() >= 2.f;
+    return MSScreenScale() >= 2.f;
 }
 
 
-BOOL EMIsIphone5()
+BOOL MSIsIphone5()
 {
     return [UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO;
 }
 
 
-BOOL EMIsIphone5Above()
+BOOL MSIsIphone5Above()
 {
-    return EMIsIphone5() || EMIsIphone6() || EMIsIphone6P();
+    return MSIsIphone5() || MSIsIphone6() || MSIsIphone6P();
 }
 
 
-BOOL EMIsIphone6()
+BOOL MSIsIphone6()
 {
     if ([UIScreen instancesRespondToSelector:@selector(currentMode)]) {
         return (MAX([[UIScreen mainScreen] currentMode].size.width, [[UIScreen mainScreen] currentMode].size.height) < 2208) && (MAX([[UIScreen mainScreen] currentMode].size.width, [[UIScreen mainScreen] currentMode].size.height)>1136);
@@ -58,7 +58,7 @@ BOOL EMIsIphone6()
 }
 
 
-BOOL EMIsIphone6P()
+BOOL MSIsIphone6P()
 {
     if ([UIScreen instancesRespondToSelector:@selector(currentMode)]) {
         return  MAX([[UIScreen mainScreen] currentMode].size.width, [[UIScreen mainScreen] currentMode].size.height) >= 2208;
@@ -68,13 +68,13 @@ BOOL EMIsIphone6P()
 }
 
 
-BOOL EMIsPhoneCallSupported()
+BOOL MSIsPhoneCallSupported()
 {
     return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]];
 }
 
 
-BOOL EMMakePhoneCall(NSString *phoneNumber)
+BOOL MSMakePhoneCall(NSString *phoneNumber)
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", phoneNumber]];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {

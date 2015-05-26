@@ -84,7 +84,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
         _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
         _pagingScrollView.directionalLockEnabled = YES;
         
-        if (EMOSVersion()<5.0) {
+        if (MSOSVersion()<5.0) {
             _pagingScrollView.bounces = NO;
         }
     }
@@ -456,7 +456,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (CGRect)frameForPagingScrollView {
     CGRect frame = self.view.bounds;
-    frame.size.height = EMScreenHeight()-EMStatusBarHeight()-EMNavigationBarHeight()-EMTabBarHeight();
+    frame.size.height = MSScreenHeight()-MSStatusBarHeight()-MSNavigationBarHeight()-MSTabBarHeight();
     frame.origin.x -= _padding;
     frame.size.width += (2 * _padding);
     return frame;

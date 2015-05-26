@@ -6,20 +6,20 @@
 //  Copyright (c) 2015 flora. All rights reserved.
 //
 
-#import "EMHTTPResponse.h"
+#import "MSHTTPResponse.h"
 
-@interface EMHTTPResponse() {
+@interface MSHTTPResponse() {
     
 }
 + (NSDateFormatter *)updateTimeFormatter;
 @end
 
-@implementation EMHTTPResponse
+@implementation MSHTTPResponse
 
 
 + (instancetype)responseWithObject:(id)object
 {
-    return [EMHTTPResponse responseWithResponse:object];
+    return [MSHTTPResponse responseWithResponse:object];
 }
 
 
@@ -29,10 +29,10 @@
         return nil;
     }
     
-    EMHTTPResponse *response = [[EMHTTPResponse alloc] init];
+    MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
     response.originData = responseObject;
     
-    if ([EMHTTPResponse isEMStandardResponse:responseObject]) {
+    if ([MSHTTPResponse isEMStandardResponse:responseObject]) {
         response.status = [responseObject[@"status"] integerValue];
         NSDateFormatter *formatter = [self updateTimeFormatter];
         response.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];

@@ -25,7 +25,7 @@
         self.height = 140;
         self.Class = [EMImageCollectionViewCell class];
         self.reuseIdentify = @"EMImageCollectionViewCell";
-        self.layoutSize = CGSizeMake(EMScreenWidth(), self.height);
+        self.layoutSize = CGSizeMake(MSScreenWidth(), self.height);
         self.isRegisterByClass = NO;
     }
     

@@ -382,7 +382,7 @@ CGRect Point2Rect(CGPoint point, int nAnchor,UIFont *font)
     int nX = point.x;
     int nY = point.y;
     
-    int contentWidth = MAX(EMContentWidth(), EMContentHeight());
+    int contentWidth = MAX(MSContentWidth(), MSContentHeight());
     if (nAnchor&NSTextAlignmentCenter)
     {
         int n = contentWidth-nX;

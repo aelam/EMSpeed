@@ -14,7 +14,7 @@
     解析后的JSON数据在responseData中, 如果非标准格式, 则responseData为nil
  */
 
-@interface EMHTTPResponse : NSObject {
+@interface MSHTTPResponse : NSObject {
     
 }
 

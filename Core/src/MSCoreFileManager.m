@@ -14,12 +14,12 @@ static NSString *__defaultImageDirectory = nil; // 默认的图片文件夹路�
 NSString* EMGetDefaultImageDirectory();
 
 
-NSURL* EMFileURL(NSString *path)
+NSURL* MSFileURL(NSString *path)
 {
     return [[NSURL alloc] initFileURLWithPath:path];
 }
 
-BOOL EMIsFileExistAtPath(NSString *filePath)
+BOOL MSIsFileExistAtPath(NSString *filePath)
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -36,59 +36,59 @@ BOOL EMIsFileExistAtPath(NSString *filePath)
 # pragma mark -
 # pragma mark Read and write plist file
 
-NSArray* EMArrayFromMainBundle(NSString *filename)
+NSArray* MSArrayFromMainBundle(NSString *filename)
 {
     NSArray *arrayForReturn = nil;
-    NSString *path = EMPathForBundleResource(nil, filename);
+    NSString *path = MSPathForBundleResource(nil, filename);
     
-    if (EMIsFileExistAtPath(path)){
+    if (MSIsFileExistAtPath(path)){
         arrayForReturn = [NSArray arrayWithContentsOfFile:path];
     }
     return arrayForReturn;
 }
 
 
-NSDictionary* EMDictionaryFromMainBundle(NSString *filename)
+NSDictionary* MSDictionaryFromMainBundle(NSString *filename)
 {
     NSDictionary *dictionaryForReturn = nil;
-    NSString *path = EMPathForBundleResource(nil, filename);
+    NSString *path = MSPathForBundleResource(nil, filename);
     
-    if (EMIsFileExistAtPath(path)){
+    if (MSIsFileExistAtPath(path)){
         dictionaryForReturn = [NSDictionary dictionaryWithContentsOfFile:path];
     }
     return dictionaryForReturn;
 }
 
 
-NSArray* EMArrayFromCachesDirectory(NSString *filename)
+NSArray* MSArrayFromCachesDirectory(NSString *filename)
 {
-    NSString *path = EMPathForCachesResource(filename);
+    NSString *path = MSPathForCachesResource(filename);
     return [NSArray arrayWithContentsOfFile:path];
 }
 
 
-NSDictionary* EMDictionaryFromDocumentDirectory(NSString *filename)
+NSDictionary* MSDictionaryFromDocumentDirectory(NSString *filename)
 {
-    NSString *path = EMPathForCachesResource(filename);
+    NSString *path = MSPathForCachesResource(filename);
     return [NSDictionary dictionaryWithContentsOfFile:path];
 }
 
 
-BOOL EMSaveArrayToCachesDirectory(NSString *filename, NSArray *array)
+BOOL MSSaveArrayToCachesDirectory(NSString *filename, NSArray *array)
 {
-    NSString *path = EMPathForCachesResource(filename);
+    NSString *path = MSPathForCachesResource(filename);
     return [array writeToFile:path atomically:YES];
 }
 
 
-BOOL EMSaveDictionaryToCachesDirectory(NSString *filename, NSDictionary *dictionary)
+BOOL MSSaveDictionaryToCachesDirectory(NSString *filename, NSDictionary *dictionary)
 {
-    NSString *path = EMPathForCachesResource(filename);
+    NSString *path = MSPathForCachesResource(filename);
     return [dictionary writeToFile:path atomically:YES];
 }
 
 
-BOOL EMFileManagerCreateDirectory(NSString *dir)
+BOOL MSFileManagerCreateDirectory(NSString *dir)
 {
     BOOL flag = NO;
     
@@ -110,34 +110,34 @@ BOOL EMFileManagerCreateDirectory(NSString *dir)
 }
 
 
-BOOL EMFileManagerRemoveDirectory(NSString *dir)
+BOOL MSFileManagerRemoveDirectory(NSString *dir)
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager removeItemAtPath:dir error:nil];
 }
 
 
-BOOL EMFileManagerRemoveFile(NSString *file)
+BOOL MSFileManagerRemoveFile(NSString *file)
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     return [fileManager removeItemAtPath:file error:nil];
 }
 
 
-BOOL EMFileManagerSaveFile(NSString *file, NSData *data)
+BOOL MSFileManagerSaveFile(NSString *file, NSData *data)
 {
     NSError *error = nil;
     BOOL flag = [data writeToFile:file options:NSDataWritingAtomic error:&error];
 
     if (flag == NO) {
-        NSLog(@"EMFileManagerSaveFile error = %@", error);
+        NSLog(@"MSFileManagerSaveFile error = %@", error);
     }
     
     return flag;
 }
 
 
-NSData *EMFileManagerFileAtPath(NSString *filePath)
+NSData *MSFileManagerFileAtPath(NSString *filePath)
 {
     NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
     return data;
@@ -147,15 +147,15 @@ NSData *EMFileManagerFileAtPath(NSString *filePath)
 NSString* EMGetDefaultImageDirectory()
 {
     if (__defaultImageDirectory==nil) {
-        __defaultImageDirectory = EMPathForCachesResource(@"/pic");
-        EMFileManagerCreateDirectory(__defaultImageDirectory);
+        __defaultImageDirectory = MSPathForCachesResource(@"/pic");
+        MSFileManagerCreateDirectory(__defaultImageDirectory);
     }
     
     return __defaultImageDirectory;
 }
 
 
-BOOL EMFileManagerSaveImage(NSString *filename, UIImage *image)
+BOOL MSFileManagerSaveImage(NSString *filename, UIImage *image)
 {
     NSData *data = nil;
     
@@ -167,12 +167,12 @@ BOOL EMFileManagerSaveImage(NSString *filename, UIImage *image)
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", EMGetDefaultImageDirectory(), filename];
     
-    return EMFileManagerSaveFile(filePath, data);
+    return MSFileManagerSaveFile(filePath, data);
 }
 
 
 
-void EMSetDefaultImageDirectory(NSString *directory)
+void MSSetDefaultImageDirectory(NSString *directory)
 {
     if (__defaultImageDirectory==nil) {
         __defaultImageDirectory = EMGetDefaultImageDirectory();
@@ -183,7 +183,7 @@ void EMSetDefaultImageDirectory(NSString *directory)
 
 
 
-UIImage* EMFileManagerLoadImage(NSString *filename)
+UIImage* MSFileManagerLoadImage(NSString *filename)
 {
     NSString *dir = EMGetDefaultImageDirectory();
     NSString *filePath = [NSString stringWithFormat:@"%@/%@", dir, filename];
@@ -194,20 +194,20 @@ UIImage* EMFileManagerLoadImage(NSString *filename)
 
 # pragma mark - Path
 
-NSString* EMPathForMainBundleResource(NSString* relativePath)
+NSString* MSPathForMainBundleResource(NSString* relativePath)
 {
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 
 
-NSString* EMPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
+NSString* MSPathForBundleResource(NSBundle* bundle, NSString* relativePath) {
     NSString* resourcePath = [(nil == bundle ? [NSBundle mainBundle] : bundle) resourcePath];
     return [resourcePath stringByAppendingPathComponent:relativePath];
 }
 
 
-NSString* EMPathForDocumentsResource(NSString* relativePath) {
+NSString* MSPathForDocumentsResource(NSString* relativePath) {
     
     if (relativePath==nil) {
         relativePath = @"";
@@ -224,7 +224,7 @@ NSString* EMPathForDocumentsResource(NSString* relativePath) {
 }
 
 
-NSString* EMPathForLibraryResource(NSString* relativePath) {
+NSString* MSPathForLibraryResource(NSString* relativePath) {
     static NSString* libraryPath = nil;
     if (nil == libraryPath) {
         NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,
@@ -236,7 +236,7 @@ NSString* EMPathForLibraryResource(NSString* relativePath) {
 }
 
 
-NSString* EMPathForCachesResource(NSString* relativePath) {
+NSString* MSPathForCachesResource(NSString* relativePath) {
     static NSString* cachesPath = nil;
     if (nil == cachesPath) {
         NSArray* dirs = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,

@@ -17,7 +17,7 @@ extern "C" {
      *
      *  @return 屏幕高度
      */
-    CGFloat EMScreenHeight(void);
+    CGFloat MSScreenHeight(void);
     
     
     /**
@@ -25,7 +25,7 @@ extern "C" {
      *
      *  @return 屏幕宽度
      */
-    CGFloat EMScreenWidth(void);
+    CGFloat MSScreenWidth(void);
     
     
     /**
@@ -33,7 +33,7 @@ extern "C" {
      *
      *  @return 屏幕高度
      */
-    CGFloat EMContentHeight(void);
+    CGFloat MSContentHeight(void);
     
     
     /**
@@ -41,7 +41,7 @@ extern "C" {
      *
      *  @return 屏幕宽度
      */
-    CGFloat EMContentWidth(void);
+    CGFloat MSContentWidth(void);
     
     
     /**
@@ -49,7 +49,7 @@ extern "C" {
      *
      *  @return 导航栏高度
      */
-    CGFloat EMNavigationBarHeight(void);
+    CGFloat MSNavigationBarHeight(void);
     
     
     /**
@@ -57,7 +57,7 @@ extern "C" {
      *
      *  @return Tabbar高度
      */
-    CGFloat EMTabBarHeight(void);
+    CGFloat MSTabBarHeight(void);
     
     
     /**
@@ -65,7 +65,7 @@ extern "C" {
      *
      *  @return 状态栏高度
      */
-    CGFloat EMStatusBarHeight(void);
+    CGFloat MSStatusBarHeight(void);
     
     
     /**
@@ -73,13 +73,13 @@ extern "C" {
      *
      *  @return 屏幕缩放比例
      */
-    CGFloat EMScreenScale(void);
+    CGFloat MSScreenScale(void);
     
     
     /**
      *  根据分辨率返回缩放比例, 基于320px
      */
-    CGFloat EMAdaptiveCofficient();
+    CGFloat MSAdaptiveCofficient();
     
     
     /**
@@ -89,7 +89,7 @@ extern "C" {
      *
      *  @return 计算后的长度
      */
-    CGFloat EMAdjustedWH(CGFloat wh);
+    CGFloat MSAdjustedWH(CGFloat wh);
     
     
     /**
@@ -99,7 +99,7 @@ extern "C" {
      *
      *  @return 字符串宽度
      */
-    CGFloat EMDefaultValueWidth(UIFont *font);
+    CGFloat MSDefaultValueWidth(UIFont *font);
     
     
     

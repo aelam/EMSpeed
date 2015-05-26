@@ -268,7 +268,7 @@
 
         _animtedImageView = [[UIImageView alloc] init];
         _animtedImageView.contentMode = UIViewContentModeCenter;
-        _animtedImageView.frame = CGRectMake(EMAdjustedWH(80.0f), frame.size.height - 45, 48.0f, 30);
+        _animtedImageView.frame = CGRectMake(MSAdjustedWH(80.0f), frame.size.height - 45, 48.0f, 30);
         [_animtedImageView setAnimationImages:images];
         _animtedImageView.animationDuration = .5f;
         [self addSubview:_animtedImageView];

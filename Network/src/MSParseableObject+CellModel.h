@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "EMParseableObject.h"
+#import "MSParseableObject.h"
 #import "MMCellModel.h"
-#import "EMParseableObject+CellModel.h"
+#import "MSParseableObject+CellModel.h"
 
 /**
  *  cell model 解析协议, 主要是在EMParser扩展出解析CellModel的功能
  */
-@protocol EMCellModelParser <EMParser>
+@protocol MSCellModelParser <MSParser>
 
 @optional
 
@@ -44,7 +44,7 @@
 /**
  *  实现了EMCellModelParser协议
  */
-@interface EMParseableObject(CellModel) <EMCellModelParser>
+@interface MSParseableObject(CellModel) <MSCellModelParser>
 
 
 @end

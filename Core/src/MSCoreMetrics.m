@@ -9,68 +9,68 @@
 #import "MSCoreMetrics.h"
 
 
-CGFloat EMScreenHeight(void) {
+CGFloat MSScreenHeight(void) {
     return [[UIScreen mainScreen] bounds].size.height;
 }
 
 
-CGFloat EMScreenWidth(void) {
+CGFloat MSScreenWidth(void) {
     return [[UIScreen mainScreen] bounds].size.width;
 }
 
 
-CGFloat EMContentHeight(void) {
+CGFloat MSContentHeight(void) {
     return [[UIScreen mainScreen] applicationFrame].size.height;
 }
 
 
-CGFloat EMContentWidth(void) {
+CGFloat MSContentWidth(void) {
     return [[UIScreen mainScreen] applicationFrame].size.width;
 }
 
 
 
-CGFloat EMNavigationBarHeight(void)
+CGFloat MSNavigationBarHeight(void)
 {
     return 44.0f;
 }
 
 
-CGFloat EMTabBarHeight(void)
+CGFloat MSTabBarHeight(void)
 {
     return 49.0f;
 }
 
 
-CGFloat EMStatusBarHeight(void)
+CGFloat MSStatusBarHeight(void)
 {
     return [UIApplication sharedApplication].statusBarFrame.size.height;
 }
 
 
-CGFloat EMScreenScale(void)
+CGFloat MSScreenScale(void)
 {
     return [[UIScreen mainScreen] scale];
 }
 
-CGFloat EMAdaptiveCofficient()
+CGFloat MSAdaptiveCofficient()
 {
     static CGFloat coffient = 0;
     if (coffient == 0)
     {
-        coffient = EMScreenWidth()/320.0;
+        coffient = MSScreenWidth()/320.0;
         coffient = [[NSString stringWithFormat:@"%.2f",coffient] floatValue];
     }
     return coffient;
 }
 
 
-CGFloat EMAdjustedWH(CGFloat wh)
+CGFloat MSAdjustedWH(CGFloat wh)
 {
-    return  wh * EMAdaptiveCofficient();
+    return  wh * MSAdaptiveCofficient();
 }
 
-CGFloat EMDefaultValueWidth(UIFont *font)
+CGFloat MSDefaultValueWidth(UIFont *font)
 {
     NSString *string = @"888.88";
     

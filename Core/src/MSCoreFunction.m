@@ -8,25 +8,25 @@
 
 #import "MSCoreFunction.h"
 
-float EMOSVersion(void)
+float MSOSVersion(void)
 {
     return [[UIDevice currentDevice].systemVersion floatValue];
 }
 
 
-BOOL EMIsPortrait()
+BOOL MSIsPortrait()
 {
     return UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]);
 }
 
 
-BOOL EMIsLandscape()
+BOOL MSIsLandscape()
 {
-    return !EMIsPortrait();
+    return !MSIsPortrait();
 }
 
 
-NSString *EMBundleIdenfiter()
+NSString *MSBundleIdenfiter()
 {
     static NSString *idString = nil;
     
@@ -39,7 +39,7 @@ NSString *EMBundleIdenfiter()
 }
 
 
-NSString* EMAppDisplayName()
+NSString* MSAppDisplayName()
 {
     CFStringRef displayName = CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), CFSTR("CFBundleDisplayName")) ?: CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), CFSTR("CFBundleName")) ?: CFSTR("Unknown");
     
@@ -47,7 +47,7 @@ NSString* EMAppDisplayName()
 }
 
 
-NSString* EMAppVersion()
+NSString* MSAppVersion()
 {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *versionValue = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -57,32 +57,32 @@ NSString* EMAppVersion()
 
 
 
-BOOL EMOSVersionLessThan(float version)
+BOOL MSOSVersionLessThan(float version)
 {
     return [[[UIDevice currentDevice] systemVersion] floatValue] < version;
 }
 
 
 
-BOOL EMOSVersionEqual(float version)
+BOOL MSOSVersionEqual(float version)
 {
     return [[[UIDevice currentDevice] systemVersion] floatValue] == version;
 }
 
 
-BOOL EMOSVersionMoreThan(float version)
+BOOL MSOSVersionMoreThan(float version)
 {
     return [[[UIDevice currentDevice] systemVersion] floatValue] > version;
 }
 
 
-BOOL EMOSVersionEqualOrLessThan(float version)
+BOOL MSOSVersionEqualOrLessThan(float version)
 {
-    return EMOSVersionLessThan(version) || EMOSVersionEqual(version);
+    return MSOSVersionLessThan(version) || MSOSVersionEqual(version);
 }
 
 
-BOOL EMOSVersionEqualOrMoreThan(float version)
+BOOL MSOSVersionEqualOrMoreThan(float version)
 {
-    return EMOSVersionMoreThan(version) || EMOSVersionEqual(version);
+    return MSOSVersionMoreThan(version) || MSOSVersionEqual(version);
 }

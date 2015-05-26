@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "EMParseableObject+CellModel.h"
+#import "MSParseableObject+CellModel.h"
 
 
-@implementation EMParseableObject(CellModel)
+@implementation MSParseableObject(CellModel)
 
 
 + (id<MMCellModel>)cellModelWithData:(NSDictionary *)dictionary
                       cellModelClass:(Class)cls
 {
-    EMParseableObject *obj = [self instanceWithData:dictionary];
+    MSParseableObject *obj = [self instanceWithData:dictionary];
     
     id<MMCellModel> cellModel = [[cls alloc] init];
     [cellModel parseItem:obj];

@@ -20,7 +20,7 @@
 
 - (CGSize)em_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize
 {
-    if (EMOSVersionLessThan(7.0)) {
+    if (MSOSVersionLessThan(7.0)) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         CGSize size = [self sizeWithFont:font constrainedToSize:maxSize];

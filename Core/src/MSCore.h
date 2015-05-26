@@ -1,5 +1,5 @@
 //
-//  EMCore.h
+//  MSCore.h
 //  EMStock
 //
 //  Created by flora on 14-9-12.

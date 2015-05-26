@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EMParser.h"
+#import "MSParser.h"
 
 /**
  *  数据解析的对象
  */
-@interface EMParseableObject : NSObject <EMParser>
+@interface MSParseableObject : NSObject <MSParser>
 
 
 /**

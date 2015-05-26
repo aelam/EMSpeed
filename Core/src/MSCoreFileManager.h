@@ -1,5 +1,5 @@
 //
-//  EMCoreFileManager.h
+//  MSCoreFileManager.h
 //  Core
 //
 //  Created by Mac mini 2012 on 15-3-9.
@@ -24,7 +24,7 @@ extern "C" {
      *
      *  @return 文件URL
      */
-    NSURL* EMFileURL(NSString *path);
+    NSURL* MSFileURL(NSString *path);
     
     
     /**
@@ -34,7 +34,7 @@ extern "C" {
      *
      *  @return 文件是否存在
      */
-    BOOL EMIsFileExistAtPath(NSString *filePath);
+    BOOL MSIsFileExistAtPath(NSString *filePath);
     
     
     /**
@@ -44,7 +44,7 @@ extern "C" {
      *
      *  @return 数组格式
      */
-    NSArray* EMArrayFromMainBundle(NSString *fileName);
+    NSArray* MSArrayFromMainBundle(NSString *fileName);
     
     
     /**
@@ -54,7 +54,7 @@ extern "C" {
      *
      *  @return 字典格式
      */
-    NSDictionary* EMDictionaryFromMainBundle(NSString *fileName);
+    NSDictionary* MSDictionaryFromMainBundle(NSString *fileName);
     
     
     /**
@@ -64,7 +64,7 @@ extern "C" {
      *
      *  @return 数组格式
      */
-    NSArray* EMArrayFromCachesDirectory(NSString *filename);
+    NSArray* MSArrayFromCachesDirectory(NSString *filename);
     
     
     /**
@@ -74,7 +74,7 @@ extern "C" {
      *
      *  @return 字典格式
      */
-    NSDictionary* EMDictionaryFromDocumentDirectory(NSString *filename);
+    NSDictionary* MSDictionaryFromDocumentDirectory(NSString *filename);
     
     
     /**
@@ -85,7 +85,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMSaveArrayToCachesDirectory(NSString *filename, NSArray *array);
+    BOOL MSSaveArrayToCachesDirectory(NSString *filename, NSArray *array);
     
     
     
@@ -97,7 +97,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMSaveDictionaryToCachesDirectory(NSString *filename, NSDictionary *dictionary);
+    BOOL MSSaveDictionaryToCachesDirectory(NSString *filename, NSDictionary *dictionary);
     
     
     /**
@@ -107,7 +107,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerCreateDirectory(NSString *dir);
+    BOOL MSFileManagerCreateDirectory(NSString *dir);
     
     
     /**
@@ -117,7 +117,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerRemoveDirectory(NSString *dir);
+    BOOL MSFileManagerRemoveDirectory(NSString *dir);
     
     
     /**
@@ -127,7 +127,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerRemoveFile(NSString *filePath);
+    BOOL MSFileManagerRemoveFile(NSString *filePath);
     
     
     /**
@@ -138,7 +138,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerSaveFile(NSString *filePath, NSData *data);
+    BOOL MSFileManagerSaveFile(NSString *filePath, NSData *data);
     
     
     /**
@@ -148,7 +148,7 @@ extern "C" {
      *
      *  @return 数据
      */
-    NSData *EMFileManagerFileAtPath(NSString *filePath);
+    NSData *MSFileManagerFileAtPath(NSString *filePath);
     
     
     /**
@@ -159,17 +159,17 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerSaveImage(NSString *filename, UIImage *image);
+    BOOL MSFileManagerSaveImage(NSString *filename, UIImage *image);
     
     
     /**
      *  读取图片
      *
-     *  @param filePath 图片路径, 默认图片路径caches/pic/, 可以通过EMSetDefaultImageDirectory设置
+     *  @param filePath 图片路径, 默认图片路径caches/pic/, 可以通过MSSetDefaultImageDirectory设置
      *
      *  @return 图片
      */
-    UIImage* EMFileManagerLoadImage(NSString *filename);
+    UIImage* MSFileManagerLoadImage(NSString *filename);
     
     
     /**
@@ -177,7 +177,7 @@ extern "C" {
      *
      *  @param directory 默认的图片路径
      */
-    void EMSetDefaultImageDirectory(NSString *directory); // caches/pic/
+    void MSSetDefaultImageDirectory(NSString *directory); // caches/pic/
     
     
     /**
@@ -187,7 +187,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerRemoveFile(NSString *filePath);
+    BOOL MSFileManagerRemoveFile(NSString *filePath);
     
     
     /**
@@ -198,7 +198,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerSaveFile(NSString *filePath, NSData *data);
+    BOOL MSFileManagerSaveFile(NSString *filePath, NSData *data);
     
     
     /**
@@ -208,7 +208,7 @@ extern "C" {
      *
      *  @return 数据
      */
-    NSData *EMFileManagerFileAtPath(NSString *filePath);
+    NSData *MSFileManagerFileAtPath(NSString *filePath);
     
     
     /**
@@ -219,7 +219,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMFileManagerSaveImage(NSString *filename, UIImage *image);
+    BOOL MSFileManagerSaveImage(NSString *filename, UIImage *image);
     
     
     /**
@@ -229,7 +229,7 @@ extern "C" {
      *
      *  @return 图片
      */
-    UIImage* EMFileManagerLoadImage(NSString *filename);
+    UIImage* MSFileManagerLoadImage(NSString *filename);
     
     
     /**
@@ -240,7 +240,7 @@ extern "C" {
      *
      *  @return bundle名+相对路径
      */
-    NSString* EMPathForMainBundleResource(NSString* relativePath);
+    NSString* MSPathForMainBundleResource(NSString* relativePath);
     
     
     /**
@@ -251,7 +251,7 @@ extern "C" {
      *
      *  @return bundle名+相对路径
      */
-    NSString* EMPathForBundleResource(NSBundle* bundle, NSString* relativePath);
+    NSString* MSPathForBundleResource(NSBundle* bundle, NSString* relativePath);
     
     
     /**
@@ -261,7 +261,7 @@ extern "C" {
      *
      *  @return Documents文件夹路径 + 相对路径
      */
-    NSString* EMPathForDocumentsResource(NSString* relativePath);
+    NSString* MSPathForDocumentsResource(NSString* relativePath);
     
     
     /**
@@ -271,7 +271,7 @@ extern "C" {
      *
      *  @return Library文件夹路径 + 相对路径
      */
-    NSString* EMPathForLibraryResource(NSString* relativePath);
+    NSString* MSPathForLibraryResource(NSString* relativePath);
     
     
     /**
@@ -281,7 +281,7 @@ extern "C" {
      *
      *  @return Caches文件夹路径 + 相对路径
      */
-    NSString* EMPathForCachesResource(NSString* relativePath);
+    NSString* MSPathForCachesResource(NSString* relativePath);
     
     
     

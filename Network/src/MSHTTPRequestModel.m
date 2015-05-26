@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 flora. All rights reserved.
 //
 
-#import "EMHTTPRequestModel.h"
-#import "EMHTTPResponse.h"
+#import "MSHTTPRequestModel.h"
+#import "MSHTTPResponse.h"
 
 static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
 
-@implementation EMHTTPRequestModel
+@implementation MSHTTPRequestModel
 
 
 + (void)setNetworkManager:(AFHTTPRequestOperationManager *)networkManager
@@ -34,19 +34,19 @@ static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
 
 - (AFHTTPRequestOperation *)GET:(NSString *)URLString
                           param:(NSDictionary *)param
-                          block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
+                          block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
 {
     AFHTTPRequestOperationManager *manager = [[self class] networkManager];
     
     return [manager GET:URLString parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        EMHTTPResponse *response = [EMHTTPResponse responseWithObject:responseObject];
+        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
         block(response, operation, flag);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        EMHTTPResponse *response = [[EMHTTPResponse alloc] init];
+        MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
         response.error = error;
         block(response, operation, NO);
     }];
@@ -55,26 +55,26 @@ static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
 
 - (AFHTTPRequestOperation *)POST:(NSString *)URLString
                            param:(NSDictionary *)param
-                           block:(void (^)(EMHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
+                           block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
 {
     AFHTTPRequestOperationManager *manager = [[self class] networkManager];
     
     return [manager POST:URLString parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        EMHTTPResponse *response = [EMHTTPResponse responseWithObject:responseObject];
+        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
         block(response, operation, flag);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        EMHTTPResponse *response = [[EMHTTPResponse alloc] init];
+        MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
         response.error = error;
         block(response, operation, NO);
     }];
 }
 
 
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
 {
     // 解析 response.responseData

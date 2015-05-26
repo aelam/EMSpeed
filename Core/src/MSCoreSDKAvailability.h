@@ -20,7 +20,7 @@ extern "C" {
      *
      *  @return 是否是iPad设备
      */
-    BOOL EMIsPad(void);
+    BOOL MSIsPad(void);
     
     
     /**
@@ -28,7 +28,7 @@ extern "C" {
      *
      *  @return 是否是iPhone设备
      */
-    BOOL EMIsPhone(void);
+    BOOL MSIsPhone(void);
     
     
     /**
@@ -36,7 +36,7 @@ extern "C" {
      *
      *  @return 是否是retina屏
      */
-    BOOL EMIsRetina(void);
+    BOOL MSIsRetina(void);
     
     
     /**
@@ -44,7 +44,7 @@ extern "C" {
      *
      *  @return 是否是iPhone5
      */
-    BOOL EMIsIphone5();
+    BOOL MSIsIphone5();
     
     
     /**
@@ -52,7 +52,7 @@ extern "C" {
      *
      *  @return 是否是iPhone6
      */
-    BOOL EMIsIphone6();
+    BOOL MSIsIphone6();
     
     
     /**
@@ -60,7 +60,7 @@ extern "C" {
      *
      *  @return 是否是iPhone6P
      */
-    BOOL EMIsIphone6P();
+    BOOL MSIsIphone6P();
     
     
     /**
@@ -68,7 +68,7 @@ extern "C" {
      *
      *  @return 是否是iphone5及以上设备
      */
-    BOOL EMIsIphone5Above();
+    BOOL MSIsIphone5Above();
     
     
     /**
@@ -76,7 +76,7 @@ extern "C" {
      *
      *  @return 是否支持打电话
      */
-    BOOL EMIsPhoneCallSupported();
+    BOOL MSIsPhoneCallSupported();
     
     
     /**
@@ -86,7 +86,7 @@ extern "C" {
      *
      *  @return 是否成功
      */
-    BOOL EMMakePhoneCall(NSString *phoneNumber);
+    BOOL MSMakePhoneCall(NSString *phoneNumber);
     
 
 #if __cplusplus

@@ -60,12 +60,12 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 
 + (CGFloat)webPopWidth
 {
-    return (EMScreenWidth() - 30.0f);
+    return (MSScreenWidth() - 30.0f);
 }
 
 + (CGFloat)webPopHeight
 {
-    return floor(EMScreenHeight() * 5 / 8);
+    return floor(MSScreenHeight() * 5 / 8);
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -85,8 +85,8 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
          rightBlock:(em_popupview_event_block_t)rightBlock
 {
     if (self = [super init]) {
-        _fWebPopWidth = EMScreenWidth() - 30.0f;
-        _fWebPopHeight = floor(EMScreenHeight() * 5 / 8);
+        _fWebPopWidth = MSScreenWidth() - 30.0f;
+        _fWebPopHeight = floor(MSScreenHeight() * 5 / 8);
         
         self.layer.cornerRadius = 5.0;
         self.backgroundColor = [UIColor whiteColor];
@@ -223,7 +223,7 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 
 - (void)show
 {
-    self.frame = CGRectMake((EMScreenWidth() - _fWebPopWidth) * 0.5, - _fWebPopHeight - 30, _fWebPopWidth, _fWebPopHeight);
+    self.frame = CGRectMake((MSScreenWidth() - _fWebPopWidth) * 0.5, - _fWebPopHeight - 30, _fWebPopWidth, _fWebPopHeight);
     
     [super show];
 }

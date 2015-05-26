@@ -101,7 +101,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [super scrollViewDidScroll:scrollView];
-    float calcOffset = scrollView.contentOffset.x + EMScreenWidth()/2;
+    float calcOffset = scrollView.contentOffset.x + MSScreenWidth()/2;
 //    NSLog(@"w = %.f", scrollView.contentSize.width);
     calcOffset = (calcOffset > scrollView.contentSize.width) ? scrollView.contentSize.width : calcOffset;
     int currentIndex = calcOffset/scrollView.frame.size.width;
@@ -113,7 +113,7 @@
 
 - (CGRect)frameForPagingScrollView {
     CGRect frame = self.view.bounds;
-    frame.size.height = EMScreenHeight()-EMStatusBarHeight()-EMNavigationBarHeight()-EMTabBarHeight();
+    frame.size.height = MSScreenHeight()-MSStatusBarHeight()-MSNavigationBarHeight()-MSTabBarHeight();
     frame.origin.x -= _padding;
     frame.size.width += (2 * _padding);
     frame.origin.y = _menu.hidden? 0 : kMultiPagingMenuBarHeight;

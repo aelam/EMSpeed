@@ -54,7 +54,7 @@
     button.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 0);
     button.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     
-    CGSize itemSize = CGSizeMake(28, EMNavigationBarHeight()-8);
+    CGSize itemSize = CGSizeMake(28, MSNavigationBarHeight()-8);
     button.frame = CGRectMake(0, 0, itemSize.width, itemSize.height);
     [button addTarget:target1 action:action1 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithCustomView:button];
