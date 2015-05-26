@@ -22,9 +22,6 @@ const CGFloat kWebPopupButtonHeight         = 40.0f;
 const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 
 
-@interface EMMaskBackgroundView : UIView
-@property (nonatomic, weak) EMWebPopupView *popView;
-@end
 
 @implementation EMMaskBackgroundView
 

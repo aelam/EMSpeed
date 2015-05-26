@@ -76,7 +76,7 @@ enum {
 
 - (void)setSelectedSegmentIndexWithTitle:(NSString *)title; // 根据标题找，选中对应的index，如果没找到设置UISegmentedControlNoSegment
 
-/**segment所控制内容区的颜色，用于EMSegmentedControlStyleMenuContent 状态下的视图对接使用
+/**segment所控制内容区的颜色，用于EMselectedIndicatorStyleMenuContent 状态下的视图对接使用
  */
 - (void)setIndicatorBackgroundColor:(UIColor *)color;
 

@@ -14,7 +14,7 @@
 #import "MMCellUpdating.h"
 #import "MMDataSource.h"
 #import "MMMutableDataSource.h"
-#import "MMRefreshTableController.h"
+#import "MMUBRefreshTableController.h"
 #import "MMRefreshTableViewController.h"
 #import "MMTableController.h"
 #import "MMTableViewController.h"

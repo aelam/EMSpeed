@@ -89,3 +89,7 @@
 @end
 
 
+
+@interface EMMaskBackgroundView : UIView
+@property (nonatomic, weak) EMWebPopupView *popView;
+@end

@@ -32,7 +32,7 @@
         _segments = [[NSMutableArray alloc] init];
         self.items = items;
         
-        self.selectedIndicatorStyle = EMSegmentSelectedIndicatorStyleArrowBar;
+        self.selectedIndicatorStyle = EMselectedIndicatorStyleMenuTitle;
         
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapScrollView:)];
         recognizer.delegate = self;

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, EMSegmentSelectedIndicatorStyle) {
-    EMSegmentSelectedIndicatorStyleArrowBar,   // 显示大标题, 下面一条箭头bar
-    EMSegmentSelectedIndicatorStyleArrowLine,  // 显示内容, 下面一条箭头线
+    EMselectedIndicatorStyleMenuTitle,   // 显示大标题, 下面一条箭头bar
+    EMselectedIndicatorStyleMenuContent,  // 显示内容, 下面一条箭头线
 };
 
 @interface EMSegmentSelectedIndicatorView : UIView

@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+
+#define MULTI_PAGING_MENU_BAR_HEIGHT        (35)
+#define MULTI_PAGING_MENU_EDIT_WIDTH        (57)
+#define MULTI_PAGING_MENU_SPACE             (20)
+#define MULTI_PAGING_MENU_SELECTED_H        (36)
+
 extern const CGFloat kMultiPagingMenuBarHeight;
 extern const CGFloat kMultiPagingMenuEdithButtonWidth;
 extern const CGFloat kMultiPagingMenuSpace;

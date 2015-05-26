@@ -59,4 +59,7 @@
 #endif
 
 
+#define __(x) (x == nil || [x isKindOfClass:[NSNull class]])?nil:[NSString stringWithFormat:@"%@",x]
+
+
 #endif

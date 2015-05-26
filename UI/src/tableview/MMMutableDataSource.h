@@ -19,7 +19,7 @@
 /**
  *  下拉刷新的url
  */
-@property (nonatomic, copy) NSString *pullRefreshURL;
+@property (nonatomic, copy) NSString *refreshURL;
 
 /**
  *  上拉刷新的url
@@ -102,3 +102,12 @@
 
 @end
 
+
+@interface MMMutableDataSource (goupWebView)
+
+/**
+ *根据某一个indexpath，返回对应section的数据组
+ */
+- (NSArray *)toGroupWebViewArray:(NSIndexPath *)indexPath;
+
+@end

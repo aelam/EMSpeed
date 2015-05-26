@@ -34,7 +34,7 @@
         flag = !flag;
         [_isSelectedRadios replaceObjectAtIndex:_selectedIndex withObject:[NSNumber numberWithBool:flag]];
         
-        EMCheckBox *checkBox = [_radios objectAtIndex:_selectedIndex];
+        EMCheckBoxButton *checkBox = [_radios objectAtIndex:_selectedIndex];
         checkBox.isSelected = flag;
         
         
@@ -45,13 +45,13 @@
 
 - (Class)radioClass
 {
-    return [EMCheckBox class];
+    return [EMCheckBoxButton class];
 }
 
 - (void)setCheckBox:(BOOL)isOn atIndex:(int)index
 {
     if (index >=0 && index < [_radios count]) {
-        EMCheckBox *checkBox = [_radios objectAtIndex:index];
+        EMCheckBoxButton *checkBox = [_radios objectAtIndex:index];
         checkBox.isSelected = isOn;
         [_isSelectedRadios replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:isOn]];
     }
@@ -60,50 +60,50 @@
 @end
 
 
-@implementation EMCheckBox
+@implementation EMCheckBoxButton
 
-+ (EMCheckBox *)checkBoxWithTitle:(NSString *)title
++ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                           onImage:(UIImage *)onImage
                          offImage:(UIImage *)offImage
                            target:(id)target
                            action:(SEL)selector
 {
-    EMCheckBox *checkBox = [EMCheckBox buttonWithType:UIButtonTypeCustom];
+    EMCheckBoxButton *checkBox = [EMCheckBoxButton buttonWithType:UIButtonTypeCustom];
     checkBox.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [checkBox setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [checkBox setTitle:title forState:UIControlStateNormal];
     [checkBox setImage:offImage forState:UIControlStateNormal];
     checkBox.titleLabel.font = [UIFont systemFontOfSize:13];
     [checkBox addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    checkBox.onImage = onImage ? onImage : [EMCheckBox defaultOnImage];
-    checkBox.offImage = offImage ? offImage : [EMCheckBox defaultOffImage];
+    checkBox.onImage = onImage ? onImage : [EMCheckBoxButton defaultOnImage];
+    checkBox.offImage = offImage ? offImage : [EMCheckBoxButton defaultOffImage];
     checkBox.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0);
     checkBox.frame = CGRectMake(0, 0, 50, 20);
     return checkBox;
 }
 
-+ (EMCheckBox *)radioWithTitle:(NSString *)title
++ (EMCheckBoxButton *)radioWithTitle:(NSString *)title
                     onImage:(UIImage *)onImage
                    offImage:(UIImage *)offImage
                      target:(id)target
                      action:(SEL)selector
 {
-    return [EMCheckBox checkBoxWithTitle:title onImage:onImage offImage:offImage target:target action:selector];
+    return [EMCheckBoxButton checkBoxWithTitle:title onImage:onImage offImage:offImage target:target action:selector];
 }
 
-+ (EMCheckBox *)radioWithTitle:(NSString *)title
++ (EMCheckBoxButton *)radioWithTitle:(NSString *)title
                      target:(id)target
                      action:(SEL)selector
 {
-    return [EMCheckBox checkBoxWithTitle:title target:target action:selector];
+    return [EMCheckBoxButton checkBoxWithTitle:title target:target action:selector];
 }
 
 
-+ (EMCheckBox *)checkBoxWithTitle:(NSString *)title
++ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                            target:(id)target
                            action:(SEL)selector
 {
-    return [EMCheckBox checkBoxWithTitle:title onImage:nil offImage:nil target:target action:selector];
+    return [EMCheckBoxButton checkBoxWithTitle:title onImage:nil offImage:nil target:target action:selector];
 }
 
 - (void)layoutSubviews

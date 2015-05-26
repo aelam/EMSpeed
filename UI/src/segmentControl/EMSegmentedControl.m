@@ -44,7 +44,7 @@
         
         self.items = items;
         
-        self.selectedIndicatorStyle = EMSegmentSelectedIndicatorStyleArrowBar;
+        self.selectedIndicatorStyle = EMselectedIndicatorStyleMenuTitle;
         _segmentWidths = malloc(sizeof(CGFloat)*[items count]);
         memset(_segmentWidths, 0, sizeof(CGFloat)*[items count]);
     }
@@ -215,10 +215,10 @@
 
 - (Class)selectedViewClassWithStyle:(EMSegmentSelectedIndicatorStyle)style
 {
-    if (style == EMSegmentSelectedIndicatorStyleArrowBar) {
+    if (style == EMselectedIndicatorStyleMenuTitle) {
         return [EMSegmentSelectedIndicatorArrowBar class];
     }
-    else if (style == EMSegmentSelectedIndicatorStyleArrowLine) {
+    else if (style == EMselectedIndicatorStyleMenuContent) {
         return [EMSegmentSelectedIndicatorArrowLine class];
     }
 

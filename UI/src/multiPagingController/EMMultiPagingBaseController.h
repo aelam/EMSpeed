@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol EMMultiPagingProtocol;
 
 static const NSInteger kMultiPageControllerLoopSize;

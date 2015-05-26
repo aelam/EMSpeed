@@ -52,7 +52,7 @@
 /**
  *  EMCheckBox控件
  */
-@interface EMCheckBox : EMRadio {
+@interface EMCheckBoxButton : EMRadioButton {
     
 }
 
@@ -64,9 +64,9 @@
  *  @param target   点击事件对象
  *  @param selector 点击事件方法
  *
- *  @return EMCheckBox
+ *  @return EMCheckBoxButton
  */
-+ (EMCheckBox *)checkBoxWithTitle:(NSString *)title
++ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                            target:(id)target
                            action:(SEL)selector;
 
@@ -80,9 +80,9 @@
  *  @param target   点击事件对象
  *  @param selector 点击事件方法
  *
- *  @return EMCheckBox
+ *  @return EMCheckBoxButton
  */
-+ (EMCheckBox *)checkBoxWithTitle:(NSString *)title
++ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                           onImage:(UIImage *)onImage
                          offImage:(UIImage *)offImage
                            target:(id)target
