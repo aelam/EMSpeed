@@ -12,7 +12,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
-@implementation EMBarButtonItem
+@implementation MSBarButtonItem
 
 - (instancetype)initWithImage:(UIImage *)image
                     tintColor:(UIColor *)tintColor
@@ -46,7 +46,7 @@
 
 @implementation UIBarButtonItem(Custom)
 
-+ (NSArray *)em_rightItemsWithImage1:(UIImage *)image1 target1:(id)target1 action1:(SEL)action1
++ (NSArray *)ms_rightItemsWithImage1:(UIImage *)image1 target1:(id)target1 action1:(SEL)action1
                            image2:(UIImage *)image2 target2:(id)target2 action2:(SEL)action2
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -59,7 +59,7 @@
     [button addTarget:target1 action:action1 forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item1 = [[UIBarButtonItem alloc] initWithCustomView:button];
     
-    UIBarButtonItem *item2 =[[EMBarButtonItem alloc] initWithImage:image2
+    UIBarButtonItem *item2 =[[MSBarButtonItem alloc] initWithImage:image2
                                                              style:UIBarButtonItemStylePlain
                                                             target:target2 action:action2];
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;

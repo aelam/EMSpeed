@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-#define EMUIResName(file) [@"EMUIResources.bundle" stringByAppendingPathComponent:file]
+#define EMUIResName(file) [@"MSUIResources.bundle" stringByAppendingPathComponent:file]
 
 
 /**

@@ -17,7 +17,7 @@
  *
  *  @return encode后的字符串
  */
-- (NSString *)em_URLEncodedString;
+- (NSString *)ms_URLEncodedString;
 
 
 /**
@@ -25,7 +25,7 @@
  *
  *  @return decode后的字符串
  */
-- (NSString *)em_URLDecodedString;
+- (NSString *)ms_URLDecodedString;
 
 
 @end

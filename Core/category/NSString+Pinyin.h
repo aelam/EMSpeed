@@ -10,7 +10,7 @@
  *  @return 是否匹配
  */
 
-- (BOOL)em_matchPinYin:(NSString*)pinyin;
+- (BOOL)ms_matchPinYin:(NSString*)pinyin;
 
 
 /**
@@ -18,6 +18,6 @@
  *
  *  @return 首字母字符串
  */
-- (NSString *)em_pinyinFirstLetterArray;
+- (NSString *)ms_pinyinFirstLetterArray;
 
 @end

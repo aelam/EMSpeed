@@ -21,7 +21,7 @@
  *  @param aligment   居中类型
  *  @param lineHeight 行高
  */
-- (void)em_drawAtPoint:(CGPoint)point
+- (void)ms_drawAtPoint:(CGPoint)point
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
@@ -36,7 +36,7 @@
  *  @param color    颜色
  *  @param aligment 居中类型
  */
-- (void)em_drawAtPoint:(CGPoint)point
+- (void)ms_drawAtPoint:(CGPoint)point
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment;
@@ -51,7 +51,7 @@
  *  @param aligment   居中类型
  *  @param lineHeight 行高
  */
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color
              aligment:(int)aligment
@@ -66,7 +66,7 @@
  *  @param color    颜色
  *  @param aligment 行高
  */
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color
              aligment:(int)aligment;
@@ -79,7 +79,7 @@
  *  @param font  字体
  *  @param color 颜色
  */
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color;
 
@@ -91,7 +91,7 @@
  *
  *  @return 字符串尺寸
  */
-- (CGSize)em_sizeWithFont:(UIFont *)font;
+- (CGSize)ms_sizeWithFont:(UIFont *)font;
 
 
 /**
@@ -100,7 +100,7 @@
  *  @param rect      区域
  *  @param attribute 属性
  */
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
        withAttributes:(NSDictionary *)attribute;
 
 @end

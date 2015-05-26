@@ -19,5 +19,5 @@
  *
  *  @return 是否弹出了短信界面
  */
-BOOL EMMakeSMS(NSString *phoneNumber, NSString *text, UIViewController *parentVC, id<MFMessageComposeViewControllerDelegate> delegate);
+BOOL MSMakeSMS(NSString *phoneNumber, NSString *text, UIViewController *parentVC, id<MFMessageComposeViewControllerDelegate> delegate);
 

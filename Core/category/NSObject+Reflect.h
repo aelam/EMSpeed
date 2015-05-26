@@ -18,7 +18,7 @@
  *
  *  @return 是否成功
  */
-- (BOOL)em_reflectDataFromOtherObject:(NSObject*)dataSource;
+- (BOOL)ms_reflectDataFromOtherObject:(NSObject*)dataSource;
 
 
 /**
@@ -29,7 +29,7 @@
  *
  *  @return 是否成功
  */
-- (BOOL)em_reflectDataFromOtherDictionary:(NSDictionary*)dictionary;
+- (BOOL)ms_reflectDataFromOtherDictionary:(NSDictionary*)dictionary;
 
 
 /**
@@ -43,14 +43,14 @@
 /**
  *会遍历父类的参数（NSObject）
  */
-- (BOOL)em_reflectDataRecursionFromOtherDictionary:(NSDictionary*)dataSource;
+- (BOOL)ms_reflectDataRecursionFromOtherDictionary:(NSDictionary*)dataSource;
 
 
 /**属性反射
  *当前对象有field中的属性时，设置对应的值
  */
 //
-- (BOOL)em_setField:(NSArray *)field list:(NSArray *)list;
+- (BOOL)ms_setField:(NSArray *)field list:(NSArray *)list;
 
 @end
 
@@ -60,6 +60,6 @@
 /**
  *如果忽略大小写相同返回值
  */
-- (NSString *)em_containCaseInsensitiveString:(NSString *)string;
+- (NSString *)ms_containCaseInsensitiveString:(NSString *)string;
 
 @end

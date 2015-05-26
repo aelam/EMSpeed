@@ -11,7 +11,7 @@
 /**
     自定义导航条按钮
  */
-@interface EMBarButtonItem : UIBarButtonItem
+@interface MSBarButtonItem : UIBarButtonItem
 
 /**
  *  创建自定义的导航条按钮
@@ -67,7 +67,7 @@
  *
  *  @return 右侧两个图片按钮
  */
-+ (NSArray *)em_rightItemsWithImage1:(UIImage *)image1 target1:(id)target1 action1:(SEL)action1
++ (NSArray *)ms_rightItemsWithImage1:(UIImage *)image1 target1:(id)target1 action1:(SEL)action1
                            image2:(UIImage *)image2 target2:(id)target2 action2:(SEL)action2;
 
 

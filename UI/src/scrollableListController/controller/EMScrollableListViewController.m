@@ -215,9 +215,9 @@ NSString *const EMScrollableListCellHighlightedNotification = @"EMStocklistCellH
     [_backgroundView addConstraints:tmpConstraints];
     
     CGFloat titleTableViewWidth = [_scrollableList calculateTitleTableViewWidth:_contentScrollView.frame.size.width];
-    [_backgroundView em_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
+    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
                                                 subView:_contentScrollView];
-    [self.view em_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
+    [self.view ms_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
 }
 
 - (void)viewDidLayoutSubviews

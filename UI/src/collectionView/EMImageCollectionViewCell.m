@@ -26,7 +26,7 @@
         
         UIImage *image = [UIImage imageNamed:item.imageURL];
         if (!image) {
-            [self.imageView em_setImageWithURL:[NSURL URLWithString:item.imageURL] localCache:YES];
+            [self.imageView ms_setImageWithURL:[NSURL URLWithString:item.imageURL] localCache:YES];
         }
         else{
             self.imageView.image = image;

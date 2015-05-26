@@ -17,6 +17,6 @@
  *
  *  @return UIColor
  */
-+ (UIColor *)em_colorWithHexString: (NSString *) hexString;
++ (UIColor *)ms_colorWithHexString: (NSString *) hexString;
 
 @end

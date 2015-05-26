@@ -28,7 +28,7 @@
 {
     if ([pageModel isKindOfClass:[EMPageItem class]]) {
         EMPageItem *page = (EMPageItem *)pageModel;
-        [self em_setImageWithURL:[NSURL URLWithString:page.img] localCache:YES];
+        [self ms_setImageWithURL:[NSURL URLWithString:page.img] localCache:YES];
     }
 }
 

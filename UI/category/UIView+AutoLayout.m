@@ -10,7 +10,7 @@
 
 @implementation UIView (AutoLayout)
 
-- (void)em_addConstraintsWithContentInsets:(UIEdgeInsets)contentInsets
+- (void)ms_addConstraintsWithContentInsets:(UIEdgeInsets)contentInsets
                                 subView:(UIView *)subView
 {
     NSString *HFormatString = [NSString stringWithFormat:@"|-%d-[subView]-%d-|",(int)contentInsets.left,(int)contentInsets.right];

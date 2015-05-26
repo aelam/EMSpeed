@@ -10,7 +10,7 @@
 
 @implementation UIImage(Utility)
 
-- (UIImage *)em_clipWithRect:(CGRect) rect
+- (UIImage *)ms_clipWithRect:(CGRect) rect
 {
     rect.size.height = rect.size.height * [self scale];
     rect.size.width = rect.size.width * [self scale];
@@ -51,7 +51,7 @@
 //CGImageRef UIGetScreenImage();
 /**横屏的时候直接截screen；竖屏由于更多中有一个分享，所以取thedelegate视图
  */
-+(UIImage *)em_captureScreen:(CGFloat)resolution
++(UIImage *)ms_captureScreen:(CGFloat)resolution
 {
     id<UIApplicationDelegate> delegate = [UIApplication sharedApplication].delegate;
     UIWindow *window = delegate.window;
@@ -65,11 +65,11 @@
     UIImage *aImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
-    return [aImage em_clipWithRect:CGRectMake(0, 20, aImage.size.width, aImage.size.height-20)];
+    return [aImage ms_clipWithRect:CGRectMake(0, 20, aImage.size.width, aImage.size.height-20)];
 }
 
 
-+ (UIImage *)em_imageWithColor:(UIColor *)color
++ (UIImage *)ms_imageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
     UIGraphicsBeginImageContext(rect.size);
@@ -87,7 +87,7 @@
 
 
 
-- (UIImage *) em_resizedImageByMagick: (NSString *) spec
+- (UIImage *) ms_resizedImageByMagick: (NSString *) spec
 {
     
     if([spec hasSuffix:@"!"]) {
@@ -95,8 +95,8 @@
         NSArray *widthAndHeight = [specWithoutSuffix componentsSeparatedByString: @"x"];
         NSUInteger width = [[widthAndHeight objectAtIndex: 0] integerValue];
         NSUInteger height = [[widthAndHeight objectAtIndex: 1] integerValue];
-        UIImage *newImage = [self em_resizedImageWithMinimumSize: CGSizeMake (width, height)];
-        return [newImage em_drawImageInBounds: CGRectMake (0, 0, width, height)];
+        UIImage *newImage = [self ms_resizedImageWithMinimumSize: CGSizeMake (width, height)];
+        return [newImage ms_drawImageInBounds: CGRectMake (0, 0, width, height)];
     }
     
     if([spec hasSuffix:@"#"]) {
@@ -104,25 +104,25 @@
         NSArray *widthAndHeight = [specWithoutSuffix componentsSeparatedByString: @"x"];
         NSUInteger width = [[widthAndHeight objectAtIndex: 0] integerValue];
         NSUInteger height = [[widthAndHeight objectAtIndex: 1] integerValue];
-        UIImage *newImage = [self em_resizedImageWithMinimumSize: CGSizeMake (width, height)];
-        return [newImage em_croppedImageWithRect: CGRectMake ((newImage.size.width - width) / 2, (newImage.size.height - height) / 2, width, height)];
+        UIImage *newImage = [self ms_resizedImageWithMinimumSize: CGSizeMake (width, height)];
+        return [newImage ms_croppedImageWithRect: CGRectMake ((newImage.size.width - width) / 2, (newImage.size.height - height) / 2, width, height)];
     }
     
     if([spec hasSuffix:@"^"]) {
         NSString *specWithoutSuffix = [spec substringToIndex: [spec length] - 1];
         NSArray *widthAndHeight = [specWithoutSuffix componentsSeparatedByString: @"x"];
-        return [self em_resizedImageWithMinimumSize: CGSizeMake ([[widthAndHeight objectAtIndex: 0] longLongValue],
+        return [self ms_resizedImageWithMinimumSize: CGSizeMake ([[widthAndHeight objectAtIndex: 0] longLongValue],
                                                               [[widthAndHeight objectAtIndex: 1] longLongValue])];
     }
     
     NSArray *widthAndHeight = [spec componentsSeparatedByString: @"x"];
     if ([widthAndHeight count] == 1) {
-        return [self em_resizedImageByWidth: [spec integerValue]];
+        return [self ms_resizedImageByWidth: [spec integerValue]];
     }
     if ([[widthAndHeight objectAtIndex: 0] isEqualToString: @""]) {
-        return [self em_resizedImageByHeight: [[widthAndHeight objectAtIndex: 1] integerValue]];
+        return [self ms_resizedImageByHeight: [[widthAndHeight objectAtIndex: 1] integerValue]];
     }
-    return [self em_resizedImageWithMaximumSize: CGSizeMake ([[widthAndHeight objectAtIndex: 0] longLongValue],
+    return [self ms_resizedImageWithMaximumSize: CGSizeMake ([[widthAndHeight objectAtIndex: 0] longLongValue],
                                                           [[widthAndHeight objectAtIndex: 1] longLongValue])];
 }
 
@@ -153,27 +153,27 @@
 }
 
 
-- (UIImage *) em_resizedImageByWidth:  (NSUInteger) width
+- (UIImage *) ms_resizedImageByWidth:  (NSUInteger) width
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
     CGFloat original_height = CGImageGetHeight(imgRef);
     CGFloat ratio = width/original_width;
     CGImageRelease(imgRef);
-    return [self em_drawImageInBounds: CGRectMake(0, 0, width, round(original_height * ratio))];
+    return [self ms_drawImageInBounds: CGRectMake(0, 0, width, round(original_height * ratio))];
 }
 
-- (UIImage *) em_resizedImageByHeight:  (NSUInteger) height
+- (UIImage *) ms_resizedImageByHeight:  (NSUInteger) height
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
     CGFloat original_height = CGImageGetHeight(imgRef);
     CGFloat ratio = height/original_height;
     CGImageRelease(imgRef);
-    return [self em_drawImageInBounds: CGRectMake(0, 0, round(original_width * ratio), height)];
+    return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * ratio), height)];
 }
 
-- (UIImage *) em_resizedImageWithMinimumSize: (CGSize) size
+- (UIImage *) ms_resizedImageWithMinimumSize: (CGSize) size
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -182,10 +182,10 @@
     CGFloat height_ratio = size.height / original_height;
     CGFloat scale_ratio = width_ratio > height_ratio ? width_ratio : height_ratio;
     CGImageRelease(imgRef);
-    return [self em_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
+    return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
 }
 
-- (UIImage *) em_resizedImageWithMaximumSize: (CGSize) size
+- (UIImage *) ms_resizedImageWithMaximumSize: (CGSize) size
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -194,10 +194,10 @@
     CGFloat height_ratio = size.height / original_height;
     CGFloat scale_ratio = width_ratio < height_ratio ? width_ratio : height_ratio;
     CGImageRelease(imgRef);
-    return [self em_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
+    return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
 }
 
-- (UIImage *) em_drawImageInBounds: (CGRect) bounds
+- (UIImage *) ms_drawImageInBounds: (CGRect) bounds
 {
     //UIGraphicsBeginImageContext(bounds.size);
     UIGraphicsBeginImageContextWithOptions(bounds.size, NO, [UIScreen mainScreen].scale);
@@ -207,7 +207,7 @@
     return resizedImage;
 }
 
-- (UIImage*) em_croppedImageWithRect: (CGRect) rect {
+- (UIImage*) ms_croppedImageWithRect: (CGRect) rect {
     
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();

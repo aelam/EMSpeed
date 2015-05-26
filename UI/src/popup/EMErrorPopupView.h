@@ -18,7 +18,7 @@
 /**
  *  点击事件block
  */
-@property (nonatomic, copy) em_popupview_event_block_t block;
+@property (nonatomic, copy) ms_popupview_event_block_t block;
 
 
 /**
@@ -40,7 +40,7 @@
  *  @return 实例 EMErrorPopupView
  */
 + (instancetype)errorPopupWithText:(NSString *)text
-                             block:(em_popupview_event_block_t)block;
+                             block:(ms_popupview_event_block_t)block;
 
 
 - (void)show;

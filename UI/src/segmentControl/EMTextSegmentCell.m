@@ -80,7 +80,7 @@
     UIFont *font =  self.font;
     UIColor *textColor = _selected ? self.selectedTextColor : self.normalTextColor;
     [textColor set];
-    [self.text em_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
+    [self.text ms_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
                   withFont:font
                      color:textColor
                   aligment:NSTextAlignmentCenter | EMTextVerticalAlignmentCenter];

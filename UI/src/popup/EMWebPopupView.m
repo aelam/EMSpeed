@@ -80,9 +80,9 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 - (instancetype)initWithTitle:(NSString *)title
         contentText:(NSString *)content
     leftButtonTitle:(NSString *)leftTitle
-          leftBlock:(em_popupview_event_block_t)leftBlock
+          leftBlock:( ms_popupview_event_block_t)leftBlock
    rightButtonTitle:(NSString *)rigthTitle
-         rightBlock:(em_popupview_event_block_t)rightBlock
+         rightBlock:( ms_popupview_event_block_t)rightBlock
 {
     if (self = [super init]) {
         _fWebPopWidth = MSScreenWidth() - 30.0f;
@@ -146,14 +146,14 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
                 _rightBtn.frame = rightBtnFrame;
             }
             
-            [_rightBtn setBackgroundImage:[UIImage em_imageWithColor:RGB(0x51, 0x96, 0xef)] forState:UIControlStateNormal];
+            [_rightBtn setBackgroundImage:[UIImage ms_imageWithColor:RGB(0x51, 0x96, 0xef)] forState:UIControlStateNormal];
             [_rightBtn setTitle:rigthTitle forState:UIControlStateNormal];
             [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [_rightBtn addTarget:self action:@selector(rightBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:_rightBtn];
             
-            [_leftBtn setBackgroundImage:[UIImage em_imageWithColor:RGB(0xea, 0xea, 0xea)] forState:UIControlStateNormal];
-            [_leftBtn setBackgroundImage:[UIImage em_imageWithColor:RGB(0xda, 0xda, 0xda)] forState:UIControlStateHighlighted];
+            [_leftBtn setBackgroundImage:[UIImage ms_imageWithColor:RGB(0xea, 0xea, 0xea)] forState:UIControlStateNormal];
+            [_leftBtn setBackgroundImage:[UIImage ms_imageWithColor:RGB(0xda, 0xda, 0xda)] forState:UIControlStateHighlighted];
             [_leftBtn setTitle:leftTitle forState:UIControlStateNormal];
             _leftBtn.titleLabel.font = _rightBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];
             [_leftBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -173,7 +173,7 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 - (instancetype)initWithTitle:(NSString *)title
         contentText:(NSString *)content
         buttonTitle:(NSString *)buttonTitle
-              block:(em_popupview_event_block_t)block
+              block:( ms_popupview_event_block_t)block
 {
     return [[[self class] alloc] initWithTitle:title
                                    contentText:content

@@ -17,7 +17,7 @@
  *  @param contentInsets 上下左右间距
  *  @param subView       约束的对象view
  */
-- (void)em_addConstraintsWithContentInsets:(UIEdgeInsets)contentInsets
+- (void)ms_addConstraintsWithContentInsets:(UIEdgeInsets)contentInsets
                                    subView:(UIView *)subView;
 
 @end

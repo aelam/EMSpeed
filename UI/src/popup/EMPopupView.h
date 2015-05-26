@@ -14,7 +14,7 @@
  *  点击事件的block
  *  @param view 弹框视图
  */
-typedef void (^em_popupview_event_block_t)(EMPopupView *view);
+typedef void (^ms_popupview_event_block_t)(EMPopupView *view);
 
 
 

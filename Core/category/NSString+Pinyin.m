@@ -95,7 +95,7 @@
 //    return pinyin;
 //}
 
-- (NSString *)em_pinyinFirstLetterArray 
+- (NSString *)ms_pinyinFirstLetterArray 
 {
     NSMutableString *result = [NSMutableString string];
     NSMutableString *pinyin = [NSMutableString string];
@@ -121,7 +121,7 @@
     return result;
 }
 
-- (BOOL)em_matchPinYin:(NSString*)pinyin
+- (BOOL)ms_matchPinYin:(NSString*)pinyin
 {
     NSString* relpace = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSUInteger len = [relpace length]-[pinyin length];

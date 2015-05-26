@@ -20,7 +20,7 @@
  *
  *  @return 返回字符串
  */
-- (NSString *)em_dateString;
+- (NSString *)ms_dateString;
 
 
 /**
@@ -30,7 +30,7 @@
  *
  *  @return 返回日期
  */
-+ (NSDate *)em_dateFromString:(NSString *)string;
++ (NSDate *)ms_dateFromString:(NSString *)string;
 
 
 /**
@@ -40,7 +40,7 @@
  *
  *  @return 字符串
  */
-- (NSString *)em_dateStringWithStyle:(EMDateFormatterStyle)style;
+- (NSString *)ms_dateStringWithStyle:(EMDateFormatterStyle)style;
 
 
 /**
@@ -51,7 +51,7 @@
  *
  *  @return 日期
  */
-+ (NSDate *)em_dateWithString:(NSString *)string
++ (NSDate *)ms_dateWithString:(NSString *)string
                         style:(EMDateFormatterStyle)style;
 
 
@@ -64,7 +64,7 @@
  *
  *  @return 字符串
  */
-- (NSString *)em_dateStringWithFormatter:(NSString *)formate
+- (NSString *)ms_dateStringWithFormatter:(NSString *)formate
                                 amSymbol:(NSString *)amSymbol
                                 pmSymbol:(NSString *)pmSymbol;
 

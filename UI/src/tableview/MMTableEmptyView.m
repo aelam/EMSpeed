@@ -25,7 +25,7 @@
         _textlabel = label;
         
         
-        NSString *imageName = [@"EMUIResources.bundle" stringByAppendingPathComponent:@"message_tips_nodata.png"];
+        NSString *imageName = [@"MSUIResources.bundle" stringByAppendingPathComponent:@"message_tips_nodata.png"];
         UIImage *image = [UIImage imageNamed:imageName];
         UIImageView *imgv = [[UIImageView alloc] initWithImage:image];
         [label addSubview:imgv];

@@ -14,15 +14,15 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 @implementation NSString (Drawing)
 
 
-- (void)em_drawAtPoint:(CGPoint)point
+- (void)ms_drawAtPoint:(CGPoint)point
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
 {
-    [self em_drawAtPoint:point withFont:font color:color aligment:aligment lineHeight:0];
+    [self ms_drawAtPoint:point withFont:font color:color aligment:aligment lineHeight:0];
 }
 
-- (void)em_drawAtPoint:(CGPoint)point
+- (void)ms_drawAtPoint:(CGPoint)point
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
@@ -30,19 +30,19 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 {
     CGRect rect =  Point2Rect(point, aligment, font);
     aligment = aligment&3;//排除自定义的排序类型
-    [self em_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:lineHeight];
+    [self ms_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:lineHeight];
 }
 
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color
              aligment:(int)aligment
 {
-    [self em_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:0];
+    [self ms_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:0];
 }
 
 
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color
              aligment:(int)aligment
@@ -62,7 +62,7 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
     [self drawInRect:rect withAttributes:attribute];
 }
 
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
        withAttributes:(NSDictionary *)attribute
 {
     [self drawInRect:rect withAttributes:attribute];
@@ -71,7 +71,7 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 /**
  *默认行高、默认靠左绘制
  */
-- (void)em_drawInRect:(CGRect)rect
+- (void)ms_drawInRect:(CGRect)rect
              withFont:(UIFont *)font
                 color:(UIColor *)color
 {
@@ -82,7 +82,7 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 }
 
 
-- (CGSize)em_sizeWithFont:(UIFont *)font
+- (CGSize)ms_sizeWithFont:(UIFont *)font
 {
     NSDictionary *attributes = @{NSFontAttributeName: font};
     return [self sizeWithAttributes:attributes];

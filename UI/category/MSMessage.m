@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "EMMessage.h"
+#import "MSMessage.h"
 
 
-BOOL EMMakeSMS(NSString *phoneNumber, NSString *text, UIViewController *parentVC, id<MFMessageComposeViewControllerDelegate> delegate)
+BOOL MSMakeSMS(NSString *phoneNumber, NSString *text, UIViewController *parentVC, id<MFMessageComposeViewControllerDelegate> delegate)
 {
     if ([phoneNumber length] > 0 && [text length] > 0 && parentVC && delegate
         && [MFMessageComposeViewController canSendText]) {

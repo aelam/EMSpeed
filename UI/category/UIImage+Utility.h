@@ -13,19 +13,19 @@
 /**
  *截取屏幕
  */
-+ (UIImage *)em_captureScreen:(CGFloat)resolution;
++ (UIImage *)ms_captureScreen:(CGFloat)resolution;
 
 
 /**
  *剪切出一个rect
  */
-- (UIImage *)em_clipWithRect:(CGRect) rect;
+- (UIImage *)ms_clipWithRect:(CGRect) rect;
 
 
 /**
  *根据颜色返回一张图片
  */
-+ (UIImage *)em_imageWithColor:(UIColor *)color;
++ (UIImage *)ms_imageWithColor:(UIColor *)color;
 
 
 /**
@@ -40,7 +40,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)em_resizedImageByMagick: (NSString *) spec;
+- (UIImage *)ms_resizedImageByMagick: (NSString *) spec;
 
 
 /**
@@ -50,7 +50,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)em_resizedImageByWidth:  (NSUInteger) width;
+- (UIImage *)ms_resizedImageByWidth:  (NSUInteger) width;
 
 
 /**
@@ -60,7 +60,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)em_resizedImageByHeight: (NSUInteger) height;
+- (UIImage *)ms_resizedImageByHeight: (NSUInteger) height;
 
 
 /**
@@ -70,7 +70,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)em_resizedImageWithMaximumSize: (CGSize) size;
+- (UIImage *)ms_resizedImageWithMaximumSize: (CGSize) size;
 
 
 /**
@@ -80,6 +80,6 @@
  *
  *  @return 图片
  */
-- (UIImage *)em_resizedImageWithMinimumSize: (CGSize) size;
+- (UIImage *)ms_resizedImageWithMinimumSize: (CGSize) size;
 
 @end

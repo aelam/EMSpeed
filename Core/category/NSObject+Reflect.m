@@ -27,7 +27,7 @@
     return keys;
 }
 
-- (BOOL)em_reflectDataFromOtherObject:(NSObject*)dataSource
+- (BOOL)ms_reflectDataFromOtherObject:(NSObject*)dataSource
 {
     BOOL ret = NO;
     NSArray *keys = [self propertyKeys];
@@ -44,13 +44,13 @@
         
         if (ret) {
             id propertyValue = [dataSource valueForKey:key];
-            [self em_setPropertyValue:propertyValue forKey:key];
+            [self ms_setPropertyValue:propertyValue forKey:key];
         }
     }
     return ret;
 }
 
-- (void)em_setPropertyValue:(id)propertyValue
+- (void)ms_setPropertyValue:(id)propertyValue
                      forKey:(NSString *)key
 {
     //该值不为NSNULL，并且也不为nil
@@ -59,7 +59,7 @@
     }
 }
 
-- (BOOL)em_reflectDataFromOtherDictionary:(NSDictionary*)dictionary
+- (BOOL)ms_reflectDataFromOtherDictionary:(NSDictionary*)dictionary
 {
     BOOL ret = NO;
     
@@ -68,7 +68,7 @@
     
     for (NSString *key in sourcekeys)
     {
-        NSString *pKey = [keys em_containCaseInsensitiveString:[self replaceSpecialKey:key]];
+        NSString *pKey = [keys ms_containCaseInsensitiveString:[self replaceSpecialKey:key]];
         ret = (pKey && pKey.length) ? YES : NO;
         if (ret) {
             id propertyValue = [dictionary valueForKey:key];
@@ -81,7 +81,7 @@
     return ret;
 }
 
-- (BOOL)em_reflectDataRecursionFromOtherDictionary:(NSDictionary*)dataSource
+- (BOOL)ms_reflectDataRecursionFromOtherDictionary:(NSDictionary*)dataSource
 {
     BOOL ret = NO;
     id keysObject = self;
@@ -93,7 +93,7 @@
         
         for (NSString *key in sourcekeys)
         {
-            NSString *pKey = [keys em_containCaseInsensitiveString:[self replaceSpecialKey:key]];
+            NSString *pKey = [keys ms_containCaseInsensitiveString:[self replaceSpecialKey:key]];
             ret = (pKey && pKey.length) ? YES : NO;
             if (ret) {
                 id propertyValue = [dataSource valueForKey:key];
@@ -124,7 +124,7 @@
     return key;
 }
 
-- (BOOL)em_setField:(NSArray *)field list:(NSArray *)list
+- (BOOL)ms_setField:(NSArray *)field list:(NSArray *)list
 {
     BOOL ret = NO;
     for (int i = 0; i < [field count]; i++)
@@ -148,7 +148,7 @@
 
 @implementation NSArray(caseInsensitiveCompare)
 
-- (NSString *)em_containCaseInsensitiveString:(NSString *)string
+- (NSString *)ms_containCaseInsensitiveString:(NSString *)string
 {
     NSString *result = nil;
     BOOL contain = NO;

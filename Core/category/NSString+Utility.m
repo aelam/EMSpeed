@@ -11,14 +11,14 @@
 
 @implementation NSString(Utility)
 
-- (NSString *)em_trim
+- (NSString *)ms_trim
 {
 	NSCharacterSet *ws = [NSCharacterSet whitespaceAndNewlineCharacterSet];
 	NSString *trimmed = [self stringByTrimmingCharactersInSet:ws];
 	return trimmed;
 }
 
-- (CGSize)em_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize
+- (CGSize)ms_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize
 {
     if (MSOSVersionLessThan(7.0)) {
 #pragma clang diagnostic push
@@ -47,7 +47,7 @@
     
 }
 
-- (NSString *)em_firstLetterCapitalized
+- (NSString *)ms_firstLetterCapitalized
 {
     if ([self length]>0) {
         NSString *firstChar = [self substringToIndex:1];
@@ -61,7 +61,7 @@
 
 
 
-- (BOOL)em_hasLetter
+- (BOOL)ms_hasLetter
 {
     for(int i =0 ;i<[self length]; i++) {
         char c = [self characterAtIndex:i];
@@ -72,7 +72,7 @@
     return NO;
 }
 
-- (BOOL)em_isEmail
+- (BOOL)ms_isEmail
 {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,16}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -80,7 +80,7 @@
 }
 
 
-- (BOOL)em_isPureNumandCharacters
+- (BOOL)ms_isPureNumandCharacters
 {
     if([self length] > 0)
     {
@@ -93,13 +93,13 @@
 }
 
 
-- (BOOL)em_isPhoneNumber
+- (BOOL)ms_isPhoneNumber
 {
-    return (11 == [self length]) ? [self em_isPureNumandCharacters] : NO;
+    return (11 == [self length]) ? [self ms_isPureNumandCharacters] : NO;
 }
 
 
-+ (NSString *)em_stringWithFlowLength:(int)flowLen
++ (NSString *)ms_stringWithFlowLength:(int)flowLen
 {
     NSString *des = @"Bytes";
     double _size = (double)flowLen;
@@ -133,7 +133,7 @@
 }
 
 
-- (NSString *)em_phoneFormatterString
+- (NSString *)ms_phoneFormatterString
 {
     if (self.length > 7)
     {
@@ -149,14 +149,14 @@
 
 
 #pragma mark 获得时间戳
-+ (NSString *)em_generateTimestamp
++ (NSString *)ms_generateTimestamp
 {
     return [NSString stringWithFormat:@"%ld", time(NULL)];
 }
 
 
 #pragma mark 获得随时字符串
-+ (NSString *)em_generateUUID
++ (NSString *)ms_generateUUID
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
@@ -164,7 +164,7 @@
 }
 
 
-- (NSDictionary *)em_toResponseDictionary
+- (NSDictionary *)ms_toResponseDictionary
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSArray *arr1 = [self componentsSeparatedByString:@"&"];

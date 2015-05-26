@@ -32,7 +32,7 @@
 
 
 + (instancetype)errorPopupWithText:(NSString *)text
-                               block:(em_popupview_event_block_t)block
+                               block:(ms_popupview_event_block_t)block
 {
     static EMErrorPopupView *popupView = nil;
     

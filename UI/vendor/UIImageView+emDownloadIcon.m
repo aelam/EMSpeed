@@ -36,7 +36,7 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 }
 
 
-- (void)em_setIconWithUrlString:(NSString *)icon placeHolderImage:(UIImage *)placeHolder
+- (void)ms_setIconWithUrlString:(NSString *)icon placeHolderImage:(UIImage *)placeHolder
 {
     UIImage *localImage = [UIImage imageNamed:icon];
     if (localImage)
@@ -50,13 +50,13 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 }
 
 
-- (void)em_setIconWithUrlString:(NSString *)icon
+- (void)ms_setIconWithUrlString:(NSString *)icon
 {
-    [self em_setIconWithUrlString:icon placeHolderImage:nil];
+    [self ms_setIconWithUrlString:icon placeHolderImage:nil];
 
 }
 
-- (void)em_setImageWithURLString:(NSString *)urlstring
+- (void)ms_setImageWithURLString:(NSString *)urlstring
 {
     self.contentMode = [self preContentMode];
     UIImage *localImage = [UIImage imageNamed:urlstring];
@@ -98,18 +98,18 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 #define kPlaceHolderMaxSize CGSizeMake(100,70)
 
 
-- (void)em_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache
+- (void)ms_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache
 {
-    [self em_setImageWithURL:url localCache:localCache placeholderImage:nil options:0];
+    [self ms_setImageWithURL:url localCache:localCache placeholderImage:nil options:0];
 }
 
 
-- (void)em_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache placeholderImage:(UIImage *)placeholderImage
+- (void)ms_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache placeholderImage:(UIImage *)placeholderImage
 {
-    [self em_setImageWithURL:url localCache:localCache placeholderImage:placeholderImage options:0];
+    [self ms_setImageWithURL:url localCache:localCache placeholderImage:placeholderImage options:0];
 }
 
-- (void)em_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache placeholderImage:(UIImage *)placeholderImage options:(SDWebImageOptions)options
+- (void)ms_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache placeholderImage:(UIImage *)placeholderImage options:(SDWebImageOptions)options
 {
     UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:url.relativeString];
     self.contentMode = [self preContentMode];
@@ -159,7 +159,7 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
     }
 }
 
-- (void)em_setIconWithIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder
+- (void)ms_setIconWithIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder
 {
     UIImage *localImage = [UIImage imageNamed:icon];
     if (localImage)

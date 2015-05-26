@@ -17,7 +17,7 @@
 *
 *  @return 处理后的字符串
 */
-- (NSString *)em_trim;
+- (NSString *)ms_trim;
 
 
 /**
@@ -28,7 +28,7 @@
  *
  *  @return 尺寸
  */
-- (CGSize)em_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize;
+- (CGSize)ms_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize;
 
 
 /**
@@ -36,7 +36,7 @@
  *
  *  @return 处理后的字符串
  */
-- (NSString *)em_firstLetterCapitalized;
+- (NSString *)ms_firstLetterCapitalized;
 
 
 /**
@@ -44,7 +44,7 @@
  *
  *  @return BOOL
  */
-- (BOOL)em_hasLetter;
+- (BOOL)ms_hasLetter;
 
 
 /**
@@ -52,7 +52,7 @@
  *
  *  @return 正确或错误
  */
-- (BOOL)em_isEmail;
+- (BOOL)ms_isEmail;
 
 
 /**
@@ -60,7 +60,7 @@
  *
  *  @return 正确或错误
  */
-- (BOOL)em_isPureNumandCharacters;
+- (BOOL)ms_isPureNumandCharacters;
 
 
 /**
@@ -68,7 +68,7 @@
  *
  *  @return 正确或失败
  */
-- (BOOL)em_isPhoneNumber;
+- (BOOL)ms_isPhoneNumber;
 
 
 /**
@@ -78,7 +78,7 @@
  *
  *  @return 转换后的字符串
  */
-+ (NSString *)em_stringWithFlowLength:(int)length;
++ (NSString *)ms_stringWithFlowLength:(int)length;
 
 
 /**
@@ -86,7 +86,7 @@
  *
  *  @return 电话号码格式字符串
  */
-- (NSString *)em_phoneFormatterString;
+- (NSString *)ms_phoneFormatterString;
 
 
 /**
@@ -94,7 +94,7 @@
  *
  *  @return 时间戳字符串
  */
-+ (NSString *)em_generateTimestamp;
++ (NSString *)ms_generateTimestamp;
 
 
 /**
@@ -102,7 +102,7 @@
  *
  *  @return UUID字符串
  */
-+ (NSString *)em_generateUUID;
++ (NSString *)ms_generateUUID;
 
 
 
@@ -111,7 +111,7 @@
  *
  *  @return 字典
  */
-- (NSDictionary *)em_toResponseDictionary;
+- (NSDictionary *)ms_toResponseDictionary;
 
 
 

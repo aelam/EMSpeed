@@ -10,7 +10,7 @@
 
 @implementation NSString (OAURLEncodingAdditions)
 
-- (NSString *)em_URLEncodedString
+- (NSString *)ms_URLEncodedString
 {
     NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                              (CFStringRef)self,
@@ -20,7 +20,7 @@
     return result;
 }
 
-- (NSString*)em_URLDecodedString
+- (NSString*)ms_URLDecodedString
 {
     NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
                                                                                                              (CFStringRef)self,

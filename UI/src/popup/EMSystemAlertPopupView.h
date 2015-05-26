@@ -55,7 +55,7 @@
 - (instancetype)initWithTitle:(NSString *)title
         contentText:(NSString *)content
         buttonTitle:(NSString *)buttonTitle
-              block:(em_popupview_event_block_t)block;
+              block:( ms_popupview_event_block_t)block;
 
 
 /**
@@ -73,8 +73,8 @@
 - (instancetype)initWithTitle:(NSString *)title
         contentText:(NSString *)content
     leftButtonTitle:(NSString *)leftTitle
-          leftBlock:(em_popupview_event_block_t)leftBlock
+          leftBlock:( ms_popupview_event_block_t)leftBlock
    rightButtonTitle:(NSString *)rigthTitle
-         rightBlock:(em_popupview_event_block_t)rightBlock;
+         rightBlock:( ms_popupview_event_block_t)rightBlock;
 
 @end
