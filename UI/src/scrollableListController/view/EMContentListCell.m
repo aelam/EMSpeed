@@ -7,7 +7,7 @@
 //
 
 #import "EMContentListCell.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 @implementation EMContentListCell
 @synthesize isTitleTableViewCell;

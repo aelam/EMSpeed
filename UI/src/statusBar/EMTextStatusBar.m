@@ -8,7 +8,7 @@
 
 #import "EMTextStatusBar.h"
 #import "EMStatusBarTextModel.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 @interface EMTextStatusBar() {
 }

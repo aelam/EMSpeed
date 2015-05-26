@@ -8,7 +8,7 @@
 
 #import "EMIconTextStatusBar.h"
 #import "EMStatusBarIconTextModel.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 @implementation EMIconTextStatusBar
 

@@ -7,7 +7,7 @@
 //
 
 #import "NSString+Drawing.h"
-#import "EMCoreMetrics.h"
+#import "MSCoreMetrics.h"
 
 extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 

@@ -7,7 +7,7 @@
 //
 
 #import "NSString+Utility.h"
-#import "EMCoreFunction.h"
+#import "MSCoreFunction.h"
 
 @implementation NSString(Utility)
 

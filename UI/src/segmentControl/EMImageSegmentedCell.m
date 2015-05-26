@@ -9,7 +9,7 @@
 #import "EMImageSegmentedCell.h"
 #import "NSString+drawing.h"
 #import "EMContext.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 @implementation EMImageSegmentedCellObject
 

@@ -7,9 +7,9 @@
 //
 
 #import "EMContext.h"
-#import "EMCoreFunction.h"
-#import "EMCoreMetrics.h"
-#import "EMCore.h"
+#import "MSCoreFunction.h"
+#import "MSCoreMetrics.h"
+#import "MSCore.h"
 
 
 CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);

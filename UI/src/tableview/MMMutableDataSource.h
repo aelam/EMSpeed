@@ -102,12 +102,3 @@
 
 @end
 
-
-@interface MMMutableDataSource (goupWebView)
-
-/**
- *根据某一个indexpath，返回对应section的数据组
- */
-- (NSArray *)toGroupWebViewArray:(NSIndexPath *)indexPath;
-
-@end

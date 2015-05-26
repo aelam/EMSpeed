@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 flora. All rights reserved.
 //
 
-#import "EMCoreMetrics.h"
+#import "MSCoreMetrics.h"
 
 
 CGFloat EMScreenHeight(void) {

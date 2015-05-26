@@ -9,9 +9,9 @@
 #import "EMSegmentedControl.h"
 #import "EMSegmentCellFactory.h"
 #import "UIColor+HexString.h"
-#import "EMCoreMetrics.h"
+#import "MSCoreMetrics.h"
 #import "EMTextSegmentCell.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 
 @interface EMSegmentedControl()

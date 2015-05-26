@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 flora. All rights reserved.
 //
 
-#import "EMCoreFunction.h"
+#import "MSCoreFunction.h"
 
 float EMOSVersion(void)
 {

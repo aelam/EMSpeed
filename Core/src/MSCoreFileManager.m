@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "EMCoreFileManager.h"
+#import "MSCoreFileManager.h"
 
 
 static NSString *__defaultImageDirectory = nil; // 默认的图片文件夹路径

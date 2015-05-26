@@ -8,7 +8,7 @@
 
 #import "EMActivityIndicatorTextStatusBar.h"
 #import "EMActivityIndicatorTextModel.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 
 @implementation EMActivityIndicatorTextStatusBar

@@ -8,7 +8,7 @@
 
 #import "EMImageCollectionItem.h"
 #import "EMImageCollectionViewCell.h"
-#import "EMCore.h"
+#import "MSCore.h"
 
 @implementation EMImageCollectionItem
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 flora. All rights reserved.
 //
 
-#import "EMCoreSDKAvailability.h"
-#import "EMCoreMetrics.h"
+#import "MSCoreSDKAvailability.h"
+#import "MSCoreMetrics.h"
 
 
 BOOL EMIsPad(void)

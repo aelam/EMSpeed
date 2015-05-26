@@ -7,8 +7,8 @@
 //
 
 #import "EMMultiPagingBaseController.h"
-#import "EMCoreFunction.h"
-#import "EMCore.h"
+#import "MSCoreFunction.h"
+#import "MSCore.h"
 
 
 static const NSInteger kMultiPagingPadding = 10;

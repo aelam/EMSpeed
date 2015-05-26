@@ -9,8 +9,8 @@
 #import "EMMultiPagingMenuController.h"
 #import "EMMultiPagingSubclass.h"
 
-#import "EMCoreFunction.h"
-#import "EMCoreMetrics.h"
+#import "MSCoreFunction.h"
+#import "MSCoreMetrics.h"
 //#import "EMInfoMacros.h"
 
 @interface EMMultiPagingMenuController ()
