@@ -49,8 +49,8 @@
         
         self.contentDataSource = [[MSMutableDataSource alloc] initWithItems:@[items] sections:@[@""]];
         
-        self.titleHeaderItem = [[EMScrollableTableTitleHeaderItem alloc] init];
-        self.contentHeaderItem = [[EMScrollableTableContentHeaderItem alloc] init];
+        self.titleHeaderItem = [[MSScrollableTableTitleHeaderItem alloc] init];
+        self.contentHeaderItem = [[MSScrollableTableContentHeaderItem alloc] init];
     }
     
     return self;

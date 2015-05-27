@@ -20,8 +20,8 @@
     self = [super init];
     if (self) {
         self.height = 30;
-        self.Class = [EMScrollableTableContentHeaderView class];
-        self.reuseIdentify = @"EMScrollableTableContentHeaderView";
+        self.Class = [MSScrollableTableContentHeaderView class];
+        self.reuseIdentify = @"MSScrollableTableContentHeaderView";
         self.isRegisterByClass = NO;
     }
     

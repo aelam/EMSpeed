@@ -1,5 +1,5 @@
 //
-//  EMArtPopupView.h
+//  MSArtPopupView.h
 //
 //  Created by Samuel Chen on 2014.12.17
 //
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  弹框委托
  */
-@protocol EMArtPopupViewDelegate <NSObject>
+@protocol MSArtPopupViewDelegate <NSObject>
 @optional
 
 /**
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
  *
  *  @param popupView 弹框界面
  */
-- (void)EMArtPopupViewDidDismissed:(MSArtPopupView *)popupView;
+- (void)MSArtPopupViewDidDismissed:(MSArtPopupView *)popupView;
 @end
 
 
@@ -121,11 +121,11 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  会传递给 content view的actionDelegate
  */
-@property (nonatomic, weak) id<EMArtPopupViewDelegate> actionDelegate;
+@property (nonatomic, weak) id<MSArtPopupViewDelegate> actionDelegate;
 
 
 
-// 如有点击事件, contentView需要实现EMArtPopupViewAction协议
+// 如有点击事件, contentView需要实现MSArtPopupViewAction协议
 
 /**
  *  显示弹框
@@ -140,7 +140,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 + (MSArtPopupView *)showContent:(EMArtPopupContentView *)contentView
                          inView:(UIView *)parentView
                        fromRect:(CGRect)rect
-                       delegate:(id<EMArtPopupViewDelegate>)delegate;
+                       delegate:(id<MSArtPopupViewDelegate>)delegate;
 
 /**
  *  弹框消失
@@ -160,7 +160,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  点击事件委托
  */
-@property (nonatomic, weak) id<EMArtPopupViewDelegate> actionDelegate;
+@property (nonatomic, weak) id<MSArtPopupViewDelegate> actionDelegate;
 @end
 
 

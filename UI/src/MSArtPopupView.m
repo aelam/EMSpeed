@@ -1,5 +1,5 @@
 //
-//  EMArtPopupView.m
+//  MSArtPopupView.m
 //
 //  Created by Samuel Chen on 2014.12.17
 //
@@ -45,7 +45,7 @@
 + (MSArtPopupView *)showContent:(EMArtPopupContentView *)contentView
                          inView:(UIView *)parentView
                        fromRect:(CGRect)rect
-                       delegate:(id<EMArtPopupViewDelegate>)delegate
+                       delegate:(id<MSArtPopupViewDelegate>)delegate
 {
     
     MSArtPopupView *popupView = [[MSArtPopupView alloc] init];
@@ -58,7 +58,7 @@
 - (void)showContent:(EMArtPopupContentView *)contentView
              inView:(UIView *)parentView
            fromRect:(CGRect)rect
-           delegate:(id<EMArtPopupViewDelegate>)delegate
+           delegate:(id<MSArtPopupViewDelegate>)delegate
 {
     _actionDelegate = delegate;
     contentView.actionDelegate = delegate;
@@ -142,8 +142,8 @@
     _parentView = nil;
     _overlayView = nil;
     
-    if (self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(EMArtPopupViewDidDismissed:)]) {
-        [self.actionDelegate EMArtPopupViewDidDismissed:self];
+    if (self.actionDelegate && [self.actionDelegate respondsToSelector:@selector(MSArtPopupViewDidDismissed:)]) {
+        [self.actionDelegate MSArtPopupViewDidDismissed:self];
     }
     self.actionDelegate = nil;
 }
