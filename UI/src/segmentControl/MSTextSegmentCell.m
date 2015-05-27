@@ -83,7 +83,7 @@
     [self.text ms_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
                   withFont:font
                      color:textColor
-                  aligment:NSTextAlignmentCenter | EMTextVerticalAlignmentCenter];
+                  aligment:NSTextAlignmentCenter | MSTextVerticalAlignmentCenter];
 }
 
 - (BOOL)shouldUpdateCellWithObject:(id)object

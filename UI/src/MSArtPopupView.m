@@ -42,7 +42,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-+ (MSArtPopupView *)showContent:(EMArtPopupContentView *)contentView
++ (MSArtPopupView *)showContent:(MSArtPopupContentView *)contentView
                          inView:(UIView *)parentView
                        fromRect:(CGRect)rect
                        delegate:(id<MSArtPopupViewDelegate>)delegate
@@ -55,7 +55,7 @@
 }
 
 
-- (void)showContent:(EMArtPopupContentView *)contentView
+- (void)showContent:(MSArtPopupContentView *)contentView
              inView:(UIView *)parentView
            fromRect:(CGRect)rect
            delegate:(id<MSArtPopupViewDelegate>)delegate
@@ -66,7 +66,7 @@
     
     _contentView = contentView;
     _parentView = parentView;
-    _overlayView = [[EMArtPopupOverlay alloc] initWithFrame:parentView.bounds];
+    _overlayView = [[MSArtPopupOverlay alloc] initWithFrame:parentView.bounds];
     
     [self parentViewScrollDisable];
     
@@ -497,19 +497,19 @@
 @end
 
 
-@implementation EMArtPopupContentView
+@implementation MSArtPopupContentView
 
 @end
 
 
-@interface EMArtPopupOverlay()
+@interface MSArtPopupOverlay()
 
 @property (nonatomic, strong) UIView *colorOverlayView;
 
 @end
 
 
-@implementation EMArtPopupOverlay
+@implementation MSArtPopupOverlay
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

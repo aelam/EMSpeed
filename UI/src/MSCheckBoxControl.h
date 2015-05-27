@@ -50,29 +50,29 @@
 
 
 /**
- *  EMCheckBox控件
+ *  MSCheckBoxButton控件
  */
-@interface EMCheckBoxButton : EMRadioButton {
+@interface MSCheckBoxButton : MSRadioButton {
     
 }
 
 
 /**
- *  创建EMCheckBox控件
+ *  创建MSCheckBoxButton控件
  *
  *  @param title    标题
  *  @param target   点击事件对象
  *  @param selector 点击事件方法
  *
- *  @return EMCheckBoxButton
+ *  @return MSCheckBoxButton
  */
-+ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
++ (MSCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                            target:(id)target
                            action:(SEL)selector;
 
 
 /**
- *  创建EMCheckBox控件
+ *  创建MSCheckBoxButton控件
  *
  *  @param title    标题
  *  @param onImage  选中的图片
@@ -80,9 +80,9 @@
  *  @param target   点击事件对象
  *  @param selector 点击事件方法
  *
- *  @return EMCheckBoxButton
+ *  @return MSCheckBoxButton
  */
-+ (EMCheckBoxButton *)checkBoxWithTitle:(NSString *)title
++ (MSCheckBoxButton *)checkBoxWithTitle:(NSString *)title
                           onImage:(UIImage *)onImage
                          offImage:(UIImage *)offImage
                            target:(id)target

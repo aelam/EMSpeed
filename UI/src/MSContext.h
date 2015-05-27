@@ -17,9 +17,9 @@
     UITextAlignment 扩展
  */
 
-typedef NS_OPTIONS(NSInteger, EMTextVerticalAlignment) {
-    EMTextVerticalAlignmentCenter = 1<<5,//垂直居中
-    EMTextVerticalAlignmentBottom = 1<<6,//垂直靠底
+typedef NS_OPTIONS(NSInteger, MSTextVerticalAlignment) {
+    MSTextVerticalAlignmentCenter = 1<<5,//垂直居中
+    MSTextVerticalAlignmentBottom = 1<<6,//垂直靠底
 };
 
 

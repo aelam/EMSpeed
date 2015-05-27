@@ -210,7 +210,7 @@ CGPoint getTextCenterPoint(NSString *str,UIFont *font,CGPoint origin,int nAnchor
     {
         origin.x = floorf(origin.x - textSize.width);
     }
-    if (nAnchor & EMTextVerticalAlignmentCenter)
+    if (nAnchor & MSTextVerticalAlignmentCenter)
     {
         origin.y = floorf(origin.y - .5 * textSize.height);
     }
@@ -414,12 +414,12 @@ CGRect Point2Rect(CGPoint point, int nAnchor,UIFont *font)
     
     int nHeightFont = font.lineHeight;
     
-    if (nAnchor & EMTextVerticalAlignmentCenter)
+    if (nAnchor & MSTextVerticalAlignmentCenter)
     {
         rt.origin.y = nY-.5 * nHeightFont;
         rt.size.height = nHeightFont;
     }
-    else if (nAnchor & EMTextVerticalAlignmentBottom)
+    else if (nAnchor & MSTextVerticalAlignmentBottom)
     {
         rt.origin.y = nY-nHeightFont;
         rt.size.height = nHeightFont;

@@ -53,7 +53,7 @@
         
         for (int i = 0; i < _titles.count; i ++)
         {
-            EMRadioButton *radioBtn = [[self radioClass] radioWithTitle:[_titles objectAtIndex:i] target:self action:@selector(radioBtnClick:)];
+            MSRadioButton *radioBtn = [[self radioClass] radioWithTitle:[_titles objectAtIndex:i] target:self action:@selector(radioBtnClick:)];
             radioBtn.tag = kRadioButtonTag + i;
             radioBtn.isSelected = (i == _selectedIndex);
             [self addSubview:radioBtn];
@@ -70,7 +70,7 @@
 
 - (Class)radioClass
 {
-    return [EMRadioButton class];
+    return [MSRadioButton class];
 }
 
 - (void)setTitleLabel:(UILabel *)titleLabel
@@ -143,7 +143,7 @@
 
 - (float)calculateMaxRaidoTextWidth
 {
-    EMRadioButton *radio = nil;
+    MSRadioButton *radio = nil;
     
     if ([_radios count] > 0) {
         radio = [_radios objectAtIndex:0];
@@ -174,8 +174,8 @@
             [_isSelectedRadios replaceObjectAtIndex:_selectedIndex withObject:[NSNumber numberWithBool:NO]];
         }
         [_isSelectedRadios replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:YES]];
-        EMRadioButton *preButton     = (EMRadioButton *)[self viewWithTag:kRadioButtonTag + _selectedIndex];
-        EMRadioButton *currentButton = (EMRadioButton *)[self viewWithTag:kRadioButtonTag + index];
+        MSRadioButton *preButton     = (MSRadioButton *)[self viewWithTag:kRadioButtonTag + _selectedIndex];
+        MSRadioButton *currentButton = (MSRadioButton *)[self viewWithTag:kRadioButtonTag + index];
         _selectedIndex = index;
         
         preButton.isSelected = NO;
@@ -191,7 +191,7 @@
     if (onImage) {
         _onImage = onImage;
         for (int i=0; i<[_radios count]; i++) {
-            EMRadioButton *r = [_radios objectAtIndex:i];
+            MSRadioButton *r = [_radios objectAtIndex:i];
             r.onImage = onImage;
             
             [r setNeedsDisplay];
@@ -204,7 +204,7 @@
     if (offImage) {
         _offImage = offImage;
         for (int i=0; i<[_radios count]; i++) {
-            EMRadioButton *r = [_radios objectAtIndex:i];
+            MSRadioButton *r = [_radios objectAtIndex:i];
             r.offImage = offImage;
             
             [r setNeedsDisplay];
@@ -217,23 +217,23 @@
 
 
 
-@implementation EMRadioButton
+@implementation MSRadioButton
 
-+ (EMRadioButton *)radioWithTitle:(NSString *)title
++ (MSRadioButton *)radioWithTitle:(NSString *)title
                     onImage:(UIImage *)onImage
                    offImage:(UIImage *)offImage
                      target:(id)target
                      action:(SEL)selector
 {
-    EMRadioButton *radioBtn = [EMRadioButton buttonWithType:UIButtonTypeCustom];
+    MSRadioButton *radioBtn = [MSRadioButton buttonWithType:UIButtonTypeCustom];
     radioBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [radioBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [radioBtn setTitle:title forState:UIControlStateNormal];
     [radioBtn setImage:offImage forState:UIControlStateNormal];
     radioBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [radioBtn addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    radioBtn.onImage = onImage ? onImage : [EMRadioButton defaultOnImage];
-    radioBtn.offImage = offImage ? offImage : [EMRadioButton defaultOffImage];
+    radioBtn.onImage = onImage ? onImage : [MSRadioButton defaultOnImage];
+    radioBtn.offImage = offImage ? offImage : [MSRadioButton defaultOffImage];
     radioBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0);
     radioBtn.frame = CGRectMake(0, 0, 50, 20);
     return radioBtn;
@@ -247,11 +247,11 @@
     frame.size.height = self.frame.size.height;
 }
 
-+ (EMRadioButton *)radioWithTitle:(NSString *)title
++ (MSRadioButton *)radioWithTitle:(NSString *)title
                      target:(id)target
                      action:(SEL)selector
 {
-    return [EMRadioButton radioWithTitle:title onImage:nil offImage:nil target:target action:selector];
+    return [MSRadioButton radioWithTitle:title onImage:nil offImage:nil target:target action:selector];
 }
 
 + (UIImage *)defaultOnImage

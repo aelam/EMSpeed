@@ -19,8 +19,8 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 } ;
 
 @class MSArtPopupView;
-@class EMArtPopupContentView;
-@class EMArtPopupOverlay;
+@class MSArtPopupContentView;
+@class MSArtPopupOverlay;
 
 /**
  *  弹框委托
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
  *  @param popupView 弹框界面
  *  @param sender    事件传递的控件
  */
-- (void)EMArtPopView:(MSArtPopupView *)popupView didPressed:(id)sender; // 点击事件
+- (void)MSArtPopView:(MSArtPopupView *)popupView didPressed:(id)sender; // 点击事件
 
 
 /**
@@ -79,7 +79,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  一层透明的覆盖view
  */
-@property (nonatomic, readonly, strong) EMArtPopupOverlay *overlayView;
+@property (nonatomic, readonly, strong) MSArtPopupOverlay *overlayView;
 
 
 /**
@@ -137,7 +137,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
  *
  *  @return 弹框实例
  */
-+ (MSArtPopupView *)showContent:(EMArtPopupContentView *)contentView
++ (MSArtPopupView *)showContent:(MSArtPopupContentView *)contentView
                          inView:(UIView *)parentView
                        fromRect:(CGRect)rect
                        delegate:(id<MSArtPopupViewDelegate>)delegate;
@@ -155,7 +155,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  弹框内容的视图
  */
-@interface EMArtPopupContentView : UIView
+@interface MSArtPopupContentView : UIView
 
 /**
  *  点击事件委托
@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger, MSArtPopupViewArrowDirection) {
 /**
  *  用作覆盖的半透明的view
  */
-@interface EMArtPopupOverlay : UIView
+@interface MSArtPopupOverlay : UIView
 
 /**
  *  背景颜色, 默认黑色 alpha 0.25f

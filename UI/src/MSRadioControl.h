@@ -12,12 +12,12 @@
 static NSInteger kRadioButtonTag = 100;
 
 @class MSRadioControl;
-@class EMRadioButton;
+@class MSRadioButton;
 
-@protocol EMRadioBoxControlDelegate<NSObject>
+@protocol MSRadioBoxControlDelegate<NSObject>
 @optional
 -(void)radioControl:(MSRadioControl*)radioControl
-      didClickRadio:(EMRadioButton *)radio;
+      didClickRadio:(MSRadioButton *)radio;
 @end
 
 
@@ -39,7 +39,7 @@ static NSInteger kRadioButtonTag = 100;
 /**
  *  委托
  */
-@property (nonatomic,assign)id<EMRadioBoxControlDelegate> delegate;
+@property (nonatomic,assign)id<MSRadioBoxControlDelegate> delegate;
 
 
 /**
@@ -120,7 +120,7 @@ static NSInteger kRadioButtonTag = 100;
 /**
  *  radio控件
  */
-@interface EMRadioButton : UIButton {
+@interface MSRadioButton : UIButton {
     
 }
 
@@ -159,9 +159,9 @@ static NSInteger kRadioButtonTag = 100;
  *  @param target   点击事件回调对象
  *  @param selector 点击事件响应方法
  *
- *  @return EMRadioButton
+ *  @return MSRadioButton
  */
-+ (EMRadioButton *)radioWithTitle:(NSString *)title
++ (MSRadioButton *)radioWithTitle:(NSString *)title
                           onImage:(UIImage *)onImage
                          offImage:(UIImage *)offImage
                            target:(id)target
@@ -175,9 +175,9 @@ static NSInteger kRadioButtonTag = 100;
  *  @param target   点击事件回调对象
  *  @param selector 点击事件响应方法
  *
- *  @return EMRadioButton
+ *  @return MSRadioButton
  */
-+ (EMRadioButton *)radioWithTitle:(NSString *)title
++ (MSRadioButton *)radioWithTitle:(NSString *)title
                            target:(id)target
                            action:(SEL)selector;
 
