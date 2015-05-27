@@ -8,7 +8,7 @@
 
 #import "MSMultiPagingView.h"
 #import "UIImageView+DownloadIcon.h"
-#import "EMContext.h"
+#import "MSContext.h"
 #import "MSPageModel.h"
 #import "MSPageUpdating.h"
 #import "MSPageImageView.h"

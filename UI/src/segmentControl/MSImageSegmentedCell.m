@@ -8,7 +8,7 @@
 
 #import "MSImageSegmentedCell.h"
 #import "NSString+drawing.h"
-#import "EMContext.h"
+#import "MSContext.h"
 #import "MSCore.h"
 
 @implementation MSImageSegmentedCellObject

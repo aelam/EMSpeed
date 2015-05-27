@@ -6,7 +6,7 @@
 //
 
 #import "MCSegmentedControl.h"
-#import "EMContext.h"
+#import "MSContext.h"
 
 #define kMCSegmentControlCornerRadius  1.0f
 #define kMCSegmentControlSelectedItemTextColor [UIColor yellowColor]

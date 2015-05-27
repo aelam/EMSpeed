@@ -49,7 +49,7 @@ extern const CGFloat kMultiPagingMenuSelectHeight;
            editable:(BOOL)editable;
 
 - (BOOL)commitEditWithTitles:(NSMutableArray *)titles; // 确认编辑，更新界面
-- (void)setCurrentMenuIndex:(NSUInteger)index
+- (void)setCurrentMenuIndex:(int)index
                    animated:(BOOL)animated;
 - (NSString *)titleAtIndex:(NSUInteger)index;
 - (void)pressMenu:(id)sender;

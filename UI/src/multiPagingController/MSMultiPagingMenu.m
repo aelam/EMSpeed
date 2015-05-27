@@ -7,7 +7,7 @@
 //
 
 #import "MSMultiPagingMenu.h"
-#import "EMContext.h"
+#import "MSContext.h"
 
 #define kMultPagingMenuFont     [UIFont systemFontOfSize:16]
 
@@ -214,7 +214,7 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
     return YES;
 }
 
-- (void)setCurrentMenuIndex:(NSUInteger)index
+- (void)setCurrentMenuIndex:(int)index
                    animated:(BOOL)animated
 {
     index = MAX(0, index);

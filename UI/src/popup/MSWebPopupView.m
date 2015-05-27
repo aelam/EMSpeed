@@ -8,7 +8,7 @@
 
 #import "MSWebPopupView.h"
 #import "UIImage+utility.h"
-#import "EMContext.h"
+#import "MSContext.h"
 #import "MSCore.h"
 
 const CGFloat kWebPopupAutoDismissSeconds   = 1.5f;
