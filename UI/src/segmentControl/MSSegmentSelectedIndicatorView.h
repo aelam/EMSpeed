@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, EMSegmentSelectedIndicatorStyle) {
-    EMselectedIndicatorStyleMenuTitle,   // 显示大标题, 下面一条箭头bar
-    EMselectedIndicatorStyleMenuContent,  // 显示内容, 下面一条箭头线
+typedef NS_ENUM(NSInteger, MSSegmentSelectedIndicatorStyle) {
+    MSselectedIndicatorStyleMenuTitle,   // 显示大标题, 下面一条箭头bar
+    MSselectedIndicatorStyleMenuContent,  // 显示内容, 下面一条箭头线
 };
 
 @interface MSSegmentSelectedIndicatorView : UIView
 
-@property (nonatomic, assign) EMSegmentSelectedIndicatorStyle style;
+@property (nonatomic, assign) MSSegmentSelectedIndicatorStyle style;
 @property (nonatomic, assign) CGRect selectedRect;
 @property (nonatomic, strong) id selectedItem;
 @property (nonatomic, assign) CGFloat fixedWidth;
@@ -26,12 +26,12 @@ typedef NS_ENUM(NSInteger, EMSegmentSelectedIndicatorStyle) {
 @end
 
 
-@interface EMSegmentSelectedIndicatorArrowBar : MSSegmentSelectedIndicatorView
+@interface MSSegmentSelectedIndicatorArrowBar : MSSegmentSelectedIndicatorView
 
 @end
 
 
-@interface EMSegmentSelectedIndicatorArrowLine : MSSegmentSelectedIndicatorView
+@interface MSSegmentSelectedIndicatorArrowLine : MSSegmentSelectedIndicatorView
 
 @end
 

@@ -11,33 +11,33 @@
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 #define FLIP_ANIMATION_DURATION 0.18f
 
-#define EMRefreshTableHeaderView_HEIGHT 65
+#define MSRefreshTableHeaderView_HEIGHT 65
 
 typedef enum{
-    EMPullRefreshPulling = 0,
-    EMPullRefreshNormal,
-    EMPullRefreshLoading,
-} EMPullRefreshState;
+    MSPullRefreshPulling = 0,
+    MSPullRefreshNormal,
+    MSPullRefreshLoading,
+} MSPullRefreshState;
 
 typedef enum
 {
-    EMRefreshViewStyleWhite,
-    EMRefreshViewStyleGray
-}EMRefreshViewStyle;
+    MSRefreshViewStyleWhite,
+    MSRefreshViewStyleGray
+}MSRefreshViewStyle;
 
 @class MSRefreshTableHeaderView;
-@protocol EMRefreshTableHeaderViewDelegate
-- (void)emRefreshTableHeaderDidTriggerRefresh:(MSRefreshTableHeaderView*)view;
-- (BOOL)emRefreshTableHeaderDataSourceIsLoading:(MSRefreshTableHeaderView*)view;
+@protocol MSRefreshTableHeaderViewDelegate
+- (void)MSRefreshTableHeaderDidTriggerRefresh:(MSRefreshTableHeaderView*)view;
+- (BOOL)MSRefreshTableHeaderDataSourceIsLoading:(MSRefreshTableHeaderView*)view;
 @optional
-- (NSDate*)emRefreshTableHeaderDataSourceLastUpdated:(MSRefreshTableHeaderView*)view;
+- (NSDate*)MSRefreshTableHeaderDataSourceLastUpdated:(MSRefreshTableHeaderView*)view;
 @end
 
 
 @interface MSRefreshTableHeaderView : UIView {
     
     id __unsafe_unretained _delegate;
-    EMPullRefreshState _state;
+    MSPullRefreshState _state;
     
     UILabel *_lastUpdatedLabel;
     UILabel *_statusLabel;
@@ -51,16 +51,16 @@ typedef enum
 - (id)initWithFrame:(CGRect)frame;
 
 - (void)refreshLastUpdatedDate;
-- (void)emRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
-- (void)emRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
-- (void)emRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView;
+- (void)MSRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
+- (void)MSRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
+- (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView;
 
 - (void)setArrowImage:(UIImage *)image;
 
 @end
 
 
-@interface EMAnimatedImagesRefreshTableHeaderView : MSRefreshTableHeaderView {
+@interface MSAnimatedImagesRefreshTableHeaderView : MSRefreshTableHeaderView {
     
     UIImageView *_animtedImageView;
 }

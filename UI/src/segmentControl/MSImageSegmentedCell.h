@@ -18,7 +18,7 @@
 
 @end
 
-@interface MSImageSegmentedCell : UIView<EMSegmentCell>
+@interface MSImageSegmentedCell : UIView<MSSegmentCell>
 {
     MSImageSegmentedCellObject *_object;
 }

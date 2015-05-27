@@ -21,8 +21,8 @@
 
 #define kScrollTipLabelSize CGSizeMake(10, 24)
 
-NSString *const MSScrollableListCellSelectedNotification = @"EMStocklistCellSelectedNotification";
-NSString *const MSScrollableListCellHighlightedNotification = @"EMStocklistCellHighlightedNotification";
+NSString *const MSScrollableListCellSelectedNotification = @"MSScrollableListCellSelectedNotification";
+NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableListCellHighlightedNotification";
 
 
 @interface MSScrollableListViewController ()
@@ -186,8 +186,8 @@ NSString *const MSScrollableListCellHighlightedNotification = @"EMStocklistCellH
 
 - (void)registerTableViewCell
 {
-    [_titleTableView registerNib:[UINib nibWithNibName:@"EMNameListCell" bundle:nil] forCellReuseIdentifier:@"EMNameListCell"];
-    [_contentTableView registerNib:[UINib nibWithNibName:@"EMContentListCell" bundle:nil] forCellReuseIdentifier:@"EMContentListCell"];
+    [_titleTableView registerNib:[UINib nibWithNibName:@"MSNameListCell" bundle:nil] forCellReuseIdentifier:@"MSNameListCell"];
+    [_contentTableView registerNib:[UINib nibWithNibName:@"MSContentListCell" bundle:nil] forCellReuseIdentifier:@"MSContentListCell"];
 }
 
 - (void)setViewConstraints

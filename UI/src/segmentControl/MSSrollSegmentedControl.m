@@ -32,7 +32,7 @@
         _segments = [[NSMutableArray alloc] init];
         self.items = items;
         
-        self.selectedIndicatorStyle = EMselectedIndicatorStyleMenuTitle;
+        self.selectedIndicatorStyle = MSselectedIndicatorStyleMenuTitle;
         
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapScrollView:)];
         recognizer.delegate = self;
@@ -56,7 +56,7 @@
     
     for (int i = 0; i < count; i++)
     {
-        UIView<EMSegmentCell> *cell =  [[self segmentCellFactoryClass] segmentCellForSegmentControl:self atIndex:i withObject:[_items objectAtIndex:i]];
+        UIView<MSSegmentCell> *cell =  [[self segmentCellFactoryClass] segmentCellForSegmentControl:self atIndex:i withObject:[_items objectAtIndex:i]];
         cell.userInteractionEnabled = NO;
         [_scrollView addSubview:cell];
         [_segments addObject:cell];
@@ -94,7 +94,7 @@
     
     for (int i = 0;  i < [_segments count] ; i++)
     {
-        UIView<EMSegmentCell> *view = [_segments objectAtIndex:i];
+        UIView<MSSegmentCell> *view = [_segments objectAtIndex:i];
         view.frame = CGRectMake(begin_x, 0, width, self.frame.size.height);
         begin_x += width;
         

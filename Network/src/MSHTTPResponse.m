@@ -32,7 +32,7 @@
     MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
     response.originData = responseObject;
     
-    if ([MSHTTPResponse isEMStandardResponse:responseObject]) {
+    if ([MSHTTPResponse isStandardResponse:responseObject]) {
         response.status = [responseObject[@"status"] integerValue];
         NSDateFormatter *formatter = [self updateTimeFormatter];
         response.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];
@@ -53,7 +53,7 @@
     return _dateFormatter;
 }
 
-+ (BOOL)isEMStandardResponse:(id)responseObject
++ (BOOL)isStandardResponse:(id)responseObject
 {
     if ([responseObject isKindOfClass:[NSDictionary class]]
         && responseObject[@"status"]

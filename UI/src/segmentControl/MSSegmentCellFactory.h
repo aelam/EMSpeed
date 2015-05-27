@@ -10,27 +10,27 @@
 #import "MSBorderView.h"
 
 @class MSTextSegmentCell,MSSegmentedControl;
-@protocol EMSegmentCellObject, EMSegmentCell;
+@protocol MSSegmentCellObject, MSSegmentCell;
 
 
 @interface MSSegmentCellFactory : NSObject
 
-+ (UIView<EMSegmentCell> *)segmentCellForSegmentControl:(MSSegmentedControl *)segmentControl atIndex:(int)index withObject:(NSObject<EMSegmentCellObject> *)object;
++ (UIView<MSSegmentCell> *)segmentCellForSegmentControl:(MSSegmentedControl *)segmentControl atIndex:(int)index withObject:(NSObject<MSSegmentCellObject> *)object;
 
 @end
 
 
-@protocol EMSegmentCellObject <NSObject>
+@protocol MSSegmentCellObject <NSObject>
 @required
 - (Class)cellClass;
 
 @end
 
-@protocol EMSegmentCell <NSObject>
+@protocol MSSegmentCell <NSObject>
 @required
 @property (nonatomic, assign) BOOL selected;
 
-- (instancetype)initWithSegmentObject:(NSObject<EMSegmentCellObject> *)object;
+- (instancetype)initWithSegmentObject:(NSObject<MSSegmentCellObject> *)object;
 
 @optional
 

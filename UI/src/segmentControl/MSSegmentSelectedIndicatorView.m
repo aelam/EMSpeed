@@ -43,7 +43,7 @@
 @end
 
 
-@implementation EMSegmentSelectedIndicatorArrowBar
+@implementation MSSegmentSelectedIndicatorArrowBar
 
 - (void)drawRect:(CGRect)rect
 {
@@ -90,7 +90,7 @@
 @end
 
 
-@implementation EMSegmentSelectedIndicatorArrowLine
+@implementation MSSegmentSelectedIndicatorArrowLine
 
 - (void)drawRect:(CGRect)rect
 {

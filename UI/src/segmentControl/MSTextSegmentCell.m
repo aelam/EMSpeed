@@ -46,10 +46,10 @@
 
 - (instancetype)initWithText:(NSString *)object
 {
-    return [self initWithSegmentObject:(NSObject<EMSegmentCellObject> *)object];
+    return [self initWithSegmentObject:(NSObject<MSSegmentCellObject> *)object];
 }
 
-- (instancetype)initWithSegmentObject:(NSObject<EMSegmentCellObject> *)object
+- (instancetype)initWithSegmentObject:(NSObject<MSSegmentCellObject> *)object
 {
     self = [super init];
     if (self) {

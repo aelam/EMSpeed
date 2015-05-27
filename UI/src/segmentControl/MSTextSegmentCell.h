@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MSSegmentCellFactory.h"
 
-@interface MSTextSegmentCellObject : NSObject <EMSegmentCellObject>
+@interface MSTextSegmentCellObject : NSObject <MSSegmentCellObject>
 
 // Designated initializer.
 - (instancetype)initWithCellClass:(Class)cellClass;
@@ -19,7 +19,7 @@
 @end
 
 
-@interface MSTextSegmentCell : UIView <EMSegmentCell>
+@interface MSTextSegmentCell : UIView <MSSegmentCell>
 
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) UIFont *font;
@@ -27,6 +27,6 @@
 @property (nonatomic, strong) UIColor *normalTextColor;
 
 
-- (instancetype)initWithSegmentObject:(NSObject<EMSegmentCellObject> *)object;
+- (instancetype)initWithSegmentObject:(NSObject<MSSegmentCellObject> *)object;
 - (instancetype)initWithText:(NSString *)object;
 @end

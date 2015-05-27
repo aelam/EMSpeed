@@ -10,7 +10,7 @@
 #import "MSRefreshTableHeaderView.h"
 #import "MSRefreshTableFooterView.h"
 
-@interface MSRefreshScrollableListViewController : MSScrollableListViewController <EMRefreshTableHeaderViewDelegate, MSRefreshTableFooterViewDelegate> {
+@interface MSRefreshScrollableListViewController : MSScrollableListViewController <MSRefreshTableHeaderViewDelegate, MSRefreshTableFooterViewDelegate> {
 
 }
 

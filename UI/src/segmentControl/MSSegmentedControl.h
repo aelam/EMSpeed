@@ -19,12 +19,12 @@
 
 
 enum {
-    EMSegmentedControlNoSegment = -1   // segment index for no selected segment
+    MSSegmentedControlNoSegment = -1   // segment index for no selected segment
 };
 
 
 
-@protocol EMSegmentCell;
+@protocol MSSegmentCell;
 
 @interface MSSegmentedControl : UIControl <NSCoding>
 {
@@ -38,13 +38,13 @@ enum {
     NSInteger _selectedSegmentIndex;
     CGFloat *_segmentWidths;
     
-    UIView<EMSegmentCell> *_highlightedSegmentView;
+    UIView<MSSegmentCell> *_highlightedSegmentView;
     MSSegmentSelectedIndicatorView *_selectedView;
 }
 
 - (instancetype)initWithItems:(NSArray *)items; // items can be NSStrings or othre struct
 
-@property(nonatomic, assign) EMSegmentSelectedIndicatorStyle selectedIndicatorStyle;
+@property(nonatomic, assign) MSSegmentSelectedIndicatorStyle selectedIndicatorStyle;
 
 @property(nonatomic,readonly) NSUInteger numberOfSegments;
 @property (nonatomic, readonly) UIFont *itemFont;
@@ -76,7 +76,7 @@ enum {
 
 - (void)setSelectedSegmentIndexWithTitle:(NSString *)title; // 根据标题找，选中对应的index，如果没找到设置UISegmentedControlNoSegment
 
-/**segment所控制内容区的颜色，用于EMselectedIndicatorStyleMenuContent 状态下的视图对接使用
+/**segment所控制内容区的颜色，用于MSselectedIndicatorStyleMenuContent 状态下的视图对接使用
  */
 - (void)setIndicatorBackgroundColor:(UIColor *)color;
 

@@ -44,7 +44,7 @@
         
         self.items = items;
         
-        self.selectedIndicatorStyle = EMselectedIndicatorStyleMenuTitle;
+        self.selectedIndicatorStyle = MSselectedIndicatorStyleMenuTitle;
         _segmentWidths = malloc(sizeof(CGFloat)*[items count]);
         memset(_segmentWidths, 0, sizeof(CGFloat)*[items count]);
     }
@@ -108,7 +108,7 @@
     }
     [_items removeAllObjects];
     [_segments removeAllObjects];
-    self.selectedSegmentIndex = EMSegmentedControlNoSegment;
+    self.selectedSegmentIndex = MSSegmentedControlNoSegment;
     _selectedView.selectedRect = CGRectZero;
 }
 
@@ -116,7 +116,7 @@
 {
     [_items replaceObjectAtIndex:segment withObject:title];
     
-    UILabel<EMSegmentCell> *cell = [_segments objectAtIndex:segment];
+    UILabel<MSSegmentCell> *cell = [_segments objectAtIndex:segment];
     cell.text = [_items objectAtIndex:segment];
     
     [cell setNeedsDisplay];
@@ -145,7 +145,7 @@
 - (void)setFont:(UIFont *)font
 {
     for (int i=0; i<[_segments count]; i++) {
-        UILabel<EMSegmentCell> *cell = [_segments objectAtIndex:i];
+        UILabel<MSSegmentCell> *cell = [_segments objectAtIndex:i];
         cell.font = [UIFont systemFontOfSize:16];
     }
 }
@@ -192,14 +192,14 @@
             _selectedView.selectedItem = [_items objectAtIndex:_selectedSegmentIndex];
         }
         
-        if (selectedSegmentIndex != EMSegmentedControlNoSegment)
+        if (selectedSegmentIndex != MSSegmentedControlNoSegment)
         {
             [self sendActionsForControlEvents:UIControlEventValueChanged];
         }
     }
 }
 
-- (void)setSelectedIndicatorStyle:(EMSegmentSelectedIndicatorStyle)style
+- (void)setSelectedIndicatorStyle:(MSSegmentSelectedIndicatorStyle)style
 {
     _selectedIndicatorStyle = style;
     _selectedView.style = style;
@@ -213,13 +213,13 @@
 }
 
 
-- (Class)selectedViewClassWithStyle:(EMSegmentSelectedIndicatorStyle)style
+- (Class)selectedViewClassWithStyle:(MSSegmentSelectedIndicatorStyle)style
 {
-    if (style == EMselectedIndicatorStyleMenuTitle) {
-        return [EMSegmentSelectedIndicatorArrowBar class];
+    if (style == MSselectedIndicatorStyleMenuTitle) {
+        return [MSSegmentSelectedIndicatorArrowBar class];
     }
-    else if (style == EMselectedIndicatorStyleMenuContent) {
-        return [EMSegmentSelectedIndicatorArrowLine class];
+    else if (style == MSselectedIndicatorStyleMenuContent) {
+        return [MSSegmentSelectedIndicatorArrowLine class];
     }
 
     // add more style here...
@@ -251,7 +251,7 @@
     for (int i = 0; i < count; i++)
     {
         id object = [_items objectAtIndex:i];
-        UIView<EMSegmentCell> *cell =  [[self segmentCellFactoryClass] segmentCellForSegmentControl:self atIndex:i withObject:object];
+        UIView<MSSegmentCell> *cell =  [[self segmentCellFactoryClass] segmentCellForSegmentControl:self atIndex:i withObject:object];
         cell.userInteractionEnabled = NO;
         [self addSubview:cell];
         [_segments addObject:cell];
@@ -309,7 +309,7 @@
             cellWidth = _segmentWidths[i];
         }
         
-        UIView<EMSegmentCell> *view = [_segments objectAtIndex:i];
+        UIView<MSSegmentCell> *view = [_segments objectAtIndex:i];
         view.frame = CGRectMake(begin_x, 0, cellWidth, self.frame.size.height);
         begin_x += cellWidth;
 

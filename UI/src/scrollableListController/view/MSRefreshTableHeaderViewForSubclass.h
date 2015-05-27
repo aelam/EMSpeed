@@ -10,5 +10,5 @@
 #import "MSRefreshTableHeaderView.h"
 
 @interface MSRefreshTableHeaderView (Private)
-- (void)setState:(EMPullRefreshState)aState;
+- (void)setState:(MSPullRefreshState)aState;
 @end

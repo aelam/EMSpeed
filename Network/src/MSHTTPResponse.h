@@ -43,6 +43,6 @@
  *
  *  @return 是否
  */
-+ (BOOL)isEMStandardResponse:(id)responseObject;
++ (BOOL)isStandardResponse:(id)responseObject;
 
 @end

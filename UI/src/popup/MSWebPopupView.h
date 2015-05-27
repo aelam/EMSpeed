@@ -90,6 +90,6 @@
 
 
 
-@interface EMMaskBackgroundView : UIView
+@interface MSMaskBackgroundView : UIView
 @property (nonatomic, weak) MSWebPopupView *popView;
 @end

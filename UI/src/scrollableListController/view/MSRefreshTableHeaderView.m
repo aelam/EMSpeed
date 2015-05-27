@@ -12,7 +12,7 @@
 
 
 @interface MSRefreshTableHeaderView (Private)
-- (void)setState:(EMPullRefreshState)aState;
+- (void)setState:(MSPullRefreshState)aState;
 @end
 
 @implementation MSRefreshTableHeaderView
@@ -80,9 +80,9 @@
 
 - (void)refreshLastUpdatedDate {
     
-    if ([_delegate respondsToSelector:@selector(emRefreshTableHeaderDataSourceLastUpdated:)]) {
+    if ([_delegate respondsToSelector:@selector(MSRefreshTableHeaderDataSourceLastUpdated:)]) {
         
-        NSDate *date = [_delegate emRefreshTableHeaderDataSourceLastUpdated:self];
+        NSDate *date = [_delegate MSRefreshTableHeaderDataSourceLastUpdated:self];
         
         [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -101,13 +101,13 @@
     
 }
 
-- (void)setState:(EMPullRefreshState)aState
+- (void)setState:(MSPullRefreshState)aState
 {
     switch (aState) {
-        case EMPullRefreshNormal:
+        case MSPullRefreshNormal:
         {
             _statusLabel.text = NSLocalizedString(@"Release to refresh...", @"Release to refresh status");
-            if (_state == EMPullRefreshLoading) {
+            if (_state == MSPullRefreshLoading) {
                 self.arrowImage.transform = CGAffineTransformIdentity;
                 
                 [UIView animateWithDuration:FLIP_ANIMATION_DURATION animations:^{
@@ -124,7 +124,7 @@
             }
         }
             break;
-        case EMPullRefreshPulling:
+        case MSPullRefreshPulling:
         {
             _statusLabel.text = NSLocalizedString(@"Pull down to refresh...", @"Pull down to refresh status");
             [UIView animateWithDuration:FLIP_ANIMATION_DURATION animations:^{
@@ -133,7 +133,7 @@
             [self refreshLastUpdatedDate];
         }
             break;
-        case EMPullRefreshLoading:
+        case MSPullRefreshLoading:
         {
             [self.activityView startAnimating];
             self.arrowImage.alpha = 0.0;
@@ -151,9 +151,9 @@
 #pragma mark -
 #pragma mark ScrollView Methods
 
-- (void)emRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if (_state == EMPullRefreshLoading) {
+    if (_state == MSPullRefreshLoading) {
         
         CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
         offset = MIN(offset, 60);
@@ -164,14 +164,14 @@
     } else if (scrollView.isDragging) {
         BOOL _loading = NO;
         
-        if ([_delegate respondsToSelector:@selector(emRefreshTableHeaderDataSourceIsLoading:)]) {
-            _loading = [_delegate emRefreshTableHeaderDataSourceIsLoading:self];
+        if ([_delegate respondsToSelector:@selector(MSRefreshTableHeaderDataSourceIsLoading:)]) {
+            _loading = [_delegate MSRefreshTableHeaderDataSourceIsLoading:self];
         }
         
-        if (_state == EMPullRefreshPulling && scrollView.contentOffset.y > -EMRefreshTableHeaderView_HEIGHT && scrollView.contentOffset.y < 0.0f && !_loading) {
-            [self setState:EMPullRefreshNormal];
-        } else if (_state == EMPullRefreshNormal && scrollView.contentOffset.y < -EMRefreshTableHeaderView_HEIGHT && !_loading) {
-            [self setState:EMPullRefreshPulling];
+        if (_state == MSPullRefreshPulling && scrollView.contentOffset.y > -MSRefreshTableHeaderView_HEIGHT && scrollView.contentOffset.y < 0.0f && !_loading) {
+            [self setState:MSPullRefreshNormal];
+        } else if (_state == MSPullRefreshNormal && scrollView.contentOffset.y < -MSRefreshTableHeaderView_HEIGHT && !_loading) {
+            [self setState:MSPullRefreshPulling];
         }
         
         if (scrollView.contentInset.top != 0) {
@@ -184,20 +184,20 @@
     
 }
 
-- (void)emRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
     
     BOOL _loading = NO;
-    if ([_delegate respondsToSelector:@selector(emRefreshTableHeaderDataSourceIsLoading:)]) {
-        _loading = [_delegate emRefreshTableHeaderDataSourceIsLoading:self];
+    if ([_delegate respondsToSelector:@selector(MSRefreshTableHeaderDataSourceIsLoading:)]) {
+        _loading = [_delegate MSRefreshTableHeaderDataSourceIsLoading:self];
     }
     
-    if (scrollView.contentOffset.y <= - EMRefreshTableHeaderView_HEIGHT && !_loading) {
+    if (scrollView.contentOffset.y <= - MSRefreshTableHeaderView_HEIGHT && !_loading) {
         
-        if ([_delegate respondsToSelector:@selector(emRefreshTableHeaderDidTriggerRefresh:)]) {
-            [_delegate emRefreshTableHeaderDidTriggerRefresh:self];
+        if ([_delegate respondsToSelector:@selector(MSRefreshTableHeaderDidTriggerRefresh:)]) {
+            [_delegate MSRefreshTableHeaderDidTriggerRefresh:self];
         }
         
-        [self setState:EMPullRefreshLoading];
+        [self setState:MSPullRefreshLoading];
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.2];
         [UIView setAnimationBeginsFromCurrentState:YES];
@@ -208,7 +208,7 @@
     }
 }
 
-- (void)emRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:.3];
@@ -218,7 +218,7 @@
     [scrollView setContentInset:e];
     [UIView commitAnimations];
     
-    [self setState:EMPullRefreshNormal];
+    [self setState:MSPullRefreshNormal];
 }
 
 - (void)setArrowImage:(UIImage *)image
@@ -252,7 +252,7 @@
 
 
 
-@implementation EMAnimatedImagesRefreshTableHeaderView
+@implementation MSAnimatedImagesRefreshTableHeaderView
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -285,23 +285,23 @@
         [self addSubview:label];
         _statusLabel=label;
         
-        [self setState:EMPullRefreshNormal];
+        [self setState:MSPullRefreshNormal];
     }
     
     return self;
     
 }
 
-- (void)setState:(EMPullRefreshState)aState{
+- (void)setState:(MSPullRefreshState)aState{
     [NSObject cancelPreviousPerformRequestsWithTarget:_animtedImageView selector:@selector(stopAnimating) object:nil];
     switch (aState) {
-        case EMPullRefreshPulling:
+        case MSPullRefreshPulling:
             [_animtedImageView startAnimating];
             break;
-        case EMPullRefreshNormal:
+        case MSPullRefreshNormal:
             [_animtedImageView performSelector:@selector(stopAnimating) withObject:nil afterDelay:FLIP_ANIMATION_DURATION];
             break;
-        case EMPullRefreshLoading:
+        case MSPullRefreshLoading:
             break;
         default:
             break;
@@ -310,11 +310,11 @@
     [super setState:aState];
 }
 
-- (void)emRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
     
-    [super emRefreshScrollViewDidScroll:scrollView];
+    [super MSRefreshScrollViewDidScroll:scrollView];
     
-    if (_state != EMPullRefreshLoading && scrollView.isDragging) {
+    if (_state != MSPullRefreshLoading && scrollView.isDragging) {
         if ([_animtedImageView isAnimating] == NO)
         {
             [_animtedImageView startAnimating];

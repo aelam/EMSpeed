@@ -42,7 +42,7 @@
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
         _lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [dateFormatter stringFromDate:date]];
-        [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EMRefreshTableView_LastRefresh"];
+        [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"MSRefreshTableView_LastRefresh"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
     } else {
@@ -53,9 +53,9 @@
     
 }
 
-- (void)emRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if (_state == EMPullRefreshLoading) {
+    if (_state == MSPullRefreshLoading) {
         CGFloat offset = MAX(scrollView.contentOffset.y- (scrollView.contentSize.height - scrollView.frame.size.height), 0);
         offset = MIN(offset, 60);
         UIEdgeInsets e = scrollView.contentInset;
@@ -69,10 +69,10 @@
             _loading = [_delegate emRefreshTableFooterDataSourceIsLoading:self];
         }
         
-        if (_state == EMPullRefreshPulling && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height + EMRefreshTableHeaderView_HEIGHT) && !_loading) {
-            [self setState:EMPullRefreshNormal];
-        } else if (_state == EMPullRefreshNormal && scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + EMRefreshTableHeaderView_HEIGHT) && !_loading) {
-            [self setState:EMPullRefreshPulling];
+        if (_state == MSPullRefreshPulling && scrollView.contentOffset.y < (scrollView.contentSize.height - scrollView.frame.size.height + MSRefreshTableHeaderView_HEIGHT) && !_loading) {
+            [self setState:MSPullRefreshNormal];
+        } else if (_state == MSPullRefreshNormal && scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + MSRefreshTableHeaderView_HEIGHT) && !_loading) {
+            [self setState:MSPullRefreshPulling];
         }
         
         if (scrollView.contentInset.bottom != 0) {
@@ -83,20 +83,20 @@
     }
 }
 
-- (void)emRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
     
     BOOL _loading = NO;
     if ([_delegate respondsToSelector:@selector(emRefreshTableFooterDataSourceIsLoading:)]) {
         _loading = [_delegate emRefreshTableFooterDataSourceIsLoading:self];
     }
     
-    if (scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + EMRefreshTableHeaderView_HEIGHT) && !_loading) {
+    if (scrollView.contentOffset.y > (scrollView.contentSize.height - scrollView.frame.size.height + MSRefreshTableHeaderView_HEIGHT) && !_loading) {
         
         if ([_delegate respondsToSelector:@selector(emRefreshTableFooterDidTriggerRefresh:)]) {
             [_delegate emRefreshTableFooterDidTriggerRefresh:self];
         }
         
-        [self setState:EMPullRefreshLoading];
+        [self setState:MSPullRefreshLoading];
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.2];
         [UIView setAnimationBeginsFromCurrentState:YES];
@@ -107,7 +107,7 @@
     }
 }
 
-- (void)emRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
+- (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:.6];
@@ -117,7 +117,7 @@
     [scrollView setContentInset:e];
     [UIView commitAnimations];
     
-    [self setState:EMPullRefreshNormal];
+    [self setState:MSPullRefreshNormal];
 }
 
 

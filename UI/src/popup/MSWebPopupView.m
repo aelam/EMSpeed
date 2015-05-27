@@ -23,7 +23,7 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 
 
 
-@implementation EMMaskBackgroundView
+@implementation MSMaskBackgroundView
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -51,7 +51,7 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
 }
 @property (nonatomic, strong) UIScrollView *myScrollView;
 @property (nonatomic, strong) UIWebView *contentWebView;
-@property (nonatomic, strong) EMMaskBackgroundView *backImageView;
+@property (nonatomic, strong) MSMaskBackgroundView *backImageView;
 
 @end
 
@@ -248,7 +248,7 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
     UIView *parentView = [self parentView];
     
     if (!self.backImageView) {
-        self.backImageView = [[EMMaskBackgroundView alloc] initWithFrame:parentView.bounds];
+        self.backImageView = [[MSMaskBackgroundView alloc] initWithFrame:parentView.bounds];
     }
     self.backImageView.popView = self;
     self.backImageView.backgroundColor = [UIColor blackColor];

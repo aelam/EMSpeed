@@ -56,14 +56,14 @@
     {
         if (NO == _refreshHeaderView.hidden)
         {
-            [_refreshHeaderView emRefreshScrollViewDidScroll:scrollView];
+            [_refreshHeaderView MSRefreshScrollViewDidScroll:scrollView];
         }
     }
     
     if (_hasFooterRefresh)
     {
         if (NO == _refreshFooterView.hidden) {
-            [_refreshFooterView emRefreshScrollViewDidScroll:scrollView];
+            [_refreshFooterView MSRefreshScrollViewDidScroll:scrollView];
         }
     }
 }
@@ -81,7 +81,7 @@
         }
         if (NO == _refreshHeaderView.hidden)
         {
-            [_refreshHeaderView emRefreshScrollViewDidEndDragging:scrollView];
+            [_refreshHeaderView MSRefreshScrollViewDidEndDragging:scrollView];
         }
     }
     
@@ -94,7 +94,7 @@
         }
         if (NO == _refreshFooterView.hidden)
         {
-            [_refreshFooterView emRefreshScrollViewDidEndDragging:scrollView];
+            [_refreshFooterView MSRefreshScrollViewDidEndDragging:scrollView];
         }
     }
     
@@ -128,14 +128,14 @@
         CGFloat height = MAX(_titleTableView.contentSize.height, _titleTableView.frame.size.height);
         if (_refreshFooterView == nil && _titleTableView)
         {
-            CGRect rect = CGRectMake(0.0f, height, self.view.frame.size.width, EMRefreshTableHeaderView_HEIGHT);
+            CGRect rect = CGRectMake(0.0f, height, self.view.frame.size.width, MSRefreshTableHeaderView_HEIGHT);
             _refreshFooterView = [[MSRefreshTableFooterView alloc] initWithFrame:rect];
             _refreshFooterView.autoresizingMask = UIViewAutoresizingNone;
             _refreshFooterView.delegate = self;
             [_titleTableView addSubview:_refreshFooterView];
         }
         else{
-            _refreshFooterView.frame = CGRectMake(0.0f, height, self.view.frame.size.width, EMRefreshTableHeaderView_HEIGHT);
+            _refreshFooterView.frame = CGRectMake(0.0f, height, self.view.frame.size.width, MSRefreshTableHeaderView_HEIGHT);
         }
     }
     else if (_refreshFooterView)
@@ -167,7 +167,7 @@
 
 - (void)finishRefreshHeaderLoading
 {
-    [_refreshHeaderView emRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
+    [_refreshHeaderView MSRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
     _reloading = NO;
 }
 
@@ -195,25 +195,25 @@
     [self reloadDataSource];
     
     
-    [_refreshFooterView emRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
+    [_refreshFooterView MSRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
     _reloading = NO;
     
 }
 
 # pragma mark - refresh header delegate
 
-- (void)emRefreshTableHeaderDidTriggerRefresh:(MSRefreshTableHeaderView*)view
+- (void)MSRefreshTableHeaderDidTriggerRefresh:(MSRefreshTableHeaderView*)view
 {
     _reloading = YES;
     [self requestDatasource];
 }
 
-- (BOOL)emRefreshTableHeaderDataSourceIsLoading:(MSRefreshTableHeaderView*)view
+- (BOOL)MSRefreshTableHeaderDataSourceIsLoading:(MSRefreshTableHeaderView*)view
 {
     return _reloading; // should return if data source model is reloading
 }
 
-- (NSDate*)emRefreshTableHeaderDataSourceLastUpdated:(MSRefreshTableHeaderView*)view
+- (NSDate*)MSRefreshTableHeaderDataSourceLastUpdated:(MSRefreshTableHeaderView*)view
 {
     return [NSDate date]; // should return date data source was last changed
 }

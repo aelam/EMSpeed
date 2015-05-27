@@ -23,9 +23,9 @@
     return self;
 }
 
-+ (UIView<EMSegmentCell> *)segmentCellForSegmentControl:(MSSegmentedControl *)segmentControl
++ (UIView<MSSegmentCell> *)segmentCellForSegmentControl:(MSSegmentedControl *)segmentControl
                                                 atIndex:(int)index
-                                             withObject:(NSObject<EMSegmentCellObject> *)object
+                                             withObject:(NSObject<MSSegmentCellObject> *)object
 {
     if ([object isKindOfClass:[NSString class]])
     {
