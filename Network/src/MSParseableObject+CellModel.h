@@ -7,7 +7,7 @@
 //
 
 #import "MSParseableObject.h"
-#import "MMCellModel.h"
+#import "MSCellModel.h"
 #import "MSParseableObject+CellModel.h"
 
 /**
@@ -25,7 +25,7 @@
  *
  *  @return cell model对象
  */
-+ (id<MMCellModel>)cellModelWithData:(NSDictionary *)dictionary cellModelClass:(Class)cls;
++ (id<MSCellModel>)cellModelWithData:(NSDictionary *)dictionary cellModelClass:(Class)cls;
 
 
 /**

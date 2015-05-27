@@ -19,12 +19,12 @@
 		18309B531AEF93B50057945D /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B451AEF93B50057945D /* UIScrollView+MJExtension.m */; };
 		18309B541AEF93B50057945D /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B471AEF93B50057945D /* UIScrollView+MJRefresh.m */; };
 		18309B551AEF93B50057945D /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B491AEF93B50057945D /* UIView+MJExtension.m */; };
-		18309B651AEF93BF0057945D /* MMDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B5A1AEF93BE0057945D /* MMDataSource.m */; };
+		18309B651AEF93BF0057945D /* MSDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B5A1AEF93BE0057945D /* MSDataSource.m */; };
 		18309B661AEF93BF0057945D /* MMMutableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B5C1AEF93BE0057945D /* MMMutableDataSource.m */; };
-		18309B671AEF93BF0057945D /* MMRefreshTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B5E1AEF93BE0057945D /* MMRefreshTableController.m */; };
-		18309B681AEF93BF0057945D /* MMRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B601AEF93BE0057945D /* MMRefreshTableViewController.m */; };
-		18309B691AEF93BF0057945D /* MMTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B621AEF93BE0057945D /* MMTableController.m */; };
-		18309B6A1AEF93BF0057945D /* MMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B641AEF93BE0057945D /* MMTableViewController.m */; };
+		18309B671AEF93BF0057945D /* MSRefreshTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B5E1AEF93BE0057945D /* MSRefreshTableController.m */; };
+		18309B681AEF93BF0057945D /* MSRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B601AEF93BE0057945D /* MSRefreshTableViewController.m */; };
+		18309B691AEF93BF0057945D /* MSTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B621AEF93BE0057945D /* MSTableController.m */; };
+		18309B6A1AEF93BF0057945D /* MSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B641AEF93BE0057945D /* MSTableViewController.m */; };
 		18309B901AF072B40057945D /* NSDate+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B721AF072B40057945D /* NSDate+String.m */; };
 		18309B911AF072B40057945D /* NSObject+Reflect.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B741AF072B40057945D /* NSObject+Reflect.m */; };
 		18309B951AF072B40057945D /* NSString+Pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309B7C1AF072B40057945D /* NSString+Pinyin.m */; };
@@ -52,7 +52,7 @@
 		18309BDB1AF086630057945D /* MMInfoCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 18309BCB1AF086630057945D /* MMInfoCell3.m */; };
 		18309BDC1AF086630057945D /* MMInfoCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18309BCC1AF086630057945D /* MMInfoCell3.xib */; };
 		1835D2E31AF209B3008E4FD8 /* EMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1835D2E21AF209B3008E4FD8 /* EMUIResources.bundle */; };
-		1835D2E61AF212D3008E4FD8 /* MMTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835D2E51AF212D3008E4FD8 /* MMTableEmptyView.m */; };
+		1835D2E61AF212D3008E4FD8 /* MSTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835D2E51AF212D3008E4FD8 /* MSTableEmptyView.m */; };
 		1835D2F81AF21BA5008E4FD8 /* MMInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835D2F71AF21BA5008E4FD8 /* MMInfoTableViewController.m */; };
 		1835D2FA1AF21BEF008E4FD8 /* MMInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1835D2F91AF21BEF008E4FD8 /* MMInfoTableViewController.xib */; };
 		1835D3121AF226B5008E4FD8 /* MMVIPTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1835D3101AF226B5008E4FD8 /* MMVIPTableViewController.m */; };
@@ -114,18 +114,18 @@
 		18309B491AEF93B50057945D /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		18309B571AEF93BE0057945D /* MMCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCellModel.h; sourceTree = "<group>"; };
 		18309B581AEF93BE0057945D /* MMCellUpdating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCellUpdating.h; sourceTree = "<group>"; };
-		18309B591AEF93BE0057945D /* MMDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDataSource.h; sourceTree = "<group>"; };
-		18309B5A1AEF93BE0057945D /* MMDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDataSource.m; sourceTree = "<group>"; };
+		18309B591AEF93BE0057945D /* MSDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDataSource.h; sourceTree = "<group>"; };
+		18309B5A1AEF93BE0057945D /* MSDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDataSource.m; sourceTree = "<group>"; };
 		18309B5B1AEF93BE0057945D /* MMMutableDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutableDataSource.h; sourceTree = "<group>"; };
 		18309B5C1AEF93BE0057945D /* MMMutableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutableDataSource.m; sourceTree = "<group>"; };
-		18309B5D1AEF93BE0057945D /* MMRefreshTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRefreshTableController.h; sourceTree = "<group>"; };
-		18309B5E1AEF93BE0057945D /* MMRefreshTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRefreshTableController.m; sourceTree = "<group>"; };
-		18309B5F1AEF93BE0057945D /* MMRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRefreshTableViewController.h; sourceTree = "<group>"; };
-		18309B601AEF93BE0057945D /* MMRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRefreshTableViewController.m; sourceTree = "<group>"; };
-		18309B611AEF93BE0057945D /* MMTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableController.h; sourceTree = "<group>"; };
-		18309B621AEF93BE0057945D /* MMTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableController.m; sourceTree = "<group>"; };
-		18309B631AEF93BE0057945D /* MMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableViewController.h; sourceTree = "<group>"; };
-		18309B641AEF93BE0057945D /* MMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableViewController.m; sourceTree = "<group>"; };
+		18309B5D1AEF93BE0057945D /* MSRefreshTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRefreshTableController.h; sourceTree = "<group>"; };
+		18309B5E1AEF93BE0057945D /* MSRefreshTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSRefreshTableController.m; sourceTree = "<group>"; };
+		18309B5F1AEF93BE0057945D /* MSRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRefreshTableViewController.h; sourceTree = "<group>"; };
+		18309B601AEF93BE0057945D /* MSRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSRefreshTableViewController.m; sourceTree = "<group>"; };
+		18309B611AEF93BE0057945D /* MSTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSTableController.h; sourceTree = "<group>"; };
+		18309B621AEF93BE0057945D /* MSTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSTableController.m; sourceTree = "<group>"; };
+		18309B631AEF93BE0057945D /* MSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSTableViewController.h; sourceTree = "<group>"; };
+		18309B641AEF93BE0057945D /* MSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSTableViewController.m; sourceTree = "<group>"; };
 		18309B711AF072B40057945D /* NSDate+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+String.h"; sourceTree = "<group>"; };
 		18309B721AF072B40057945D /* NSDate+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+String.m"; sourceTree = "<group>"; };
 		18309B731AF072B40057945D /* NSObject+Reflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Reflect.h"; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 		18309BCB1AF086630057945D /* MMInfoCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMInfoCell3.m; sourceTree = "<group>"; };
 		18309BCC1AF086630057945D /* MMInfoCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMInfoCell3.xib; sourceTree = "<group>"; };
 		1835D2E21AF209B3008E4FD8 /* EMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EMUIResources.bundle; sourceTree = "<group>"; };
-		1835D2E41AF212D3008E4FD8 /* MMTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableEmptyView.h; sourceTree = "<group>"; };
-		1835D2E51AF212D3008E4FD8 /* MMTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableEmptyView.m; sourceTree = "<group>"; };
+		1835D2E41AF212D3008E4FD8 /* MSTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSTableEmptyView.h; sourceTree = "<group>"; };
+		1835D2E51AF212D3008E4FD8 /* MSTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSTableEmptyView.m; sourceTree = "<group>"; };
 		1835D2F61AF21BA5008E4FD8 /* MMInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMInfoTableViewController.h; sourceTree = "<group>"; };
 		1835D2F71AF21BA5008E4FD8 /* MMInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMInfoTableViewController.m; sourceTree = "<group>"; };
 		1835D2F91AF21BEF008E4FD8 /* MMInfoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMInfoTableViewController.xib; sourceTree = "<group>"; };
@@ -281,20 +281,20 @@
 			children = (
 				18309B571AEF93BE0057945D /* MMCellModel.h */,
 				18309B581AEF93BE0057945D /* MMCellUpdating.h */,
-				18309B591AEF93BE0057945D /* MMDataSource.h */,
-				18309B5A1AEF93BE0057945D /* MMDataSource.m */,
+				18309B591AEF93BE0057945D /* MSDataSource.h */,
+				18309B5A1AEF93BE0057945D /* MSDataSource.m */,
 				18309B5B1AEF93BE0057945D /* MMMutableDataSource.h */,
 				18309B5C1AEF93BE0057945D /* MMMutableDataSource.m */,
-				18309B611AEF93BE0057945D /* MMTableController.h */,
-				18309B621AEF93BE0057945D /* MMTableController.m */,
-				18309B5D1AEF93BE0057945D /* MMRefreshTableController.h */,
-				18309B5E1AEF93BE0057945D /* MMRefreshTableController.m */,
-				18309B631AEF93BE0057945D /* MMTableViewController.h */,
-				18309B641AEF93BE0057945D /* MMTableViewController.m */,
-				18309B5F1AEF93BE0057945D /* MMRefreshTableViewController.h */,
-				18309B601AEF93BE0057945D /* MMRefreshTableViewController.m */,
-				1835D2E41AF212D3008E4FD8 /* MMTableEmptyView.h */,
-				1835D2E51AF212D3008E4FD8 /* MMTableEmptyView.m */,
+				18309B611AEF93BE0057945D /* MSTableController.h */,
+				18309B621AEF93BE0057945D /* MSTableController.m */,
+				18309B5D1AEF93BE0057945D /* MSRefreshTableController.h */,
+				18309B5E1AEF93BE0057945D /* MSRefreshTableController.m */,
+				18309B631AEF93BE0057945D /* MSTableViewController.h */,
+				18309B641AEF93BE0057945D /* MSTableViewController.m */,
+				18309B5F1AEF93BE0057945D /* MSRefreshTableViewController.h */,
+				18309B601AEF93BE0057945D /* MSRefreshTableViewController.m */,
+				1835D2E41AF212D3008E4FD8 /* MSTableEmptyView.h */,
+				1835D2E51AF212D3008E4FD8 /* MSTableEmptyView.m */,
 			);
 			name = tableview;
 			path = ../../../UI/src/tableview;
@@ -646,13 +646,13 @@
 				1835D3121AF226B5008E4FD8 /* MMVIPTableViewController.m in Sources */,
 				18309B501AEF93B50057945D /* MJRefreshHeader.m in Sources */,
 				96BC738B1A9F104E0020E5A1 /* AFNetworkReachabilityManager.m in Sources */,
-				18309B681AEF93BF0057945D /* MMRefreshTableViewController.m in Sources */,
-				18309B6A1AEF93BF0057945D /* MMTableViewController.m in Sources */,
+				18309B681AEF93BF0057945D /* MSRefreshTableViewController.m in Sources */,
+				18309B6A1AEF93BF0057945D /* MSTableViewController.m in Sources */,
 				96BC738C1A9F104E0020E5A1 /* AFSecurityPolicy.m in Sources */,
 				18309B551AEF93B50057945D /* UIView+MJExtension.m in Sources */,
-				1835D2E61AF212D3008E4FD8 /* MMTableEmptyView.m in Sources */,
+				1835D2E61AF212D3008E4FD8 /* MSTableEmptyView.m in Sources */,
 				96BC73121A9F0AFC0020E5A1 /* AppDelegate.m in Sources */,
-				18309B671AEF93BF0057945D /* MMRefreshTableController.m in Sources */,
+				18309B671AEF93BF0057945D /* MSRefreshTableController.m in Sources */,
 				18309B981AF072B40057945D /* pinyin.c in Sources */,
 				18309BD31AF086630057945D /* MMInfoItem3.m in Sources */,
 				18309B521AEF93B50057945D /* MJRefreshLegendHeader.m in Sources */,
@@ -663,7 +663,7 @@
 				96BC730F1A9F0AFC0020E5A1 /* main.m in Sources */,
 				18309BD41AF086630057945D /* MMInfoModel.m in Sources */,
 				96BC738E1A9F104E0020E5A1 /* AFURLRequestSerialization.m in Sources */,
-				18309B651AEF93BF0057945D /* MMDataSource.m in Sources */,
+				18309B651AEF93BF0057945D /* MSDataSource.m in Sources */,
 				18309B9D1AF072B40057945D /* EMCoreSDKAvailability.m in Sources */,
 				18309B961AF072B40057945D /* NSString+URLEncoding.m in Sources */,
 				18309B4F1AEF93B50057945D /* MJRefreshGifHeader.m in Sources */,
@@ -685,7 +685,7 @@
 				94F488F41B0624E900FCD516 /* MSHTTPResponse.m in Sources */,
 				18309B4E1AEF93B50057945D /* MJRefreshGifFooter.m in Sources */,
 				18309BD51AF086630057945D /* EMInfoNewsCell.m in Sources */,
-				18309B691AEF93BF0057945D /* MMTableController.m in Sources */,
+				18309B691AEF93BF0057945D /* MSTableController.m in Sources */,
 				18309BDB1AF086630057945D /* MMInfoCell3.m in Sources */,
 				18309BD71AF086630057945D /* MMInfoCell.m in Sources */,
 				18309B4D1AEF93B50057945D /* MJRefreshFooter.m in Sources */,

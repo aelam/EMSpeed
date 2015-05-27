@@ -78,30 +78,30 @@ void CGFillStrokeRect(CGContextRef context,CGRect rt,UIColor *color)
 }
 
 
-void CGDrawFillTrianle(CGContextRef context, EMArrowDirection cDirect, CGRect rect, UIColor *color)
+void CGDrawFillTrianle(CGContextRef context, MSArrowDirection cDirect, CGRect rect, UIColor *color)
 {
     CGContextSaveGState(context);
     
     switch (cDirect) {
-        case EMArrowDirectionDown:
+        case MSArrowDirectionDown:
             CGContextMoveToPoint(context, rect.origin.x, rect.origin.y);
             CGContextAddLineToPoint(context, rect.origin.x + rect.size.width,rect.origin.y);
             CGContextAddLineToPoint(context, rect.origin.x + .5 *rect.size.width,rect.origin.y + rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y);
             break;
-        case EMArrowDirectionRight:
+        case MSArrowDirectionRight:
             CGContextMoveToPoint(context, rect.origin.x, rect.origin.y);
             CGContextAddLineToPoint(context, rect.origin.x + rect.size.width,rect.origin.y + .5 *rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x,rect.origin.y + rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y);
             break;
-        case EMArrowDirectionUp:
+        case MSArrowDirectionUp:
             CGContextMoveToPoint(context, rect.origin.x + .5 *rect.size.width, rect.origin.y);
             CGContextAddLineToPoint(context, rect.origin.x + rect.size.width,rect.origin.y + rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x ,rect.origin.y + rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x + .5 *rect.size.width, rect.origin.y);
             break;
-        case EMArrowDirectionLeft:
+        case MSArrowDirectionLeft:
             CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + .5 *rect.size.height);
             CGContextAddLineToPoint(context, rect.origin.x + rect.size.width,rect.origin.y);
             CGContextAddLineToPoint(context, rect.origin.x + rect.size.width ,rect.origin.y + rect.size.height);
@@ -119,8 +119,8 @@ void CGDrawFillTrianle(CGContextRef context, EMArrowDirection cDirect, CGRect re
 
 void CGDrawFillDiamond(CGContextRef context, int nX, int nY, int width, int height, UIColor *color)
 {
-    CGDrawFillTrianle(context, EMArrowDirectionUp, CGRectMake(ceilf(nX-width/2), nY, width, height), color);
-    CGDrawFillTrianle(context, EMArrowDirectionDown, CGRectMake(ceilf(nX-width/2), nY+height, width, height), color);
+    CGDrawFillTrianle(context, MSArrowDirectionUp, CGRectMake(ceilf(nX-width/2), nY, width, height), color);
+    CGDrawFillTrianle(context, MSArrowDirectionDown, CGRectMake(ceilf(nX-width/2), nY+height, width, height), color);
 }
 
 
@@ -455,7 +455,7 @@ void CGDrawTriBS(CGContextRef context, char bBS, int nX, int nY, UIColor *color)
     }
     else
     {
-        CGDrawFillTrianle(context, bBS>0 ? EMArrowDirectionUp : EMArrowDirectionDown, CGRectMake(nX-4,nY,9,8), color);
+        CGDrawFillTrianle(context, bBS>0 ? MSArrowDirectionUp : MSArrowDirectionDown, CGRectMake(nX-4,nY,9,8), color);
     }
 }
 
@@ -468,7 +468,7 @@ void CGDrawFenbiTriBS(CGContextRef context, char bBS, int nX, int nY, UIColor *c
     }
     else
     {
-        CGDrawFillTrianle(context, bBS>0 ? EMArrowDirectionUp : EMArrowDirectionDown, CGRectMake(nX-2,nY,4,3), color);
+        CGDrawFillTrianle(context, bBS>0 ? MSArrowDirectionUp : MSArrowDirectionDown, CGRectMake(nX-2,nY,4,3), color);
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  EMScrollableProtocol.h
+//  MSScrollableProtocol.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.
@@ -7,20 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EMModelProtocol.h"
-#import "MMMutableDataSource.h"
+#import "MSModelProtocol.h"
+#import "MSMutableDataSource.h"
 
-@protocol MMCellModel;
+@protocol MSCellModel;
 
-@protocol EMScrollableProtocol <EMModelProtocol>
+@protocol MSScrollableProtocol <MSModelProtocol>
 
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, assign) BOOL isLoading;
 @property (nonatomic, assign) BOOL didNeedsRequest;
-@property (nonatomic, strong) MMMutableDataSource *titleDataSource;
-@property (nonatomic, strong) MMMutableDataSource *contentDataSource;
-@property (nonatomic, strong) id<MMCellModel> titleHeaderItem;
-@property (nonatomic, strong) id<MMCellModel> contentHeaderItem;
+@property (nonatomic, strong) MSMutableDataSource *titleDataSource;
+@property (nonatomic, strong) MSMutableDataSource *contentDataSource;
+@property (nonatomic, strong) id<MSCellModel> titleHeaderItem;
+@property (nonatomic, strong) id<MSCellModel> contentHeaderItem;
 
 @required
 
@@ -31,8 +31,8 @@
 - (BOOL)isCached;
 - (BOOL)resetDataWithCurrentRow:(NSInteger)row;
 
-- (id<MMCellModel>)titleItemAtIndexPath:(NSIndexPath *)indexPath;
-- (id<MMCellModel>)contentItemAtIndexPath:(NSIndexPath *)indexPath;
+- (id<MSCellModel>)titleItemAtIndexPath:(NSIndexPath *)indexPath;
+- (id<MSCellModel>)contentItemAtIndexPath:(NSIndexPath *)indexPath;
 
 - (NSArray *)visiableItems;
 - (int)currentSelectedIndex:(NSIndexPath *)indexPath;

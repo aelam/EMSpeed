@@ -12,12 +12,12 @@
 @implementation MSParseableObject(CellModel)
 
 
-+ (id<MMCellModel>)cellModelWithData:(NSDictionary *)dictionary
++ (id<MSCellModel>)cellModelWithData:(NSDictionary *)dictionary
                       cellModelClass:(Class)cls
 {
     MSParseableObject *obj = [self instanceWithData:dictionary];
     
-    id<MMCellModel> cellModel = [[cls alloc] init];
+    id<MSCellModel> cellModel = [[cls alloc] init];
     [cellModel parseItem:obj];
     
     return cellModel;
@@ -30,7 +30,7 @@
     NSMutableArray *cellModels = [NSMutableArray array];
     
     for (NSDictionary *info in array) {
-        id<MMCellModel> cellModel = [self cellModelWithData:info cellModelClass:cls];
+        id<MSCellModel> cellModel = [self cellModelWithData:info cellModelClass:cls];
         [cellModels addObject:cellModel];
     }
     

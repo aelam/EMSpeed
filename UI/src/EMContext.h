@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-#define EMUIResName(file) [@"MSUIResources.bundle" stringByAppendingPathComponent:file]
+#define MSUIResName(file) [@"MSUIResources.bundle" stringByAppendingPathComponent:file]
 
 
 /**
@@ -26,12 +26,12 @@ typedef NS_OPTIONS(NSInteger, EMTextVerticalAlignment) {
 /**
     箭头方向
  */
-typedef NS_ENUM(NSInteger, EMArrowDirection) {
-    EMArrowDirectionNone = 0,   // 没有箭头
-    EMArrowDirectionDown,       // 剪头向下
-    EMArrowDirectionUp,         // 剪头向上
-    EMArrowDirectionLeft,       // 剪头向左
-    EMArrowDirectionRight       // 剪头向右
+typedef NS_ENUM(NSInteger, MSArrowDirection) {
+    MSArrowDirectionNone = 0,   // 没有箭头
+    MSArrowDirectionDown,       // 剪头向下
+    MSArrowDirectionUp,         // 剪头向上
+    MSArrowDirectionLeft,       // 剪头向左
+    MSArrowDirectionRight       // 剪头向右
 };
 
 
@@ -174,7 +174,7 @@ extern "C" {
      *  @param rect    区域
      *  @param color   颜色
      */
-    void CGDrawFillTrianle(CGContextRef context, EMArrowDirection cDirect, CGRect rect, UIColor *color);
+    void CGDrawFillTrianle(CGContextRef context, MSArrowDirection cDirect, CGRect rect, UIColor *color);
 
     
     /**
