@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "UIColor+hexString.h"
+#import "UIColor+HexString.h"
 
 @implementation UIColor(HexString)
 

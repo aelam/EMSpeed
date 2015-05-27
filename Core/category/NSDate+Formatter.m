@@ -125,4 +125,21 @@
 }
 
 
++ (NSDateFormatter *)fullFormatterSlash
+{
+    NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
+    NSDateFormatter *dateFormatter = threadDictionary[@"defaultFullFormatterSlash"];
+    if(!dateFormatter){
+        @synchronized(self){
+            if(!dateFormatter){
+                dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+                threadDictionary[@"defaultFullFormatterSlash"] = dateFormatter;
+            }
+        }
+    }
+    
+    return dateFormatter;
+}
+
 @end

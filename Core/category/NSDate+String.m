@@ -18,6 +18,11 @@ static NSDateFormatter *g_currentDateFormatter = nil;
     return [self ms_dateStringWithStyle:EMDateFormatterStyleDefault];
 }
 
++ (NSString *)ms_dateString
+{
+    return [[NSDate date] ms_dateStringWithStyle:EMDateFormatterStyleDefault];
+}
+
 
 + (NSDate *)ms_dateFromString:(NSString *)string
 {
@@ -50,6 +55,13 @@ static NSDateFormatter *g_currentDateFormatter = nil;
     [format setPMSymbol:pmSymbol];
     
     return [format stringFromDate:self];
+}
+
+
++ (NSDate *)ms_dateFromStringSlash:(NSString *)string
+{
+    NSDateFormatter *dateFormatter = [NSDate fullFormatterSlash];
+    return [dateFormatter dateFromString:string];
 }
 
 @end

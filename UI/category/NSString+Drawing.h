@@ -11,6 +11,27 @@
 
 @interface NSString (Drawing)
 
+/**
+ *  在某个点画文字
+ *
+ *  @param point 画字符串起始点
+ *  @param font  字体
+ */
+- (void)ms_drawAtPoint:(CGPoint)point
+              withFont:(UIFont *)font;
+
+
+/**
+ *  在某个点画文字
+ *
+ *  @param point 画字符串起始点
+ *  @param font  字体
+ *  @param color 颜色
+ */
+- (void)ms_drawAtPoint:(CGPoint)point
+              withFont:(UIFont *)font
+             withColor:(UIColor*)color;
+
 
 /**
  *  在某个点画文字

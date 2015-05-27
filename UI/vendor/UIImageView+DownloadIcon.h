@@ -41,5 +41,7 @@
  */
 - (void)ms_setIconWithIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder;
 
+- (void)em_setIconWithEmmptyIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder;
+
 @end
 

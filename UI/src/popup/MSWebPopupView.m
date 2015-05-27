@@ -7,7 +7,7 @@
 //
 
 #import "MSWebPopupView.h"
-#import "UIImage+utility.h"
+#import "UIImage+Utility.h"
 #import "MSContext.h"
 #import "MSCore.h"
 

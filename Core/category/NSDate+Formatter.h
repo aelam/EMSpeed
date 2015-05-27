@@ -23,4 +23,5 @@ typedef NS_ENUM(NSUInteger, EMDateFormatterStyle) {
 
 + (NSDateFormatter *)dateFormatterWithStyle:(EMDateFormatterStyle)style;
 
++ (NSDateFormatter *)fullFormatterSlash;
 @end

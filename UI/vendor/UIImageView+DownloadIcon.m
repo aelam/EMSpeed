@@ -9,7 +9,7 @@
 #import "UIImageView+DownloadIcon.h"
 #import "UIImageView+WebCache.h"
 #include <objc/runtime.h>
-#import "UIImage+utility.h"
+#import "UIImage+Utility.h"
 
 static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 
@@ -165,6 +165,18 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
     if (localImage)
     {
         self.image = localImage;
+    }
+    else
+    {
+        [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeHolder];
+    }
+}
+
+- (void)em_setIconWithEmmptyIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder
+{
+    if ([icon length] > 0)
+    {
+        self.image = [UIImage imageNamed:icon];
     }
     else
     {

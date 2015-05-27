@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "UIImage+utility.h"
+#import "UIImage+Utility.h"
 
 @implementation UIImage(Utility)
 

@@ -13,6 +13,17 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 
 @implementation NSString (Drawing)
 
+- (void)ms_drawAtPoint:(CGPoint)point withFont:(UIFont *)font {
+    [self drawAtPoint:point withAttributes:@{NSFontAttributeName: font}];
+}
+
+- (void)ms_drawAtPoint:(CGPoint)point withFont:(UIFont *)font withColor:(UIColor*)color{
+    [self drawAtPoint:point withAttributes:@{NSFontAttributeName: font, NSForegroundColorAttributeName:color}];
+}
+
+- (CGSize)ms_sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size {
+    return [self boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: font} context:NULL].size;
+}
 
 - (void)ms_drawAtPoint:(CGPoint)point
               withFont:(UIFont *)font

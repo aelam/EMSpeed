@@ -39,6 +39,18 @@
     }
 }
 
+- (CGFloat)ms_heightWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize
+{
+    CGSize size = [self ms_sizeWithFont:font constrainedToSize:maxSize];
+    return size.height;
+}
+
+- (CGFloat)ms_widthWithFont:(UIFont *)font constrainedToSize:(CGSize)maxSize
+{
+    CGSize size = [self ms_sizeWithFont:font constrainedToSize:maxSize];
+    return size.width;
+}
+
 - (BOOL)isPureInt
 {
     NSScanner* scan = [NSScanner scannerWithString:self];

@@ -24,6 +24,13 @@
 
 
 /**
+ *  date转字符串  MM月dd日 HH:mm
+ *
+ *  @return 返回字符串
+ */
++ (NSString *)ms_dateString;
+
+/**
  *  字符串转date  MM月dd日 HH:mm
  *
  *  @param string 字符串
@@ -68,6 +75,8 @@
                                 amSymbol:(NSString *)amSymbol
                                 pmSymbol:(NSString *)pmSymbol;
 
+
++ (NSDate *)ms_dateFromStringSlash:(NSString *)string;
 
 @end
 
