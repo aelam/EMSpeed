@@ -23,7 +23,7 @@
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
                          param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
+                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block;
 
 
 /**
@@ -43,14 +43,14 @@
  *
  *  @param networkManagerClass 网络管理的类
  */
-+ (void)setNetworkManager:(AFHTTPRequestOperationManager *)manager;
++ (void)setNetworkManager:(AFHTTPSessionManager *)manager;
 
 /**
  *  当前使用的网络管理的类
  *
  *  @return 当前使用的网络管理的类, AFHTTPRequestOperationManager或者它的子类
  */
-+ (AFHTTPRequestOperationManager *)networkManager;
++ (AFHTTPSessionManager *)networkManager;
 
 
 @end
