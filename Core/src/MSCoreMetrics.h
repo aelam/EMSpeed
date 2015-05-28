@@ -13,6 +13,13 @@ extern "C" {
 #endif
     
     /**
+     *  屏幕bounds
+     *
+     *  @return 屏幕bounds
+     */
+    CGRect MSScreenBounds(void);
+    
+    /**
      *  屏幕高度
      *
      *  @return 屏幕高度
@@ -27,6 +34,14 @@ extern "C" {
      */
     CGFloat MSScreenWidth(void);
     
+    
+    /**
+     *  屏幕内容尺寸
+     *
+     *  @return 屏幕内容尺寸
+     */
+    CGRect MSContentFrame(void);
+
     
     /**
      *  屏幕内容高度, 高度少状态栏20px

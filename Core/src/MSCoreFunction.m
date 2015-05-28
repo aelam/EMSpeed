@@ -57,32 +57,32 @@ NSString* MSAppVersion()
 
 
 
-BOOL MSOSVersionLessThan(float version)
-{
-    return [[[UIDevice currentDevice] systemVersion] floatValue] < version;
-}
-
-
-
-BOOL MSOSVersionEqual(float version)
-{
-    return [[[UIDevice currentDevice] systemVersion] floatValue] == version;
-}
-
-
-BOOL MSOSVersionMoreThan(float version)
-{
-    return [[[UIDevice currentDevice] systemVersion] floatValue] > version;
-}
-
-
-BOOL MSOSVersionEqualOrLessThan(float version)
-{
-    return MSOSVersionLessThan(version) || MSOSVersionEqual(version);
-}
-
-
-BOOL MSOSVersionEqualOrMoreThan(float version)
-{
-    return MSOSVersionMoreThan(version) || MSOSVersionEqual(version);
-}
+//BOOL MSOSVersionLessThan(float version)
+//{
+//    return [[[UIDevice currentDevice] systemVersion] floatValue] < version;
+//}
+//
+//
+//
+//BOOL MSOSVersionEqual(float version)
+//{
+//    return [[[UIDevice currentDevice] systemVersion] floatValue] == version;
+//}
+//
+//
+//BOOL MSOSVersionMoreThan(float version)
+//{
+//    return [[[UIDevice currentDevice] systemVersion] floatValue] > version;
+//}
+//
+//
+//BOOL MSOSVersionEqualOrLessThan(float version)
+//{
+//    return MSOSVersionLessThan(version) || MSOSVersionEqual(version);
+//}
+//
+//
+//BOOL MSOSVersionEqualOrMoreThan(float version)
+//{
+//    return MSOSVersionMoreThan(version) || MSOSVersionEqual(version);
+//}

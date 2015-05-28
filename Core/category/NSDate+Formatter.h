@@ -17,11 +17,11 @@ typedef NS_ENUM(NSUInteger, EMDateFormatterStyle) {
     EMDateFormatterStyleTime,       // HH:mm
     EMDateFormatterStyleYear,       // YYYY年MM月dd日
     EMDateFormatterStyleFull,       // YYYY年MM月dd日 HH:mm
+    EMDateFormatterStyleFullSlash,  // yyyy/MM/dd HH:mm:ss
 };
 
 @interface NSDate (Formatter)
 
-+ (NSDateFormatter *)dateFormatterWithStyle:(EMDateFormatterStyle)style;
++ (NSDateFormatter *)ms_dateFormatterWithStyle:(EMDateFormatterStyle)style;
 
-+ (NSDateFormatter *)fullFormatterSlash;
 @end

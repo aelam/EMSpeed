@@ -11,7 +11,7 @@
 @implementation NSDate (Formatter)
 
 
-+ (NSDateFormatter *)dateFormatterWithStyle:(EMDateFormatterStyle)style
++ (NSDateFormatter *)ms_dateFormatterWithStyle:(EMDateFormatterStyle)style
 {
     NSDateFormatter *dateFormatter = nil;
     
@@ -30,6 +30,9 @@
             break;
         case EMDateFormatterStyleFull:
             dateFormatter = [NSDate fullFormatter];
+            break;
+        case EMDateFormatterStyleFullSlash:
+            dateFormatter = [NSDate fullFormatterSlash];
             break;
     }
     

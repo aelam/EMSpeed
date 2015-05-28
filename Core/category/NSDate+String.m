@@ -26,21 +26,21 @@ static NSDateFormatter *g_currentDateFormatter = nil;
 
 + (NSDate *)ms_dateFromString:(NSString *)string
 {
-    NSDateFormatter *dateFormatter = [NSDate dateFormatterWithStyle:EMDateFormatterStyleFull];
+    NSDateFormatter *dateFormatter = [NSDate ms_dateFormatterWithStyle:EMDateFormatterStyleFull];
     return [dateFormatter dateFromString:string];
 }
 
 
 - (NSString *)ms_dateStringWithStyle:(EMDateFormatterStyle)style
 {
-    NSDateFormatter *dateFormatter = [NSDate dateFormatterWithStyle:style];
+    NSDateFormatter *dateFormatter = [NSDate ms_dateFormatterWithStyle:style];
     return [dateFormatter stringFromDate:self];
 }
 
 + (NSDate *)ms_dateWithString:(NSString *)string
                         style:(EMDateFormatterStyle)style
 {
-    NSDateFormatter *dateFormatter = [NSDate dateFormatterWithStyle:style];
+    NSDateFormatter *dateFormatter = [NSDate ms_dateFormatterWithStyle:style];
     return [dateFormatter dateFromString:string];
 }
 
@@ -60,7 +60,7 @@ static NSDateFormatter *g_currentDateFormatter = nil;
 
 + (NSDate *)ms_dateFromStringSlash:(NSString *)string
 {
-    NSDateFormatter *dateFormatter = [NSDate fullFormatterSlash];
+    NSDateFormatter *dateFormatter = [NSDate ms_dateFormatterWithStyle:EMDateFormatterStyleFullSlash];
     return [dateFormatter dateFromString:string];
 }
 

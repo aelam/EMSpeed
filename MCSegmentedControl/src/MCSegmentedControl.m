@@ -259,7 +259,7 @@
 		BOOL isRightItem = i == self.numberOfSegments -1;
 		
 		CGRect itemBgRect = CGRectZero;
-		//if (isPortrait()) {
+		//if (MSIsPortrait()) {
 			itemBgRect = CGRectMake(i * itemSize.width, 
 									0.0f,
 									itemSize.width,

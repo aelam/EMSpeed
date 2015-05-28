@@ -8,6 +8,9 @@
 
 #import "MSCoreMetrics.h"
 
+CGRect MSScreenBounds(void) {
+    return [[UIScreen mainScreen] bounds];
+}
 
 CGFloat MSScreenHeight(void) {
     return [[UIScreen mainScreen] bounds].size.height;
@@ -18,6 +21,9 @@ CGFloat MSScreenWidth(void) {
     return [[UIScreen mainScreen] bounds].size.width;
 }
 
+CGRect MSContentFrame(void) {
+    return [[UIScreen mainScreen] applicationFrame];
+}
 
 CGFloat MSContentHeight(void) {
     return [[UIScreen mainScreen] applicationFrame].size.height;
@@ -73,16 +79,7 @@ CGFloat MSAdjustedWH(CGFloat wh)
 CGFloat MSDefaultValueWidth(UIFont *font)
 {
     NSString *string = @"888.88";
-    
-    if ([string respondsToSelector:@selector(sizeWithAttributes:)]) {
-        NSDictionary *attributes = @{NSFontAttributeName: font};
-        return [string sizeWithAttributes:attributes].width;
-    }
-    else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        return [string sizeWithFont:font].width;
-#pragma clang diagnostic pop
-    }
+    NSDictionary *attributes = @{NSFontAttributeName: font};
+    return [string sizeWithAttributes:attributes].width;
 }
 
