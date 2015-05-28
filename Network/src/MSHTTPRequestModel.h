@@ -16,13 +16,14 @@
  */
 @interface MSHTTPRequestModel : NSObject
 
-- (AFHTTPRequestOperation *)GET:(NSString *)URLString
-                          param:(NSDictionary *)param
-                          block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
-- (AFHTTPRequestOperation *)POST:(NSString *)URLString
-                           param:(NSDictionary *)param
-                           block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
+- (NSURLSessionDataTask *)GET:(NSString *)URLString
+                        param:(NSDictionary *)param
+                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block;
+
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                         param:(NSDictionary *)param
+                         block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block;
 
 
 /**

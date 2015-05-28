@@ -9,67 +9,61 @@
 #import "MSHTTPRequestModel.h"
 #import "MSHTTPResponse.h"
 
-static AFHTTPRequestOperationManager *__EMHTTPRequestModelNetworkManager = nil;
+static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 
 @implementation MSHTTPRequestModel
 
 
-+ (void)setNetworkManager:(AFHTTPRequestOperationManager *)networkManager
++ (void)setNetworkManager:(AFHTTPSessionManager *)networkManager
 {
     if (networkManager && [networkManager isKindOfClass:[AFHTTPRequestOperationManager class]]) {
-        __EMHTTPRequestModelNetworkManager = networkManager;
+        __MSHTTPSessionManager = networkManager;
     }
 }
 
 
-+ (AFHTTPRequestOperationManager *)networkManager
++ (AFHTTPSessionManager *)networkManager
 {
-    if (__EMHTTPRequestModelNetworkManager == nil) {
-        __EMHTTPRequestModelNetworkManager = [AFHTTPRequestOperationManager manager];
+    if (__MSHTTPSessionManager == nil) {
+        __MSHTTPSessionManager = [AFHTTPSessionManager manager];
     }
     
-    return __EMHTTPRequestModelNetworkManager;
+    return __MSHTTPSessionManager;
 }
 
 
-- (AFHTTPRequestOperation *)GET:(NSString *)URLString
-                          param:(NSDictionary *)param
-                          block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
+- (NSURLSessionDataTask *)GET:(NSString *)URLString
+                        param:(NSDictionary *)param
+                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
-    AFHTTPRequestOperationManager *manager = [[self class] networkManager];
+    AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    return [manager GET:URLString parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    return [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(response, operation, flag);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        block(response, task, flag);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
         response.error = error;
-        block(response, operation, NO);
+        block(response, task, NO);
     }];
 }
 
 
-- (AFHTTPRequestOperation *)POST:(NSString *)URLString
-                           param:(NSDictionary *)param
-                           block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                         param:(NSDictionary *)param
+                         block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
 {
-    AFHTTPRequestOperationManager *manager = [[self class] networkManager];
+    AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    return [manager POST:URLString parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+    return [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(response, operation, flag);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        block(response, task, flag);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
         response.error = error;
-        block(response, operation, NO);
+        block(response, task, NO);
     }];
 }
 
