@@ -22,7 +22,7 @@ static NSInteger kRadioButtonTag = 100;
 
 
 /**
- *  EMRadioControl, 标题+按钮, 可以自定义标题, 选项, 选中和未选中图片 等
+ *  MSRadioControl, 标题+按钮, 可以自定义标题, 选项, 选中和未选中图片 等
  */
 @interface MSRadioControl : UIView{
     NSString *_title;
@@ -151,7 +151,7 @@ static NSInteger kRadioButtonTag = 100;
 
 
 /**
- *  EMRadio创建
+ *  MSRadioButton创建
  *
  *  @param title    标题
  *  @param onImage  选中时的图片
@@ -169,7 +169,7 @@ static NSInteger kRadioButtonTag = 100;
 
 
 /**
- *  EMRadio创建
+ *  MSRadioButton创建
  *
  *  @param title    标题
  *  @param target   点击事件回调对象

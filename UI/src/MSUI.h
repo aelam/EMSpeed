@@ -16,7 +16,7 @@
 #import "MSMutableDataSource.h"
 #import "MMUBRefreshTableController.h"
 #import "MMRefreshTableViewController.h"
-#import "MMTableController.h"
+#import "MSTableController.h"
 #import "MMTableViewController.h"
 
 #endif

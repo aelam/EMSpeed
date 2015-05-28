@@ -1,5 +1,5 @@
 //
-//  EMCheckBoxControl.m
+//  MSCheckBoxControl.m
 //  UI
 //
 //  Created by Samuel on 15/4/7.

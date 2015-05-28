@@ -1,5 +1,5 @@
 //
-//  EMBorderView.m
+//  MSBorderView.m
 //  EMStock
 //
 //  Created by xoHome on 14-9-30.

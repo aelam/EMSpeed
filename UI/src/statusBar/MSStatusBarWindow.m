@@ -1,5 +1,5 @@
 //
-//  EMTextStatusBar.m
+//  MSTextStatusBar.m
 //  YCStock
 //
 //  Created by meiosis chen on 12-8-21.

@@ -1,5 +1,5 @@
 //
-//  EMSrollSegmentedControl.h
+//  MSSrollSegmentedControl.h
 //  EMStock
 //
 //  Created by flora on 14-10-11.

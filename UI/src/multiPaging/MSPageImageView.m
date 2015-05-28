@@ -1,5 +1,5 @@
 //
-//  EMPageImageView.m
+//  MSPageImageView.m
 //  UI
 //
 //  Created by Samuel on 15/4/9.

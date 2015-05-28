@@ -1,5 +1,5 @@
 //
-//  EMTextSegmentCell.h
+//  MSTextSegmentCell.h
 //  UIDemo
 //
 //  Created by Samuel on 15/4/23.

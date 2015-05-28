@@ -1,5 +1,5 @@
 //
-//  EMTextStatusBar.h
+//  MSTextStatusBar.h
 //  YCStock
 //
 //  Created by meiosis chen on 12-8-21.

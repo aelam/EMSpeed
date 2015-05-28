@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "EMMenuViewController.h"
-#import "EMThemeManager.h"
+#import "MSMenuViewController.h"
+#import "MSThemeManager.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    UIViewController *vc = [[EMMenuViewController alloc] init];
+    UIViewController *vc = [[MSMenuViewController alloc] init];
     vc.title = @"Demo";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     

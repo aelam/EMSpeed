@@ -1,5 +1,5 @@
 //
-//  MMCollectionDataSource.h
+//  MSCollectionDataSource.h
 //  EMStock
 //
 //  Created by Mac mini 2012 on 15-2-13.
@@ -16,7 +16,7 @@
  controller里面delegate回调, 这个记得拷贝一下哦~不然尺寸会不对的
  - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
  {
-    id<MMCollectionCellModel> item = [_ds itemAtIndexPath:indexPath];
+    id<MSCollectionCellModel> item = [_ds itemAtIndexPath:indexPath];
     return item.layoutSize;
  }
  */
@@ -45,10 +45,10 @@
 /**
  *  初始化
  *
- *  @param aItems    id<MMCollectionCellModel>数组
+ *  @param aItems    id<MSCollectionCellModel>数组
  *  @param aSections section数组
  *
- *  @return MMCollectionDataSource
+ *  @return MSCollectionDataSource
  */
 - (instancetype)initWithItems:(NSArray *)aItems sections:(NSArray *)aSections;
 

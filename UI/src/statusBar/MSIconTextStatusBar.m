@@ -1,5 +1,5 @@
 //
-//  EMIconTextStatusBar.m
+//  MSIconTextStatusBar.m
 //  UI
 //
 //  Created by Samuel on 15/4/10.
