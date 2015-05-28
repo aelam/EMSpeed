@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MMCellModel.h"
-#import "MMCellUpdating.h"
+#import "MSCellModel.h"
+#import "MSCellUpdating.h"
 
 @class MMInfoCell;
 @protocol MMInfoCellDelegate <NSObject>
@@ -19,7 +19,7 @@
 
 
 
-@interface MMInfoCell : UITableViewCell <MMCellUpdating>
+@interface MMInfoCell : UITableViewCell <MSCellUpdating>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -31,7 +31,7 @@
 
 
 
-@interface MMInfoCellModel : NSObject <MMCellModel>
+@interface MMInfoCellModel : NSObject <MSCellModel>
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *dateString;

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MMCellModel.h"
-#import "EMParseableObject.h"
+#import "MSCellModel.h"
+#import "MSParseableObject.h"
 
-@interface EMInfoNewsItem : EMParseableObject <MMCellModel>
+@interface EMInfoNewsItem : MSParseableObject <MSCellModel>
 
 @property (nonatomic, assign) BOOL isJian;
 @property (nonatomic, strong) NSString *jianText;

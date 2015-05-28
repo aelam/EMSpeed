@@ -1,5 +1,5 @@
 //
-//  EMParseableObjectCellModel.h
+//  MSParseableObjectCellModel.h
 //  MMTableViewDemo
 //
 //  Created by Samuel on 15/4/29.

@@ -1,5 +1,5 @@
 //
-//  EMHTTPResponse.h
+//  MSHTTPResponse.h
 //  EMStock
 //
 //  Created by Ryan Wang on 4/13/15.

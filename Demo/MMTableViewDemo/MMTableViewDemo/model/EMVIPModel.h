@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "EMHTTPRequestModel.h"
-#import "MMMutableDataSource.h"
+#import "MSHTTPRequestModel.h"
+#import "MSMutableDataSource.h"
 
 
-@interface EMVIPModel : EMHTTPRequestModel
+@interface EMVIPModel : MSHTTPRequestModel
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, assign) int Id;
 @property (nonatomic, strong) NSString *URL;
-@property (nonatomic, strong) MMMutableDataSource *dataSource;
+@property (nonatomic, strong) MSMutableDataSource *dataSource;
 @property (nonatomic, strong) NSArray *cellIdentifiers;
 @property (nonatomic, assign) id actionDelegate;
 

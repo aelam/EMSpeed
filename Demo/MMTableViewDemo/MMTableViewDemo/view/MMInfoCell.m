@@ -12,7 +12,7 @@
 
 @implementation MMInfoCell
 
-- (void)update:(id<MMCellModel>)cellModel
+- (void)update:(id<MSCellModel>)cellModel
 {
     if ([cellModel isKindOfClass:[MMInfoCellModel class]]) {
         MMInfoCellModel *cm = cellModel;

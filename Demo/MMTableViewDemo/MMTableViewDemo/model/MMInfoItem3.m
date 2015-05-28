@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        [self em_reflectDataFromOtherDictionary:dict];
+        [self ms_reflectDataFromOtherDictionary:dict];
         
         self.height = 132;
         self.Class = [MMInfoCell3 class];

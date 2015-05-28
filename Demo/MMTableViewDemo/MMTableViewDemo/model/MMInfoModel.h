@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 flora. All rights reserved.
 //
 
-#import "EMHTTPRequestModel.h"
-#import "MMMutableDataSource.h"
+#import "MSHTTPRequestModel.h"
+#import "MSMutableDataSource.h"
 #import "MMInfoCell.h"
 
-@interface MMInfoModel : EMHTTPRequestModel {
+@interface MMInfoModel : MSHTTPRequestModel {
     
-    MMMutableDataSource *_dataSource;    
+    MSMutableDataSource *_dataSource;    
 }
 
-@property (nonatomic, strong) MMMutableDataSource *dataSource;
+@property (nonatomic, strong) MSMutableDataSource *dataSource;
 @property (nonatomic, assign) id<MMInfoCellDelegate> delegate;
 
 

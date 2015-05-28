@@ -12,7 +12,7 @@
 
 @implementation MMInfoCell2
 
-- (void)update:(id<MMCellModel>)cellModel
+- (void)update:(id<MSCellModel>)cellModel
 {
     if ([cellModel isKindOfClass:[MMInfoCellModel2 class]]) {
         MMInfoCellModel2 *cm = cellModel;
@@ -65,7 +65,7 @@
 
 - (float)calculateHeight
 {
-    CGSize size = [self.title em_sizeWithFont:[UIFont systemFontOfSize:17.0f] constrainedToSize:CGSizeMake(304, NSUIntegerMax)];
+    CGSize size = [self.title ms_sizeWithFont:[UIFont systemFontOfSize:17.0f] constrainedToSize:CGSizeMake(304, NSUIntegerMax)];
     
     self.height = 34 + floor(size.height);
     return self.height;

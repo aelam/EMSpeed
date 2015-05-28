@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MMRefreshTableController.h"
+#import "MSRefreshTableController.h"
 
 @class EMVIPModel;
 
-@interface MMVIPTableController : MMRefreshTableController {
+@interface MMVIPTableController : MSRefreshTableController {
     EMVIPModel *_model;
 }
 

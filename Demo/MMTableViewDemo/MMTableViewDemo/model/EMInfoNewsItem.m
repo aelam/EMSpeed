@@ -21,7 +21,7 @@
 {
     self = [super init];
     if (self) {
-        [self em_reflectDataFromOtherDictionary:dictionary];
+        [self ms_reflectDataFromOtherDictionary:dictionary];
         self.height = 70;
         self.Class = [EMInfoNewsCell class];
         self.reuseIdentify = @"EMInfoNewsCell";

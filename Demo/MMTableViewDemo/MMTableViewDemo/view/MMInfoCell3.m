@@ -7,12 +7,12 @@
 //
 
 #import "MMInfoCell3.h"
-#import "MMCellModel.h"
+#import "MSCellModel.h"
 #import "MMInfoItem3.h"
 
 @implementation MMInfoCell3
 
-- (void)update:(id<MMCellModel>)cellModel
+- (void)update:(id<MSCellModel>)cellModel
 {
     if ([cellModel isKindOfClass:[MMInfoItem3 class]]) {
         MMInfoItem3 *item = (MMInfoItem3 *)cellModel;

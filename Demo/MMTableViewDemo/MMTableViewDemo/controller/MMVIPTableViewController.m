@@ -50,7 +50,7 @@
         _model = [[EMVIPModel alloc] initWithTitle:@"vip资讯" Id:15 URL:@"http://t.emoney.cn/platform/information/vipnews"];
     }
     
-    NSString *url = ((EMVIPModel *)_model).dataSource.pullRefreshURL && [((EMVIPModel *)_model).dataSource.pullRefreshURL length]>0 ? ((EMVIPModel *)_model).dataSource.pullRefreshURL : ((EMVIPModel *)_model).URL;
+    NSString *url = ((EMVIPModel *)_model).dataSource.refreshURL && [((EMVIPModel *)_model).dataSource.refreshURL length]>0 ? ((EMVIPModel *)_model).dataSource.refreshURL : ((EMVIPModel *)_model).URL;
     
     [_model modelWithURL:url block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
         if (success && ((EMVIPModel *)_model).dataSource) {
@@ -95,9 +95,9 @@
 
 - (UIView *)headerView
 {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, EMScreenWidth(), 30)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MSScreenWidth(), 30)];
     UILabel *footerLabel = [self footerTipLabel];
-    footerLabel.frame = CGRectMake(0, 0, EMScreenWidth()-24, 30);
+    footerLabel.frame = CGRectMake(0, 0, MSScreenWidth()-24, 30);
     [headerView addSubview:footerLabel];
     
     return headerView;

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "MMCellModel.h"
-#import "EMParseableObject.h"
+#import "MSCellModel.h"
+#import "MSParseableObject.h"
 #import "NSObject+reflect.h"
 
 
-@interface MMInfoItem3 : EMParseableObject <MMCellModel>
+@interface MMInfoItem3 : MSParseableObject <MSCellModel>
 
 @property (nonatomic, strong) NSString *n_id;
 @property (nonatomic, strong) NSString *n_id_id;

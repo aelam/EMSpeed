@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "MMRefreshTableViewController.h"
+#import "MSRefreshTableViewController.h"
 
 @class EMVIPModel;
-@interface MMVIPTableViewController : MMRefreshTableViewController {
+@interface MMVIPTableViewController : MSRefreshTableViewController {
     EMVIPModel *_model;
 }
 

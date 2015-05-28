@@ -1,5 +1,5 @@
 //
-//  MMTableViewController.m
+//  MSTableViewController.m
 //  MMTableViewDemo
 //
 //  Created by Mac mini 2012 on 15-2-28.

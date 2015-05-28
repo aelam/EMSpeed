@@ -7,7 +7,7 @@
 //
 
 #import "EMInfoNewsCell.h"
-#import "MMCellUpdating.h"
+#import "MSCellUpdating.h"
 #import "EMInfoNewsItem.h"
 #import "NSDate+string.h"
 
@@ -22,7 +22,7 @@
 	return self;
 }
 
-- (void)update:(id<MMCellModel>)cellModel indexPath:(NSIndexPath *)indexPath
+- (void)update:(id<MSCellModel>)cellModel indexPath:(NSIndexPath *)indexPath
 {
     if ([cellModel isKindOfClass:[EMInfoNewsItem class]]) {
         

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 flora. All rights reserved.
 //
 
-#import "MMCellModel.h"
+#import "MSCellModel.h"
 #import "NSObject+reflect.h"
-#import "EMParseableObject+CellModel.h"
+#import "MSParseableObject+CellModel.h"
 
 @class MMInfoCellModel;
 
-@interface MMInfoItem : EMParseableObject
+@interface MMInfoItem : MSParseableObject
 
 @property (nonatomic, strong) NSString *n_id;
 @property (nonatomic, strong) NSString *n_id_id;

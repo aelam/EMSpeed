@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        [self em_reflectDataFromOtherDictionary:dict];
+        [self ms_reflectDataFromOtherDictionary:dict];
     }
     
     return self;

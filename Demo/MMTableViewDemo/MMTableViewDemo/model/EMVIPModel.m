@@ -7,7 +7,7 @@
 //
 
 #import "EMVIPModel.h"
-#import "MMMutableDataSource.h"
+#import "MSMutableDataSource.h"
 #import "EMInfoNewsItem.h"
 
 static NSString *kVIPNewsTitle = @"VIP资讯";
@@ -49,7 +49,7 @@ NSString *InfoNewsIDStringWithObject(id obj);
 {
     NSMutableArray *existItems = nil;
     
-    MMMutableDataSource *ds = (MMMutableDataSource *)self.dataSource;
+    MSMutableDataSource *ds = (MSMutableDataSource *)self.dataSource;
     if ([ds itemsAtSectionWithTitle:kVIPNewsTitle]) {
         NSArray *items = [ds itemsAtSectionWithTitle:kVIPNewsTitle];
         existItems = [NSMutableArray arrayWithArray:items];
@@ -161,13 +161,13 @@ NSString *InfoNewsIDStringWithObject(id obj);
     // 4. 获取下拉刷新URL
     NSString *pullRefreshURL = [self pullRefreshURLWithDictionary:dictionary
                                                               URL:URL
-                                             originPullRefreshURL:_dataSource.pullRefreshURL];
+                                             originPullRefreshURL:_dataSource.refreshURL];
     
     // 5. 创建新的data source
-    MMMutableDataSource *dsTmp = [[MMMutableDataSource alloc] init];
+    MSMutableDataSource *dsTmp = [[MSMutableDataSource alloc] init];
     [dsTmp addNewSection:kVIPNewsTitle withItems:items];
     dsTmp.nextPageURL = nextPageURL;
-    dsTmp.pullRefreshURL = pullRefreshURL;
+    dsTmp.refreshURL = pullRefreshURL;
     self.dataSource = dsTmp;
     
     return YES;

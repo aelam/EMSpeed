@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "MMTableViewController.h"
+#import "MSTableViewController.h"
 #import "MMInfoCell.h"
 
 @class MMInfoModel;
 
-@interface MMInfoTableViewController : MMTableViewController <MMInfoCellDelegate> {
+@interface MMInfoTableViewController : MSTableViewController <MMInfoCellDelegate> {
     MMInfoModel *_model;
 }
 

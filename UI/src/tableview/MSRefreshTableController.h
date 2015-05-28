@@ -1,5 +1,5 @@
 //
-//  MMRefreshTableController.h
+//  MSRefreshTableController.h
 //  MMTableViewDemo
 //
 //  Created by Mac mini 2012 on 15-2-27.

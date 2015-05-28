@@ -77,7 +77,7 @@
 - (void)refreshDataSource
 {
     EMVIPModel *model = (EMVIPModel *)_model;
-    NSString *url = model.dataSource.pullRefreshURL;
+    NSString *url = model.dataSource.refreshURL;
     
     [_model modelWithURL:url block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
         if (success && model.dataSource) {
@@ -126,7 +126,7 @@
 - (BOOL)isReload
 {
     EMVIPModel *model = (EMVIPModel *)_model;
-    return [model.dataSource.pullRefreshURL length] == 0;
+    return [model.dataSource.refreshURL length] == 0;
 }
 
 - (void)headerRefreshing

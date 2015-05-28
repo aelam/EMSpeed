@@ -1,5 +1,5 @@
 //
-//  MMRefreshTableViewController.h
+//  MSRefreshTableViewController.h
 //  TTTT
 //
 //  Created by Mac mini 2012 on 15-3-2.
@@ -11,7 +11,7 @@
 
 
 /**
- *  同MMRefreshTableController, 主要用于storyboard
+ *  同MSRefreshTableController, 主要用于storyboard
  */
 
 @interface MSRefreshTableViewController : MSTableViewController {

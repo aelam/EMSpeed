@@ -1,5 +1,5 @@
 //
-//  MMTableViewController.h
+//  MSTableViewController.h
 //  MMTableViewDemo
 //
 //  Created by Mac mini 2012 on 15-2-28.
@@ -12,7 +12,7 @@
 @class MSDataSource;
 
 /**
- *  同MMTableController, 主要用于storyboard
+ *  同MSTableController, 主要用于storyboard
  */
 
 @interface MSTableViewController : UITableViewController {

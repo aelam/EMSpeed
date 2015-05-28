@@ -11,14 +11,14 @@
 #import "MMInfoCell2.h"
 #import "MMInfoItem.h"
 #import "MMInfoItem3.h"
-#import "EMParseableObject+CellModel.h"
-#import "EMHTTPResponse.h"
+#import "MSParseableObject+CellModel.h"
+#import "MSHTTPResponse.h"
 
 @implementation MMInfoModel
 @synthesize dataSource = _dataSource;
 
 
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
 {
     id responseObject = response.originData;
@@ -40,7 +40,7 @@
         }
         
         if ([cellModels count] > 0) {
-            _dataSource = [[MMMutableDataSource alloc] init];
+            _dataSource = [[MSMutableDataSource alloc] init];
             [_dataSource addNewSection:@"" withItems:cellModels];
             
             return YES;
@@ -56,7 +56,7 @@
 
 @implementation MMInfoModel2
 
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
 {
     if (response == nil) {
@@ -77,7 +77,7 @@
         NSMutableArray *items = [MMInfoItem cellModelsWithArray:array cellModelClass:cls];
         
         if ([items count] > 0) {
-            _dataSource = [[MMMutableDataSource alloc] init];
+            _dataSource = [[MSMutableDataSource alloc] init];
             [_dataSource addNewSection:@"" withItems:items];
             
             return YES;
@@ -92,7 +92,7 @@
 
 @implementation MMInfoModel3
 
-- (BOOL)parseHTTPResponse:(EMHTTPResponse *)response
+- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
 {
     if (response == nil) {
@@ -112,7 +112,7 @@
         }
         
         if ([items count] > 0) {
-            _dataSource = [[MMMutableDataSource alloc] init];
+            _dataSource = [[MSMutableDataSource alloc] init];
             [_dataSource addNewSection:@"" withItems:items];
         }
         
