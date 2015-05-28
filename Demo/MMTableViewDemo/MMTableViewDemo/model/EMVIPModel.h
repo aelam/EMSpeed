@@ -23,7 +23,7 @@
                  Id:(int)Id
                 URL:(NSString *)URL;
 
-- (AFHTTPRequestOperation *)modelWithURL:(NSString *)URL block:(void (^)(id, AFHTTPRequestOperation *, BOOL))block;
+- (NSURLSessionDataTask *)modelWithURL:(NSString *)URL block:(void (^)(id, NSURLSessionDataTask *, BOOL))block;
 // subclass over write
 - (BOOL)parseURLResponse:(NSDictionary*)dictionary URL:(NSString*)url;
 

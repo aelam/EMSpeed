@@ -8,6 +8,7 @@
 
 #import "MMVIPTableViewController.h"
 #import "EMVIPModel.h"
+#import "MSCoreMetrics.h"
 
 @interface MMVIPTableViewController ()
 
@@ -52,7 +53,7 @@
     
     NSString *url = ((EMVIPModel *)_model).dataSource.refreshURL && [((EMVIPModel *)_model).dataSource.refreshURL length]>0 ? ((EMVIPModel *)_model).dataSource.refreshURL : ((EMVIPModel *)_model).URL;
     
-    [_model modelWithURL:url block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
+    [_model modelWithURL:url block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
         if (success && ((EMVIPModel *)_model).dataSource) {
             [self reloadPages:((EMVIPModel *)_model).dataSource];
         }
@@ -75,7 +76,7 @@
 - (void)footerRefreshing
 {
     if ([((EMVIPModel *)_model).dataSource.nextPageURL length]>0) {
-        [_model modelWithURL:((EMVIPModel *)_model).dataSource.nextPageURL block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
+        [_model modelWithURL:((EMVIPModel *)_model).dataSource.nextPageURL block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
             if (success && ((EMVIPModel *)_model).dataSource) {
                 [self reloadPages:((EMVIPModel *)_model).dataSource];
             }

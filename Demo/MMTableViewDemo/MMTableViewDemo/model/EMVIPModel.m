@@ -33,15 +33,15 @@ NSString *InfoNewsIDStringWithObject(id obj);
     return self;
 }
 
-- (AFHTTPRequestOperation *)modelWithURL:(NSString *)URL block:(void (^)(id, AFHTTPRequestOperation *, BOOL))block
+- (NSURLSessionDataTask *)modelWithURL:(NSString *)URL block:(void (^)(id, NSURLSessionDataTask *, BOOL))block
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    return [manager POST:URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self parseURLResponse:responseObject URL:URL];
-        block(responseObject, operation, YES);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        block(nil, operation, NO);
+    return [manager POST:URL parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        BOOL flag = [self parseURLResponse:responseObject URL:URL];
+        block(responseObject, task, flag);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        block(nil, task, NO);
     }];
 }
 
