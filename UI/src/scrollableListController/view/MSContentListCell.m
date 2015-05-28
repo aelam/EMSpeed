@@ -1,5 +1,5 @@
 //
-//  EMContentListCell.m
+//  MSContentListCell.m
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.

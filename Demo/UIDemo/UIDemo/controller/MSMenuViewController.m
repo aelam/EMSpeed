@@ -107,8 +107,8 @@
                                       @"MSCollectionPagingViewController",
                                       @"MSSegmentViewController",
                                       @"MSGuideViewController",
-                                      @"EMScrollableListViewController",
-                                      @"EMRefreshScrollableListViewController",
+                                      @"MSScrollableListViewController",
+                                      @"MSRefreshScrollableListViewController",
                                       ];
     className = [controllerClassNames objectAtIndex:indexPath.row];
     UIViewController *vc = (UIViewController *)[[NSClassFromString(className) alloc] init];

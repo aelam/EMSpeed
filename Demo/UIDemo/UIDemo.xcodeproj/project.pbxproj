@@ -28,7 +28,6 @@
 		1865EE4A1AE790F90081866A /* UIImage+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED921AE790F90081866A /* UIImage+Utility.m */; };
 		1865EE4C1AE790F90081866A /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865ED961AE790F90081866A /* UIView+AutoLayout.m */; };
 		1865EE501AE790F90081866A /* MSImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865ED9F1AE790F90081866A /* MSImageCollectionViewCell.xib */; };
-		1865EE5C1AE790F90081866A /* EMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1865EDB91AE790F90081866A /* EMUIResources.bundle */; };
 		1865EE661AE790F90081866A /* MSErrorPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1865EDD01AE790F90081866A /* MSErrorPopupView.xib */; };
 		1865EE7A1AE790F90081866A /* BDKNotifyHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EDFD1AE790F90081866A /* BDKNotifyHUD.m */; };
 		1865EE811AE790F90081866A /* MCSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EE0A1AE790F90081866A /* MCSegmentedControl.m */; };
@@ -191,6 +190,7 @@
 		963308C31B170D5D00560EB3 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 963308BB1B170D5D00560EB3 /* README.md */; };
 		963308C41B170D5D00560EB3 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 963308BD1B170D5D00560EB3 /* UIFont+FontAwesome.m */; };
 		963308C51B170D5D00560EB3 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 963308BF1B170D5D00560EB3 /* UIImage+FontAwesome.m */; };
+		963308C71B171BBA00560EB3 /* MSUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 963308C61B171BBA00560EB3 /* MSUIResources.bundle */; };
 		96759D801B0984BA00F136AD /* black.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7E1B0984BA00F136AD /* black.plist */; };
 		96759D811B0984BA00F136AD /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7F1B0984BA00F136AD /* default.plist */; };
 		96759D841B0AE79800F136AD /* UIColor+CIELAB.m in Sources */ = {isa = PBXBuildFile; fileRef = 96759D831B0AE79800F136AD /* UIColor+CIELAB.m */; };
@@ -252,7 +252,6 @@
 		1865ED951AE790F90081866A /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		1865ED961AE790F90081866A /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		1865ED9F1AE790F90081866A /* MSImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		1865EDB91AE790F90081866A /* EMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EMUIResources.bundle; sourceTree = "<group>"; };
 		1865EDD01AE790F90081866A /* MSErrorPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSErrorPopupView.xib; sourceTree = "<group>"; };
 		1865EDFC1AE790F90081866A /* BDKNotifyHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDKNotifyHUD.h; sourceTree = "<group>"; };
 		1865EDFD1AE790F90081866A /* BDKNotifyHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDKNotifyHUD.m; sourceTree = "<group>"; };
@@ -590,6 +589,7 @@
 		963308BD1B170D5D00560EB3 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		963308BE1B170D5D00560EB3 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		963308BF1B170D5D00560EB3 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
+		963308C61B171BBA00560EB3 /* MSUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MSUIResources.bundle; path = src/MSUIResources.bundle; sourceTree = "<group>"; };
 		96759D7E1B0984BA00F136AD /* black.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = black.plist; sourceTree = "<group>"; };
 		96759D7F1B0984BA00F136AD /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
 		96759D821B0AE79800F136AD /* UIColor+CIELAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CIELAB.h"; sourceTree = "<group>"; };
@@ -754,6 +754,7 @@
 		1865ED871AE790F90081866A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				963308C61B171BBA00560EB3 /* MSUIResources.bundle */,
 				1865ED881AE790F90081866A /* category */,
 				1865ED971AE790F90081866A /* src */,
 				1865EDFB1AE790F90081866A /* vendor */,
@@ -811,7 +812,6 @@
 				1860E0F81AEDFDDC0050E633 /* guideview */,
 				1865EF3A1AE8821D0081866A /* segmentControl */,
 				1865ED981AE790F90081866A /* collectionView */,
-				1865EDB91AE790F90081866A /* EMUIResources.bundle */,
 				1865EDBA1AE790F90081866A /* multiPaging */,
 				1865EDC51AE790F90081866A /* multiPagingController */,
 				1865EDCD1AE790F90081866A /* popup */,
@@ -1410,11 +1410,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1865ED3E1AE790910081866A /* Main.storyboard in Resources */,
-				1865EE5C1AE790F90081866A /* EMUIResources.bundle in Resources */,
 				96C86AE31B00A231005F6E75 /* MSScrollableTableTitleHeaderView.xib in Resources */,
 				963308C11B170D5D00560EB3 /* FontAwesome.ttf in Resources */,
 				1865EE661AE790F90081866A /* MSErrorPopupView.xib in Resources */,
 				1865ED431AE790910081866A /* LaunchScreen.xib in Resources */,
+				963308C71B171BBA00560EB3 /* MSUIResources.bundle in Resources */,
 				1865EE501AE790F90081866A /* MSImageCollectionViewCell.xib in Resources */,
 				96C86ADA1AFC8BEC005F6E75 /* MSContentListCell.xib in Resources */,
 				1865EE821AE790F90081866A /* MJRefresh.bundle in Resources */,
