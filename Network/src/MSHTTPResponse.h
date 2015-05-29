@@ -1,5 +1,5 @@
 //
-//  MSHTTPResponse.h
+//  EMHTTPResponse.h
 //  EMStock
 //
 //  Created by Ryan Wang on 4/13/15.
@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+
 
 /**
  *  HTTP响应对象
@@ -23,6 +25,7 @@
 @property (nonatomic, assign) NSInteger status; // 状态码, 0为正常
 @property (nonatomic, strong) NSDate *updateTime; // 更新时间
 @property (nonatomic, strong) NSString *message; // 消息, 一般为错误消息
+
 @property (nonatomic, strong) NSError *error;
 
 
@@ -34,7 +37,7 @@
  *  @return 
  */
 + (instancetype)responseWithObject:(id)object;
-
++ (instancetype)responseWithError:(NSError *)error;
 
 /**
  *  是否是标准的JSON返回格式, 包含status, updatetime, data
@@ -44,5 +47,6 @@
  *  @return 是否
  */
 + (BOOL)isStandardResponse:(id)responseObject;
+
 
 @end

@@ -1,5 +1,5 @@
 //
-//  MSHTTPRequestModel.m
+//  EMHTTPRequestModel.m
 //  EMStock
 //
 //  Created by Mac mini 2012 on 14-9-19.
@@ -12,7 +12,7 @@
 static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 
 @implementation MSHTTPRequestModel
-
+@synthesize tasks = _tasks;
 
 + (void)setNetworkManager:(AFHTTPSessionManager *)networkManager
 {
@@ -31,50 +31,69 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
     return __MSHTTPSessionManager;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+    }
+    
+    return self;
+}
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
-                        param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
+- (void)dealloc
+{
+    [self cancelTasks];
+}
+
+- (void)cancelTasks
+{
+    for (NSURLSessionDataTask *task in _tasks) {
+        [task cancel];
+    }
+}
+
+- (NSMutableArray *)getTasks
+{
+    if (_tasks == nil) {
+        _tasks = [NSMutableArray array];
+    }
+    
+    return _tasks;
+}
+
+- (void)GET:(NSString *)URLString
+      param:(NSDictionary *)param
+      block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
     AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    return [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask *task = [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
-        BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(response, task, flag);
+        block(response, task, YES);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
-        response.error = error;
+        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];
+    
+    [self.tasks addObject:task];
 }
 
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
-                         param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *operation, BOOL success))block
+- (void)POST:(NSString *)URLString
+       param:(NSDictionary *)param
+       block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
 {
     AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    return [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask *task = [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
-        BOOL flag = [self parseHTTPResponse:response URL:URLString];
-        block(response, task, flag);
+        block(response, task, YES);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
-        response.error = error;
+        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];
-}
-
-
-- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
-                      URL:(NSString *)URLString
-{
-    // 解析 response.responseData
     
-    NSAssert(0, @"子类请自己实现具体内容的解析!");
-    return response;
+    [self.tasks addObject:task];
 }
 
 @end

@@ -35,7 +35,7 @@
     }
     
     NSString *url = @"http://mt.emoney.cn/2pt/zx/GetBShareNews";
-    [_model POST:url param:nil block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
+    [_model POST:url param:nil block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
         if (success && ((MMInfoModel *)_model).dataSource) {
             [self reloadPages:((MMInfoModel *)_model).dataSource];
         }
