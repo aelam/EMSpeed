@@ -16,10 +16,11 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 
 + (void)setNetworkManager:(AFHTTPSessionManager *)networkManager
 {
-    if (networkManager && [networkManager isKindOfClass:[AFHTTPSessionManager class]]) {
+    if (networkManager && [networkManager isKindOfClass:[AFHTTPRequestOperationManager class]]) {
         __MSHTTPSessionManager = networkManager;
     }
 }
+
 
 + (AFHTTPSessionManager *)networkManager
 {
@@ -49,6 +50,8 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
     for (NSURLSessionDataTask *task in _tasks) {
         [task cancel];
     }
+    
+    [_tasks removeAllObjects];
 }
 
 - (NSMutableArray *)getTasks
@@ -61,12 +64,12 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 }
 
 - (void)GET:(NSString *)URLString
- parameters:(NSDictionary *)parameters
+      param:(NSDictionary *)param
       block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
     AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    NSURLSessionDataTask *task = [manager GET:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask *task = [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         block(response, task, YES);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -79,12 +82,12 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 
 
 - (void)POST:(NSString *)URLString
-  parameters:(NSDictionary *)parameters
-       block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *operation, BOOL success))block
+       param:(NSDictionary *)param
+       block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
 {
     AFHTTPSessionManager *manager = [[self class] networkManager];
     
-    NSURLSessionDataTask *task = [manager POST:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionDataTask *task = [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         block(response, task, YES);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

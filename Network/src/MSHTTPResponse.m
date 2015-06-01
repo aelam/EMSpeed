@@ -1,5 +1,5 @@
 //
-//  MSHTTPResponse.m
+//  EMHTTPResponse.m
 //  EMStock
 //
 //  Created by Ryan Wang on 4/13/15.
@@ -19,33 +19,45 @@
 
 + (instancetype)responseWithObject:(id)object
 {
-    return [MSHTTPResponse responseWithResponse:object];
+    return [MSHTTPResponse responseWithDictionary:object];
 }
 
++ (instancetype)responseWithDictionary:(NSDictionary *)responseObject
+{
+    return [[MSHTTPResponse alloc] initWithDictionary:responseObject];
+}
 
-+ (instancetype)responseWithResponse:(NSDictionary *)responseObject {
+- (id)initWithDictionary:(NSDictionary *)responseObject
+{
+    self = [super init];
     
-    if (responseObject == nil) {
-        return nil;
+    if (self) {
+        self.originData = responseObject;
+        
+        if ([MSHTTPResponse isStandardResponse:responseObject]) {
+            self.status = [responseObject[@"status"] integerValue];
+            NSDateFormatter *formatter = [MSHTTPResponse updateTimeFormatter];
+            self.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];
+            self.responseData = responseObject[@"data"];
+            self.message = responseObject[@"message"];
+        }
     }
-    
-    MSHTTPResponse *response = [[MSHTTPResponse alloc] init];
-    response.originData = responseObject;
-    
-    if ([MSHTTPResponse isStandardResponse:responseObject]) {
-        response.status = [responseObject[@"status"] integerValue];
-        NSDateFormatter *formatter = [self updateTimeFormatter];
-        response.updateTime = [formatter dateFromString:responseObject[@"updatetime"]];
-        response.responseData = responseObject[@"data"];
-        response.message = responseObject[@"message"];
-    }
-    
+
+    return self;
+}
+
++ (instancetype)responseWithError:(NSError *)error
+{
+    MSHTTPResponse *response = [[MSHTTPResponse alloc] initWithDictionary:nil];
+    response.error = error;
     return response;
 }
 
-+ (NSDateFormatter *)updateTimeFormatter {
++ (NSDateFormatter *)updateTimeFormatter
+{
     static NSDateFormatter *_dateFormatter = nil;
-    if (_dateFormatter == nil) {
+    if (_dateFormatter == nil)
+    {
         _dateFormatter = [[NSDateFormatter alloc] init];
         [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     }
