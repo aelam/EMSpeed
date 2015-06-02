@@ -83,7 +83,7 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
 
 - (void)POST:(NSString *)URLString
        param:(NSDictionary *)param
-       block:(void (^)(MSHTTPResponse *response, AFHTTPRequestOperation *operation, BOOL success))block
+       block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
     AFHTTPSessionManager *manager = [[self class] networkManager];
     

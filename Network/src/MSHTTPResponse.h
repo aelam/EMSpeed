@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+enum {MSHTTPResponseStatusOK = 0};
 
 /**
  *  HTTP响应对象
