@@ -1,5 +1,5 @@
 //
-//  MSParseableObject.m
+//  EMParseableObject.m
 //  F
 //
 //  Created by Ryan Wang on 4/14/15.
@@ -37,8 +37,8 @@
     
     NSMutableArray *objects = [NSMutableArray array];
     for (NSDictionary *e in array) {
-        id<MSParser> m = [[self alloc]init];
-        [m parse:e options:options];
+        id<MSParser> m = nil;
+        m = [[self class] instanceWithData:e options:options];
         [objects addObject:m];
     }
     return objects;
@@ -53,6 +53,10 @@
 
 - (instancetype)parse:(NSDictionary *)info options:(NSUInteger)options
 {
+    /**
+     *  子类实现
+     */
+    NSAssert(0, @"子类必须实现这个方法");
     return self;
 }
 

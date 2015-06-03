@@ -1,5 +1,5 @@
 //
-//  MSParseableObject.h
+//  EMParseableObject.h
 //  F
 //
 //  Created by Ryan Wang on 4/14/15.
@@ -36,7 +36,7 @@
 
 
 /**
- *  解析JSON数据, 这个方法必须子类去实现
+ *  解析JSON数据, 
  *
  *  @param info JSON数据
  *
