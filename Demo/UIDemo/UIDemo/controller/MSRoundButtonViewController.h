@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSBaseViewController.h"
+#import "MSDemoBaseViewController.h"
 
-@interface MSRoundButtonViewController : MSBaseViewController
+@interface MSRoundButtonViewController : MSDemoBaseViewController
 
 @end

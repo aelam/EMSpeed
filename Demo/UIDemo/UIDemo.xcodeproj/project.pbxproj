@@ -66,7 +66,7 @@
 		1865EEEF1AE791960081866A /* RNThemeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEE61AE791960081866A /* RNThemeView.m */; };
 		1865EEF01AE791960081866A /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEE81AE791960081866A /* UIColor+HexString.m */; };
 		1865EF181AE7929E0081866A /* MSArrowButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEF31AE7929E0081866A /* MSArrowButtonController.m */; };
-		1865EF191AE7929E0081866A /* MSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEF51AE7929E0081866A /* MSBaseViewController.m */; };
+		1865EF191AE7929E0081866A /* MSDemoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEF51AE7929E0081866A /* MSDemoBaseViewController.m */; };
 		1865EF1A1AE7929E0081866A /* MSBorderViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEF71AE7929E0081866A /* MSBorderViewViewController.m */; };
 		1865EF1B1AE7929E0081866A /* MSCheckBoxControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEF91AE7929E0081866A /* MSCheckBoxControlViewController.m */; };
 		1865EF1C1AE7929E0081866A /* MSCollectionPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1865EEFB1AE7929E0081866A /* MSCollectionPagingViewController.m */; };
@@ -191,6 +191,8 @@
 		963308C41B170D5D00560EB3 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 963308BD1B170D5D00560EB3 /* UIFont+FontAwesome.m */; };
 		963308C51B170D5D00560EB3 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 963308BF1B170D5D00560EB3 /* UIImage+FontAwesome.m */; };
 		963308C71B171BBA00560EB3 /* MSUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 963308C61B171BBA00560EB3 /* MSUIResources.bundle */; };
+		966B401C1B1EFD320079D4B7 /* MSBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966B401B1B1EFD320079D4B7 /* MSBaseTableViewController.m */; };
+		966B401F1B1EFDA00079D4B7 /* MSBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 966B401E1B1EFDA00079D4B7 /* MSBaseViewController.m */; };
 		96759D801B0984BA00F136AD /* black.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7E1B0984BA00F136AD /* black.plist */; };
 		96759D811B0984BA00F136AD /* default.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96759D7F1B0984BA00F136AD /* default.plist */; };
 		96759D841B0AE79800F136AD /* UIColor+CIELAB.m in Sources */ = {isa = PBXBuildFile; fileRef = 96759D831B0AE79800F136AD /* UIColor+CIELAB.m */; };
@@ -331,8 +333,8 @@
 		1865EEE81AE791960081866A /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		1865EEF21AE7929E0081866A /* MSArrowButtonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSArrowButtonController.h; sourceTree = "<group>"; };
 		1865EEF31AE7929E0081866A /* MSArrowButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSArrowButtonController.m; sourceTree = "<group>"; };
-		1865EEF41AE7929E0081866A /* MSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBaseViewController.h; sourceTree = "<group>"; };
-		1865EEF51AE7929E0081866A /* MSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBaseViewController.m; sourceTree = "<group>"; };
+		1865EEF41AE7929E0081866A /* MSDemoBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDemoBaseViewController.h; sourceTree = "<group>"; };
+		1865EEF51AE7929E0081866A /* MSDemoBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDemoBaseViewController.m; sourceTree = "<group>"; };
 		1865EEF61AE7929E0081866A /* MSBorderViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBorderViewViewController.h; sourceTree = "<group>"; };
 		1865EEF71AE7929E0081866A /* MSBorderViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBorderViewViewController.m; sourceTree = "<group>"; };
 		1865EEF81AE7929E0081866A /* MSCheckBoxControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCheckBoxControlViewController.h; sourceTree = "<group>"; };
@@ -590,6 +592,10 @@
 		963308BE1B170D5D00560EB3 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		963308BF1B170D5D00560EB3 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		963308C61B171BBA00560EB3 /* MSUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MSUIResources.bundle; path = src/MSUIResources.bundle; sourceTree = "<group>"; };
+		966B401A1B1EFD320079D4B7 /* MSBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBaseTableViewController.h; sourceTree = "<group>"; };
+		966B401B1B1EFD320079D4B7 /* MSBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBaseTableViewController.m; sourceTree = "<group>"; };
+		966B401D1B1EFDA00079D4B7 /* MSBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSBaseViewController.h; sourceTree = "<group>"; };
+		966B401E1B1EFDA00079D4B7 /* MSBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSBaseViewController.m; sourceTree = "<group>"; };
 		96759D7E1B0984BA00F136AD /* black.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = black.plist; sourceTree = "<group>"; };
 		96759D7F1B0984BA00F136AD /* default.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = default.plist; sourceTree = "<group>"; };
 		96759D821B0AE79800F136AD /* UIColor+CIELAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CIELAB.h"; sourceTree = "<group>"; };
@@ -807,6 +813,8 @@
 				963307CC1B17092E00560EB3 /* MSRadioControl.m */,
 				963307CD1B17092E00560EB3 /* MSRoundButton.h */,
 				963307CE1B17092E00560EB3 /* MSRoundButton.m */,
+				966B401D1B1EFDA00079D4B7 /* MSBaseViewController.h */,
+				966B401E1B1EFDA00079D4B7 /* MSBaseViewController.m */,
 				963307CF1B17092E00560EB3 /* MSUI.h */,
 				96C86A981AFC8B9B005F6E75 /* scrollableListController */,
 				1860E0F81AEDFDDC0050E633 /* guideview */,
@@ -936,6 +944,8 @@
 				9633086E1B1709EC00560EB3 /* MSTableEmptyView.m */,
 				9633086F1B1709EC00560EB3 /* MSTableViewController.h */,
 				963308701B1709EC00560EB3 /* MSTableViewController.m */,
+				966B401A1B1EFD320079D4B7 /* MSBaseTableViewController.h */,
+				966B401B1B1EFD320079D4B7 /* MSBaseTableViewController.m */,
 			);
 			path = tableview;
 			sourceTree = "<group>";
@@ -1092,8 +1102,8 @@
 			children = (
 				1865EEF21AE7929E0081866A /* MSArrowButtonController.h */,
 				1865EEF31AE7929E0081866A /* MSArrowButtonController.m */,
-				1865EEF41AE7929E0081866A /* MSBaseViewController.h */,
-				1865EEF51AE7929E0081866A /* MSBaseViewController.m */,
+				1865EEF41AE7929E0081866A /* MSDemoBaseViewController.h */,
+				1865EEF51AE7929E0081866A /* MSDemoBaseViewController.m */,
 				1865EEF61AE7929E0081866A /* MSBorderViewViewController.h */,
 				1865EEF71AE7929E0081866A /* MSBorderViewViewController.m */,
 				1865EEF81AE7929E0081866A /* MSCheckBoxControlViewController.h */,
@@ -1450,6 +1460,7 @@
 				963308971B170B2F00560EB3 /* NSData+ImageContentType.m in Sources */,
 				1865EF241AE7929E0081866A /* MSCollectionViewTestItem.m in Sources */,
 				1865EED21AE790FF0081866A /* MSThemeStatusBarTextModel.m in Sources */,
+				966B401C1B1EFD320079D4B7 /* MSBaseTableViewController.m in Sources */,
 				963308141B17099C00560EB3 /* MSImageSegmentedCell.m in Sources */,
 				963308341B1709BC00560EB3 /* MSMultiPagingMenuController.m in Sources */,
 				1865EF251AE7929E0081866A /* MSCollectionViewTestItem2.m in Sources */,
@@ -1491,6 +1502,7 @@
 				1865EE851AE790F90081866A /* MJRefreshFooter.m in Sources */,
 				1865EF801AE8EB360081866A /* MSThemeTextSegmentCell.m in Sources */,
 				1865EF1F1AE7929E0081866A /* MSMultiPagingViewViewController.m in Sources */,
+				966B401F1B1EFDA00079D4B7 /* MSBaseViewController.m in Sources */,
 				1865EF1A1AE7929E0081866A /* MSBorderViewViewController.m in Sources */,
 				963308181B17099C00560EB3 /* MSSrollSegmentedControl.m in Sources */,
 				1865EF2A1AE7929E0081866A /* MSCollectionViewTestCell2.m in Sources */,
@@ -1502,7 +1514,7 @@
 				1865EECF1AE790FF0081866A /* MSThemeActivityIndicatorTextStatusBar.m in Sources */,
 				9633079A1B1708F900560EB3 /* MSCoreMetrics.m in Sources */,
 				963308C01B170D5D00560EB3 /* FAImageView.m in Sources */,
-				1865EF191AE7929E0081866A /* MSBaseViewController.m in Sources */,
+				1865EF191AE7929E0081866A /* MSDemoBaseViewController.m in Sources */,
 				9633089D1B170B2F00560EB3 /* SDWebImageManager.m in Sources */,
 				963307BB1B17091A00560EB3 /* MSPageModel.m in Sources */,
 				1860E10A1AEDFEB60050E633 /* UIView+Genie.m in Sources */,

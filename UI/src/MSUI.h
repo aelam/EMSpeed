@@ -10,6 +10,8 @@
 #define MyUI_MSUI_h
 
 #import "MSContext.h"
+#import "MSBaseViewController.h"
+#import "MSBaseTableViewController.h"
 #import "MSCellModel.h"
 #import "MSCellUpdating.h"
 #import "MSDataSource.h"

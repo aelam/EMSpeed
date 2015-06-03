@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSBaseViewController.h"
+#import "MSDemoBaseViewController.h"
 #import "MSHorizontalCollectionView.h"
 
-@interface MSCollectionPagingViewController : MSBaseViewController <MSHorizontalCollectionViewDelegate> {
+@interface MSCollectionPagingViewController : MSDemoBaseViewController <MSHorizontalCollectionViewDelegate> {
 
     MSHorizontalCollectionView *_pagingView0;
     MSHorizontalCollectionView *_pagingView1;

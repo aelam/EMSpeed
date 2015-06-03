@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSBaseViewController.h"
+#import "MSDemoBaseViewController.h"
 
-@interface MSArrowButtonController : MSBaseViewController
+@interface MSArrowButtonController : MSDemoBaseViewController
 
 @end

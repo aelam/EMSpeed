@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSBaseViewController.h"
+#import "MSDemoBaseViewController.h"
 #import "MSThemeManager.h"
 
-@interface MSBaseViewController ()
+@interface MSDemoBaseViewController ()
 
 @end
 
-@implementation MSBaseViewController
+@implementation MSDemoBaseViewController
 
 - (void)viewDidLoad {
     //111

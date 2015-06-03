@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSBaseViewController : UIViewController
+@interface MSDemoBaseViewController : UIViewController
 
 @end

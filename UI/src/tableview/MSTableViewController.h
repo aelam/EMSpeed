@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSBaseTableViewController.h"
 
 @class MSMutableDataSource;
 @class MSDataSource;
@@ -15,7 +16,7 @@
  *  同MSTableController, 主要用于storyboard
  */
 
-@interface MSTableViewController : UITableViewController {
+@interface MSTableViewController : MSBaseTableViewController {
     UIView *_emptyView;
 }
 

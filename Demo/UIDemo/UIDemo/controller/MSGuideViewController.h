@@ -6,7 +6,6 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSBaseViewController.h"
 #import "MSTableController.h"
 #import "MSThemeProtocol.h"
 
