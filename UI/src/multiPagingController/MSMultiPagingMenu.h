@@ -39,10 +39,17 @@ extern const CGFloat kMultiPagingMenuSelectHeight;
     NSMutableArray *_titles;
     NSMutableArray *_btns;
     
+    UIColor *_selectedColor;
+    UIColor *_unselectedColor;
+    
     id<EMMultiPagingMenuDelegate> __unsafe_unretained _delegate;
 }
 @property (nonatomic, assign) id<EMMultiPagingMenuDelegate> delegate;
 @property (nonatomic, assign, readonly) NSUInteger selectedIndex;
+@property (nonatomic, strong)　UIColor *selectedColor;
+@property (nonatomic, strong)　UIColor *unselectedColor;
+
+
 
 - (instancetype)initWithFrame:(CGRect)frame
              titles:(NSArray *)titles
@@ -53,6 +60,7 @@ extern const CGFloat kMultiPagingMenuSelectHeight;
                    animated:(BOOL)animated;
 - (NSString *)titleAtIndex:(NSUInteger)index;
 - (void)pressMenu:(id)sender;
+
 @end
 
 

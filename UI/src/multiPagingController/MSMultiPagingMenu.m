@@ -27,6 +27,8 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
 @implementation MSMultiPagingMenu
 @synthesize delegate = _delegate;
 @synthesize selectedIndex = _selectedIndex;
+@dynamic selectedColor;
+@dynamic unselectedColor;
 
 - (instancetype)initWithFrame:(CGRect)frame
              titles:(NSArray *)titles
@@ -37,13 +39,15 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
         
         _titles = [titles copy];
         _selectedIndex = 0;
+        _unselectedColor = [UIColor darkGrayColor];
+        _selectedColor = [UIColor blackColor];
         
         int editWidth = editable ? kMultiPagingMenuEdithButtonWidth : 0;
         _svMenu = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-editWidth + 4, kMultiPagingMenuBarHeight)];
         _svMenu.contentSize = [self contentSizeByTitles:_titles];
         _svMenu.showsHorizontalScrollIndicator = NO;
         _svMenu.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        _svMenu.backgroundColor = [UIColor blackColor];//[UIColor colorForKey:@"info_MenuBgColor"];
+        _svMenu.backgroundColor = [UIColor clearColor];
         [self addSubview:_svMenu];
         
         [self createMenuButtons:_titles];
@@ -127,14 +131,16 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
         btn.frame = CGRectMake(width, (kMultiPagingMenuBarHeight-kMultiPagingMenuSelectHeight)/2, widthForButton, kMultiPagingMenuSelectHeight);
         btn.tag = i+1;
         [btn.titleLabel setFont:kMultPagingMenuFont];
-//        if (i==0) {
-//            [btn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleHighLightColor"] forState:UIControlStateNormal];
-//        }
-//        else {
-//            [btn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleColor"] forState:UIControlStateNormal];
-//        }
+        
+        if (i==0) {
+            [btn setTitleColor:_selectedColor forState:UIControlStateNormal];
+        }
+        else {
+            [btn setTitleColor:_unselectedColor forState:UIControlStateNormal];
+        }
+
         [btn addTarget:self action:@selector(pressMenu:) forControlEvents:UIControlEventTouchUpInside];
-//        btn.showsTouchWhenHighlighted = YES;
+
         [_svMenu addSubview:btn];
         [_btns addObject:btn];
         
@@ -142,6 +148,34 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
         width += kMultiPagingMenuSpace-4;
     }
     _svMenu.contentSize = [self contentSizeByTitles:_titles];
+}
+
+- (void)setSelectedColor:(UIColor *)selectedColor
+{
+    _selectedColor = selectedColor;
+    
+    for (UIButton *btn in _btns) {
+        if (btn.tag == _selectedIndex+1) {
+            [btn setTitleColor:_selectedColor forState:UIControlStateNormal];
+        }
+        else {
+            [btn setTitleColor:_unselectedColor forState:UIControlStateNormal];
+        }
+    }
+}
+
+- (void)setUnselectedColor:(UIColor *)unselectedColor
+{
+    _unselectedColor = unselectedColor;
+    
+    for (UIButton *btn in _btns) {
+        if (btn.tag == _selectedIndex+1) {
+            [btn setTitleColor:_selectedColor forState:UIControlStateNormal];
+        }
+        else {
+            [btn setTitleColor:_unselectedColor forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)pressEdit:(id)sender
@@ -155,11 +189,11 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
 {
     UIButton *btn = sender;
     UIButton *obtn = (UIButton *)[_svMenu viewWithTag:_selectedIndex+1];
-    [obtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [obtn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleColor"] forState:UIControlStateNormal];
+    [obtn setTitleColor:_unselectedColor forState:UIControlStateNormal];
     obtn.titleLabel.font = kMultPagingMenuFont;
-//    [btn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleHighLightColor"] forState:UIControlStateNormal];
-//    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [btn setTitleColor:_selectedColor forState:UIControlStateNormal];
     btn.titleLabel.font = kMultPagingMenuFont;
     _selectedIndex = btn.tag-1;
     [UIView animateWithDuration:0.3 animations:^{
@@ -220,11 +254,11 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
     index = MAX(0, index);
     UIButton *btn = (UIButton *)[_svMenu viewWithTag:index+1];
     UIButton *obtn = (UIButton *)[_svMenu viewWithTag:_selectedIndex+1];
-    [obtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [obtn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleColor"] forState:UIControlStateNormal];
+    [obtn setTitleColor:_unselectedColor forState:UIControlStateNormal];
     obtn.titleLabel.font = kMultPagingMenuFont;
-//    [btn setTitleColor:[UIColor colorForKey:@"info_intoMenuTitleHighLightColor"] forState:UIControlStateNormal];
-//    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    
+    [btn setTitleColor:_selectedColor forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     btn.titleLabel.font = kMultPagingMenuFont;
     _selectedIndex = index;
     
@@ -279,7 +313,6 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
     [super drawRect:rect];
     CGRect rt = CGRectMake(0, rect.size.height - 5, rect.size.width, 3);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-//    CGFillRect(ctx, rt, [UIColor colorForKey:@"info_MenuBgColor"]);
     CGFillRect(ctx, rt, [UIColor whiteColor]);
 }
 
