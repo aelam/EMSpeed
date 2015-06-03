@@ -7,6 +7,7 @@
 //
 
 #import "UIKit/UIKit.h"
+#import "MSBaseViewController.h"
 
 @class MSMutableDataSource;
 @class MSDataSource;
@@ -14,7 +15,7 @@
 /**
  *  tableController 列表
  */
-@interface MSTableController : UIViewController <UITableViewDelegate>{
+@interface MSTableController : MSBaseViewController <UITableViewDelegate>{
 
     UITableView *_tableView;
     UIView *_emptyView;
