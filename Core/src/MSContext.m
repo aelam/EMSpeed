@@ -7,9 +7,6 @@
 //
 
 #import "MSContext.h"
-#import "MSCoreFunction.h"
-#import "MSCoreMetrics.h"
-#import "MSCore.h"
 
 
 CGRect TextDrawableRect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *font);
@@ -344,7 +341,7 @@ void CGDrawRoundRectWithParam(CGContextRef c,CGRect roundRect,UIRectCorner corne
     
     if (nil == borderColor)
     {
-        borderColor = RGBA(0x71, 0x72, 0x72,.6f);
+        borderColor = [UIColor colorWithRed:0.45 green:0.45 blue:0.45 alpha:0.6];
     }
     
     if (shadow)
@@ -435,7 +432,7 @@ CGRect TextDrawableRect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *
 
 void CGDrawSampleGroupCell(CGContextRef c,CGRect roundRect,UIRectCorner corners,CGSize cornerRadii)
 {
-    CGDrawSampleGroupCellWithColor(c, roundRect, corners,cornerRadii, RGB(250, 250, 250), NO);
+    CGDrawSampleGroupCellWithColor(c, roundRect, corners,cornerRadii, [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1], NO);
 }
 
 void CGDrawSampleGroupCellWithColor(CGContextRef c,CGRect roundRect,UIRectCorner corners,CGSize cornerRadii,UIColor* bgcolor,BOOL withBorder)
