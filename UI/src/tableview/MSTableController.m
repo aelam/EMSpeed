@@ -81,10 +81,9 @@ const CGFloat kMMCellDefaultHeight = 44;
     // datasource
     if (self.dataSource != dataSource) {
         self.dataSource = dataSource;
-        _tableView.delegate = self;
         _tableView.dataSource = dataSource;
-        [_tableView reloadData];
     }
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

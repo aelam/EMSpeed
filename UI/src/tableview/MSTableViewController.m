@@ -1,5 +1,5 @@
 //
-//  MSTableViewController.m
+//  MMTableViewController.m
 //  MMTableViewDemo
 //
 //  Created by Mac mini 2012 on 15-2-28.
@@ -68,10 +68,9 @@
     // datasource
     if (self.dataSource != dataSource) {
         self.dataSource = dataSource;
-        self.tableView.delegate = self;
         self.tableView.dataSource = dataSource;
-        [self.tableView reloadData];
     }
+    [self.tableView reloadData];
 }
 
 
