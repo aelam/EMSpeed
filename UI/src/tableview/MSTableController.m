@@ -1,5 +1,5 @@
 //
-//  EMSTableViewController.m
+//  EMMTableViewController.m
 //  EMStock
 //
 //  Created by Mac mini 2012 on 15-2-13.
@@ -35,8 +35,9 @@ const CGFloat kMMCellDefaultHeight = 44;
 
 - (void)loadView {
     [super loadView];
-    [self tableViewDidRegisterTableViewCell];
-    
+    if (self.tableView) {
+        [self tableViewDidRegisterTableViewCell];
+    }
 }
 
 - (void)viewDidLoad {
