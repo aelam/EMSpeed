@@ -408,7 +408,7 @@ CGRect TextDrawableRect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *
     int nX = point.x;
     int nY = point.y;
     
-    int contentWidth = MAX(MSContentWidth(), MSContentHeight());
+    int contentWidth = boundingRect.size.width;
     if (nAnchor&NSTextAlignmentCenter)
     {
         int n = contentWidth-nX;
