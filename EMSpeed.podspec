@@ -74,12 +74,18 @@ Pod::Spec.new do |s|
     cs.resources     = "StyledPageControl/resource/**/*.*"
   end
 
+  s.subspec 'MSContext' do |cs|
+    cs.source_files  = "MSContext/**/*.{h,m,c,swift}"
+    cs.resources     = "MSContext/resource/**/*.*"
+  end
+
   # ------------------------------------------------------------------------------
   s.subspec 'UI' do |cs|
     cs.source_files  = "UI/**/*.{h,m,c,swift}"
     cs.resources     = "UI/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
     cs.dependency 'EMSpeed/FontAwesome+iOS'
+    cs.dependency 'EMSpeed/MSContext'
 
     cs.dependency 'EMSpeed/PPiFlatSegmentedControl'
     cs.dependency 'EMSpeed/BDKNotifyHUD'
@@ -88,6 +94,8 @@ Pod::Spec.new do |s|
 
     cs.dependency 'SDWebImage', '~> 3.7.2'
     cs.dependency 'MJRefresh', '~> 1.4.6'
+
+
   end
 
   s.subspec 'ThemeManager' do |cs|

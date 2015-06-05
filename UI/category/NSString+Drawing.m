@@ -9,8 +9,6 @@
 #import "NSString+Drawing.h"
 #import "MSCoreMetrics.h"
 
-extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
-
 @implementation NSString (Drawing)
 
 - (void)ms_drawAtPoint:(CGPoint)point withFont:(UIFont *)font {
@@ -26,20 +24,22 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 }
 
 - (void)ms_drawAtPoint:(CGPoint)point
+          boundingRect:(CGRect)boundingRect
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
 {
-    [self ms_drawAtPoint:point withFont:font color:color aligment:aligment lineHeight:0];
+    [self ms_drawAtPoint:point boundingRect:boundingRect withFont:font color:color aligment:aligment lineHeight:0];
 }
 
 - (void)ms_drawAtPoint:(CGPoint)point
+          boundingRect:(CGRect)boundingRect
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
             lineHeight:(CGFloat)lineHeight
 {
-    CGRect rect =  Point2Rect(point, aligment, font);
+    CGRect rect =  Point2Rect(boundingRect,point, aligment, font);
     aligment = aligment&3;//排除自定义的排序类型
     [self ms_drawInRect:rect withFont:font color:color aligment:aligment lineHeight:lineHeight];
 }
@@ -97,6 +97,10 @@ extern CGRect Point2Rect(CGPoint point, int nAnchor, UIFont *font);
 {
     NSDictionary *attributes = @{NSFontAttributeName: font};
     return [self sizeWithAttributes:attributes];
+}
+
+CGRect _Point2Rect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *font) {
+    
 }
 
 

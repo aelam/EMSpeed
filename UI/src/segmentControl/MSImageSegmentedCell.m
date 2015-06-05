@@ -69,11 +69,11 @@
         CGFloat beginX = .5 * (rect.size.width - totalWidth);
         [_object.image drawAtPoint:CGPointMake(beginX, .5 * (rect.size.height - imageSize.height))];
         beginX += (imageSize.width + 5);
-        [_object.title ms_drawAtPoint:CGPointMake(beginX, CGRectGetMidY(rect)) withFont:font color:textColor aligment:MSTextVerticalAlignmentCenter];
+        [_object.title ms_drawAtPoint:CGPointMake(beginX, CGRectGetMidY(rect)) boundingRect:rect withFont:font color:textColor aligment:MSTextVerticalAlignmentCenter];
     }
     else
     {
-        [_object.title ms_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect)) withFont:font color:textColor aligment:NSTextAlignmentCenter|MSTextVerticalAlignmentCenter];
+        [_object.title ms_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect)) boundingRect:rect withFont:font color:textColor aligment:NSTextAlignmentCenter|MSTextVerticalAlignmentCenter];
     }
     
 }

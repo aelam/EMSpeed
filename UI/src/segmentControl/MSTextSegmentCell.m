@@ -81,6 +81,7 @@
     UIColor *textColor = _selected ? self.selectedTextColor : self.normalTextColor;
     [textColor set];
     [self.text ms_drawAtPoint:CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
+                 boundingRect:rect
                   withFont:font
                      color:textColor
                   aligment:NSTextAlignmentCenter | MSTextVerticalAlignmentCenter];

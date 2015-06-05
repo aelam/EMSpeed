@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MSContext.h"
 
 @interface NSString (Drawing)
 
@@ -43,6 +43,7 @@
  *  @param lineHeight 行高
  */
 - (void)ms_drawAtPoint:(CGPoint)point
+          boundingRect:(CGRect)boundingRect
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment
@@ -58,6 +59,7 @@
  *  @param aligment 居中类型
  */
 - (void)ms_drawAtPoint:(CGPoint)point
+          boundingRect:(CGRect)boundingRect
               withFont:(UIFont *)font
                  color:(UIColor *)color
               aligment:(int)aligment;
