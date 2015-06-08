@@ -6,8 +6,8 @@
 //
 //
 
-#import "MSBaseViewController.h"
+#import "MSViewController.h"
 
-@implementation MSBaseViewController
+@implementation MSViewController
 
 @end

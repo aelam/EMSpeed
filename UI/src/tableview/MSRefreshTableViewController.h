@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "MSTableViewController.h"
+#import "MSStoryboardTableController.h"
 #import "MJRefresh.h"
 
 
@@ -14,7 +14,7 @@
  *  同MSRefreshTableController, 主要用于storyboard
  */
 
-@interface MSRefreshTableViewController : MSTableViewController {
+@interface MSRefreshTableViewController : MSStoryboardTableController {
     BOOL _isBackFromPush;
 }
 

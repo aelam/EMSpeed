@@ -1,56 +1,14 @@
 //
 //  MSTableViewController.h
-//  MMTableViewDemo
+//  Pods
 //
-//  Created by Mac mini 2012 on 15-2-28.
-//  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
+//  Created by Mac mini 2012 on 15-6-3.
+//
 //
 
 #import <UIKit/UIKit.h>
-#import "MSBaseTableViewController.h"
-
-@class MSMutableDataSource;
-@class MSDataSource;
-
-/**
- *  同MSTableController, 主要用于storyboard
- */
-
-@interface MSTableViewController : MSBaseTableViewController {
-    UIView *_emptyView;
-}
-
-/**
- *  数据源
- */
-@property (nonatomic, strong) MSMutableDataSource *dataSource;
-
-/**
- *  空视图, 默认会有一个空视图
- */
-@property (nonatomic, strong) UIView *emptyView;
-
-/**
- *  是否自动显示空视图
- */
-@property (nonatomic, assign) BOOL autoDisplayEmptyView;
-
-/**
- *  重新加载列表界面
- *
- *  @param dataSource 数据源
- */
-- (void)reloadPages:(MSMutableDataSource *)dataSource;
-
-
-/**
- *  注册tableview cell
- *  子类实现
- */
-- (void)tableViewDidRegisterTableViewCell; // 子类实现
-
-
+// 所有MS的tableViewController都会继承这个MSTableViewController
+// 里面什么事情也没有做, 使用者扩展所用
+@interface MSTableViewController : UITableViewController
 
 @end
-
-extern const CGFloat kMMCellDefaultHeight;

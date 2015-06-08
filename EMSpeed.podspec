@@ -55,8 +55,8 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'PPiFlatSegmentedControl' do |cs|
-    cs.source_files  = "PPiFlatSegmentedControl/**/*.{h,m,c,swift}"
-    cs.resources     = "PPiFlatSegmentedControl/resource/**/*.*"
+    cs.source_files  = "PPiFlatSegment/**/*.{h,m,c,swift}"
+    cs.resources     = "PPiFlatSegment/resource/**/*.*"
   end
 
   s.subspec 'BDKNotifyHUD' do |cs|

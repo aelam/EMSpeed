@@ -1,25 +1,25 @@
 //
-//  EMThemeDownloadManager.m
+//  MSThemeDownloadManager.m
 //  EMStock
 //
 //  Created by zhangzhiyao on 15-1-29.
 //  Copyright (c) 2015年 flora. All rights reserved.
 //
 
-#import "EMThemeDownloadManager.h"
-#import "AFDownloadRequestOperation.h"
+#import "MSThemeDownloadManager.h"
+//#import "AFDownloadRequestOperation.h"
 #import "ZipArchive.h"
 //#import "EMCommonBundle.h"
 //#import "EMAPP.h"
-#import "EMThemeManager.h"
+#import "MSThemeManager.h"
 
-@interface EMThemeDownloadManager () {
+@interface MSThemeDownloadManager () {
     NSOperationQueue *_operationQueue;
 }
 
 @end
 
-@implementation EMThemeDownloadManager
+@implementation MSThemeDownloadManager
 
 #define kThemeDirectoryComponent @"theme"
 #define kThemeUnzipDirectoryComponent @"unzipFile"
@@ -33,10 +33,10 @@
 
 + (instancetype)sharedManager
 {
-    static EMThemeDownloadManager *__manager = nil;
+    static MSThemeDownloadManager *__manager = nil;
     @synchronized(__manager) {
         if (!__manager) {
-            __manager = [[EMThemeDownloadManager alloc] init];
+            __manager = [[MSThemeDownloadManager alloc] init];
         }
     }
     return __manager;
@@ -52,7 +52,7 @@
 
 + (NSString *)currentThemeImageDirectory
 {
-    return [self themeImageDirectory:[EMThemeManager sharedManager].currentThemeName];
+    return [self themeImageDirectory:[MSThemeManager sharedManager].currentThemeName];
 }
 
 + (NSString *)themeImageDirectory:(NSString *)themeName
@@ -129,55 +129,55 @@
 //    }
 //}
 
-- (void)download:(NSString*)urlStr themeName:(NSString*)themeName downloadButton:(EMProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion
+- (void)download:(NSString*)urlStr themeName:(NSString*)themeName downloadButton:(MSProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion
 {
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:3600];
-    
-    NSString *targetDirectoryPath = [kThemeDirectory stringByAppendingPathComponent:themeName];
-    NSString *targetPath = [targetDirectoryPath stringByAppendingPathComponent:kThemeZipFileName];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if (![fileManager fileExistsAtPath:targetDirectoryPath]) {
-        [fileManager createDirectoryAtPath:targetDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
-    };
-    
-    dispatch_queue_t queue = dispatch_queue_create("theme", nil);
-    dispatch_async(queue, ^{
-        AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:targetPath shouldResume:YES];
-        
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"Successfully downloaded file to %@", targetPath);
-            // 下载成功,将本次下载版本号记录在plist中
-            NSString *versionPlistPath = [targetDirectoryPath stringByAppendingPathComponent:kThemeVersionPlistName];
-            NSDictionary *themeDic = @{@"version": EMAppVersion()};
-            [themeDic writeToFile:versionPlistPath atomically:YES];
-            [self unZip:targetDirectoryPath completion:completion];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            completion(NO,[error description]);
-            NSLog(@"Error: %@", error);
-        }];
-        
-        //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下载中..." message:@"\n\n\n" delegate:self cancelButtonTitle:@"取消下载" otherButtonTitles:nil];
-        //    [alertView show];
-        
-        [operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
-            float percentDone = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [downloadButton setTitle:[NSString stringWithFormat:@"取消(%.2f%%)",percentDone*100] forState:UIControlStateNormal];
-                [downloadButton setProgress:percentDone];
-            });
-
-//            NSLog(@"------%f",percentDone);
-//            NSLog(@"Operation: bytesRead: %ld", (long)bytesRead);
-//            NSLog(@"Operation: totalBytesRead: %lld", totalBytesRead);
-//            NSLog(@"Operation: totalBytesExpected: %lld", totalBytesExpected);
-//            NSLog(@"Operation: totalBytesReadForFile: %lld", totalBytesReadForFile);
-//            NSLog(@"Operation: totalBytesExpectedToReadForFile: %lld", totalBytesExpectedToReadForFile);
-        }];
-        
-        [_operationQueue addOperation:operation];
-    });
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:3600];
+//    
+//    NSString *targetDirectoryPath = [kThemeDirectory stringByAppendingPathComponent:themeName];
+//    NSString *targetPath = [targetDirectoryPath stringByAppendingPathComponent:kThemeZipFileName];
+//    
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if (![fileManager fileExistsAtPath:targetDirectoryPath]) {
+//        [fileManager createDirectoryAtPath:targetDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
+//    };
+//    
+//    dispatch_queue_t queue = dispatch_queue_create("theme", nil);
+//    dispatch_async(queue, ^{
+//        AFDownloadRequestOperation *operation = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:targetPath shouldResume:YES];
+//        
+//        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@"Successfully downloaded file to %@", targetPath);
+//            // 下载成功,将本次下载版本号记录在plist中
+//            NSString *versionPlistPath = [targetDirectoryPath stringByAppendingPathComponent:kThemeVersionPlistName];
+//            NSDictionary *themeDic = @{@"version": EMAppVersion()};
+//            [themeDic writeToFile:versionPlistPath atomically:YES];
+//            [self unZip:targetDirectoryPath completion:completion];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            completion(NO,[error description]);
+//            NSLog(@"Error: %@", error);
+//        }];
+//        
+//        //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"下载中..." message:@"\n\n\n" delegate:self cancelButtonTitle:@"取消下载" otherButtonTitles:nil];
+//        //    [alertView show];
+//        
+//        [operation setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+//            float percentDone = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [downloadButton setTitle:[NSString stringWithFormat:@"取消(%.2f%%)",percentDone*100] forState:UIControlStateNormal];
+//                [downloadButton setProgress:percentDone];
+//            });
+//
+////            NSLog(@"------%f",percentDone);
+////            NSLog(@"Operation: bytesRead: %ld", (long)bytesRead);
+////            NSLog(@"Operation: totalBytesRead: %lld", totalBytesRead);
+////            NSLog(@"Operation: totalBytesExpected: %lld", totalBytesExpected);
+////            NSLog(@"Operation: totalBytesReadForFile: %lld", totalBytesReadForFile);
+////            NSLog(@"Operation: totalBytesExpectedToReadForFile: %lld", totalBytesExpectedToReadForFile);
+//        }];
+//        
+//        [_operationQueue addOperation:operation];
+//    });
     
     
 }

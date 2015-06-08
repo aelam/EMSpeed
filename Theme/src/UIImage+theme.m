@@ -7,15 +7,16 @@
 //
 
 #import "UIImage+theme.h"
-#import "EMThemeManager.h"
-#import "EMThemeDownloadManager.h"
+#import "MSThemeManager.h"
+#import "MSThemeDownloadManager.h"
+#import "MSCoreMetrics.h"
 
 @implementation UIImage(theme)
 
 
 + (UIImage *)imageForKey:(NSString *)key
 {
-    return [[EMThemeManager sharedManager] imageForKey:key];
+    return [[MSThemeManager sharedManager] imageForKey:key];
     
 }
 
@@ -43,16 +44,16 @@
  */
 + (UIImage *)localThemeImageNamed:(NSString *)name extension:(NSString*)ext
 {
-    NSString *themeDirectory = [EMThemeDownloadManager currentThemeImageDirectory];
+    NSString *themeDirectory = [MSThemeDownloadManager currentThemeImageDirectory];
     UIImage *returnImage = nil;
-    NSString *themeName = [EMThemeManager sharedManager].currentThemeName;
+    NSString *themeName = [MSThemeManager sharedManager].currentThemeName;
     NSString *imageName = [name stringByAppendingFormat:@"_%@",themeName];
     
     if (themeDirectory && themeDirectory.length)
     {//当前主题色有图片存储时
         NSString *filePath = [themeDirectory stringByAppendingPathComponent:imageName];
         
-        int scale = EMScreenScale();
+        int scale = MSScreenScale();
         
         while (!returnImage && scale >= 1)
         {
@@ -88,7 +89,7 @@
     UIImage *retImage = [UIImage localThemeImageNamed:name extension:ext];
     if (!retImage)
     {
-        int scale = EMScreenScale();
+        int scale = MSScreenScale();
         NSString * themeName = name;
         NSString * filePath = nil;
         while (filePath == nil && scale >= 0)

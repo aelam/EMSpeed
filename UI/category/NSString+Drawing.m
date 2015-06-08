@@ -100,7 +100,7 @@
 }
 
 CGRect _Point2Rect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *font) {
-    
+    return boundingRect;
 }
 
 

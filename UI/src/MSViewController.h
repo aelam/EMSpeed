@@ -10,6 +10,6 @@
 
 // 所有MS的controller都会继承这个MSBaseViewController
 // 里面什么事情也没有做, 使用者扩展所用
-@interface MSBaseViewController : UIViewController
+@interface MSViewController : UIViewController
 
 @end

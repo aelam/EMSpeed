@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSBaseViewController.h"
+#import "MSViewController.h"
 
 @protocol EMMultiPagingProtocol;
 
@@ -18,7 +18,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
 /*
  多页面滚动基类
  */
-@interface MSMultiPagingBaseController : MSBaseViewController <UIScrollViewDelegate> {
+@interface MSMultiPagingBaseController : MSViewController <UIScrollViewDelegate> {
     
     BOOL                _isPagesInited;             // 页面是否初始化
     int                 _initPageIndex;             // 初始化页面下标，默认0

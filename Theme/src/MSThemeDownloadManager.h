@@ -1,5 +1,5 @@
 //
-//  EMThemeDownloadManager.h
+//  MSThemeDownloadManager.h
 //  EMStock
 //
 //  Created by zhangzhiyao on 15-1-29.
@@ -7,17 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EMModelProtocol.h"
-#import "EMProgressDownloadButton.h"
+#import "MSModelProtocol.h"
+#import "MSProgressDownloadButton.h"
 
-@interface EMThemeDownloadManager : NSObject<EMModelProtocol> {
+@interface MSThemeDownloadManager : NSObject {
     
 }
 
 + (instancetype)sharedManager;
 
-- (void)loadTheme:(NSString *)themeName downloadButton:(EMProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion;
-- (void)download:(NSString*)urlStr themeName:(NSString*)themeName downloadButton:(EMProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion;
+- (void)loadTheme:(NSString *)themeName downloadButton:(MSProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion;
+- (void)download:(NSString*)urlStr themeName:(NSString*)themeName downloadButton:(MSProgressDownloadButton*)downloadButton completion:(void (^)(BOOL success,NSString *result))completion;
 - (void)cancelDownload;
 
 /**

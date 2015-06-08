@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSBaseViewController.h"
+#import "MSViewController.h"
 #import "MSScrollableList.h"
 
 NSString *const MSScrollableListCellSelectedNotification;
 NSString *const MSScrollableListCellHighlightedNotification;
 
-@interface MSScrollableListViewController : MSBaseViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MSScrollableListViewController : MSViewController <UITableViewDelegate, UITableViewDataSource>
 {
     UIEdgeInsets _contentInsets;
     

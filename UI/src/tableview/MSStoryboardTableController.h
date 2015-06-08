@@ -1,31 +1,24 @@
 //
-//  EMSTableViewController.h
-//  EMStock
+//  MSTableViewController.h
+//  MMTableViewDemo
 //
-//  Created by Mac mini 2012 on 15-2-13.
-//  Copyright (c) 2015年 flora. All rights reserved.
+//  Created by Mac mini 2012 on 15-2-28.
+//  Copyright (c) 2015年 Mac mini 2012. All rights reserved.
 //
 
-#import "UIKit/UIKit.h"
-#import "MSViewController.h"
+#import <UIKit/UIKit.h>
+#import "MSTableViewController.h"
 
 @class MSMutableDataSource;
 @class MSDataSource;
 
 /**
- *  tableController 列表
+ *  同MSTableController, 主要用于storyboard
  */
-@interface MSTableController : MSViewController <UITableViewDelegate>{
 
-    UITableView *_tableView;
+@interface MSStoryboardTableController : MSTableViewController {
     UIView *_emptyView;
 }
-
-/**
- *  tableview
- */
-@property (nonatomic, strong) UITableView *tableView;
-
 
 /**
  *  数据源
@@ -57,7 +50,7 @@
 - (void)tableViewDidRegisterTableViewCell; // 子类实现
 
 
+
 @end
 
-
-
+extern const CGFloat kMMCellDefaultHeight;
