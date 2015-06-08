@@ -58,32 +58,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MSCellModel> item = [self itemAtIndexPath:indexPath];
+    NSString *reuseIdentifier = item.reuseIdentify;
     Class class = item.Class;
     
-    if (class != NULL)
+    if(class)
     {
-        NSString* identifier = NSStringFromClass(class);
-        id cell = (id)[tableView dequeueReusableCellWithIdentifier:identifier];
+        reuseIdentifier = NSStringFromClass(class);
+    }
+    else
+    {
+        class = [UITableViewCell class];
+    }
+    
+    if (reuseIdentifier)
+    {
+        id cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         
         if (cell == nil)
         {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
         }
-        
-//        if (cell == nil)
-//        {
-//            if ([identifier length] > 0) {
-//                NSString *path = MSPathForBundleResource([NSBundle mainBundle], [NSString stringWithFormat:@"%@.xib", identifier]);
-//                BOOL isXibExist = MSIsFileExistAtPath(path);
-//                if (isXibExist) {
-//                    NSArray *cells = [[NSBundle mainBundle] loadNibNamed:identifier owner:nil options:nil];
-//                    if ([cells count] > 0) {
-//                        cell= [cells lastObject];
-//                    }
-//                }
-//            }
-//        }
-        
+
         if ([cell respondsToSelector:@selector(update:indexPath:)]) {
             [cell update:item indexPath:indexPath];
         }
@@ -161,9 +156,14 @@
 
 - (NSArray *)itemsAtSection:(NSUInteger)section
 {
-    NSAssert((section>=0 && section<[_sections count]), nil);
-    
-    return [_items objectAtIndex:section];
+    if (section>=0 && section<[_sections count])
+    {
+        return [_items objectAtIndex:section];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSArray *)itemsAtSectionWithTitle:(NSString *)title
