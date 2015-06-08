@@ -53,6 +53,11 @@
     [self.view bringSubviewToFront:_menu];
 }
 
+- (void)reloadPages
+{
+    [self reloadMenuAndPages];
+}
+
 - (void)reloadMenuAndPages
 {
     [self clearOldSubViews];
