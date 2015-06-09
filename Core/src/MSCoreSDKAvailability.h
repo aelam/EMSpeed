@@ -16,12 +16,20 @@ extern "C" {
     
     
     /**
+     *  是否是iPad用户界面显示
+     *
+     *  @return 是否是iPad用户界面显示
+     */
+    BOOL MSIsPadUserInterface(void);
+    
+    
+    
+    /**
      *  是否是iPad设备
      *
      *  @return 是否是iPad设备
      */
-    BOOL MSIsPad(void);
-    
+    BOOL MSIsPadDevice(void);
     
     /**
      *  是否是iPhone设备

@@ -10,7 +10,7 @@
 #import "MSCoreMetrics.h"
 
 
-BOOL MSIsPad(void)
+BOOL MSIsPadUserInterface(void)
 {
     static NSInteger isPad = -1;
     if (isPad < 0) {
@@ -19,6 +19,10 @@ BOOL MSIsPad(void)
     return isPad > 0;
 }
 
+BOOL MSIsPadDevice(void)
+{
+    return [[UIDevice currentDevice].model containsString:@"Pad"];
+}
 
 BOOL MSIsPhone(void)
 {
