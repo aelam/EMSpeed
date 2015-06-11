@@ -64,8 +64,6 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
 @property (nonatomic, assign) id<EMMultiPagingDataSource> dataSource;
 
 
-
-
 // 取回收的controller
 - (UIViewController<MSMultiPagingProtocol> *)dequeueReusableControllerByClassName:(NSString *)className;
 
@@ -74,8 +72,8 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
                    animated:(BOOL)animated
                  reloadData:(BOOL)needReloadData;
 
-// 当前的页面发包和取页面缓存
-- (void)reloadData;
+// 当前的页面发包
+- (void)requestCurrentDisplayPageDataSource;
 
 @end
 

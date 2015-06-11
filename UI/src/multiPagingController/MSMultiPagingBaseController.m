@@ -74,7 +74,10 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 {
     [super viewDidAppear:animated];
     
-    [self requestCurrentDisplayPageDataSource];
+    // 子类列表refresh会自动刷新, 所以这里不刷新, 如果子类不会自己刷新, 则需要调用一下
+//    if (!self.isPushBack) {
+//        [self requestCurrentDisplayPageDataSource];
+//    }
     self.isPushBack = NO;
 }
 
@@ -82,6 +85,21 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 {
     [super viewWillDisappear:animated];
 }
+
+
+- (void)didReceiveMemoryWarning
+{
+    if ([self isViewLoaded] && self.view.window == nil)
+    {
+        _isPushBack = NO;
+        _isPageIndexInited = NO;
+        [self clearControllersAndScrollView];
+        self.view = nil;
+    }
+    
+    [super didReceiveMemoryWarning];
+}
+
 
 - (void)loadControllersAndScrollView
 {
@@ -208,16 +226,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (void)requestCurrentDisplayPageDataSource
 {
-    if (self.isPushBack) {
-        // push back 不重新发包
-        return;
-    }
-    
-    if (!_isPageIndexInited) {
-        // 未初始化过, 则设置当前下标为初始设置的下标
-        _currentDisplayPageIndex = _initPageIndex + (_isLoop ? [self _numberOfPages]*self.loopSize/2 : 0);
-        _isPageIndexInited = YES;
-    }
+    NSAssert(_isPageIndexInited, @"没初始化 不应该调用这个方法");
     
     for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
         if (controller.multiPageIndex==_currentDisplayPageIndex) {
