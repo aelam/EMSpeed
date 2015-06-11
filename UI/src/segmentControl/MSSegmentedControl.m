@@ -210,6 +210,8 @@
     
     _selectedView = [[[self selectedViewClassWithStyle:style] alloc] init];
     [self addSubview:_selectedView];
+    
+    [self updateItems];
 }
 
 
