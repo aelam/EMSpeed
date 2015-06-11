@@ -10,10 +10,12 @@
 
 @interface MSMultiPagingBaseController (ForSubclassEyesOnly)
 
-- (void)createMenu;
-- (void)createScrollView;
-- (void)createPages;
-- (void)clearOldSubViews;
+- (void)initPageIndex;
+- (void)initControllers;
+
+- (void)loadMenu;
+- (void)loadScrollView;
+- (void)clearControllersAndScrollView;
 - (void)layoutVisiblePages;
 - (void)deceleratingScrollView:(UIScrollView *)scrollView
                       animated:(BOOL)animated
@@ -23,5 +25,16 @@
 - (CGRect)frameForPageAtIndex:(NSUInteger)index;
 - (void)recycleUnDisplayedControllers;
 - (void)addDisplayedControllers;
+
+
+// calc frame
+- (CGRect)frameForPagingScrollView;
+- (CGSize)contentSizeForPagingScrollView;
+- (CGRect)frameForPageAtIndex:(NSUInteger)index;
+
+// private
+- (int)_numberOfPages;
+- (UIViewController<MSMultiPagingProtocol> *)_controllerAtPageIndex:(int)index;
+- (NSArray *)_titlesOfPages;
 
 @end

@@ -21,12 +21,12 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
     int _loopSize;
 }
 
-- (void)reloadPages;// 重新加载页面
+- (void)reloadControllersAndPages;// 重新加载页面
 @end
 
 @implementation MSMultiPagingBaseController
 @synthesize currentDisplayPageIndex = _currentDisplayPageIndex;
-@synthesize isPagesInited = _isPagesInited;
+@synthesize isPageIndexInited = _isPageIndexInited;
 @synthesize isPushBack = _isPushBack;
 
 - (instancetype)init
@@ -41,38 +41,109 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
         _isPushBack = NO;
         _padding = kMultiPagingPadding;
         _isLoop = NO;
-        _isPagesInited = NO;
+        _isPageIndexInited = NO;
     }
+    
     return self;
 }
 
-- (void)dealloc
-{
-}
+# pragma mark - Life Cycle
 
-# pragma mark - Create Views
+- (void)loadView
+{
+    [super loadView];
+    [self loadControllersAndScrollView];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self reloadPages];
 }
 
-- (void)reloadPages
+- (void)viewWillAppear:(BOOL)animated
 {
-    [self clearOldSubViews];
-    [self createScrollView];
-    [self createPages];
+    [super viewWillAppear:animated];
+    
+    [self addDisplayedControllers];
+    [self setCurrentPageIndex:_currentDisplayPageIndex
+                     animated:NO
+                   reloadData:NO];
 }
 
-- (void)reloadData
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self requestCurrentDisplayPageDataSource];
+    self.isPushBack = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)loadControllersAndScrollView
+{
+    [self initPageIndex];
+    [self initControllers];
+    [self loadScrollView];
+    [self addDisplayedControllers];
+}
+
+- (void)initPageIndex
 {
     _currentDisplayPageIndex = -1;
-    [self refreshPageData];
+    _lastDisplayFirstIndex = -1;
+    _lastDisplayLastIndex = -1;
+    
+    if (!_isPageIndexInited) {
+        int page = _initPageIndex;
+        
+        if (page<0 || page>=[self _numberOfPages]) {
+            page = 0;
+        }
+        
+        page = page + (_isLoop ? [self _numberOfPages]*self.loopSize/2 : 0);
+        
+        _lastDisplayFirstIndex = page;
+        _lastDisplayLastIndex = page+1;
+        _currentDisplayPageIndex = page;
+        
+        _isPageIndexInited = YES;
+    }
 }
 
-- (void)createScrollView
+- (void)initControllers
 {
+    [self clearControllers];
+    
+    if (_visibleControlls==nil) {
+        _visibleControlls  = [[NSMutableSet alloc] init];
+    }
+    
+    if (_recycledControlls==nil) {
+        _recycledControlls = [[NSMutableSet alloc] init];
+    }
+}
+
+- (void)clearControllers
+{
+    if (_visibleControlls) {
+        [_visibleControlls removeAllObjects];
+        _visibleControlls = nil;
+    }
+    
+    if (_recycledControlls) {
+        [_recycledControlls removeAllObjects];
+        _recycledControlls = nil;
+    }
+}
+
+- (void)loadScrollView
+{
+    [self clearScrollView];
+    
     if (_pagingScrollView==nil) {
         CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
         _pagingScrollView = [[UIScrollView alloc] initWithFrame:pagingScrollViewFrame];
@@ -83,55 +154,30 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
         _pagingScrollView.delegate = self;
         _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
         _pagingScrollView.directionalLockEnabled = YES;
-        
-        if (MSOSVersion()<5.0) {
-            _pagingScrollView.bounces = NO;
-        }
     }
     [self.view addSubview:_pagingScrollView];
 }
 
-- (void)createPages
+- (void)clearControllersAndScrollView
 {
-    if (_recycledControlls==nil) {
-        _recycledControlls = [[NSMutableSet alloc] init];
-    }
-    
-    if (_visibleControlls==nil) {
-        _visibleControlls  = [[NSMutableSet alloc] init];
-    }
-    
-    _currentDisplayPageIndex = -1;
-    _lastDisplayFirstIndex = -1;
-    _lastDisplayLastIndex = -1;
+    [self clearControllers];
+    [self clearScrollView];
 }
 
-- (void)clearOldSubViews
+- (void)clearScrollView
 {
     if (_pagingScrollView) {
         [_pagingScrollView removeFromSuperview];
         _pagingScrollView = nil;
     }
-    
-    if (_visibleControlls) {
-        [_visibleControlls removeAllObjects];
-    }
-    
-    if (_recycledControlls) {
-        [_recycledControlls removeAllObjects];
-    }
-    
-    self.isPushBack = NO;
 }
 
-- (UIViewController<EMMultiPagingProtocol> *)currentDisplayController
+- (UIViewController<MSMultiPagingProtocol> *)currentDisplayController
 {
-    if (!_isPagesInited && _currentDisplayPageIndex==-1 && [_visibleControlls count]==1) {
-        return [_visibleControlls anyObject];
-    }
-    
-    for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
-        if ([controller getMultiPageIndex] == _currentDisplayPageIndex) {
+    NSAssert(_currentDisplayPageIndex>0 && _isPageIndexInited, @"尚未初始化, 不应该调用这个函数!");
+
+    for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
+        if (controller.multiPageIndex == _currentDisplayPageIndex) {
             return controller;
         }
     }
@@ -145,105 +191,40 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
         _loopSize = 1;
         
         if (_isLoop) {
-            int sizeMax = [self numberOfPages] * kMultiPageControllerLoopSize;
+            int sizeMax = [self _numberOfPages] * kMultiPageControllerLoopSize;
             
             if (sizeMax <= kMultiPageControllerLoopSizeMax) {
                 _loopSize = kMultiPageControllerLoopSize;
             }
             else{
-                _loopSize = kMultiPageControllerLoopSizeMax / [self numberOfPages] / 2 * 2;
+                _loopSize = kMultiPageControllerLoopSizeMax / [self _numberOfPages] / 2 * 2;
             }
         }
-
-        NSLog(@"%d", _loopSize);
     }
     
     return _loopSize;
 }
 
-# pragma mark - Layout
 
-- (void)viewDidLayoutSubviews
+- (void)requestCurrentDisplayPageDataSource
 {
-//    [super layoutSubviewsForView:view];
-    CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
-    _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
-    _pagingScrollView.frame = pagingScrollViewFrame;
-    [self layoutVisiblePages];
-}
-
-- (void)layoutVisiblePages
-{
-    for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
-        int infoPageIndex = [controller getMultiPageIndex];
-        controller.view.frame = [self frameForPageAtIndex:infoPageIndex];
+    if (self.isPushBack) {
+        // push back 不重新发包
+        return;
     }
-}
-
-# pragma mark - Life Cycle
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
-    if (!_isPagesInited) {
-        [self setInitPageIndex:_initPageIndex];
-        [self addDisplayedControllers];
+    if (!_isPageIndexInited) {
+        // 未初始化过, 则设置当前下标为初始设置的下标
+        _currentDisplayPageIndex = _initPageIndex + (_isLoop ? [self _numberOfPages]*self.loopSize/2 : 0);
+        _isPageIndexInited = YES;
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-//    [theDelegate.statusBar hideImmediately];
     
-    if (!_isPagesInited) {
-        int page = _initPageIndex + (_isLoop ? [self numberOfPages]*self.loopSize/2 : 0);
-        _currentDisplayPageIndex = page;
-        for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
-            if ([controller getMultiPageIndex]==_currentDisplayPageIndex) {
-                [controller requestDatasource];
-                break;
-            }
-        }
-        _isPagesInited = YES;
-    }
-    else if (!self.isPushBack) {
-        for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
-            if ([controller getMultiPageIndex]==_currentDisplayPageIndex) {
-                [controller requestDatasource];
-                break;
-            }
+    for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
+        if (controller.multiPageIndex==_currentDisplayPageIndex) {
+            [controller requestDatasource];
+            break;
         }
     }
-    
-    self.isPushBack = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-//    [self cancelRequest];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    if ( [self isViewLoaded] && nil == self.view.window) {
-        [self clearOldSubViews];
-        _isPagesInited = NO;
-        _currentDisplayPageIndex = -1;
-        _lastDisplayFirstIndex = -1;
-        _lastDisplayLastIndex = -1;
-    }
-    [super didReceiveMemoryWarning];
-    [_recycledControlls removeAllObjects];
-    self.isPushBack = NO;
-}
-
-- (void)viewDidUnload
-{
-    [self clearOldSubViews];
-    [super viewDidUnload];
 }
 
 - (void)setCurrentPageIndex:(int)page
@@ -253,8 +234,8 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
     if (page<0) {
         page = 0;
     }
-    if (page>[self numberOfPages]*self.loopSize-1) {
-        page=[self numberOfPages]*self.loopSize-1;
+    if (page>[self _numberOfPages]*self.loopSize-1) {
+        page=[self _numberOfPages]*self.loopSize-1;
     }
     
     CGPoint origin = CGPointMake([self frameForPageAtIndex:page].origin.x-_padding,
@@ -277,36 +258,26 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
     }
 }
 
-- (void)setInitPageIndex:(int)page
+
+# pragma mark - Layout
+
+- (void)viewDidLayoutSubviews
 {
-    if (page<0 || page>=[self numberOfPages]) {
-        page = 0;
+    CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
+    _pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
+    _pagingScrollView.frame = pagingScrollViewFrame;
+    [self layoutVisiblePages];
+}
+
+- (void)layoutVisiblePages
+{
+    for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
+        int infoPageIndex = controller.multiPageIndex;
+        controller.view.frame = [self frameForPageAtIndex:infoPageIndex];
     }
-    
-    page = page + (_isLoop ? [self numberOfPages]*self.loopSize/2 : 0);
-    
-    CGPoint origin = CGPointMake([self frameForPageAtIndex:page].origin.x-_padding,
-                                 [self frameForPageAtIndex:page].origin.y);
-    [_pagingScrollView setContentOffset:origin];
-    
-    _lastDisplayFirstIndex = page;
-    _lastDisplayLastIndex = page+1;
 }
 
-- (NSArray *)titlesOfPages
-{
-    NSAssert(0, @"titlesOfPages - Subclass overwrite");
-    return nil;
-}
-
-
-# pragma mark - ScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-}
-
-- (BOOL)tilePageIndexesChanged
+- (BOOL)isTilePageIndexesChanged
 {
     CGRect visibleBounds = _pagingScrollView.bounds;
     
@@ -315,14 +286,14 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
     int lastNeededPageIndex  = floorf((CGRectGetMaxX(visibleBounds)) / CGRectGetWidth(visibleBounds)) + 1;
     
     firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
-    lastNeededPageIndex  = MIN(lastNeededPageIndex, [self numberOfPages]*self.loopSize);
+    lastNeededPageIndex  = MIN(lastNeededPageIndex, [self _numberOfPages]*self.loopSize);
     
     // 保证最多只显示3页
     if (firstNeededPageIndex==0) {
-        lastNeededPageIndex = MIN([self numberOfPages]*self.loopSize, 3);
+        lastNeededPageIndex = MIN([self _numberOfPages]*self.loopSize, 3);
     }
-    if (lastNeededPageIndex==[self numberOfPages]*self.loopSize) {
-        firstNeededPageIndex = MAX(0, [self numberOfPages]*self.loopSize - 3);
+    if (lastNeededPageIndex==[self _numberOfPages]*self.loopSize) {
+        firstNeededPageIndex = MAX(0, [self _numberOfPages]*self.loopSize - 3);
     }
     //    assert(lastNeededPageIndex-firstNeededPageIndex<=3);
     
@@ -340,10 +311,10 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 - (void)recycleUnDisplayedControllers
 {
     // 回收不显示的界面
-    for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
-        if ([controller getMultiPageIndex] < _lastDisplayFirstIndex
-            || [controller getMultiPageIndex] > _lastDisplayLastIndex) {
-            [controller setMultiPagingController:nil];
+    for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
+        if (controller.multiPageIndex < _lastDisplayFirstIndex
+            || controller.multiPageIndex > _lastDisplayLastIndex) {
+            controller.multiPagingController = nil;
             [_recycledControlls addObject:controller];
             [controller viewWillDisappear:NO];
             [controller.view removeFromSuperview];
@@ -361,22 +332,26 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 {
     // 添加新进入的界面
     for (int index = _lastDisplayFirstIndex; index < _lastDisplayLastIndex; index++) {
-        UIViewController<EMMultiPagingProtocol> *controller = [self isDisplayingPageForIndex:index];
+        UIViewController<MSMultiPagingProtocol> *controller = [self isDisplayingPageForIndex:index];
         if (controller == nil) {
-            controller = [self controllerAtPageIndex:index]; // 用户提供
-            [controller setMultiPagingController:self];
-            [controller setMultiPageIndex:index];
-            if (![[controller class] conformsToProtocol:NSProtocolFromString(@"EMMultiPagingProtocol")]) {
-                NSAssert(0, @"controller 必须实现 EMMultiPagingProtocol");
+            
+            controller = [self _controllerAtPageIndex:index]; // 用户提供
+            controller.multiPagingController = self;
+            controller.multiPageIndex = index;
+            if (![[controller class] conformsToProtocol:NSProtocolFromString(@"MSMultiPagingProtocol")]) {
+                NSAssert(0, @"controller 必须实现 MSMultiPagingProtocol");
             }
             controller.view.frame = [self frameForPageAtIndex:index];
+//            NSLog(@"frame = %@", NSStringFromCGRect(controller.view.frame));
             [controller viewWillAppear:NO];
             [_pagingScrollView addSubview:controller.view];
-//            [controller viewDidAppear:NO];
+            [controller viewDidAppear:NO];
             [_pagingScrollView sendSubviewToBack:controller.view];
             
             [_visibleControlls addObject:controller];
-            [_recycledControlls removeObject:controller];// 可能是回收的, 从recycle中删掉
+            if ([_recycledControlls containsObject:controller]) {
+                [_recycledControlls removeObject:controller];// 可能是回收的, 从recycle中删掉
+            }
             if ([controller respondsToSelector:@selector(pageViewDidAddToScrollView:)]) {
                 [controller pageViewDidAddToScrollView:self];
             }
@@ -386,7 +361,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (void)tilePages
 {
-    if ([self tilePageIndexesChanged]) {
+    if ([self isTilePageIndexesChanged]) {
         [self recycleUnDisplayedControllers];
         [self addDisplayedControllers];
     }
@@ -395,18 +370,18 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 - (void)refreshPageData
 {
     int currentIndex = _pagingScrollView.contentOffset.x/_pagingScrollView.frame.size.width;
-    if (!_isPagesInited || self.currentDisplayPageIndex!=currentIndex) {
+    if (!_isPageIndexInited || self.currentDisplayPageIndex!=currentIndex) {
         _currentDisplayPageIndex = currentIndex;
         
-        for (UIViewController<EMMultiPagingProtocol> *controller in _visibleControlls) {
+        for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
             if ([controller respondsToSelector:@selector(pageViewDidEndDecelerating:)]) {
                 [controller pageViewDidEndDecelerating:self];
             }
             
-            if ([controller getMultiPageIndex]==currentIndex) {
+            if (controller.multiPageIndex==currentIndex) {
                 [controller requestDatasource]; // 当前页显示时，发包
             }
-            else if (ABS([controller getMultiPageIndex]-currentIndex)==1){
+            else if (ABS(controller.multiPageIndex-currentIndex)==1){
                 [controller loadCacheData]; // 当前页两边时，取缓存
             }
         }
@@ -425,14 +400,16 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [self deceleratingScrollView:scrollView animated:NO sendPackage:YES];
+    [self deceleratingScrollView:scrollView
+                        animated:NO
+                     sendPackage:YES];
 }
 
-- (UIViewController<EMMultiPagingProtocol> *)dequeueReusableControllerByClassName:(NSString *)className
+- (UIViewController<MSMultiPagingProtocol> *)dequeueReusableControllerByClassName:(NSString *)className
 {
     Class class = NSClassFromString(className);
-    UIViewController<EMMultiPagingProtocol> *result = nil;
-    for (UIViewController<EMMultiPagingProtocol> *controller in [_recycledControlls allObjects]) {
+    UIViewController<MSMultiPagingProtocol> *result = nil;
+    for (UIViewController<MSMultiPagingProtocol> *controller in [_recycledControlls allObjects]) {
         if ([controller isMemberOfClass:class]) {
             result =  controller;
             break;
@@ -441,10 +418,11 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
     return result;
 }
 
-- (UIViewController<EMMultiPagingProtocol> *)isDisplayingPageForIndex:(int)pageIndex
+- (UIViewController<MSMultiPagingProtocol> *)isDisplayingPageForIndex:(int)pageIndex
 {
-    for (UIViewController<EMMultiPagingProtocol> *controller in [_visibleControlls allObjects]) {
-        if ([controller getMultiPageIndex] == pageIndex) {
+    for (UIViewController<MSMultiPagingProtocol> *controller in [_visibleControlls allObjects]) {
+        
+        if (controller.multiPageIndex == pageIndex) {
             return controller;
         }
     }
@@ -456,7 +434,6 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (CGRect)frameForPagingScrollView {
     CGRect frame = self.view.bounds;
-    frame.size.height = MSScreenHeight()-MSStatusBarHeight()-MSNavigationBarHeight()-MSTabBarHeight();
     frame.origin.x -= _padding;
     frame.size.width += (2 * _padding);
     return frame;
@@ -464,7 +441,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (CGSize)contentSizeForPagingScrollView {
     CGRect bounds = _pagingScrollView.bounds;
-    return CGSizeMake(bounds.size.width * [self numberOfPages]*self.loopSize , bounds.size.height);
+    return CGSizeMake(bounds.size.width * [self _numberOfPages]*self.loopSize , bounds.size.height);
 }
 
 - (CGRect)frameForPageAtIndex:(NSUInteger)index {
@@ -530,24 +507,34 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 }
 
 
-
-# pragma mark - Subclass overwrite
-
-- (int)numberOfPages
+- (void)setDataSource:(id<EMMultiPagingDataSource>)dataSource
 {
-    NSAssert(0, @"numberOfPages - Subclass overwrite");
-    return 0;
+    if (_dataSource != dataSource) {
+        _dataSource = dataSource;
+    }
 }
 
-- (UIViewController<EMMultiPagingProtocol> *)controllerAtPageIndex:(int)index
+# pragma mark - dataSource function
+
+- (int)_numberOfPages
 {
-    NSAssert(0, @"controllerAtPageIndex - Subclass overwrite");
-    return nil;
+    NSAssert(self.dataSource!=nil, @"self.dataSource 为空!");
+    
+    return [self.dataSource numberOfPages];
 }
 
-- (NSMutableSet *)getVisibleControllers
+- (UIViewController<MSMultiPagingProtocol> *)_controllerAtPageIndex:(int)index
 {
-    return _visibleControlls;
+    NSAssert(self.dataSource!=nil, @"self.dataSource 为空!");
+    
+    return [self.dataSource multiPagingController:self controllerAtPageIndex:index];
+}
+
+- (NSArray *)_titlesOfPages
+{
+    NSAssert(self.dataSource!=nil, @"self.dataSource 为空!");
+    
+    return [self.dataSource titlesOfPages];
 }
 
 @end

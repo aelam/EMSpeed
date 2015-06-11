@@ -19,19 +19,27 @@
 
 @implementation MSMultiPagingMenuController
 
-- (void)dealloc
-{
-}
-
 -(void)loadView
 {
     [super loadView];
+    // super loadView 中会调到 loadControllersAndScrollView
 }
 
-- (void)createMenu
+- (void)loadControllersAndScrollView
 {
+    [self initPageIndex];
+    [self initControllers];
+    [self loadScrollView];
+    [self loadMenu];
+    [self addDisplayedControllers];
+}
+
+- (void)loadMenu
+{
+    [self clearMenuView];
+    
     if (_menu==nil) {
-        _pageTitles = [[self titlesOfPages] copy];
+        _pageTitles = [[self _titlesOfPages] copy];
         _menu = [[MSMultiPagingMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kMultiPagingMenuBarHeight)
                                                   titles:_pageTitles
                                                 editable:NO];
@@ -41,41 +49,15 @@
     [self.view addSubview:_menu];
 }
 
-- (NSArray *)titlesOfPages
+
+- (void)clearControllersAndScrollView
 {
-    NSAssert(0, @"titlesOfPages - Subclass overwrite");
-    return nil;
+    [super clearControllersAndScrollView];
+    [self clearMenuView];
 }
 
-- (void)createPages
+- (void)clearMenuView
 {
-    [super createPages];
-    [self.view bringSubviewToFront:_menu];
-}
-
-- (void)reloadPages
-{
-    [self reloadMenuAndPages];
-}
-
-- (void)reloadMenuAndPages
-{
-    [self clearOldSubViews];
-    [self createScrollView];
-    [self createMenu];
-    [self createPages];
-}
-
-- (void)reloadData
-{
-    [self reloadMenuAndPages];
-    _currentDisplayPageIndex = 0;
-}
-
-
-- (void)clearOldSubViews
-{
-    [super clearOldSubViews];
     [_menu removeFromSuperview];
     _menu = nil;
 }
@@ -86,6 +68,19 @@
     [self viewDidLayoutSubviews];
 }
 
+- (CGRect)frameForPagingScrollView {
+    
+    float titleMenuHeight = _isMenuHidden ? 0 : kMultiPagingMenuBarHeight;
+    CGRect frame = self.view.bounds;
+    
+    frame.origin.x -= _padding;
+    frame.size.width += (2 * _padding);
+    frame.origin.y = titleMenuHeight;
+    frame.size.height -= titleMenuHeight;
+    return frame;
+}
+
+
 - (void)viewDidLayoutSubviews
 {
     if (_isMenuHidden) {
@@ -94,41 +89,24 @@
     else{
         _menu.frame = CGRectMake(0, 0, self.view.frame.size.width, kMultiPagingMenuBarHeight);
     }
-}
-
-- (void)deceleratingScrollView:(UIScrollView *)scrollView
-                      animated:(BOOL)animated
-                   sendPackage:(BOOL)canSendPackage
-{
-    [super deceleratingScrollView:scrollView animated:animated sendPackage:canSendPackage];
+    
+    [super viewDidLayoutSubviews];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [super scrollViewDidScroll:scrollView];
-    float calcOffset = scrollView.contentOffset.x + MSScreenWidth()/2;
-//    NSLog(@"w = %.f", scrollView.contentSize.width);
+    float calcOffset = scrollView.contentOffset.x + self.view.frame.size.width / 2;
     calcOffset = (calcOffset > scrollView.contentSize.width) ? scrollView.contentSize.width : calcOffset;
-    int currentIndex = calcOffset/scrollView.frame.size.width;
+    int currentIndex = calcOffset / scrollView.frame.size.width;
     if (currentIndex != _menu.selectedIndex)
     {
         [_menu setCurrentMenuIndex:currentIndex animated:YES];
     }
 }
 
-- (CGRect)frameForPagingScrollView {
-    CGRect frame = self.view.bounds;
-    frame.size.height = MSScreenHeight()-MSStatusBarHeight()-MSNavigationBarHeight()-MSTabBarHeight();
-    frame.origin.x -= _padding;
-    frame.size.width += (2 * _padding);
-    frame.origin.y = _menu.hidden? 0 : kMultiPagingMenuBarHeight;
-    frame.size.height -= _menu.hidden? 0 : kMultiPagingMenuBarHeight;
-    return frame;
-}
-
 # pragma mark - InfoMenuDelegate
 
-- (void)EMMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
+- (void)MSMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
                             atIndex:(NSUInteger)index
 {
     CGPoint origin = CGPointMake([self frameForPageAtIndex:index].origin.x-_padding,
@@ -139,18 +117,6 @@
     }
     
     [_menu setCurrentMenuIndex:index animated:YES];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

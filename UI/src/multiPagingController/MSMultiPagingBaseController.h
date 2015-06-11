@@ -9,18 +9,29 @@
 #import <UIKit/UIKit.h>
 #import "MSViewController.h"
 
-@protocol EMMultiPagingProtocol;
+@protocol MSMultiPagingProtocol;
+@class MSMultiPagingBaseController;
 
 static const NSInteger kMultiPageControllerLoopSize;
 static const NSInteger kMultiPageControllerLoopSizeMax;
 
+
+@protocol EMMultiPagingDataSource <NSObject>
+
+@required
+
+- (NSArray *)titlesOfPages;
+- (int)numberOfPages;
+- (UIViewController <MSMultiPagingProtocol> *)multiPagingController:(MSMultiPagingBaseController *)multiPagingController controllerAtPageIndex:(int)index;
+
+@end
 
 /*
  多页面滚动基类
  */
 @interface MSMultiPagingBaseController : MSViewController <UIScrollViewDelegate> {
     
-    BOOL                _isPagesInited;             // 页面是否初始化
+    BOOL                _isPageIndexInited;         // 页面是否初始化
     int                 _initPageIndex;             // 初始化页面下标，默认0
     
     NSArray             *_pageTitles;               // 资讯标题或个股代码
@@ -33,40 +44,30 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
     
     int                 _currentDisplayPageIndex;   // 当前显示页下标
     
-    int                 _lastDisplayFirstIndex;
-    int                 _lastDisplayLastIndex;
+    int                 _lastDisplayFirstIndex;     // 第一个页面的下标
+    int                 _lastDisplayLastIndex;      // 最有一个页面的下标
     
     CGFloat             _padding;                   // 左右滚动时的边框 默认10
     
-    int                 _isLoop;
+    int                 _isLoop;                    // 是否支持循环滚动
 }
 
-@property (nonatomic, assign, readonly) BOOL isPagesInited;
+@property (nonatomic, assign, readonly) BOOL isPageIndexInited;
 @property (nonatomic, assign, readonly) int isLoop; // 是否循环滚动
 @property (nonatomic, assign, readonly) int loopSize;
 
 @property (nonatomic, assign, readonly) int currentDisplayPageIndex; // 当前显示页下标
-@property (nonatomic, assign, readonly) UIViewController<EMMultiPagingProtocol> *currentDisplayController; // 当前显示的Controller
+@property (nonatomic, assign, readonly) UIViewController<MSMultiPagingProtocol> *currentDisplayController; // 当前显示的Controller
 
 @property (nonatomic, assign) BOOL isPushBack; // 是否pushViewController返回
 
-/*
-   子类必须重写以下三个方法
- - (NSArray *)titlesOfPages;
- - (int)numberOfPages;
- - (UIViewController<EMMultiPagingProtocol> *)controllerAtPageIndex:(int)index;
- */
+@property (nonatomic, assign) id<EMMultiPagingDataSource> dataSource;
 
-// 页面的标题数组
-- (NSArray *)titlesOfPages;
-// 页面总个数
-- (int)numberOfPages;
-// 某一页控制器应该显示
-- (UIViewController<EMMultiPagingProtocol> *)controllerAtPageIndex:(int)index;
+
 
 
 // 取回收的controller
-- (UIViewController<EMMultiPagingProtocol> *)dequeueReusableControllerByClassName:(NSString *)className;
+- (UIViewController<MSMultiPagingProtocol> *)dequeueReusableControllerByClassName:(NSString *)className;
 
 // 直接跳转某页
 - (void)setCurrentPageIndex:(int)page
@@ -76,46 +77,44 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
 // 当前的页面发包和取页面缓存
 - (void)reloadData;
 
-- (NSMutableSet *)getVisibleControllers;
-
 @end
 
 
+
+
 /* 滚动的子controller必须实现*/
-@protocol EMMultiPagingProtocol <NSObject>
+@protocol MSMultiPagingProtocol <NSObject>
 
-@required
-- (void)setMultiPageIndex:(int)index;
-- (int)getMultiPageIndex;
-
-- (MSMultiPagingBaseController *)getMultiPagingController;
-- (void)setMultiPagingController:(MSMultiPagingBaseController *)controller;
-- (UINavigationController *)navigationController;
+@property (nonatomic, assign) NSUInteger multiPageIndex;
+@property (nonatomic, assign) MSMultiPagingBaseController *multiPagingController;
 
 
 // 有一些EMController老的接口, 如果EMController, 则可以杠掉
 - (void)refreshDelay:(CGFloat)interval;
 - (void)cancelRefresh;
 - (void)cancelRequest;
-- (void)requestDatasource;
-- (void)loadCacheData;
 
+- (void)requestDatasource; // 发包操作, 滑动停下后当前页面会调用到
+- (BOOL)loadCacheData; // 读取缓存操作, 滑动停下后当前页面会调用到
 
 @optional
+/**
+ pageViewDidEndDecelerating
+ 滚动停止时调用到，如果不实现，则默认如果当前页,发包requestDataSource, 如果时当前页两边, 取缓存updateResult
+ 
+ pageViewDidAddToScrollView
+ 当page加到scrollView上时调用到, 如果不实现，默认什么也不干
+ 
+ pageViewDidRemoveFromScrollView
+ 当page从scrollView上移除时调用到, 如果不实现，默认什么也不干
+ */
+
 - (void)pageViewDidEndDecelerating:(MSMultiPagingBaseController *)controller;
 - (void)pageViewDidAddToScrollView:(MSMultiPagingBaseController *)controller;
 - (void)pageViewDidRemoveFromScrollView:(MSMultiPagingBaseController *)controller;
 
-/** 
-    pageViewDidEndDecelerating
-    滚动停止时调用到，如果不实现，则默认如果当前页,发包sendPackage, 如果时当前页两边, 取缓存updateResult
- 
-    pageViewDidAddToScrollView
-    当page加到scrollView上时调用到, 如果不实现，默认什么也不干
- 
-    pageViewDidRemoveFromScrollView
-    当page从scrollView上移除时调用到, 如果不实现，默认什么也不干
- */
-- (void)updateResult;
+// 调用multiPagingController的navigationController
+- (UINavigationController *)navigationController;
+
 @end
 

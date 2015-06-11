@@ -19,7 +19,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.enableRefreshHeader = YES;
-        self.enableRefreshFooter = NO;
+        self.enableRefreshFooter = YES;
         self.refreshWhenFirstViewDidAppear = YES;
         self.refreshWhenPushBack = NO;
         _isBackFromPush = NO;

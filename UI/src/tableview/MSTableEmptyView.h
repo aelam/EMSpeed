@@ -11,7 +11,7 @@
 /**
  *  空的View
  */
-@interface MSTableEmptyView : UIView
+@interface MSTableEmptyView : UIControl
 
 @property (nonatomic, strong) UILabel *textlabel;
 @property (nonatomic, strong) UIImageView *iconImageView;

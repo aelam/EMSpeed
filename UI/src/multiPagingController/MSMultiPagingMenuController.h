@@ -11,12 +11,12 @@
 
 
 
-@interface MSMultiPagingMenuController : MSMultiPagingBaseController <EMMultiPagingMenuDelegate> {
+@interface MSMultiPagingMenuController : MSMultiPagingBaseController <MSMultiPagingMenuDelegate> {
     
     MSMultiPagingMenu   *_menu;                     // 标题栏
     BOOL                _isMenuHidden;              // 是否隐藏标题栏
 }
 - (void)setMenuHidden:(BOOL)hidden; // 隐藏菜单
-- (void)EMMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
+- (void)MSMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
                             atIndex:(NSUInteger)index;
 @end

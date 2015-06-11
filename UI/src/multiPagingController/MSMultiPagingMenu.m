@@ -180,8 +180,8 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
 
 - (void)pressEdit:(id)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(EMMultiPagingMenuDidPressedEdit:)]) {
-        [_delegate EMMultiPagingMenuDidPressedEdit:self];
+    if (_delegate && [_delegate respondsToSelector:@selector(MSMultiPagingMenuDidPressedEdit:)]) {
+        [_delegate MSMultiPagingMenuDidPressedEdit:self];
     }
 }
 
@@ -200,8 +200,8 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
         [self layoutSelectedBg];
     }];
     
-    if (_delegate && [_delegate respondsToSelector:@selector(EMMultiPagingMenuDidPressed:atIndex:)]) {
-        [_delegate EMMultiPagingMenuDidPressed:self atIndex:_selectedIndex];
+    if (_delegate && [_delegate respondsToSelector:@selector(MSMultiPagingMenuDidPressed:atIndex:)]) {
+        [_delegate MSMultiPagingMenuDidPressed:self atIndex:_selectedIndex];
     }
 }
 
@@ -297,7 +297,7 @@ const CGFloat kMultiPagingMenuSelectHeight          = 36;
 
 
 
-@implementation EMMultiPagingSelectBgView
+@implementation MSMultiPagingSelectBgView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

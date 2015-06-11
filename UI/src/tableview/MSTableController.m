@@ -70,7 +70,8 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (void)reloadPages:(MSMutableDataSource *)dataSource
 {
     // empty view
-    if (self.autoDisplayEmptyView && [dataSource isEmpty]) {
+    if (self.autoDisplayEmptyView && ([dataSource isEmpty] || dataSource == nil))
+    {
         [self.view addSubview:self.emptyView];
         self.emptyView.hidden = NO;
     }

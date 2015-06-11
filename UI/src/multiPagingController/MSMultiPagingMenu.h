@@ -24,8 +24,8 @@ extern const CGFloat kMultiPagingMenuSelectFiveWordWidth;
 extern const CGFloat kMultiPagingMenuSelectHeight;
 
 
-@protocol EMMultiPagingMenuDelegate;
-@class EMMultiPagingSelectBgView;
+@protocol MSMultiPagingMenuDelegate;
+@class MSMultiPagingSelectBgView;
 
 // 资讯滚动菜单
 // 左边滚动菜单+右边编辑按钮
@@ -42,9 +42,9 @@ extern const CGFloat kMultiPagingMenuSelectHeight;
     UIColor *_selectedColor;
     UIColor *_unselectedColor;
     
-    id<EMMultiPagingMenuDelegate> __unsafe_unretained _delegate;
+    id<MSMultiPagingMenuDelegate> __unsafe_unretained _delegate;
 }
-@property (nonatomic, assign) id<EMMultiPagingMenuDelegate> delegate;
+@property (nonatomic, assign) id<MSMultiPagingMenuDelegate> delegate;
 @property (nonatomic, assign, readonly) NSUInteger selectedIndex;
 @property (nonatomic, strong)　UIColor *selectedColor;
 @property (nonatomic, strong)　UIColor *unselectedColor;
@@ -64,17 +64,17 @@ extern const CGFloat kMultiPagingMenuSelectHeight;
 @end
 
 
-@protocol EMMultiPagingMenuDelegate <NSObject>
+@protocol MSMultiPagingMenuDelegate <NSObject>
 @required
-- (void)EMMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
+- (void)MSMultiPagingMenuDidPressed:(MSMultiPagingMenu *)infoMenu
                           atIndex:(NSUInteger)index;
 @optional
-- (void)EMMultiPagingMenuDidPressedEdit:(MSMultiPagingMenu *)infoMenu;
+- (void)MSMultiPagingMenuDidPressedEdit:(MSMultiPagingMenu *)infoMenu;
 
 @end
 
 
 
-@interface EMMultiPagingSelectBgView : UIView
+@interface MSMultiPagingSelectBgView : UIView
 
 @end
