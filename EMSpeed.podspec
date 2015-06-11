@@ -101,6 +101,7 @@ Pod::Spec.new do |s|
   s.subspec 'ThemeManager' do |cs|
     cs.source_files  = "Theme/**/*.{h,m,c,swift}"
     cs.resources     = "UI/resource/**/*.*"
+    cs.resources     = "Theme/resource/**/*.*"
     cs.dependency 'EMSpeed/Core'
     cs.dependency 'EMSpeed/UI'
   end
