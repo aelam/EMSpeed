@@ -192,7 +192,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
 
 - (UIViewController<MSMultiPagingProtocol> *)currentDisplayController
 {
-    NSAssert(_currentDisplayPageIndex>0 && _isPageIndexInited, @"尚未初始化, 不应该调用这个函数!");
+    NSAssert(_currentDisplayPageIndex>=0 && _isPageIndexInited, @"尚未初始化, 不应该调用这个函数!");
 
     for (UIViewController<MSMultiPagingProtocol> *controller in _visibleControlls) {
         if (controller.multiPageIndex == _currentDisplayPageIndex) {
