@@ -82,8 +82,4 @@ typedef void(^MSGuidScrollCompletion)(void);
 - (void)dismiss;
 
 
-+ (UIView<MSGuideScrollUpdating> *)guidCellForGuidScrollView:(MSGuideScrollView *)guidView
-                                                     atIndex:(int)index
-                                                  withObject:(NSObject<MSGuideScrollModel> *)object;
-
 @end
