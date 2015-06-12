@@ -32,6 +32,7 @@
         _selectedRect = selectedRect;
         [self setNeedsDisplay];
     }
+    
 }
 
 - (void)drawRect:(CGRect)rect
@@ -44,6 +45,9 @@
 
 
 @implementation MSSegmentSelectedIndicatorArrowBar
+
+
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -100,9 +104,15 @@
         CGMutablePathRef path = CGPathCreateMutable();
         
         CGPathMoveToPoint(path, NULL, 0, rect.size.height);
-        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(self.selectedRect)-4, rect.size.height);
-        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(self.selectedRect), rect.size.height - 5);
-        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(self.selectedRect)+4, rect.size.height);
+        
+        CGRect frame = self.selectedRect;
+//        frame.origin.x = 400;
+        
+        NSLog(@"frame = %@", NSStringFromCGRect(frame));
+        
+        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(frame)-4, rect.size.height);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(frame), rect.size.height - 5);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMidX(frame)+4, rect.size.height);
         CGPathAddLineToPoint(path, NULL, rect.size.width, rect.size.height);
         
         [self.indicatorColor setStroke];

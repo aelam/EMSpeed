@@ -54,6 +54,13 @@
 {
     NSUInteger count = [_items count];
     
+    for (UIView *view in _scrollView.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    [_segments removeAllObjects];
+    
+    
     for (int i = 0; i < count; i++)
     {
         UIView<MSSegmentCell> *cell =  [[self segmentCellFactoryClass] segmentCellForSegmentControl:self atIndex:i withObject:[_items objectAtIndex:i]];
@@ -118,6 +125,7 @@
     _scrollView.frame = self.bounds;
     _scrollView.contentSize = CGSizeMake(begin_x, self.frame.size.height);
     _selectedView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
+    
 }
 
 - (void)didTapScrollView:(UITapGestureRecognizer *)recognizer
