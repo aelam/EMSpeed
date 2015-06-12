@@ -57,7 +57,6 @@
             radioBtn.tag = kRadioButtonTag + i;
             radioBtn.isSelected = (i == _selectedIndex);
             [self addSubview:radioBtn];
-            radioBtn.backgroundColor = [UIColor redColor];
             
             [_radios addObject:radioBtn];
         }
@@ -247,7 +246,6 @@
     radioBtn.onImage = onImage ? onImage : [MSRadioButton defaultOnImage];
     radioBtn.offImage = offImage ? offImage : [MSRadioButton defaultOffImage];
     radioBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0);
-    radioBtn.titleLabel.backgroundColor = [UIColor blueColor];
     radioBtn.frame = CGRectMake(0, 0, 50, 20);
     return radioBtn;
 }
