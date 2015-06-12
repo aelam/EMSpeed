@@ -181,5 +181,8 @@ static NSInteger kRadioButtonTag = 100;
                            target:(id)target
                            action:(SEL)selector;
 
++ (UIImage *)defaultOnImage;
++ (UIImage *)defaultOffImage;
+
 @end
 

@@ -57,6 +57,7 @@
             radioBtn.tag = kRadioButtonTag + i;
             radioBtn.isSelected = (i == _selectedIndex);
             [self addSubview:radioBtn];
+            radioBtn.backgroundColor = [UIColor redColor];
             
             [_radios addObject:radioBtn];
         }
@@ -64,6 +65,8 @@
         self.radioGroupEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 20);
         self.countPerRow = 3;
         self.lineHeight = 30;
+        _onImage = [MSRadioButton defaultOnImage];
+        _offImage = [MSRadioButton defaultOffImage];
     }
     return self;
 }
@@ -112,14 +115,20 @@
     }
     
     CGFloat maxTextWidth = [self calculateMaxRaidoTextWidth];
-    CGFloat btnWidth = _onImage.size.width + maxTextWidth;
+    
+    
+    MSRadioButton *radio = nil;
+    
+    if ([_radios count] > 0) {
+        radio = [_radios objectAtIndex:0];
+    }
+    
+    CGFloat btnWidth = _onImage.size.width + maxTextWidth + radio.titleEdgeInsets.left + radio.imageEdgeInsets.right;
     CGFloat lineHeight = self.lineHeight;
     CGFloat btnHeight = 20; // 按钮高度
     CGFloat topY = 0;
-    
-    
+        
     CGFloat btnBetweenSize = floor(_spacing >0 ? _spacing : ((self.frame.size.width - btnWidth * self.countPerRow - self.radioGroupEdgeInsets.left - self.radioGroupEdgeInsets.right) / (self.countPerRow - 1)));
-    
     
     for (int i = 0; i < _titles.count; i ++)
     {
@@ -152,8 +161,11 @@
     CGFloat maxWidth = 0;
     UIFont *font = radio.titleLabel.font;
     for (int i = 0; i < _titles.count; i ++) {
-        CGSize size = [[_titles objectAtIndex:i] sizeWithAttributes:@{NSFontAttributeName:font}];
-        maxWidth = MAX(size.width, maxWidth);
+        NSString *title = [_titles objectAtIndex:i];
+        NSDictionary *dict = @{ NSFontAttributeName : font};
+        CGSize maximumLabelSize = CGSizeMake(self.frame.size.width-10*2, FLT_MAX);
+        CGRect rect = [title boundingRectWithSize:maximumLabelSize options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil];
+        maxWidth = MAX(ceilf(rect.size.width), maxWidth);
     }
     
     CGFloat spaceH = 10; // raido的固定间隔
@@ -235,6 +247,7 @@
     radioBtn.onImage = onImage ? onImage : [MSRadioButton defaultOnImage];
     radioBtn.offImage = offImage ? offImage : [MSRadioButton defaultOffImage];
     radioBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 2, 0, 0);
+    radioBtn.titleLabel.backgroundColor = [UIColor blueColor];
     radioBtn.frame = CGRectMake(0, 0, 50, 20);
     return radioBtn;
 }
