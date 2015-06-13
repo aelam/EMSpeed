@@ -8,29 +8,10 @@
 
 #import "MSHTTPRequestModel.h"
 #import "MSHTTPResponse.h"
-
-static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
+#import "MSHTTPSessionManager.h"
 
 @implementation MSHTTPRequestModel
 @synthesize tasks = _tasks;
-
-+ (void)setNetworkManager:(AFHTTPSessionManager *)networkManager
-{
-    if (networkManager && [networkManager isKindOfClass:[AFHTTPRequestOperationManager class]]) {
-        __MSHTTPSessionManager = networkManager;
-    }
-}
-
-
-+ (AFHTTPSessionManager *)networkManager
-{
-    if (__MSHTTPSessionManager == nil) {
-        __MSHTTPSessionManager = [AFHTTPSessionManager manager];
-        __MSHTTPSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
-    }
-    
-    return __MSHTTPSessionManager;
-}
 
 - (id)init
 {
@@ -68,19 +49,12 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
                         param:(NSDictionary *)param
                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
-    AFHTTPSessionManager *manager = [[self class] networkManager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
     
-    NSURLSessionDataTask *task = [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
-        block(response, task, YES);
-        [self.tasks removeObject:task];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
-        block(response, task, NO);
+    NSURLSessionDataTask *task = [manager GET:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success) {
+        block(response, task, success);
         [self.tasks removeObject:task];
     }];
-    
     [self.tasks addObject:task];
 
     return task;
@@ -91,19 +65,12 @@ static AFHTTPSessionManager *__MSHTTPSessionManager = nil;
                          param:(NSDictionary *)param
                          block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
 {
-    AFHTTPSessionManager *manager = [[self class] networkManager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
     
-    NSURLSessionDataTask *task = [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
-        block(response, task, YES);
-        [self.tasks removeObject:task];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
-        block(response, task, NO);
+    NSURLSessionDataTask *task = [manager POST:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success) {
+        block(response, task, success);
         [self.tasks removeObject:task];
     }];
-    
     [self.tasks addObject:task];
     
     return task;
