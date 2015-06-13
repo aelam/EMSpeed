@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, MSArrowButtonPosition) {
      MSArrowButtonPositionLeft,  // 在文字左侧
      MSArrowButtonPositionRight, // 在文字右侧
      MSArrowButtonPositionDown,  // 在文字下方
-    
+     MSArrowButtonPositionCenter // 剪头在正中间
 };
 
 

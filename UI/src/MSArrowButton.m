@@ -108,6 +108,10 @@
                 begin_x = CGRectGetMidX(self.titleLabel.frame) - 0.5*self.arrowSize.width;
                 begin_y = (self.frame.size.height - self.arrowSize.height -3);
                 break;
+            case MSArrowButtonPositionCenter:
+                begin_x = CGRectGetMidX(self.frame) - self.arrowSize.width/2;
+                begin_y = self.bounds.size.height/2 - self.arrowSize.height/2;
+                break;
         }
     }
     
