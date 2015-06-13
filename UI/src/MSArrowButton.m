@@ -95,6 +95,11 @@
         
         CGRect titleFrame = self.titleLabel.frame;
         
+        
+        if (self.titleLabel.text == nil || [self.titleLabel.text isEqualToString:@""]) {
+            _arrowPos = MSArrowButtonPositionCenter;
+        }
+        
         switch (_arrowPos) {
             case  MSArrowButtonPositionLeft:
                 begin_x = CGRectGetMinX(titleFrame) - self.arrowSize.width - 4;
@@ -109,7 +114,7 @@
                 begin_y = (self.frame.size.height - self.arrowSize.height -3);
                 break;
             case MSArrowButtonPositionCenter:
-                begin_x = CGRectGetMidX(self.frame) - self.arrowSize.width/2;
+                begin_x = CGRectGetWidth(self.frame)/2 - self.arrowSize.width/2;
                 begin_y = self.bounds.size.height/2 - self.arrowSize.height/2;
                 break;
         }
