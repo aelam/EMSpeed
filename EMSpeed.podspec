@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/emoneycn/emspeed"} #, :tag => "#{s.version}" }
+  s.source       = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git"} #, :tag => "#{s.version}" }
 
 
   s.subspec 'Core' do |cs|
