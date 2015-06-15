@@ -12,7 +12,7 @@
 
 @optional
 
-+ (id)modelWithBlock:(void (^)(NSOperation *operation, BOOL success))block;
-- (id)modelWithBlock:(void (^)(NSOperation *operation, BOOL success))block;
++ (id)modelWithBlock:(void (^)(NSURLSessionTask *task, BOOL success))block;
+- (id)modelWithBlock:(void (^)(NSURLSessionTask *task, BOOL success))block;
 
 @end

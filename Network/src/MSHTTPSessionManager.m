@@ -13,31 +13,31 @@
 
 @implementation MSHTTPSessionManager
 
-+ (MSHTTPSessionManager *)manager
++ (MSHTTPSessionManager *)sharedManager
 {
-    static MSHTTPSessionManager *__MSHTTPSessionManager = nil;
+    static MSHTTPSessionManager *__manager = nil;
     @synchronized(self)
     {
-        if (__MSHTTPSessionManager == nil) {
-            __MSHTTPSessionManager = [[[self class] alloc] initWithBaseURL:nil];
-            __MSHTTPSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+        if (__manager == nil) {
+            __manager = [MSHTTPSessionManager manager];
+            __manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
         }
     }
-    return __MSHTTPSessionManager;
+    return __manager;
 }
 
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
+- (NSURLSessionTask *)GET:(NSString *)URLString
                         param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
+                        block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
-    NSURLSessionDataTask *task = [manager GET:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionTask *task = [manager GET:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         block(response, task, YES);
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionTask *task, NSError *error) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];
@@ -46,17 +46,17 @@
 }
 
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
+- (NSURLSessionTask *)POST:(NSString *)URLString
                          param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
+                         block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
-    NSURLSessionDataTask *task = [manager POST:URLString parameters:param success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSURLSessionTask *task = [manager POST:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         block(response, task, YES);
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionTask *task, NSError *error) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];

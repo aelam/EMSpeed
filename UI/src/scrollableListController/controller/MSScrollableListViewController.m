@@ -240,7 +240,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     _scrollableList.isLoading = YES;
     
    NSOperation *operation =
-    [_scrollableList modelWithBlock:^(NSOperation *operation, BOOL success) {
+    [_scrollableList modelWithBlock:^(NSURLSessionTask *task, BOOL success) {
         _scrollableList.isLoading = NO;
         [_operationArray removeObject:operation];
         

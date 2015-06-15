@@ -7,20 +7,20 @@
 //
 
 #import "AFHTTPSessionManager.h"
-
+#import "MSHTTPResponse.h"
 
 @class MSHTTPResponse;
 
 @interface MSHTTPSessionManager : AFHTTPSessionManager
 
-+ (MSHTTPSessionManager *)manager;
++ (MSHTTPSessionManager *)sharedManager;
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
+- (NSURLSessionTask *)GET:(NSString *)URLString
                         param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block;
+                        block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
+- (NSURLSessionTask *)POST:(NSString *)URLString
                          param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block;
+                         block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
 @end

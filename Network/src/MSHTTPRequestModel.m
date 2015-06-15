@@ -29,7 +29,7 @@
 
 - (void)cancelTasks
 {
-    for (NSURLSessionDataTask *task in _tasks) {
+    for (NSURLSessionTask *task in _tasks) {
         [task cancel];
     }
     
@@ -45,13 +45,13 @@
     return _tasks;
 }
 
-- (NSURLSessionDataTask *)GET:(NSString *)URLString
+- (NSURLSessionTask *)GET:(NSString *)URLString
                         param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
+                        block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
-    NSURLSessionDataTask *task = [manager GET:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success) {
+    NSURLSessionTask *task = [manager GET:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         block(response, task, success);
         [self.tasks removeObject:task];
     }];
@@ -61,13 +61,13 @@
 }
 
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString
+- (NSURLSessionTask *)POST:(NSString *)URLString
                          param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success))block
+                         block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager manager];
+    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
-    NSURLSessionDataTask *task = [manager POST:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionDataTask *task, BOOL success) {
+    NSURLSessionTask *task = [manager POST:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         block(response, task, success);
         [self.tasks removeObject:task];
     }];
