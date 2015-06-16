@@ -64,32 +64,28 @@
     __weak MSRefreshTableViewController* weakSelf = self;
     
     if (self.enableRefreshHeader) {
-        [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        
+        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
     }
     
     if (self.enableRefreshFooter) {
-        [self.tableView addLegendFooterWithRefreshingBlock:^{
+        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
     }
-    
-    self.tableView.header.updatedTimeHidden = YES;
 }
 
 - (void)setEnableRefreshHeader:(BOOL)enableRefreshHeader
 {
     __weak MSRefreshTableViewController* weakSelf = self;
     
-    _enableRefreshHeader = enableRefreshHeader;
-    
-    if (self.isViewLoaded) {
-        if (self.enableRefreshHeader) {
-            [self.tableView addGifHeaderWithRefreshingBlock:^{
-                [weakSelf headerRefreshing];
-            }];
-        }
+    if (self.enableRefreshHeader) {
+        
+        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            [weakSelf headerRefreshing];
+        }];
     }
 }
 
@@ -97,14 +93,10 @@
 {
     __weak MSRefreshTableViewController* weakSelf = self;
     
-    _enableRefreshFooter = enableRefreshFooter;
-    
-    if (self.isViewLoaded) {
-        if (self.enableRefreshFooter) {
-            [self.tableView addLegendFooterWithRefreshingBlock:^{
-                [weakSelf footerRefreshing];
-            }];
-        }
+    if (self.enableRefreshFooter) {
+        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf footerRefreshing];
+        }];
     }
 }
 

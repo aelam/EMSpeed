@@ -16,6 +16,9 @@
 
 @interface MSRefreshTableViewController : MSStoryboardTableController {
     BOOL _isBackFromPush;
+    
+    MJRefreshHeader *_refreshHeader;
+    MJRefreshFooter *_refreshFooter;
 }
 
 

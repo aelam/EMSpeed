@@ -55,42 +55,28 @@
     __weak MSRefreshTableController* weakSelf = self;
     
     if (self.enableRefreshHeader) {
-        _refreshHeader = [self.tableView addGifHeaderWithRefreshingBlock:^{
+        
+        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
     }
-    else{
-        _refreshHeader = nil;
-    }
     
     if (self.enableRefreshFooter) {
-        _refreshFooter = [self.tableView addLegendFooterWithRefreshingBlock:^{
+        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
     }
-    else{
-        _refreshFooter = nil;
-    }
-    
-    
-    self.tableView.header.updatedTimeHidden = YES;
 }
 
 - (void)setEnableRefreshHeader:(BOOL)enableRefreshHeader
 {
     __weak MSRefreshTableController* weakSelf = self;
     
-    _enableRefreshHeader = enableRefreshHeader;
-    
-    if (self.isViewLoaded) {
-        if (self.enableRefreshHeader) {
-            _refreshHeader = [self.tableView addGifHeaderWithRefreshingBlock:^{
-                [weakSelf headerRefreshing];
-            }];
-        }
-        else {
-            _refreshHeader = nil;
-        }
+    if (self.enableRefreshHeader) {
+        
+        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            [weakSelf headerRefreshing];
+        }];
     }
 }
 
@@ -98,20 +84,12 @@
 {
     __weak MSRefreshTableController* weakSelf = self;
     
-    _enableRefreshFooter = enableRefreshFooter;
-    
-    if (self.isViewLoaded) {
-        if (self.enableRefreshFooter) {
-            _refreshFooter = [self.tableView addLegendFooterWithRefreshingBlock:^{
-                [weakSelf footerRefreshing];
-            }];
-        }
-        else {
-            _refreshFooter = nil;
-        }
+    if (self.enableRefreshFooter) {
+        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf footerRefreshing];
+        }];
     }
 }
-
 
 - (void)headerRefreshing
 {
