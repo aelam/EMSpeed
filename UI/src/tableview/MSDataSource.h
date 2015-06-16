@@ -128,3 +128,10 @@
 - (BOOL)isEmpty;
 
 @end
+
+
+@interface MSDataSource(creation)
+
+- (instancetype)initWithDatasource:(MSDataSource *)datasource;
+
+@end

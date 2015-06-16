@@ -138,8 +138,14 @@
 
 - (NSString *)titleAtSection:(NSUInteger)section
 {
-    assert(section>=0 && section<[_sections count]);
-    return [_sections objectAtIndex:section];
+    if (section>=0 && section<[_sections count])
+    {
+        return [_sections objectAtIndex:section];
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (NSUInteger)sectionIndexWithTitle:(NSString *)title
@@ -229,3 +235,19 @@
 
 @end
 
+
+
+@implementation MSDataSource(creation)
+
+- (instancetype)initWithDatasource:(MSDataSource *)datasource
+{
+    self = [super init];
+    if (self) {
+        _items = [[self itemsClass] arrayWithArray:datasource.items];
+        _sections = [[self sectionsClass] arrayWithArray:datasource.sections];
+    }
+    return self;
+    
+}
+
+@end

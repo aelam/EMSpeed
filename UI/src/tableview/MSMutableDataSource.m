@@ -162,4 +162,13 @@
 @end
 
 
+@implementation MSMutableDataSource (MSExtendedMutableDatasource)
 
+- (void)addEntriesFromDatasrouce:(MSDataSource *)datasource
+{
+    [_items addObjectsFromArray:datasource.items];
+    [_sections addObjectsFromArray:datasource.sections];
+    
+}
+
+@end

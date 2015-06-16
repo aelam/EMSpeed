@@ -102,3 +102,10 @@
 
 @end
 
+
+
+@interface MSMutableDataSource (MSExtendedMutableDatasource)
+
+- (void)addEntriesFromDatasrouce:(MSDataSource *)datasource;
+
+@end
