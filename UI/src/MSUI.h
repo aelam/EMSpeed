@@ -9,8 +9,8 @@
 #ifndef MyUI_MSUI_h
 #define MyUI_MSUI_h
 
-#import "MSBaseViewController.h"
-#import "MSBaseTableViewController.h"
+#import "MSViewController.h"
+#import "MSTableViewController.h"
 #import "MSCellModel.h"
 #import "MSCellUpdating.h"
 #import "MSDataSource.h"
