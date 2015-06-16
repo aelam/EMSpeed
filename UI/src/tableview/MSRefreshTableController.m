@@ -55,16 +55,23 @@
     __weak MSRefreshTableController* weakSelf = self;
     
     if (self.enableRefreshHeader) {
-        [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        _refreshHeader = [self.tableView addGifHeaderWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
     }
-
+    else{
+        _refreshHeader = nil;
+    }
+    
     if (self.enableRefreshFooter) {
-        [self.tableView addLegendFooterWithRefreshingBlock:^{
+        _refreshFooter = [self.tableView addLegendFooterWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
     }
+    else{
+        _refreshFooter = nil;
+    }
+    
     
     self.tableView.header.updatedTimeHidden = YES;
 }
@@ -77,9 +84,12 @@
     
     if (self.isViewLoaded) {
         if (self.enableRefreshHeader) {
-            [self.tableView addGifHeaderWithRefreshingBlock:^{
+            _refreshHeader = [self.tableView addGifHeaderWithRefreshingBlock:^{
                 [weakSelf headerRefreshing];
             }];
+        }
+        else {
+            _refreshHeader = nil;
         }
     }
 }
@@ -92,9 +102,12 @@
     
     if (self.isViewLoaded) {
         if (self.enableRefreshFooter) {
-            [self.tableView addLegendFooterWithRefreshingBlock:^{
+            _refreshFooter = [self.tableView addLegendFooterWithRefreshingBlock:^{
                 [weakSelf footerRefreshing];
             }];
+        }
+        else {
+            _refreshFooter = nil;
         }
     }
 }

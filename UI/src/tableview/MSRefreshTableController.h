@@ -11,6 +11,9 @@
 
 @interface MSRefreshTableController : MSTableController {
     BOOL _isBackFromPush;
+    
+    MJRefreshHeader *_refreshHeader;
+    MJRefreshFooter *_refreshFooter;
 }
 
 /**

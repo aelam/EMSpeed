@@ -46,6 +46,8 @@ typedef enum
 }
 
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, strong) UILabel *lastUpdatedLabel;
+@property (nonatomic, strong) UILabel *statusLabel;
 
 
 - (id)initWithFrame:(CGRect)frame;

@@ -16,6 +16,8 @@
 @end
 
 @implementation MSRefreshTableHeaderView
+@synthesize lastUpdatedLabel = _lastUpdatedLabel;
+@synthesize statusLabel = _statusLabel;
 
 @synthesize delegate=_delegate;
 
