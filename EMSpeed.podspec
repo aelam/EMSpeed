@@ -93,8 +93,7 @@ Pod::Spec.new do |s|
     cs.dependency 'EMSpeed/StyledPageControl'
 
     cs.dependency 'SDWebImage', '~> 3.7.2'
-    cs.dependency 'MJRefresh', '~> 1.4.6'
-
+    cs.dependency 'MJRefresh', '~> 2.0.1'
 
   end
 
