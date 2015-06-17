@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.name         = "EMSpeed"
   s.version      = "0.0.1"
-  s.summary      = "A short description of EMSpeed."
+  s.summary      = "A fast convenient Library for emoney projects"
 
   s.description  = <<-DESC
                    A longer description of EMSpeed in Markdown format.
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/emoneycn/emspeed.git"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
-
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
@@ -29,7 +28,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "7.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git"} #, :tag => "#{s.version}" }
+  s.source       = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git"}
 
 
   s.subspec 'Core' do |cs|
@@ -52,11 +51,6 @@ Pod::Spec.new do |s|
   s.subspec 'FontAwesome+iOS' do |cs|
     cs.source_files  = "FontAwesome+iOS/**/*.{h,m,c,swift}"
     cs.resources     = "FontAwesome+iOS/resource/**/*.*"
-  end
-
-  s.subspec 'PPiFlatSegmentedControl' do |cs|
-    cs.source_files  = "PPiFlatSegment/**/*.{h,m,c,swift}"
-    cs.resources     = "PPiFlatSegment/resource/**/*.*"
   end
 
   s.subspec 'BDKNotifyHUD' do |cs|
@@ -87,7 +81,6 @@ Pod::Spec.new do |s|
     cs.dependency 'EMSpeed/FontAwesome+iOS'
     cs.dependency 'EMSpeed/MSContext'
 
-#    cs.dependency 'EMSpeed/PPiFlatSegmentedControl'
     cs.dependency 'EMSpeed/BDKNotifyHUD'
     cs.dependency 'EMSpeed/MCSegmentedControl'
     cs.dependency 'EMSpeed/StyledPageControl'
@@ -106,44 +99,7 @@ Pod::Spec.new do |s|
   end
 
 
-
   # s.public_header_files = "Classes/**/*.h"
-
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
-  # s.library   = "iconv"
-  # s.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
-  # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
