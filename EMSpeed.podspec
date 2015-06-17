@@ -87,7 +87,7 @@ Pod::Spec.new do |s|
     cs.dependency 'EMSpeed/FontAwesome+iOS'
     cs.dependency 'EMSpeed/MSContext'
 
-    cs.dependency 'EMSpeed/PPiFlatSegmentedControl'
+#    cs.dependency 'EMSpeed/PPiFlatSegmentedControl'
     cs.dependency 'EMSpeed/BDKNotifyHUD'
     cs.dependency 'EMSpeed/MCSegmentedControl'
     cs.dependency 'EMSpeed/StyledPageControl'
