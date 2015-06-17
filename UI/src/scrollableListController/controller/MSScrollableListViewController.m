@@ -61,6 +61,16 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     return self;
 }
 
+- (instancetype)initWithList:(MSScrollableList *)list
+{
+    self = [self init];
+    if (self) {
+        _scrollableList = list;
+    }
+    
+    return self;
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MSScrollableListCellSelectedNotification object:nil];
@@ -102,6 +112,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     
     [self registerTableViewCell];
     [self setViewConstraints];
+    
 }
 
 - (UIView *)createBackgroundView
@@ -118,7 +129,6 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     titleTableView.contentInset = UIEdgeInsetsZero;
     titleTableView.backgroundView = nil;
     titleTableView.showsVerticalScrollIndicator = NO;
-    [titleTableView setDataSource:self];
     [titleTableView setDelegate:self];
     
     return titleTableView;
@@ -135,7 +145,6 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     contentTableView.showsHorizontalScrollIndicator = NO;
     contentTableView.showsVerticalScrollIndicator = NO;
     contentTableView.autoresizesSubviews = YES;
-    [contentTableView setDataSource:self];
     [contentTableView setDelegate:self];
     
     return contentTableView;
@@ -239,10 +248,10 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 {
     _scrollableList.isLoading = YES;
     
-   NSOperation *operation =
+   NSURLSessionTask *task =
     [_scrollableList modelWithBlock:^(NSURLSessionTask *task, BOOL success) {
         _scrollableList.isLoading = NO;
-        [_operationArray removeObject:operation];
+        [_operationArray removeObject:task];
         
         if (success)
         {
@@ -250,9 +259,9 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
         }
     }];
     
-    if (operation)
+    if (task)
     {
-        [_operationArray addObject:operation];
+        [_operationArray addObject:task];
     }
 }
 
@@ -264,13 +273,24 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
  */
 - (void)reloadDataSource
 {
-    if (self.autoDisplayEmptyView && [_scrollableList isEmpty]) {
-        [self.view addSubview:self.emptyView];
-        self.emptyView.hidden = NO;
+    BOOL showEmptyView = self.autoDisplayEmptyView && [_scrollableList isEmpty];
+    
+    if (showEmptyView) {
+        [self.view addSubview:self.emptyBackgroundView];
+        self.emptyBackgroundView.hidden = NO;
     }
     else{
-        [self emptyView].hidden = YES;
+        self.emptyBackgroundView.hidden = YES;
         [self layoutTableView];
+    
+        if (_titleTableView.dataSource != _scrollableList.titleDataSource) {
+            _titleTableView.dataSource = _scrollableList.titleDataSource;
+        }
+        
+        if (_contentTableView.dataSource != _scrollableList.contentDataSource) {
+            _contentTableView.dataSource = _scrollableList.contentDataSource;
+        }
+        
         [_titleTableView reloadData];
         [_contentTableView reloadData];
     }
@@ -315,90 +335,13 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     _contentHeaderView.frame = CGRectMake(0, 0, contentWidth, headerHeight);
 }
 
-
-#pragma mark -
-#pragma mark UITableView datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    CGFloat numberOfRows = [_scrollableList numberOfRowsInSection:section];
-    return numberOfRows;
-}
-
-/**
- *判断当前加载行是否在缓存数据区间内
- *如果超过了缓存数据区间，记录当前行
- *
- *由于通过 tableview 对象判断，区分应该加载什么数据
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [_scrollableList resetDataWithCurrentRow:indexPath.row];
-
-    if ([tableView isEqual:_titleTableView])
-    {
-        return [self titleTableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-    else
-    {
-        return [self contentTableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-}
-
-- (UITableViewCell *)titleTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    id<MSCellModel> item = [_scrollableList titleItemAtIndexPath:indexPath];
-    return [self tableView:tableView item:item indexPath:indexPath];
-}
-
-- (UITableViewCell *)contentTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    id<MSCellModel> item = [_scrollableList contentItemAtIndexPath:indexPath];
-    return [self tableView:tableView item:item indexPath:indexPath];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-                          item:(id<MSCellModel>)item
-                     indexPath:(NSIndexPath *)indexPath
-{
-    Class class = item.Class;
-    
-    if (class != NULL)
-    {
-        NSString* identifier = NSStringFromClass(class);
-        id cell = (id)[tableView dequeueReusableCellWithIdentifier:identifier];
-        
-        if (cell == nil)
-        {
-            cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        
-        if ([cell respondsToSelector:@selector(update:indexPath:)]) {
-            [cell update:item indexPath:indexPath];
-        }
-        else if ([cell respondsToSelector:@selector(update:)]) {
-            [cell update:item];
-        }
-        
-        if ([cell isKindOfClass:[UITableViewCell class]]) {
-            UITableViewCell *aCell = cell;
-            if ([aCell respondsToSelector:@selector(setLayoutMargins:)]) {
-                aCell.layoutMargins = UIEdgeInsetsZero;
-                aCell.preservesSuperviewLayoutMargins = NO;
-            }
-        }
-        
-        return cell;
-    }
-    else
-    {
-        return [[UITableViewCell alloc] initWithFrame:CGRectZero];
-    }
-}
-
 #pragma mark -
 #pragma mark UITableView delegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_scrollableList resetDataWithCurrentRow:indexPath.row];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -567,24 +510,18 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 # pragma mark - EmptyView
 
-- (UIView *)emptyView
+- (UIView *)emptyBackgroundView
 {
-    if (_emptyView == nil) {
-        _emptyView = [[MSTableEmptyView alloc] initWithFrame:self.view.bounds];
+    if (_emptyBackgroundView == nil) {
+        _emptyBackgroundView = [[MSTableEmptyView alloc] initWithFrame:self.view.bounds];
     }
     
-    return _emptyView;
+    return _emptyBackgroundView;
 }
 
-- (void)setEmptyView:(UIView *)emptyView
+- (void)setEmptyBackgroundView:(UIView *)emptyView
 {
-    _emptyView = emptyView;
-}
-
-
-- (BOOL)isEmpty
-{
-    return [_scrollableList isEmpty];
+    _emptyBackgroundView = emptyView;
 }
 
 

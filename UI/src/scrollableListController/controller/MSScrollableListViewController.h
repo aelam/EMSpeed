@@ -25,7 +25,7 @@ NSString *const MSScrollableListCellHighlightedNotification;
     UIView *_titleHeaderView;
     UIView *_contentHeaderView;
     
-    UIView *_emptyView;
+    UIView *_emptyBackgroundView;
     
     //行情数据左右滚动提示视图
     UILabel *_scrollTipImageViewLeft;
@@ -42,6 +42,7 @@ NSString *const MSScrollableListCellHighlightedNotification;
 
 
 - (instancetype)init;
+- (instancetype)initWithList:(MSScrollableList *)list;
 
 /**
  *请求返回数据后加载数据
