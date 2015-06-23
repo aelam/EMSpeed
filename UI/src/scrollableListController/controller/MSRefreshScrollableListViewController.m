@@ -9,7 +9,7 @@
 #import "MSRefreshScrollableListViewController.h"
 #import "MSNameListItem.h"
 #import "MSContentListItem.h"
-
+#import "MSScrollableList.h"
 
 @interface MSRefreshScrollableListViewController () {
     
@@ -35,7 +35,6 @@
     
     return self;
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -190,9 +189,7 @@
     }
     
     [_scrollableList.contentDataSource appendItems:items atSection:0];
-    
-    
-    [self reloadDataSource];
+    [self reloadPages:_scrollableList];
     
     
     [_refreshFooterView MSRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];

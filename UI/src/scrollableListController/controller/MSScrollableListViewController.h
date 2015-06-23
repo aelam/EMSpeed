@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MSViewController.h"
+#import "MSCellUpdating.h"
 #import "MSScrollableList.h"
 
 NSString *const MSScrollableListCellSelectedNotification;
@@ -22,33 +23,28 @@ NSString *const MSScrollableListCellHighlightedNotification;
     UITableView  *_contentTableView;
     UIScrollView *_contentScrollView;
 
-    UIView *_titleHeaderView;
-    UIView *_contentHeaderView;
+    UIView<MSCellUpdating> *_titleHeaderView;
+    UIView<MSCellUpdating> *_contentHeaderView;
     
-    UIView *_emptyBackgroundView;
+    UIView *_emptyView;
     
     //行情数据左右滚动提示视图
     UILabel *_scrollTipImageViewLeft;
     UILabel *_scrollTipImageViewRight;
     
-    //数据模块，负责数据的收发、数据绘制解析等工作
     MSScrollableList *_scrollableList;
-    
-    NSMutableArray *_operationArray;
 }
 
-
-@property (nonatomic, strong, readonly) MSScrollableList *scrollableList;
-
+@property (nonatomic, strong) MSScrollableList *scrollableList;
 
 - (instancetype)init;
-- (instancetype)initWithList:(MSScrollableList *)list;
 
-/**
- *请求返回数据后加载数据
- *读取缓存数据后加载数据
- */
-- (void)reloadDataSource;
+- (void)reloadPages:(MSScrollableList *)model;
 
+// 子类需要实现的方法
+// 注册tableview cell
+- (void)tableViewDidRegisterTableViewCell;
+// scrollview 停下然后去加载数据
+- (void)loadDataWhenUserDragDown;
 
 @end
