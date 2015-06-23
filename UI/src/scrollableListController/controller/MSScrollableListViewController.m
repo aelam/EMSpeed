@@ -214,9 +214,9 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
                                                                                   views:NSDictionaryOfVariableBindings(_scrollTipImageViewRight)]];
     [_backgroundView addConstraints:tmpConstraints];
     
-    CGFloat titleTableViewWidth = self.scrollableList.titleWidth;
-    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
-                                                subView:_contentScrollView];
+//    CGFloat titleTableViewWidth = self.scrollableList.titleWidth;
+//    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
+//                                                subView:_contentScrollView];
     [self.view ms_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
 }
 

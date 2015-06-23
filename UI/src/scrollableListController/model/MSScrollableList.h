@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MSScrollableProtocol.h"
 #import "MSHTTPRequestModel.h"
+#import "MSSectionViewModel.h"
 
 typedef enum {
     MSScrollableListRequestFirstPage = 0,
@@ -33,8 +34,8 @@ typedef enum {
 @property (nonatomic, strong) MSMutableDataSource *titleDataSource;
 @property (nonatomic, strong) MSMutableDataSource *contentDataSource;
 
-@property (nonatomic, strong) id<MSCellModel> titleHeaderItem;
-@property (nonatomic, strong) id<MSCellModel> contentHeaderItem;
+@property (nonatomic, strong) id<MSSectionViewModel> titleHeaderItem;
+@property (nonatomic, strong) id<MSSectionViewModel> contentHeaderItem;
 
 
 // overwrite
