@@ -26,6 +26,7 @@ NSString *const MSScrollableListCellHighlightedNotification;
     UIView<MSCellUpdating> *_titleHeaderView;
     UIView<MSCellUpdating> *_contentHeaderView;
     
+    BOOL _autoDisplayEmptyView;
     UIView *_emptyView;
     
     //行情数据左右滚动提示视图
@@ -36,6 +37,7 @@ NSString *const MSScrollableListCellHighlightedNotification;
 }
 
 @property (nonatomic, strong) MSScrollableList *scrollableList;
+@property (nonatomic, assign) BOOL autoDisplayEmptyView;
 
 - (instancetype)init;
 

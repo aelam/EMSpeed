@@ -25,16 +25,6 @@ NSString *const MSScrollableListCellSelectedNotification = @"MSScrollableListCel
 NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableListCellHighlightedNotification";
 
 
-@interface MSScrollableListViewController ()
-{
-    BOOL _autoDisplayEmptyView;
-}
-
-@property (nonatomic, assign) BOOL autoDisplayEmptyView;
-
-@end
-
-
 @implementation MSScrollableListViewController
 
 @synthesize scrollableList = _scrollableList;

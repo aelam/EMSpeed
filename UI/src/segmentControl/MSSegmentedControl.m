@@ -303,7 +303,7 @@
     }
     CGFloat begin_x = 0;
     
-    for (int i = 0;  i < [_segments count] ; i++)
+    for (int i = 0;  i < [_items count] ; i++)
     {
         CGFloat cellWidth = width;
         if (_segmentWidths[i] > 0)
