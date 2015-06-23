@@ -133,7 +133,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 - (UITableView *)createContentTableView
 {
-    UITableView *contentTableView = [[UITableView alloc] init];
+    UITableView *contentTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStylePlain];
     contentTableView.backgroundColor = [UIColor clearColor];
     contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     contentTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
