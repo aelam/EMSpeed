@@ -23,7 +23,6 @@ typedef enum {
 @property (nonatomic, assign) float titleWidth;
 @property (nonatomic, assign) float contentWidth;
 @property (nonatomic, assign) float headerHeight;
-@property (nonatomic, assign) float cellHeight;
 
 @property (nonatomic, strong) NSString *URL;
 @property (nonatomic, strong) NSString *nextURL;
@@ -36,6 +35,9 @@ typedef enum {
 
 @property (nonatomic, strong) id<MSSectionViewModel> titleHeaderItem;
 @property (nonatomic, strong) id<MSSectionViewModel> contentHeaderItem;
+
+
+- (float)cellHeightAtIndexPath:(NSIndexPath *)indexPath;
 
 
 // overwrite

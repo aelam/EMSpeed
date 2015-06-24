@@ -315,82 +315,12 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     return numberOfRows;
 }
 
-/**
- *判断当前加载行是否在缓存数据区间内
- *如果超过了缓存数据区间，记录当前行
- *
- *由于通过 tableview 对象判断，区分应该加载什么数据
- */
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([tableView isEqual:_titleTableView])
-    {
-        return [self titleTableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-    else
-    {
-        return [self contentTableView:tableView cellForRowAtIndexPath:indexPath];
-    }
-}
-
-- (UITableViewCell *)titleTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    id<MSCellModel> item = [self.scrollableList titleItemAtIndexPath:indexPath];
-    return [self tableView:tableView item:item indexPath:indexPath];
-}
-
-- (UITableViewCell *)contentTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    id<MSCellModel> item = [self.scrollableList contentItemAtIndexPath:indexPath];
-    return [self tableView:tableView item:item indexPath:indexPath];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-                          item:(id<MSCellModel>)item
-                     indexPath:(NSIndexPath *)indexPath
-{
-    Class class = item.Class;
-    
-    if (class != NULL)
-    {
-        NSString* identifier = NSStringFromClass(class);
-        id cell = (id)[tableView dequeueReusableCellWithIdentifier:identifier];
-        
-        if (cell == nil)
-        {
-            cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        }
-        
-        if ([cell respondsToSelector:@selector(update:indexPath:)]) {
-            [cell update:item indexPath:indexPath];
-        }
-        else if ([cell respondsToSelector:@selector(update:)]) {
-            [cell update:item];
-        }
-        
-        if ([cell isKindOfClass:[UITableViewCell class]]) {
-            UITableViewCell *aCell = cell;
-            if ([aCell respondsToSelector:@selector(setLayoutMargins:)]) {
-                aCell.layoutMargins = UIEdgeInsetsZero;
-                aCell.preservesSuperviewLayoutMargins = NO;
-            }
-        }
-        
-        return cell;
-    }
-    else
-    {
-        return [[UITableViewCell alloc] initWithFrame:CGRectZero];
-    }
-}
-
 #pragma mark -
 #pragma mark UITableView delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.scrollableList.cellHeight;
+    return [self.scrollableList cellHeightAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -475,11 +405,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 {
     if(!decelerate)
     {
-        if ([scrollView isKindOfClass:[UITableView class]])
-        {
-            [self loadDataWhenUserDragDown];
-        }
-        else if ([scrollView isEqual:_contentScrollView])
+        if ([scrollView isEqual:_contentScrollView])
         {
             [self updateScrollTipImageViewStatus];
         }
@@ -488,19 +414,10 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if ([scrollView isKindOfClass:[UITableView class]])
-    {
-        [self loadDataWhenUserDragDown];
-    }
-    else if ([scrollView isEqual:_contentScrollView])
+    if ([scrollView isEqual:_contentScrollView])
     {
         [self updateScrollTipImageViewStatus];
     }
-}
-
-- (void)loadDataWhenUserDragDown
-{
-    // 子类去实现
 }
 
 - (void)updateScrollTipImageViewStatus

@@ -46,7 +46,5 @@ NSString *const MSScrollableListCellHighlightedNotification;
 // 子类需要实现的方法
 // 注册tableview cell
 - (void)tableViewDidRegisterTableViewCell;
-// scrollview 停下然后去加载数据
-- (void)loadDataWhenUserDragDown;
 
 @end

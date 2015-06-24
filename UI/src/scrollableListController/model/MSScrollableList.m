@@ -28,7 +28,6 @@
 @implementation MSScrollableList
 @synthesize titleWidth;
 @synthesize contentWidth;
-@synthesize cellHeight;
 @synthesize titleHeaderItem;
 @synthesize contentHeaderItem;
 @synthesize titleDataSource;
@@ -69,9 +68,9 @@
     self.contentHeaderItem = [[MSScrollableTableContentHeaderItem alloc] init];
 }
 
-- (float)cellHeight
+- (float)cellHeightAtIndexPath:(NSIndexPath *)indexPath
 {
-    id<MSCellModel> item = [self.titleDataSource itemAtIndex:0];
+    id<MSCellModel> item = [self.titleDataSource itemAtIndex:indexPath.row];
     if (item.height > 0) {
         return item.height;
     }
@@ -118,8 +117,6 @@
 //获取列表
 - (void)getFirstPage:(void (^)(MSHTTPResponse *response, BOOL success))block
 {
-    NSLog(@"getFirstPage");
-    
     NSString *URL = self.URL;
     
     if (_task) {
@@ -143,8 +140,6 @@
 //翻页
 - (void)getNextPage:(void (^)(MSHTTPResponse *response, BOOL success))block
 {
-    NSLog(@"getNextPage");
-    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     if (self.hasNextPage) {
@@ -152,8 +147,14 @@
             params[@"lastid"] = self.lastId;
         }else{
             block(nil, NO);
+            return;
         }
     }
+    else{
+        block(nil, NO);
+        return;
+    }
+    
     NSString *URL = self.nextURL ? self.nextURL : self.URL;
     
     if (_task) {
@@ -178,31 +179,34 @@
 //新增
 - (void)getRefresh:(void (^)(MSHTTPResponse *response, BOOL success))block
 {
-    NSLog(@"getRefresh");
-    
-    NSString *URL = self.URL;
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
     if (self.topId) {
-        params[@"topId"] = self.topId;
-    }
-    
-    if (_task) {
-        [_tasks removeObject:_task];
-        [_task cancel];
-        _task = nil;
-    }
-    
-    _task = [self GET:URL param:params block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
-        BOOL flag = NO;
-        if (success) {
-            flag = [self parseHTTPResponse:response URL:URL requestType:MSScrollableListRequestRefresh];
+        NSString *URL = self.URL;
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        
+        if (self.topId) {
+            params[@"topId"] = self.topId;
         }
-        block(response, success && flag);
-        [_tasks removeObject:task];
-    }];
-    
-    [_tasks addObject:_task];
+        
+        if (_task) {
+            [_tasks removeObject:_task];
+            [_task cancel];
+            _task = nil;
+        }
+        
+        _task = [self GET:URL param:params block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+            BOOL flag = NO;
+            if (success) {
+                flag = [self parseHTTPResponse:response URL:URL requestType:MSScrollableListRequestRefresh];
+            }
+            block(response, success && flag);
+            [_tasks removeObject:task];
+        }];
+        
+        [_tasks addObject:_task];
+    }
+    else{
+        block(nil, NO);
+    }
 }
 
 

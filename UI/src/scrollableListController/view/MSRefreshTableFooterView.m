@@ -108,9 +108,14 @@
 }
 
 - (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
+    [self performSelector:@selector(finishedLoading:) withObject:scrollView afterDelay:.5f];
     
+}
+
+
+- (void)finishedLoading:(UIScrollView *)scrollView {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.6];
+    [UIView setAnimationDuration:.2f];
     [UIView setAnimationBeginsFromCurrentState:YES];
     UIEdgeInsets e = scrollView.contentInset;
     e.bottom = 0;

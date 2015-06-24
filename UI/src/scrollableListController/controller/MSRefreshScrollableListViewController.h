@@ -11,10 +11,20 @@
 #import "MSRefreshTableFooterView.h"
 
 @interface MSRefreshScrollableListViewController : MSScrollableListViewController <MSRefreshTableHeaderViewDelegate, MSRefreshTableFooterViewDelegate> {
-
+    
+    //下拉刷新
+    MSRefreshTableHeaderView *_refreshHeaderView;
+    MSRefreshTableFooterView *_refreshFooterView;
+    BOOL _hasHeaderRefresh; //是否可下拉刷新数据，默认为yes
+    BOOL _hasFooterRefresh;
+    
+    
+    BOOL _isRefreshViewReloading;  //用户标记当前是否在请求数据
+    
 }
 
-
-
+// subclass overwrite
+- (void)headerRefreshing;
+- (void)footerRefreshing;
 
 @end

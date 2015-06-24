@@ -18,7 +18,6 @@
 @implementation MSRefreshTableHeaderView
 @synthesize lastUpdatedLabel = _lastUpdatedLabel;
 @synthesize statusLabel = _statusLabel;
-
 @synthesize delegate=_delegate;
 
 - (id)initWithFrame:(CGRect)frame
@@ -211,7 +210,12 @@
 }
 
 - (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
+    [self performSelector:@selector(finishedLoading:) withObject:scrollView afterDelay:.25f];
     
+}
+
+- (void)finishedLoading:(UIScrollView *)scrollView
+{
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationBeginsFromCurrentState:YES];

@@ -13,12 +13,6 @@
 
 @interface MSRefreshScrollableListViewController () {
     
-    //下拉刷新
-    MSRefreshTableHeaderView *_refreshHeaderView;
-    MSRefreshTableFooterView *_refreshFooterView;
-    BOOL _hasHeaderRefresh; //是否可下拉刷新数据，默认为yes
-    BOOL _hasFooterRefresh;
-    BOOL _reloading;  //用户标记当前是否在请求数据
 }
 
 @end
@@ -63,6 +57,7 @@
     {
         if (NO == _refreshFooterView.hidden) {
             [_refreshFooterView MSRefreshScrollViewDidScroll:scrollView];
+            [self loadRefreshFooterView];
         }
     }
 }
@@ -132,6 +127,7 @@
             _refreshFooterView.autoresizingMask = UIViewAutoresizingNone;
             _refreshFooterView.delegate = self;
             [_titleTableView addSubview:_refreshFooterView];
+            _refreshFooterView.lastUpdatedLabel.hidden = YES;
         }
         else{
             _refreshFooterView.frame = CGRectMake(0.0f, height, self.view.frame.size.width, MSRefreshTableHeaderView_HEIGHT);
@@ -149,65 +145,27 @@
     [self loadRefreshFooterView];
 }
 
-- (void)requestDatasource
-{
-    [self headerRefreshing];
-}
-
 - (void)headerRefreshing
 {
-    [self performSelector:@selector(finishRefreshHeaderLoading) withObject:nil afterDelay:0.5f];
+    // subclass overwrite
 }
 
 - (void)footerRefreshing
 {
-    [self performSelector:@selector(finishMorePageLoading) withObject:nil afterDelay:0.5f];
-}
-
-- (void)finishRefreshHeaderLoading
-{
-    [_refreshHeaderView MSRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
-    _reloading = NO;
-}
-
-- (void)finishMorePageLoading
-{
-    int numberOfItems = 5;
-    NSMutableArray *items = [NSMutableArray array];
-    for (int i=0; i<numberOfItems; i++) {
-        MSNameListItem *item = [[MSNameListItem alloc] init];
-        [items addObject:item];
-    }
-    
-    [_scrollableList.titleDataSource appendItems:items atSection:0];
-    
-    
-    items = [NSMutableArray array];
-    for (int i=0; i<numberOfItems; i++) {
-        MSContentListItem *item = [[MSContentListItem alloc] init];
-        [items addObject:item];
-    }
-    
-    [_scrollableList.contentDataSource appendItems:items atSection:0];
-    [self reloadPages:_scrollableList];
-    
-    
-    [_refreshFooterView MSRefreshScrollViewDataSourceDidFinishedLoading:_contentTableView];
-    _reloading = NO;
-    
+    // subclass overwrite
 }
 
 # pragma mark - refresh header delegate
 
 - (void)MSRefreshTableHeaderDidTriggerRefresh:(MSRefreshTableHeaderView*)view
 {
-    _reloading = YES;
-    [self requestDatasource];
+    _isRefreshViewReloading = YES;
+    [self headerRefreshing];
 }
 
 - (BOOL)MSRefreshTableHeaderDataSourceIsLoading:(MSRefreshTableHeaderView*)view
 {
-    return _reloading; // should return if data source model is reloading
+    return _isRefreshViewReloading; // should return if data source model is reloading
 }
 
 - (NSDate*)MSRefreshTableHeaderDataSourceLastUpdated:(MSRefreshTableHeaderView*)view
@@ -220,13 +178,13 @@
 
 - (void)emRefreshTableFooterDidTriggerRefresh:(MSRefreshTableFooterView*)view
 {
-    _reloading = YES;
+    _isRefreshViewReloading = YES;
     [self footerRefreshing];
 }
 
 - (BOOL)emRefreshTableFooterDataSourceIsLoading:(MSRefreshTableFooterView*)view
 {
-    return _reloading;
+    return _isRefreshViewReloading;
 }
 
 - (NSDate*)emRefreshTableFooterDataSourceLastUpdated:(MSRefreshTableFooterView*)view
