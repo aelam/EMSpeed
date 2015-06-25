@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 flora. All rights reserved.
 //
 
-#import "MSScrollableListViewController.h"
+#import "MSSpreadViewController.h"
 #import "MSBorderView.h"
 #import "UIView+AutoLayout.h"
 #import "UIImage+FontAwesome.h"
@@ -15,17 +15,17 @@
 #import "MSPriceHeaderButton.h"
 #import "MSCellModel.h"
 #import "MSCellUpdating.h"
-#import "MSScrollableCellProtocol.h"
+#import "MSSpreadCellProtocol.h"
 #import "MSTableEmptyView.h"
 
 #define kScrollTipLabelSize CGSizeMake(10, 24)
 #define kDefaultHeaderHeight 30
 
-NSString *const MSScrollableListCellSelectedNotification = @"MSScrollableListCellSelectedNotification";
-NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableListCellHighlightedNotification";
+NSString *const MSSpreadModelCellSelectedNotification = @"MSSpreadModelCellSelectedNotification";
+NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHighlightedNotification";
 
 
-@implementation MSScrollableListViewController
+@implementation MSSpreadViewController
 
 @synthesize scrollableList = _scrollableList;
 
@@ -47,8 +47,8 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     if (self) {
         self.autoDisplayEmptyView = YES;
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeSelectStatus:) name:MSScrollableListCellSelectedNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeHighligtedStatus:) name:MSScrollableListCellHighlightedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeSelectStatus:) name:MSSpreadModelCellSelectedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeHighligtedStatus:) name:MSSpreadModelCellHighlightedNotification object:nil];
         
     }
     return self;
@@ -56,8 +56,8 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSScrollableListCellSelectedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSScrollableListCellHighlightedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSSpreadModelCellSelectedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSSpreadModelCellHighlightedNotification object:nil];
 }
 
 - (void)loadView
@@ -240,7 +240,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
     _contentTableView.frame = curRect;
 }
 
-- (void)reloadPages:(MSScrollableList *)model
+- (void)reloadPages:(MSSpreadModel *)model
 {
     if (self.autoDisplayEmptyView && [self.scrollableList isEmpty]) {
         [self.view addSubview:self.emptyView];
@@ -440,7 +440,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 - (void)didCellChangeSelectStatus:(NSNotification *)notification
 {
-    UITableViewCell<MSScrollableCellProtocol> *currentCell = notification.object;
+    UITableViewCell<MSSpreadCellProtocol> *currentCell = notification.object;
     
     UITableView *otherTableView = currentCell.isTitleTableViewCell ? _contentTableView : _titleTableView;
     
@@ -456,7 +456,7 @@ NSString *const MSScrollableListCellHighlightedNotification = @"MSScrollableList
 
 - (void)didCellChangeHighligtedStatus:(NSNotification *)notification
 {
-    UITableViewCell<MSScrollableCellProtocol> *currentCell = notification.object;
+    UITableViewCell<MSSpreadCellProtocol> *currentCell = notification.object;
     UITableView *otherTableView = currentCell.isTitleTableViewCell ? _contentTableView : _titleTableView;
     
     UITableViewCell *cell = [otherTableView cellForRowAtIndexPath:currentCell.indexPath];

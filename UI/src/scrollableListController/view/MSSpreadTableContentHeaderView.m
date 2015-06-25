@@ -1,14 +1,14 @@
 //
-//  EMScrollableTableTitleView.m
+//  EMSpreadTableTitleView.m
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-11.
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSScrollableTableContentHeaderView.h"
+#import "MSSpreadTableContentHeaderView.h"
 
-@implementation MSScrollableTableContentHeaderItem
+@implementation MSSpreadTableContentHeaderItem
 
 @synthesize height;
 @synthesize Class;
@@ -20,8 +20,8 @@
     self = [super init];
     if (self) {
         self.height = 30;
-        self.Class = [MSScrollableTableContentHeaderView class];
-        self.reuseIdentify = @"MSScrollableTableContentHeaderView";
+        self.Class = [MSSpreadTableContentHeaderView class];
+        self.reuseIdentify = @"MSSpreadTableContentHeaderView";
         self.isRegisterByClass = NO;
     }
     
@@ -31,7 +31,7 @@
 @end
 
 
-@implementation MSScrollableTableContentHeaderView
+@implementation MSSpreadTableContentHeaderView
 
 - (void)awakeFromNib
 {

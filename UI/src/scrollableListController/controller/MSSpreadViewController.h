@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MSViewController.h"
 #import "MSCellUpdating.h"
-#import "MSScrollableList.h"
+#import "MSSpreadModel.h"
 
-NSString *const MSScrollableListCellSelectedNotification;
-NSString *const MSScrollableListCellHighlightedNotification;
+NSString *const MSSpreadModelCellSelectedNotification;
+NSString *const MSSpreadModelCellHighlightedNotification;
 
-@interface MSScrollableListViewController : MSViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MSSpreadViewController : MSViewController <UITableViewDelegate, UITableViewDataSource>
 {
     UIEdgeInsets _contentInsets;
     
@@ -33,15 +33,15 @@ NSString *const MSScrollableListCellHighlightedNotification;
     UILabel *_scrollTipImageViewLeft;
     UILabel *_scrollTipImageViewRight;
     
-    MSScrollableList *_scrollableList;
+    MSSpreadModel *_scrollableList;
 }
 
-@property (nonatomic, strong) MSScrollableList *scrollableList;
+@property (nonatomic, strong) MSSpreadModel *scrollableList;
 @property (nonatomic, assign) BOOL autoDisplayEmptyView;
 
 - (instancetype)init;
 
-- (void)reloadPages:(MSScrollableList *)model;
+- (void)reloadPages:(MSSpreadModel *)model;
 
 // 子类需要实现的方法
 // 注册tableview cell

@@ -1,5 +1,5 @@
 //
-//  MSScrollableCellProtocol.h
+//  MSSpreadCellProtocol.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-extern NSString *const MSScrollableListCellSelectedNotification;
-extern NSString *const MSScrollableListCellHighlightedNotification;
+extern NSString *const MSSpreadModelCellSelectedNotification;
+extern NSString *const MSSpreadModelCellHighlightedNotification;
 
 
-@protocol MSScrollableCellProtocol <NSObject>
+@protocol MSSpreadCellProtocol <NSObject>
 
 @property (nonatomic, assign) BOOL isTitleTableViewCell; //
 @property (nonatomic, strong) NSIndexPath *indexPath;
@@ -31,7 +31,7 @@ extern NSString *const MSScrollableListCellHighlightedNotification;
  if(self.selected == selected)
  return;
  [super setSelected:selected animated:animated];
- [[NSNotificationCenter defaultCenter] postNotificationName:EMScrollableListCellSelectedNotification object:self];
+ [[NSNotificationCenter defaultCenter] postNotificationName:EMSpreadCellSelectedNotification object:self];
  }
  
  - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
@@ -39,7 +39,7 @@ extern NSString *const MSScrollableListCellHighlightedNotification;
  if(self.highlighted == highlighted)
  return;
  [super setHighlighted:highlighted animated:animated];
- [[NSNotificationCenter defaultCenter] postNotificationName:EMScrollableListCellHighlightedNotification object:self];
+ [[NSNotificationCenter defaultCenter] postNotificationName:EMSpreadCellHighlightedNotification object:self];
  }
  
  */

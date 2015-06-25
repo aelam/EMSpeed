@@ -1,23 +1,23 @@
 //
-//  EMRefreshScrollableListViewController.m
+//  EMRefreshSpreadViewController.m
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-13.
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSRefreshScrollableListViewController.h"
+#import "MSRefreshSpreadViewController.h"
 #import "MSNameListItem.h"
 #import "MSContentListItem.h"
-#import "MSScrollableList.h"
+#import "MSSpreadModel.h"
 
-@interface MSRefreshScrollableListViewController () {
+@interface MSRefreshSpreadViewController () {
     
 }
 
 @end
 
-@implementation MSRefreshScrollableListViewController
+@implementation MSRefreshSpreadViewController
 
 - (id)init
 {

@@ -1,5 +1,5 @@
 //
-//  MSScrollableProtocol.h
+//  MSSpreadProtocol.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.
@@ -12,7 +12,7 @@
 
 @protocol MSCellModel;
 
-@protocol MSScrollableProtocol <MSModelProtocol>
+@protocol MSSpreadProtocol <MSModelProtocol>
 
 @required
 

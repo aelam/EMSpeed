@@ -1,5 +1,5 @@
 //
-//  EMScrollableList.h
+//  EMSpread.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.
@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MSScrollableProtocol.h"
+#import "MSSpreadProtocol.h"
 #import "MSHTTPRequestModel.h"
 #import "MSSectionViewModel.h"
 
 typedef enum {
-    MSScrollableListRequestFirstPage = 0,
-    MSScrollableListRequestNextPage = 1,
-    MSScrollableListRequestRefresh = 2,
+    MSSpreadModelRequestFirstPage = 0,
+    MSSpreadModelRequestNextPage = 1,
+    MSSpreadModelRequestRefresh = 2,
     
-} MSScrollableListRequestType;
+} MSSpreadModelRequestType;
 
-@interface MSScrollableList : MSHTTPRequestModel <MSScrollableProtocol>
+@interface MSSpreadModel : MSHTTPRequestModel <MSSpreadProtocol>
 
 @property (nonatomic, assign) float titleWidth;
 @property (nonatomic, assign) float contentWidth;

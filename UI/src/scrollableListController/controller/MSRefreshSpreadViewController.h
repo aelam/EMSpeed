@@ -1,16 +1,16 @@
 //
-//  EMRefreshScrollableListViewController.h
+//  EMRefreshSpreadViewController.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-13.
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSScrollableListViewController.h"
+#import "MSSpreadViewController.h"
 #import "MSRefreshTableHeaderView.h"
 #import "MSRefreshTableFooterView.h"
 
-@interface MSRefreshScrollableListViewController : MSScrollableListViewController <MSRefreshTableHeaderViewDelegate, MSRefreshTableFooterViewDelegate> {
+@interface MSRefreshSpreadViewController : MSSpreadViewController <MSRefreshTableHeaderViewDelegate, MSRefreshTableFooterViewDelegate> {
     
     //下拉刷新
     MSRefreshTableHeaderView *_refreshHeaderView;

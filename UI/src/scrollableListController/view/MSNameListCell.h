@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "MSCellUpdating.h"
-#import "MSScrollableCellProtocol.h"
+#import "MSSpreadCellProtocol.h"
 
-@interface MSNameListCell : UITableViewCell <MSCellUpdating, MSScrollableCellProtocol>
+@interface MSNameListCell : UITableViewCell <MSCellUpdating, MSSpreadCellProtocol>
 
 @end

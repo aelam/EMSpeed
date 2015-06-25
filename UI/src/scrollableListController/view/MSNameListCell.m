@@ -47,7 +47,7 @@
     if(self.selected == selected)
         return;
     [super setSelected:selected animated:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MSScrollableListCellSelectedNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSSpreadModelCellSelectedNotification object:self];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
@@ -55,7 +55,7 @@
     if(self.highlighted == highlighted)
         return;
     [super setHighlighted:highlighted animated:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:MSScrollableListCellHighlightedNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:MSSpreadModelCellHighlightedNotification object:self];
 }
 
 @end

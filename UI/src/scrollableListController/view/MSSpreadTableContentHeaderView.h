@@ -1,5 +1,5 @@
 //
-//  EMScrollableTableTitleView.h
+//  EMSpreadTableTitleView.h
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-11.
@@ -11,10 +11,10 @@
 #import "MSBorderView.h"
 
 
-@interface MSScrollableTableContentHeaderItem : NSObject <MSCellModel>
+@interface MSSpreadTableContentHeaderItem : NSObject <MSCellModel>
 
 @end
 
-@interface MSScrollableTableContentHeaderView : MSBorderView
+@interface MSSpreadTableContentHeaderView : MSBorderView
 
 @end

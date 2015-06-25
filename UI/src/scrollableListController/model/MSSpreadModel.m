@@ -1,16 +1,16 @@
 //
-//  EMScrollableList.m
+//  EMSpread.m
 //  UIDemo
 //
 //  Created by Mac mini 2012 on 15-5-8.
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
-#import "MSScrollableList.h"
+#import "MSSpreadModel.h"
 #import "MSNameListItem.h"
 #import "MSContentListItem.h"
-#import "MSScrollableTableTitleHeaderView.h"
-#import "MSScrollableTableContentHeaderView.h"
+#import "MSSpreadTableTitleHeaderView.h"
+#import "MSSpreadTableContentHeaderView.h"
 #import "MSCellModel.h"
 #import "MSContext.h"
 #import "MSCoreMetrics.h"
@@ -18,14 +18,14 @@
 #define kDefaultCellHeight 44
 #define kDefaultHeaderHeight 30
 
-@interface MSScrollableList() {
+@interface MSSpreadModel() {
     NSURLSessionTask *_task;
 }
 
 @end
 
 
-@implementation MSScrollableList
+@implementation MSSpreadModel
 @synthesize titleWidth;
 @synthesize contentWidth;
 @synthesize titleHeaderItem;
@@ -64,8 +64,8 @@
     
     self.contentDataSource = [[MSMutableDataSource alloc] initWithItems:@[items] sections:@[@""]];
     
-    self.titleHeaderItem = [[MSScrollableTableTitleHeaderItem alloc] init];
-    self.contentHeaderItem = [[MSScrollableTableContentHeaderItem alloc] init];
+    self.titleHeaderItem = [[MSSpreadTableTitleHeaderItem alloc] init];
+    self.contentHeaderItem = [[MSSpreadTableContentHeaderItem alloc] init];
 }
 
 - (float)cellHeightAtIndexPath:(NSIndexPath *)indexPath
@@ -128,7 +128,7 @@
     _task = [self GET:URL param:nil block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         BOOL flag = NO;
         if (success) {
-            flag = [self parseHTTPResponse:response URL:URL requestType:MSScrollableListRequestFirstPage];
+            flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestFirstPage];
         }
         block(response, success && flag);
         [_tasks removeObject:task];
@@ -167,7 +167,7 @@
         self.hasNextPage = NO;
         BOOL flag = NO;
         if (success) {
-            flag = [self parseHTTPResponse:response URL:URL requestType:MSScrollableListRequestNextPage];
+            flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestNextPage];
         }
         block(response, success && flag);
         [_tasks removeObject:task];
@@ -196,7 +196,7 @@
         _task = [self GET:URL param:params block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
             BOOL flag = NO;
             if (success) {
-                flag = [self parseHTTPResponse:response URL:URL requestType:MSScrollableListRequestRefresh];
+                flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestRefresh];
             }
             block(response, success && flag);
             [_tasks removeObject:task];
@@ -212,7 +212,7 @@
 
 - (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
-              requestType:(MSScrollableListRequestType)type
+              requestType:(MSSpreadModelRequestType)type
 {
     return NO;
 }
