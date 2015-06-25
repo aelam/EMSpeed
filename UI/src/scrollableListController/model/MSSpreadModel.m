@@ -128,7 +128,7 @@
     _task = [self GET:URL param:nil block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         BOOL flag = NO;
         if (success) {
-            flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestFirstPage];
+            flag = [self parseFirstPageResponse:response];
         }
         block(response, success && flag);
         [_tasks removeObject:task];
@@ -167,7 +167,7 @@
         self.hasNextPage = NO;
         BOOL flag = NO;
         if (success) {
-            flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestNextPage];
+            flag = [self parseNextPageResponse:response];
         }
         block(response, success && flag);
         [_tasks removeObject:task];
@@ -196,7 +196,7 @@
         _task = [self GET:URL param:params block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
             BOOL flag = NO;
             if (success) {
-                flag = [self parseHTTPResponse:response URL:URL requestType:MSSpreadModelRequestRefresh];
+                flag = [self parseRefreshResponse:response];
             }
             block(response, success && flag);
             [_tasks removeObject:task];
@@ -210,9 +210,17 @@
 }
 
 
-- (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
-                      URL:(NSString *)URLString
-              requestType:(MSSpreadModelRequestType)type
+- (BOOL)parseFirstPageResponse:(MSHTTPResponse *)response
+{
+    return NO;
+}
+
+- (BOOL)parseRefreshResponse:(MSHTTPResponse *)response
+{
+    return NO;
+}
+
+- (BOOL)parseNextPageResponse:(MSHTTPResponse *)response
 {
     return NO;
 }

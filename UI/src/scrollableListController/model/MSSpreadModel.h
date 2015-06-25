@@ -11,12 +11,6 @@
 #import "MSHTTPRequestModel.h"
 #import "MSSectionViewModel.h"
 
-typedef enum {
-    MSSpreadModelRequestFirstPage = 0,
-    MSSpreadModelRequestNextPage = 1,
-    MSSpreadModelRequestRefresh = 2,
-    
-} MSSpreadModelRequestType;
 
 @interface MSSpreadModel : MSHTTPRequestModel <MSSpreadProtocol>
 
@@ -52,5 +46,10 @@ typedef enum {
 
 //新增
 - (void)getRefresh:(void (^)(MSHTTPResponse *response, BOOL success))block;
+
+
+- (BOOL)parseFirstPageResponse:(MSHTTPResponse *)response;
+- (BOOL)parseRefreshResponse:(MSHTTPResponse *)response;
+- (BOOL)parseNextPageResponse:(MSHTTPResponse *)response;
 
 @end
