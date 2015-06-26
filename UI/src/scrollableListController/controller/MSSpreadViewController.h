@@ -33,10 +33,10 @@ NSString *const MSSpreadModelCellHighlightedNotification;
     UILabel *_scrollTipImageViewLeft;
     UILabel *_scrollTipImageViewRight;
     
-    MSSpreadModel *_scrollableList;
+    MSSpreadModel *_spreadModel;
 }
 
-@property (nonatomic, strong) MSSpreadModel *scrollableList;
+@property (nonatomic, strong) MSSpreadModel *spreadModel;
 @property (nonatomic, assign) BOOL autoDisplayEmptyView;
 
 - (instancetype)init;

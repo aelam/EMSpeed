@@ -22,7 +22,6 @@
 @property (nonatomic, strong) NSString *nextURL;
 @property (nonatomic, strong) NSString *topId;
 @property (nonatomic, strong) NSString *lastId;
-@property (nonatomic, assign) BOOL hasNextPage;
 
 @property (nonatomic, strong) MSMutableDataSource *titleDataSource;
 @property (nonatomic, strong) MSMutableDataSource *contentDataSource;
@@ -48,6 +47,7 @@
 - (void)getRefresh:(void (^)(MSHTTPResponse *response, BOOL success))block;
 
 
+// overwrite
 - (BOOL)parseFirstPageResponse:(MSHTTPResponse *)response;
 - (BOOL)parseRefreshResponse:(MSHTTPResponse *)response;
 - (BOOL)parseNextPageResponse:(MSHTTPResponse *)response;

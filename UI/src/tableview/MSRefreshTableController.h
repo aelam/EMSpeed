@@ -23,7 +23,7 @@
 
 
 /**
- *  上拉刷新, 初始化时设置, 默认NO,
+ *  上拉刷新, 初始化时设置, 默认YES
  */
 @property (nonatomic, assign) BOOL enableRefreshFooter;
 

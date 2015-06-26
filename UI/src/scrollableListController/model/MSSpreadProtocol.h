@@ -23,9 +23,6 @@
 - (BOOL)isCached;
 - (BOOL)resetDataWithCurrentRow:(NSInteger)row;
 
-- (id<MSCellModel>)titleItemAtIndexPath:(NSIndexPath *)indexPath;
-- (id<MSCellModel>)contentItemAtIndexPath:(NSIndexPath *)indexPath;
-
 - (NSArray *)visiableItems;
 - (int)currentSelectedIndex:(NSIndexPath *)indexPath;
 
@@ -37,8 +34,5 @@
 - (CGFloat)contentCellHeightAtIndex:(NSIndexPath *)indexPath;
 
 - (BOOL)isEmpty;
-
-@optional
-- (BOOL)hasMorePages; // 是否有下一页
 
 @end

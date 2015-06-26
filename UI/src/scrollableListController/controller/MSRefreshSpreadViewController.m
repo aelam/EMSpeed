@@ -23,8 +23,8 @@
 {
     self = [super init];
     if (self) {
-        _hasHeaderRefresh = YES;
-        _hasFooterRefresh = YES;
+        _enableRefreshHeader = YES;
+        _enableRefreshFooter = YES;
     }
     
     return self;
@@ -36,6 +36,17 @@
     [self loadRefreshFooterView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.refreshWhenFirstViewDidAppear || (_isBackFromPush && self.refreshWhenPushBack)) {
+        self.refreshWhenFirstViewDidAppear = NO;
+        [self headerRefreshing];
+    }
+    _isBackFromPush = NO;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -45,7 +56,7 @@
 {
     [super scrollViewDidScroll:scrollView];
     
-    if (_hasHeaderRefresh)
+    if (_enableRefreshHeader)
     {
         if (NO == _refreshHeaderView.hidden)
         {
@@ -53,7 +64,7 @@
         }
     }
     
-    if (_hasFooterRefresh)
+    if (_enableRefreshFooter)
     {
         if (NO == _refreshFooterView.hidden) {
             [_refreshFooterView MSRefreshScrollViewDidScroll:scrollView];
@@ -67,11 +78,11 @@
 {
     [super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     
-    if (_hasHeaderRefresh && [scrollView isKindOfClass:[UITableView class]])
+    if (_enableRefreshHeader && [scrollView isKindOfClass:[UITableView class]])
     {
         if (!_refreshHeaderView)
         {
-            NSAssert(_refreshHeaderView, @"_refreshHeaderView doesnot create when _hasHeaderRefresh is set yes");
+            NSAssert(_refreshHeaderView, @"_refreshHeaderView doesnot create when _enableRefreshHeader is set yes");
         }
         if (NO == _refreshHeaderView.hidden)
         {
@@ -79,12 +90,11 @@
         }
     }
     
-    
-    if (_hasFooterRefresh && [scrollView isKindOfClass:[UITableView class]])
+    if (_enableRefreshFooter && [scrollView isKindOfClass:[UITableView class]])
     {
         if (!_refreshFooterView)
         {
-            NSAssert(_refreshFooterView, @"_refreshFooterView doesnot create when _hasFooterRefresh is set yes");
+            NSAssert(_refreshFooterView, @"_refreshFooterView doesnot create when _enableRefreshFooter is set yes");
         }
         if (NO == _refreshFooterView.hidden)
         {
@@ -98,7 +108,7 @@
 #pragma mark EMRefreshTableHeaderDelegate Methods
 - (void)loadRefreshHeaderView
 {
-    if (_hasHeaderRefresh)
+    if (_enableRefreshHeader)
     {
         if (_refreshHeaderView == nil && _titleTableView)
         {
@@ -117,7 +127,7 @@
 
 - (void)loadRefreshFooterView
 {
-    if (_hasFooterRefresh)
+    if (_enableRefreshFooter)
     {
         CGFloat height = MAX(_titleTableView.contentSize.height, _titleTableView.frame.size.height);
         if (_refreshFooterView == nil && _titleTableView)
@@ -137,6 +147,18 @@
     {
         _refreshFooterView.hidden = YES;
     }
+}
+
+- (void)setEnableRefreshFooter:(BOOL)enableRefreshFooter
+{
+    _enableRefreshFooter = enableRefreshFooter;
+    [self loadRefreshFooterView];
+}
+
+- (void)setEnableRefreshHeader:(BOOL)enableRefreshHeader
+{
+    _enableRefreshHeader = enableRefreshHeader;
+    [self loadRefreshHeaderView];
 }
 
 - (void)viewDidLayoutSubviews

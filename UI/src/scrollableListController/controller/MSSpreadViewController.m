@@ -27,7 +27,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 @implementation MSSpreadViewController
 
-@synthesize scrollableList = _scrollableList;
+@synthesize spreadModel = _spreadModel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -115,7 +115,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     titleTableView.contentInset = UIEdgeInsetsZero;
     titleTableView.backgroundView = nil;
     titleTableView.showsVerticalScrollIndicator = NO;
-    [titleTableView setDataSource:self];
+    [titleTableView setDataSource:nil];
     [titleTableView setDelegate:self];
     
     return titleTableView;
@@ -132,7 +132,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     contentTableView.showsHorizontalScrollIndicator = NO;
     contentTableView.showsVerticalScrollIndicator = NO;
     contentTableView.autoresizesSubviews = YES;
-    [contentTableView setDataSource:self];
+    [contentTableView setDataSource:nil];
     [contentTableView setDelegate:self];
     
     return contentTableView;
@@ -150,7 +150,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 - (UILabel *)createLeftScrollTipLabel
 {
     CGSize tipSize = kScrollTipLabelSize;
-    CGFloat originX = self.scrollableList.titleWidth;
+    CGFloat originX = self.spreadModel.titleWidth;
     CGFloat originY = 0;
     CGPoint origin = CGPointMake(originX, originY);
     
@@ -190,7 +190,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 - (void)setViewConstraints
 {
     CGSize tipSize = kScrollTipLabelSize;
-    CGFloat headerHeight = self.scrollableList.headerHeight;
+    CGFloat headerHeight = self.spreadModel.headerHeight;
     if (headerHeight==0) {
         headerHeight = kDefaultHeaderHeight;
     }
@@ -214,7 +214,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
                                                                                   views:NSDictionaryOfVariableBindings(_scrollTipImageViewRight)]];
     [_backgroundView addConstraints:tmpConstraints];
     
-//    CGFloat titleTableViewWidth = self.scrollableList.titleWidth;
+//    CGFloat titleTableViewWidth = self.spreadModel.titleWidth;
 //    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
 //                                                subView:_contentScrollView];
     [self.view ms_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
@@ -233,16 +233,16 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     int height = curRect.size.height;
     _titleTableView.frame = CGRectMake(0, 0, width, height);
     
-    _contentScrollView.frame = CGRectMake(self.scrollableList.titleWidth, 0, width - self.scrollableList.titleWidth, height);
+    _contentScrollView.frame = CGRectMake(self.spreadModel.titleWidth, 0, width - self.spreadModel.titleWidth, height);
     curRect.origin = CGPointZero;
     curRect.size.width = MAX(_contentScrollView.contentSize.width, _contentScrollView.frame.size.width);
-    curRect.size.height = MAX(_contentScrollView.contentSize.height, _contentScrollView.frame.size.height);
+    curRect.size.height = _contentScrollView.frame.size.height;
     _contentTableView.frame = curRect;
 }
 
 - (void)reloadPages:(MSSpreadModel *)model
 {
-    if (self.autoDisplayEmptyView && [self.scrollableList isEmpty]) {
+    if (self.autoDisplayEmptyView && [self.spreadModel isEmpty]) {
         [self.view addSubview:self.emptyView];
         self.emptyView.hidden = NO;
     }
@@ -271,9 +271,9 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
  */
 - (BOOL)loadCachedData
 {
-    if ([self.scrollableList isCached])
+    if ([self.spreadModel isCached])
     {
-        [self reloadPages:self.scrollableList];
+        [self reloadPages:self.spreadModel];
     }
     
     return NO;
@@ -287,7 +287,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 - (void)layoutTableViews
 {
-    CGFloat contentWidth = self.scrollableList.contentWidth;
+    CGFloat contentWidth = self.spreadModel.contentWidth;
     
     CGRect contentRect = _contentTableView.frame;
     contentRect.size.width = contentWidth;
@@ -297,22 +297,12 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 -(void)layoutTableViewHeader
 {
-    CGFloat headerHeight = self.scrollableList.headerHeight;
-    CGFloat titleWidth = self.scrollableList.titleWidth;
-    CGFloat contentWidth = self.scrollableList.contentWidth;
+    CGFloat headerHeight = self.spreadModel.headerHeight;
+    CGFloat titleWidth = self.spreadModel.titleWidth;
+    CGFloat contentWidth = self.spreadModel.contentWidth;
     
     _titleHeaderView.frame = CGRectMake(0, 0, titleWidth, headerHeight);
     _contentHeaderView.frame = CGRectMake(0, 0, contentWidth, headerHeight);
-}
-
-
-#pragma mark -
-#pragma mark UITableView datasource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    CGFloat numberOfRows = [self.scrollableList numberOfRowsInSection:section];
-    return numberOfRows;
 }
 
 #pragma mark -
@@ -320,12 +310,12 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.scrollableList cellHeightAtIndexPath:indexPath];
+    return [self.spreadModel cellHeightAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.scrollableList.headerHeight;
+    return self.spreadModel.headerHeight;
 }
 
 - (UIView *)headerWithTableView:(UITableView *)tableView
@@ -352,13 +342,13 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     {
         if (_titleHeaderView == nil) {
             UIView *view = [self headerWithTableView:tableView
-                                                item:self.scrollableList.titleHeaderItem
-                                              height:self.scrollableList.headerHeight];
+                                                item:self.spreadModel.titleHeaderItem
+                                              height:self.spreadModel.headerHeight];
             
             _titleHeaderView = view;
         }
         
-        [_titleHeaderView update:self.scrollableList.titleHeaderItem];
+        [_titleHeaderView update:self.spreadModel.titleHeaderItem];
         
         return _titleHeaderView;
     }
@@ -366,12 +356,12 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     {
         if (_contentHeaderView == nil) {
             UIView *view = [self headerWithTableView:tableView
-                                        item:self.scrollableList.contentHeaderItem
-                                      height:self.scrollableList.headerHeight];
+                                        item:self.spreadModel.contentHeaderItem
+                                      height:self.spreadModel.headerHeight];
             _contentHeaderView = view;
         }
         
-        [_contentHeaderView update:self.scrollableList.contentHeaderItem];
+        [_contentHeaderView update:self.spreadModel.contentHeaderItem];
         return _contentHeaderView;
     }
 }
@@ -482,7 +472,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 - (BOOL)isEmpty
 {
-    return [self.scrollableList isEmpty];
+    return [self.spreadModel isEmpty];
 }
 
 
