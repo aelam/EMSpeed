@@ -7,8 +7,6 @@
 //
 
 #import "MSSpreadModel.h"
-#import "MSNameListItem.h"
-#import "MSContentListItem.h"
 #import "MSSpreadTableTitleHeaderView.h"
 #import "MSSpreadTableContentHeaderView.h"
 #import "MSCellModel.h"

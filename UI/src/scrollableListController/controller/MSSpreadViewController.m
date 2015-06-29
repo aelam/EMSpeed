@@ -183,8 +183,6 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 - (void)tableViewDidRegisterTableViewCell
 {
-    [_titleTableView registerNib:[UINib nibWithNibName:@"MSNameListCell" bundle:nil] forCellReuseIdentifier:@"MSNameListCell"];
-    [_contentTableView registerNib:[UINib nibWithNibName:@"MSContentListCell" bundle:nil] forCellReuseIdentifier:@"MSContentListCell"];
 }
 
 - (void)setViewConstraints
