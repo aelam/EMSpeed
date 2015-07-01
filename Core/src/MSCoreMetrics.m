@@ -78,7 +78,7 @@ CGFloat MSAdjustedWH(CGFloat wh)
 
 CGFloat MSDefaultValueWidth(UIFont *font)
 {
-    NSString *string = @"888.88";
+    NSString *string = @"-10.00%";
     NSDictionary *attributes = @{NSFontAttributeName: font};
     return [string sizeWithAttributes:attributes].width;
 }
