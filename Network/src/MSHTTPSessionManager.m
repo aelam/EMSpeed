@@ -10,6 +10,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "MSHTTPResponse.h"
 
+NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.emstock.task.failed";
 
 @implementation MSHTTPSessionManager
 
@@ -38,6 +39,7 @@
         block(response, task, YES);
         
     } failure:^(NSURLSessionTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MSHTTPSessionManagerTaskDidFailedNotification object:task];
         MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];
@@ -57,6 +59,7 @@
         block(response, task, YES);
         
     } failure:^(NSURLSessionTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MSHTTPSessionManagerTaskDidFailedNotification object:task];
         MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
         block(response, task, NO);
     }];

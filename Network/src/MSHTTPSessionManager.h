@@ -11,6 +11,10 @@
 
 @class MSHTTPResponse;
 
+
+NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
+
+
 @interface MSHTTPSessionManager : AFHTTPSessionManager
 
 + (MSHTTPSessionManager *)sharedManager;
