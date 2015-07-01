@@ -21,7 +21,7 @@ BOOL MSIsPadUserInterface(void)
 
 BOOL MSIsPadDevice(void)
 {
-    return [[UIDevice currentDevice].model containsString:@"Pad"];
+    return [[UIDevice currentDevice].model rangeOfString:@"Pad"].location != NSNotFound;
 }
 
 BOOL MSIsPhone(void)
