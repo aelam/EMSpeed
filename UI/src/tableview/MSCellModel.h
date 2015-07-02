@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+//@synthesize Class;
+//@synthesize reuseIdentify;
+//@synthesize height;
+//@synthesize isRegisterByClass;
 
 
 /**

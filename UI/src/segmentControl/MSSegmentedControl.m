@@ -25,6 +25,7 @@
 
 @interface MSSegmentedControl()
 {
+    UIColor *_indicatorBackgroundColor;
 }
 
 @end
@@ -61,6 +62,7 @@
 
 - (void)setIndicatorBackgroundColor:(UIColor *)color
 {
+    _indicatorBackgroundColor = color;
     _selectedView.indicatorBackgroundColor = color;
 }
 
@@ -204,14 +206,25 @@
     _selectedIndicatorStyle = style;
     _selectedView.style = style;
     
-    if (_selectedView) {
-        [_selectedView removeFromSuperview];
-    }
-    
-    _selectedView = [[[self selectedViewClassWithStyle:style] alloc] init];
-    [self addSubview:_selectedView];
+    [self updateSelectView];
     
     [self updateItems];
+}
+
+- (void)updateSelectView
+{
+    Class selectClass = [self selectedViewClassWithStyle:_selectedIndicatorStyle];
+    if (selectClass != [_selectedView class])
+    {
+        if (_selectedView) {
+            [_selectedView removeFromSuperview];
+        }
+        
+        _selectedView = [[[self selectedViewClassWithStyle:_selectedIndicatorStyle] alloc] init];
+        _selectedView.indicatorBackgroundColor = _indicatorBackgroundColor;
+        _selectedView.style = _selectedIndicatorStyle;
+        [self addSubview:_selectedView];
+    }
 }
 
 
@@ -223,7 +236,7 @@
     else if (style == MSselectedIndicatorStyleMenuContent) {
         return [MSSegmentSelectedIndicatorArrowLine class];
     }
-
+    
     // add more style here...
     
     return nil;
@@ -249,7 +262,7 @@
 {
     CGFloat maxTitleWidth = 0;
     NSUInteger count = [_items count];
-
+    
     for (int i = 0; i < count; i++)
     {
         id object = [_items objectAtIndex:i];
@@ -295,7 +308,7 @@
             averageCount++;
         }
     }
-
+    
     CGFloat width = 0;
     if (averageCount)
     {
@@ -314,7 +327,7 @@
         UIView<MSSegmentCell> *view = [_segments objectAtIndex:i];
         view.frame = CGRectMake(begin_x, 0, cellWidth, self.frame.size.height);
         begin_x += cellWidth;
-
+        
         if (i == _selectedSegmentIndex)
         {
             CGRect frame = view.frame;

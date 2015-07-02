@@ -17,6 +17,7 @@
      indexPath:(NSIndexPath *)aIndexPath
 {
     self.indexPath = aIndexPath;
+    [self update:cellModel];
 }
 
 - (void)update:(id<MSCellModel>)cellModel

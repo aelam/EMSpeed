@@ -11,12 +11,16 @@
 #import "MSCore.h"
 
 @implementation MSSrollSegmentedControl
-
+{
+    BOOL _didNeedsScrollToSelectedView;
+}
 - (instancetype)initWithItems:(NSArray *)items
 {
     self = [super init];
     if (self) {
         // Initialization code
+        self.backgroundColor = RGB(0xff, 0xff, 0xff);
+        
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.backgroundColor = self.backgroundColor;
         _scrollView.showsHorizontalScrollIndicator = NO;
@@ -24,22 +28,15 @@
         _scrollView.pagingEnabled = YES;
         _scrollView.bounces = NO;
         [self addSubview:_scrollView];
-        
-        _selectedView = [[MSSegmentSelectedIndicatorView alloc] init];
-        _selectedView.backgroundColor = [UIColor clearColor];
-        [_scrollView addSubview:_selectedView];
+        self.selectedIndicatorStyle = MSselectedIndicatorStyleMenuTitle;
         
         _segments = [[NSMutableArray alloc] init];
         self.items = items;
-        
-        self.selectedIndicatorStyle = MSselectedIndicatorStyleMenuTitle;
         
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapScrollView:)];
         recognizer.delegate = self;
         recognizer.numberOfTapsRequired = 1;
         [_scrollView addGestureRecognizer:recognizer];
-        
-        self.backgroundColor = RGB(0xff, 0xff, 0xff);
     }
     return self;
 }
@@ -50,11 +47,26 @@
     _scrollView.backgroundColor = backgroundColor;
 }
 
+- (void)updateSelectView
+{
+    Class selectClass = [self selectedViewClassWithStyle:self.selectedIndicatorStyle];
+    if (_selectedView == nil || selectClass != [_selectedView class])
+    {
+        if (_selectedView) {
+            [_selectedView removeFromSuperview];
+        }
+        
+        _selectedView = [[selectClass alloc] init];
+        _selectedView.style = self.selectedIndicatorStyle;
+        [_scrollView addSubview:_selectedView];
+    }
+}
+
 - (void)updateItems
 {
     NSUInteger count = [_items count];
     
-    for (UIView *view in _scrollView.subviews) {
+    for (UIView *view in _segments) {
         [view removeFromSuperview];
     }
     
@@ -76,14 +88,21 @@
     
     [_scrollView bringSubviewToFront:_selectedView];
     [self setNeedsLayout];
+    _didNeedsScrollToSelectedView = YES;
+}
+
+- (void)setSelectedSegmentIndex:(NSInteger)selectedSegmentIndex
+{
+    _didNeedsScrollToSelectedView = YES;
+    [super setSelectedSegmentIndex:selectedSegmentIndex];
 }
 
 /**
  *每一页显示的个数
  */
-- (NSUInteger)itemsCountOfOnePage
+- (CGFloat)itemsCountOfOnePage
 {
-    NSUInteger countOfOnePage =  [_segments count];
+    CGFloat countOfOnePage =  [_segments count];
     
     if (countOfOnePage > self.pageMaxCount && self.pageMaxCount > 0)
     {
@@ -108,6 +127,7 @@
         if (i == self.selectedSegmentIndex)
         {
             _selectedView.selectedRect = view.frame;
+            //判断当前view是否显示
         }
         if (self.didNeedsSeperateLine && [view respondsToSelector:@selector(seperateLayer)])
         {
@@ -123,23 +143,31 @@
     }
     
     _scrollView.frame = self.bounds;
-    _scrollView.contentSize = CGSizeMake(begin_x, self.frame.size.height);
+    _scrollView.contentSize = CGSizeMake(MAX(begin_x, _scrollView.frame.size.width), self.frame.size.height);
     _selectedView.frame = CGRectMake(0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height);
     
+    if (_didNeedsScrollToSelectedView)
+    {
+        _didNeedsScrollToSelectedView = NO;
+        CGRect visibleRect = CGRectMake(_scrollView.contentOffset.x, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+        if (CGRectContainsRect(visibleRect, _selectedView.selectedRect) == NO)
+        {//当前选中项没显示，滚动到中间
+            [_scrollView scrollRectToVisible:_selectedView.selectedRect animated:NO];
+        }
+    }
 }
 
 - (void)didTapScrollView:(UITapGestureRecognizer *)recognizer
 {
     CGPoint location = [recognizer locationInView:_scrollView];
-
+    
     NSInteger pageCount =  [self itemsCountOfOnePage];
     CGFloat width = self.frame.size.width / pageCount;
     NSUInteger index = (int)(location.x/width);
-
+    
     if (self.selectedSegmentIndex != index)
     {
         self.selectedSegmentIndex = index;
-        [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
     
 }

@@ -18,7 +18,7 @@
     if (self) {
         self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor clearColor];
-        self.indicatorBackgroundColor = RGB(0x8e, 0x8e, 0x8e);
+        self.indicatorBackgroundColor = RGB(0xf8,0xf8, 0xf8);
         self.indicatorColor = RGB(0x46, 0x90, 0xef);
         self.borderColor = RGB(0xe5, 0xe5, 0xe5);
     }
@@ -37,7 +37,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-   // do nothing subclass implement
+    // do nothing subclass implement
     
 }
 
@@ -106,7 +106,7 @@
         CGPathMoveToPoint(path, NULL, 0, rect.size.height);
         
         CGRect frame = self.selectedRect;
-//        frame.origin.x = 400;
+        //        frame.origin.x = 400;
         
         NSLog(@"frame = %@", NSStringFromCGRect(frame));
         

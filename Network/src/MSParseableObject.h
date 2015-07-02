@@ -36,13 +36,23 @@
 
 
 /**
- *  解析JSON数据, 
+ *  解析JSON数据,
  *
  *  @param info JSON数据
  *
  *  @return 对象
  */
 - (instancetype)parse:(NSDictionary *)info;
+
+/**
+ *  解析JSON数据,
+ *
+ *  @param info JSON数据
+ *  @param options 预留
+ *
+ *  @return 对象
+ */
+- (instancetype)parse:(NSDictionary *)info options:(NSUInteger)options;
 
 @end
 

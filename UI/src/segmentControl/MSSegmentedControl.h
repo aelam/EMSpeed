@@ -88,6 +88,23 @@ enum {
 - (void)updateItems;
 
 - (Class)segmentCellFactoryClass;
+
+/**
+ *更新选中效果视图，一般当 selectedIndicatorStyle 重置时，系统会执行方法更新
+ *子类可通过复写方法做自定义修改
+ */
+- (void)updateSelectView;
+
+/**
+ *  根据当前类型返回对应选中视图的class
+ *
+ *  @param style 类型
+ *
+ *  @return 选中效果视图class
+ */
+- (Class)selectedViewClassWithStyle:(MSSegmentSelectedIndicatorStyle)style;
+
+
 @end
 
 

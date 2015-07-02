@@ -165,6 +165,12 @@
     [self loadRefreshFooterView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self headerRefreshing];
+}
+
 - (void)headerRefreshing
 {
     // subclass overwrite

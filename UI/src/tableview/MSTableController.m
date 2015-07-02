@@ -76,7 +76,7 @@ const CGFloat kMMCellDefaultHeight = 44;
         self.emptyView.hidden = NO;
     }
     else{
-        [self emptyView].hidden = YES;
+        _emptyView.hidden = YES;
     }
     
     // datasource
@@ -129,7 +129,7 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (UIView *)emptyView
 {
     if (_emptyView == nil) {
-        _emptyView = [[MSTableEmptyView alloc] initWithFrame:self.view.bounds];
+        _emptyView = [[MSTableEmptyView alloc] initWithFrame:_tableView.frame];
     }
     
     return _emptyView;

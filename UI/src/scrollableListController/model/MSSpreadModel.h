@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *nextURL;
 @property (nonatomic, strong) NSString *topId;
 @property (nonatomic, strong) NSString *lastId;
+@property (nonatomic, assign) BOOL hasNextPage;
 
 @property (nonatomic, strong) MSMutableDataSource *titleDataSource;
 @property (nonatomic, strong) MSMutableDataSource *contentDataSource;
@@ -51,5 +52,18 @@
 - (BOOL)parseFirstPageResponse:(MSHTTPResponse *)response;
 - (BOOL)parseRefreshResponse:(MSHTTPResponse *)response;
 - (BOOL)parseNextPageResponse:(MSHTTPResponse *)response;
+
+
+
+/**
+ *数据请求参数，默认无参数，子类需要复写方法配制参数
+ */
+- (NSDictionary *)parameters;
+
+/**
+ *翻页请求参数，默认返回parameters
+ */
+- (NSDictionary *)nextPageParameters;
+
 
 @end

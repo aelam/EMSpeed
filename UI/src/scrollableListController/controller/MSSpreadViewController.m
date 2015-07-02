@@ -167,7 +167,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     CGFloat originY = 0;
     UILabel *scrollTipImageViewRight = [self scrollTipLabel:FAIconAngleRight];
     scrollTipImageViewRight.frame = CGRectMake(self.view.frame.size.width - tipSize.width, originY, tipSize.width, tipSize.height);
-    
+    scrollTipImageViewRight.hidden = YES;
     return scrollTipImageViewRight;
 }
 
@@ -212,9 +212,9 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
                                                                                   views:NSDictionaryOfVariableBindings(_scrollTipImageViewRight)]];
     [_backgroundView addConstraints:tmpConstraints];
     
-//    CGFloat titleTableViewWidth = self.spreadModel.titleWidth;
-//    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
-//                                                subView:_contentScrollView];
+    //    CGFloat titleTableViewWidth = self.spreadModel.titleWidth;
+    //    [_backgroundView ms_addConstraintsWithContentInsets:UIEdgeInsetsMake(0, titleTableViewWidth, 0, 0)
+    //                                                subView:_contentScrollView];
     [self.view ms_addConstraintsWithContentInsets:_contentInsets subView:_backgroundView];
 }
 
@@ -245,15 +245,15 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
         self.emptyView.hidden = NO;
     }
     else{
-        [self emptyView].hidden = YES;
+        _emptyView.hidden = YES;
         
-//        if (_titleTableView.dataSource != model.titleDataSource) {
-            _titleTableView.dataSource = model.titleDataSource;
-//        }
-    
-//        if (_contentTableView.dataSource != model.contentDataSource) {
-            _contentTableView.dataSource = model.contentDataSource;
-//        }
+        //        if (_titleTableView.dataSource != model.titleDataSource) {
+        _titleTableView.dataSource = model.titleDataSource;
+        //        }
+        
+        //        if (_contentTableView.dataSource != model.contentDataSource) {
+        _contentTableView.dataSource = model.contentDataSource;
+        //        }
         
         [self layoutTableView];
         
@@ -354,8 +354,8 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     {
         if (_contentHeaderView == nil) {
             UIView *view = [self headerWithTableView:tableView
-                                        item:self.spreadModel.contentHeaderItem
-                                      height:self.spreadModel.headerHeight];
+                                                item:self.spreadModel.contentHeaderItem
+                                              height:self.spreadModel.headerHeight];
             _contentHeaderView = view;
         }
         
@@ -389,7 +389,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
-				  willDecelerate:(BOOL)decelerate
+                  willDecelerate:(BOOL)decelerate
 {
     if(!decelerate)
     {
@@ -448,7 +448,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     UITableView *otherTableView = currentCell.isTitleTableViewCell ? _contentTableView : _titleTableView;
     
     UITableViewCell *cell = [otherTableView cellForRowAtIndexPath:currentCell.indexPath];
-	[cell setHighlighted:currentCell.highlighted];
+    [cell setHighlighted:currentCell.highlighted];
 }
 
 # pragma mark - EmptyView

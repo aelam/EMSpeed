@@ -22,7 +22,7 @@ NSString *const MSSpreadModelCellHighlightedNotification;
     UITableView  *_titleTableView;
     UITableView  *_contentTableView;
     UIScrollView *_contentScrollView;
-
+    
     UIView<MSCellUpdating> *_titleHeaderView;
     UIView<MSCellUpdating> *_contentHeaderView;
     
@@ -46,5 +46,8 @@ NSString *const MSSpreadModelCellHighlightedNotification;
 // 子类需要实现的方法
 // 注册tableview cell
 - (void)tableViewDidRegisterTableViewCell;
+
+- (void)updateScrollTipImageViewStatus;
+
 
 @end
