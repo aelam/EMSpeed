@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSTableController.h"
+#import "MSRefreshTableController.h"
 #import "MMInfoCell.h"
 @class MMInfoModel;
-@interface MMInfoViewController : MSTableController <MMInfoCellDelegate> {
+@interface MMInfoViewController : MSRefreshTableController <MMInfoCellDelegate> {
     MMInfoModel *_model;
 }
 

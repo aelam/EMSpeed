@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 flora. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #ifdef __cplusplus
 extern "C" {

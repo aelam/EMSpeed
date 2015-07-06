@@ -13,7 +13,6 @@
 #import "MSContext.h"
 #import "MSSrollSegmentedControl.h"
 #import "MSThemeSrollSegmentedControl.h"
-#import "PPiFlatSegmentedControl.h"
 
 @implementation MSSegmentViewController
 
@@ -25,11 +24,6 @@
     [self createSegment2];
     [self createSegment3];
     [self createSegment4];
-    [self createSegment5];
-    [self createSegment6];
-    [self createSegment7];
-    [self createSegment8];
-    [self createSegment9];
 }
 
 - (void)createSegment1
@@ -83,112 +77,6 @@
     [segment4 addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventTouchUpInside];
     segment4.pageMaxCount = 4;
     [self.view addSubview:segment4];
-}
-
-- (void)createSegment5
-{
-    NSArray *items = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"Face" andIcon:@"icon-facebook"],
-                       [[PPiFlatSegmentItem alloc] initWithTitle:@"Linkedin" andIcon:@"icon-linkedin"],
-                       [[PPiFlatSegmentItem alloc] initWithTitle:@"Twitter" andIcon:@"icon-twitter"]];
-    PPiFlatSegmentedControl *segmented5=[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(20, 160, 250, 30)
-                                                                                 items:items
-                                                                          iconPosition:IconPositionRight
-                                                                     andSelectionBlock:^(NSUInteger segmentIndex) {}
-                                                                        iconSeparation:5];
-    segmented5.color=[UIColor colorWithRed:88.0f/255.0 green:88.0f/255.0 blue:88.0f/255.0 alpha:1];
-    segmented5.borderWidth=0.5;
-    segmented5.borderColor= [UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-    segmented5.selectedColor=[UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:147.0f/255.0 alpha:1];
-    segmented5.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-    segmented5.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.view addSubview:segmented5];
-}
-
-- (void)createSegment6
-{
-    NSArray *items2 = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"Linkedin" andIcon:@"icon-linkedin"],
-                        [[PPiFlatSegmentItem alloc] initWithTitle:@"Twitter" andIcon:@"icon-twitter"]];
-    PPiFlatSegmentedControl *segmented6=[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(20, 200, 250, 30)
-                                                                                 items:items2
-                                                                          iconPosition:IconPositionRight
-                                                                     andSelectionBlock:^(NSUInteger segmentIndex) { }
-                                                                        iconSeparation:5];
-    segmented6.color=[UIColor whiteColor];
-    segmented6.borderWidth=0.5;
-    segmented6.borderColor=[UIColor colorWithRed:244.0f/255.0 green:67.0f/255.0 blue:60.0f/255.0 alpha:1];
-    segmented6.selectedColor=[UIColor colorWithRed:244.0f/255.0 green:67.0f/255.0 blue:60.0f/255.0 alpha:1];
-    segmented6.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                NSForegroundColorAttributeName:[UIColor colorWithRed:244.0f/255.0 green:67.0f/255.0 blue:60.0f/255.0 alpha:1]};
-    segmented6.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.view addSubview:segmented6];
-}
-
-- (void)createSegment7
-{
-    NSArray *items2 = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"Linkedin" andIcon:@"icon-linkedin"],
-                         [[PPiFlatSegmentItem alloc] initWithTitle:@"Twitter" andIcon:@"icon-twitter"]];
-    NSArray *items3 = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"Facebook" andIcon:@"icon-facebook"],
-                        [[PPiFlatSegmentItem alloc] initWithTitle:@"Twitter" andIcon:@"icon-twitter"],
-                        [[PPiFlatSegmentItem alloc] initWithTitle:@"Cloud" andIcon:@"icon-cloud"]];
-    PPiFlatSegmentedControl *segmented7=[[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(20, 240, 250, 30)
-                                                                                 items:items3
-                                                                          iconPosition:IconPositionRight
-                                                                     andSelectionBlock:^(NSUInteger segmentIndex) {}
-                                                                        iconSeparation:0];
-    segmented7.color=[UIColor colorWithRed:88.0f/255.0 green:88.0f/255.0 blue:88.0f/255.0 alpha:1];
-    segmented7.borderWidth=0.5;
-    segmented7.borderColor=[UIColor darkGrayColor];
-    segmented7.selectedColor=[UIColor colorWithRed:0.0f/255.0 green:141.0f/255.0 blue:176.0f/255.0 alpha:1];
-    segmented7.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-    segmented7.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.view addSubview:segmented7];
-    [segmented7 setItems:items2];
-}
-
-- (void)createSegment8
-{
-    PPiFlatSegmentedControl *segmented8 = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(20, 280, 250, 30)
-                                                                                   items:@[[[PPiFlatSegmentItem alloc] initWithTitle:NSLocalizedString(@"Friends", nil) andIcon:nil], [[PPiFlatSegmentItem alloc] initWithTitle:NSLocalizedString(@"Everyone", nil) andIcon:nil], [[PPiFlatSegmentItem alloc] initWithTitle:NSLocalizedString(@"Everyone1", nil) andIcon:nil]]
-                                                                            iconPosition:IconPositionRight andSelectionBlock:^(NSUInteger segmentIndex) {
-                                                                                // code here
-                                                                            }
-                                                                          iconSeparation:0];
-    segmented8.layer.cornerRadius = 0;
-    segmented8.color=[UIColor colorWithRed:235.0f/255.0 green:179.0f/255.0 blue:125.0f/255.0 alpha:1];
-    segmented8.borderWidth=.5;
-    segmented8.borderColor=[UIColor whiteColor];
-    segmented8.selectedColor=[UIColor colorWithRed:228.0f/255.0 green:153.0f/255.0 blue:81.0f/255.0 alpha:1];
-    segmented8.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                NSForegroundColorAttributeName:[UIColor whiteColor]};
-    segmented8.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
-    //    [segmentControl setSegmentAtIndex:1 enabled:NO];
-    [self.view addSubview:segmented8];
-}
-
-- (void)createSegment9
-{
-    NSArray *theItems = @[[[PPiFlatSegmentItem alloc] initWithTitle:@"全部记录" andIcon:nil], [[PPiFlatSegmentItem alloc] initWithTitle:@"物品兑换" andIcon:nil], [[PPiFlatSegmentItem alloc] initWithTitle:@"功能兑换" andIcon:nil]];
-    
-    
-    PPiFlatSegmentedControl *segmented9 = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(15, 320, self.view.bounds.size.width - 30, 32) items:theItems iconPosition:IconPositionLeft andSelectionBlock:^(NSUInteger segmentIndex) {
-        NSLog(@"segmentIndex = %ld", segmentIndex);
-    } iconSeparation:3];
-    
-    segmented9.color = [UIColor clearColor];
-    segmented9.borderWidth = 1;
-    segmented9.borderColor = RGB(0x46, 0x90, 0xef);
-    segmented9.selectedColor = RGB(0x46, 0x90, 0xef);
-    segmented9.textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                  NSForegroundColorAttributeName:RGB(0x46, 0x90, 0xef)};
-    segmented9.selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:13],
-                                          NSForegroundColorAttributeName:[UIColor whiteColor]};
-    [self.view addSubview: segmented9];
 }
 
 

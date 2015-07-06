@@ -7,6 +7,8 @@
 //
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MSParser.h"
 #import "MSHTTPRequestModel.h"
 #import "MSHTTPResponse.h"

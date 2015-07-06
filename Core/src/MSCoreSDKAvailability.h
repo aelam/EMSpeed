@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <MessageUI/MessageUI.h>
+#import "MSCore.h"
 
 #if __cplusplus
 extern "C" {

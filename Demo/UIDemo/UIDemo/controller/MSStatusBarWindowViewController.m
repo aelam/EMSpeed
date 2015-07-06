@@ -71,13 +71,13 @@
 - (void)doAnim3
 {
     MSThemeStatusBarTextModel *bar1 = [[MSThemeStatusBarTextModel alloc] init];
-    bar1.title = @"尼玛 我是个标题1111111";
+    bar1.title = @"我是个标题1111111";
     
     MSThemeStatusBarTextModel *bar2 = [[MSThemeStatusBarTextModel alloc] init];
-    bar2.title = @"尼玛 我是个标题2222222";
+    bar2.title = @"我是个标题2222222";
     
     MSThemeStatusBarTextModel *bar3 = [[MSThemeStatusBarTextModel alloc] init];
-    bar3.title = @"尼玛 我是个标题3333333";
+    bar3.title = @"我是个标题3333333";
     
     [MSStatusBarWindow showStatusBarWithArray:@[bar1, bar2, bar3]];
 }
@@ -85,20 +85,20 @@
 - (void)doAnim4
 {
     MSThemeStatusBarIconTextModel *bar1 = [[MSThemeStatusBarIconTextModel alloc] init];
-    bar1.title = @"尼玛 我是个标题1111";
+    bar1.title = @"我是个标题1111";
     bar1.iconName = @"radio_on.png";
     
     MSThemeStatusBarTextModel *bar2 = [[MSThemeStatusBarTextModel alloc] init];
-    bar2.title = @"尼玛 我是个标题22222222";
+    bar2.title = @"我是个标题22222222";
     
     MSThemeStatusBarTextModel *bar3 = [[MSThemeStatusBarTextModel alloc] init];
-    bar3.title = @"尼玛 我是个标题3333333";
+    bar3.title = @"我是个标题3333333";
     
     MSThemeStatusBarTextModel *bar4 = [[MSThemeStatusBarTextModel alloc] init];
-    bar4.title = @"尼玛 我是个标题4444444";
+    bar4.title = @"我是个标题4444444";
     
     MSThemeActivityIndicatorTextModel *bar5 = [[MSThemeActivityIndicatorTextModel alloc] init];
-    bar5.title = @"尼玛 我是个标题555555";
+    bar5.title = @"我是个标题555555";
     bar5.isActivityIndicatorAnimating = YES;
     
     [MSStatusBarWindow showStatusBarWithArray:@[bar1, bar2, bar3, bar4, bar5]];

@@ -17,6 +17,23 @@
 @implementation MMInfoModel
 @synthesize dataSource = _dataSource;
 
+- (NSURLSessionTask *)POST:(NSString *)URLString
+                     param:(NSDictionary *)param
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+{
+    return [super POST:URLString
+                 param:param
+                 block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+                     if (success) {
+                         BOOL parseSuccess = [self parseHTTPResponse:response URL:URLString];
+                         
+                         block(response, task, success && parseSuccess);
+                     }
+                     else{
+                         block(response, task, NO);
+                     }
+                 }];
+}
 
 - (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString
@@ -33,12 +50,7 @@
         
         Class cls = [MMInfoCellModel class];
         NSMutableArray *cellModels = [MMInfoItem cellModelsWithArray:array cellModelClass:cls];
-        
-        
-        for (MMInfoCellModel *cellModel in cellModels) {
-            cellModel.delegate = self.delegate;
-        }
-        
+                
         if ([cellModels count] > 0) {
             _dataSource = [[MSMutableDataSource alloc] init];
             [_dataSource addNewSection:@"" withItems:cellModels];

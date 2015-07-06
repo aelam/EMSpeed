@@ -80,7 +80,7 @@
     
     for (int i=0; i<3; i++) {
         MSGuideScrollLaunchItem *item = [[MSGuideScrollLaunchItem alloc] init];
-        item.image = [UIImage imageNamed:@"11.jpg"];
+        item.image = [UIImage imageNamed:@"11.png"];
         item.contentMode = UIViewContentModeScaleAspectFill;
         [items addObject:item];
     }

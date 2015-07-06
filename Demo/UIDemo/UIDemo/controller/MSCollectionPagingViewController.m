@@ -74,12 +74,12 @@
         if(i%3==0) {
             MSCollectionViewTestItem *item = [[MSCollectionViewTestItem alloc] init];
             item.title = @"风格1";
-            item.imgName = @"11.jpg";
+            item.imgName = @"11.png";
             [marr addObject:item];
         }
         else if (i%3==1){
             MSImageCollectionItem *item = [[MSImageCollectionItem alloc] init];
-            item.imageURL = @"11.jpg";
+            item.imageURL = @"11.png";
             item.title = @"风格2";
             [marr addObject:item];
         }

@@ -12,7 +12,7 @@
 @class MSHTTPResponse;
 
 
-NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
+extern NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
 
 
 @interface MSHTTPSessionManager : AFHTTPSessionManager

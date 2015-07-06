@@ -34,6 +34,16 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.enableRefreshHeader = YES;
+    self.enableRefreshFooter = YES;
+    self.refreshWhenFirstViewDidAppear = YES;
+    self.refreshWhenPushBack = NO;
+    _isBackFromPush = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,17 +73,25 @@
 {
     __weak MSRefreshTableViewController* weakSelf = self;
     
-    if (self.enableRefreshHeader) {
+    if (_enableRefreshHeader) {
         
         _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
+        self.tableView.header = _refreshHeader;
+    }
+    else{
+        self.tableView.header = nil;
     }
     
-    if (self.enableRefreshFooter) {
+    if (_enableRefreshFooter) {
         _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
+        self.tableView.footer = _refreshFooter;
+    }
+    else{
+        self.tableView.footer = nil;
     }
 }
 
@@ -81,11 +99,19 @@
 {
     __weak MSRefreshTableViewController* weakSelf = self;
     
-    if (self.enableRefreshHeader) {
-        
-        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-            [weakSelf headerRefreshing];
-        }];
+    _enableRefreshHeader = enableRefreshHeader;
+    
+    if (self.isViewLoaded) {
+        if (_enableRefreshHeader) {
+            
+            _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+                [weakSelf headerRefreshing];
+            }];
+            self.tableView.header = _refreshHeader;
+        }
+        else {
+            self.tableView.header = nil;
+        }
     }
 }
 
@@ -93,10 +119,18 @@
 {
     __weak MSRefreshTableViewController* weakSelf = self;
     
-    if (self.enableRefreshFooter) {
-        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            [weakSelf footerRefreshing];
-        }];
+    _enableRefreshFooter = enableRefreshFooter;
+    
+    if (self.isViewLoaded) {
+        if (_enableRefreshFooter) {
+            _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                [weakSelf footerRefreshing];
+            }];
+            self.tableView.footer = _refreshFooter;
+        }
+        else {
+            self.tableView.footer = nil;
+        }
     }
 }
 

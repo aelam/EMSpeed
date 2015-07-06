@@ -25,6 +25,16 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.enableRefreshHeader = YES;
+    self.enableRefreshFooter = YES;
+    self.refreshWhenFirstViewDidAppear = YES;
+    self.refreshWhenPushBack = NO;
+    _isBackFromPush = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -56,7 +56,7 @@
     EMVIPModel *model = (EMVIPModel *)_model;
     NSString *url = model.URL;
     
-    [_model modelWithURL:url block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
+    [_model modelWithURL:url block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
         if (success) {
             [self reloadPages:model.dataSource];
         }
@@ -79,7 +79,7 @@
     EMVIPModel *model = (EMVIPModel *)_model;
     NSString *url = model.dataSource.refreshURL;
     
-    [_model modelWithURL:url block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
+    [_model modelWithURL:url block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
         if (success && model.dataSource) {
             [self reloadPages:model.dataSource];
         }
@@ -102,20 +102,21 @@
     EMVIPModel *model = (EMVIPModel *)_model;
     
     if ([model.dataSource.nextPageURL length]>0) {
-        [model modelWithURL:model.dataSource.nextPageURL block:^(id respondObject, AFHTTPRequestOperation *operation, BOOL success) {
-            if (success && model.dataSource) {
-                [self reloadPages:model.dataSource];
-            }
-            
-            if ([model.dataSource.nextPageURL length]>0) {
-                if (self.tableView.footer.hidden) {
-                    self.tableView.footer.hidden = NO;
-                }
-                [self.tableView.footer endRefreshing];
-            }
-            else {
-                [self.tableView.footer noticeNoMoreData];
-            }
+        [model modelWithURL:model.dataSource.nextPageURL
+                      block:^(id respondObject, NSURLSessionDataTask *task, BOOL success) {
+                          if (success && model.dataSource) {
+                              [self reloadPages:model.dataSource];
+                          }
+                          
+                          if ([model.dataSource.nextPageURL length]>0) {
+                              if (self.tableView.footer.hidden) {
+                                  self.tableView.footer.hidden = NO;
+                              }
+                              [self.tableView.footer endRefreshing];
+                          }
+                          else {
+                              [self.tableView.footer noticeNoMoreData];
+                          }
         }];
     }
     else {

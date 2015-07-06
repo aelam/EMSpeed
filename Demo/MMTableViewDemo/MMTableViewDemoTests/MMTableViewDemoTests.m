@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "MMInfoModel.h"
+#import "MSHTTPResponse.h"
 
-@interface MMTableViewDemoTests : XCTestCase
+@interface MMTableViewDemoTests : XCTestCase {
+    MMInfoModel *_model;
+}
 
 @end
 
@@ -27,7 +31,36 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    
+    if (_model==nil) {
+        _model = [[MMInfoModel alloc] init];
+    }
+    
+    NSString *url = @"http://mt.emoney.cn/2pt/zx/GetBShareNews";
+    
+    [_model POST:url
+           param:nil
+           block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+               
+               if (success) {
+                   XCTAssert(YES, @"Pass");
+                   
+                   NSDictionary *dict = response.originData;
+                   NSLog(@"dict = %@", dict);
+                   
+                   ///
+               }
+               else{
+                   XCTAssert(NO, @"Failed %@", task.error);
+               }
+               
+               CFRunLoopRef runLoopRef = CFRunLoopGetCurrent();
+               CFRunLoopStop(runLoopRef);
+           }];
+    
+    CFRunLoopRun();
+    
+    
 }
 
 - (void)testPerformanceExample {
