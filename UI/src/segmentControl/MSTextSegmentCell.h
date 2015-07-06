@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 Samuel. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "MSSegmentCellFactory.h"
 

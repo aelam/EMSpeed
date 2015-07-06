@@ -7,6 +7,8 @@
 //
 
 #import "UIColor+HexString.h"
+#import "MSCore.h"
+
 
 @implementation UIColor(HexString)
 
