@@ -51,14 +51,25 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.refreshWhenFirstViewDidAppear)
+    {
+        self.refreshWhenFirstViewDidAppear = NO;
+        [self headerRefreshing];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.refreshWhenFirstViewDidAppear || (_isBackFromPush && self.refreshWhenPushBack)) {
-        self.refreshWhenFirstViewDidAppear = NO;
+    if ((_isBackFromPush && self.refreshWhenPushBack))
+    {
         [self.tableView.header beginRefreshing];
     }
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {

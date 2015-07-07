@@ -23,6 +23,8 @@
     if (self) {
         _enableRefreshHeader = YES;
         _enableRefreshFooter = YES;
+        self.refreshWhenFirstViewDidAppear = YES;
+        self.refreshWhenPushBack = NO;
     }
     
     return self;
@@ -34,16 +36,32 @@
     [self loadRefreshFooterView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.refreshWhenFirstViewDidAppear) {
+        self.refreshWhenFirstViewDidAppear = NO;
+        [self headerRefreshing];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    if (self.refreshWhenFirstViewDidAppear || (_isBackFromPush && self.refreshWhenPushBack)) {
+    if ((_isBackFromPush && self.refreshWhenPushBack)) {
         self.refreshWhenFirstViewDidAppear = NO;
         [self headerRefreshing];
     }
     _isBackFromPush = NO;
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    _isBackFromPush = YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -163,12 +181,6 @@
 {
     [super viewDidLayoutSubviews];
     [self loadRefreshFooterView];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self headerRefreshing];
 }
 
 - (void)headerRefreshing

@@ -42,7 +42,7 @@
             self.message = responseObject[@"message"];
         }
     }
-
+    
     return self;
 }
 
@@ -69,7 +69,7 @@
 {
     if ([responseObject isKindOfClass:[NSDictionary class]]
         && responseObject[@"status"]
-        && responseObject[@"updatetime"]
+        //        && responseObject[@"updatetime"]
         && responseObject[@"data"])
     {
         return YES;
