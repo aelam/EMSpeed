@@ -263,6 +263,8 @@
     CGFloat maxTitleWidth = 0;
     NSUInteger count = [_items count];
     
+    [_segments removeAllObjects];
+    
     for (int i = 0; i < count; i++)
     {
         id object = [_items objectAtIndex:i];

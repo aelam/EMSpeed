@@ -145,7 +145,7 @@
     
     _state = aState;
     
-    NSLog(@"state = %d", _state);
+//    NSLog(@"state = %d", _state);
 }
 
 
