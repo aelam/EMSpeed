@@ -38,6 +38,11 @@
     return self;
 }
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    [super setBackgroundColor:backgroundColor];
+    _textlabel.backgroundColor = backgroundColor;
+}
 
 
 @end
