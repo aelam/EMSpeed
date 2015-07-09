@@ -551,17 +551,8 @@ CGRect Point2Rect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *font)
     int contentWidth = boundingRect.size.width;
     if (nAnchor&NSTextAlignmentCenter)
     {
-        int n = contentWidth-nX;
-        if (nX > n && n > 0)
-        {
-            rt.origin.x = nX-n;
-            rt.size.width = 2*n;
-        }
-        else
-        {
-            rt.origin.x = 0;
-            rt.size.width = 2*nX;
-        }
+        rt.origin.x = 0;
+        rt.size.width = 2*nX;
     }
     else if (nAnchor&NSTextAlignmentRight)
     {
