@@ -18,7 +18,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         self.borderColor = kDefaultBorderColor;
         self.border = MSBorderStyleAll;
     }
@@ -27,11 +27,15 @@
 
 - (void)awakeFromNib
 {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     self.borderColor = kDefaultBorderColor;
     self.border = MSBorderStyleAll;
 }
 
+- (void)setBorder:(MSBorderStyle)border {
+    _border = border;
+    [self setNeedsDisplay];
+}
 
 - (void)drawRect:(CGRect)rect {
     
