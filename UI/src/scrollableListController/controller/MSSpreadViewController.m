@@ -46,10 +46,6 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     self = [super init];
     if (self) {
         self.autoDisplayEmptyView = YES;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeSelectStatus:) name:MSSpreadModelCellSelectedNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeHighligtedStatus:) name:MSSpreadModelCellHighlightedNotification object:nil];
-        
     }
     return self;
 }
@@ -71,10 +67,21 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
     [super viewDidLoad];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeSelectStatus:) name:MSSpreadModelCellSelectedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCellChangeHighligtedStatus:) name:MSSpreadModelCellHighlightedNotification object:nil];
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSSpreadModelCellSelectedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MSSpreadModelCellHighlightedNotification object:nil];
+}
+
 
 /**
  *创建tableView
