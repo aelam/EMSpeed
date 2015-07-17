@@ -564,7 +564,7 @@
         tmp[@"em-icon-searchthin"]     = @(FAEMSearchThin);
         tmp[@"em-icon-help"]     = @(FAEMHelp);
         tmp[@"em-icon-manycoin"]     = @(FAEMManyCoin);
-        tmp[@"em-icon-mockstockBuy"]  = @(FAEMMockStockSell);
+        tmp[@"em-icon-mockstockBuy"]  = @(FAEMMockStockBuy);
         tmp[@"em-icon-arrowup"]      = @(FAEMArrowUP);
         tmp[@"em-icon-telephone"]    = @(FAEMTelephone);
         tmp[@"em-icon-crown-simple"] = @(FAEMCrownSimple);
