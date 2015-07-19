@@ -190,13 +190,7 @@
             _highlightedSegmentView = [_segments objectAtIndex:_selectedSegmentIndex];
             _highlightedSegmentView.selected = YES;
             _selectedView.selectedRect = CGRectInset(_highlightedSegmentView.frame, 5, 0);
-            NSLog(@"selectedRect = %@", NSStringFromCGRect(_selectedView.selectedRect));
             _selectedView.selectedItem = [_items objectAtIndex:_selectedSegmentIndex];
-        }
-        
-        if (selectedSegmentIndex != MSSegmentedControlNoSegment)
-        {
-            [self sendActionsForControlEvents:UIControlEventValueChanged];
         }
     }
 }
@@ -380,6 +374,8 @@
         self.selectedSegmentIndex = _willSelectedIndex;
         _willSelectedIndex = UISegmentedControlNoSegment;
     }
+    
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)cancelTrackingWithEvent:(UIEvent *)event
