@@ -168,8 +168,8 @@
     if (self.selectedSegmentIndex != index)
     {
         self.selectedSegmentIndex = index;
-    }
-    
+        [self sendActionsForControlEvents:UIControlEventValueChanged];
+    }    
 }
 
 @end
