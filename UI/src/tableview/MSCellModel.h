@@ -23,7 +23,7 @@
 /**
  *  cell的高度
  */
-@property (nonatomic, assign) float height;
+@property (nonatomic, assign) CGFloat height;
 
 
 /**
@@ -35,7 +35,7 @@
 /**
  *  cell的重用名
  */
-@property (nonatomic, strong) NSString *reuseIdentify;
+@property (nonatomic, strong) NSString *reuseIdentify __deprecated;
 
 
 /**
@@ -44,13 +44,17 @@
 @property (nonatomic, assign) BOOL isRegisterByClass;
 
 @optional
+- (BOOL)shouldAppendCellModelToReuseIdentifier;
+
+@optional
 
 /**
  *  计算cell的高度
  *
  *  @return 高度
  */
-- (float)calculateHeight;
+
+- (CGFloat)calculateHeight;
 
 /**
  *  处理成cell model
