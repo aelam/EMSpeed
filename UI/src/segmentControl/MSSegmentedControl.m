@@ -344,6 +344,8 @@
                 view.seperateLayer.hidden = YES;
             }
         }
+        
+        [view setNeedsDisplay];
     }
 }
 
