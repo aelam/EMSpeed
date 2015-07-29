@@ -157,7 +157,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 - (UILabel *)createLeftScrollTipLabel
 {
     CGSize tipSize = kScrollTipLabelSize;
-    CGFloat originX = self.spreadModel.titleWidth;
+    CGFloat originX = self.spreadModel.titleWidth-tipSize.width;
     CGFloat originY = 0;
     CGPoint origin = CGPointMake(originX, originY);
     
