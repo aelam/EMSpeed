@@ -90,13 +90,13 @@ Pod::Spec.new do |s|
 
   end
 
-  s.subspec 'ThemeManager' do |cs|
-    cs.source_files  = "Theme/**/*.{h,m,c,swift}"
-    cs.resources     = "UI/resource/**/*.*"
-    cs.resources     = "Theme/resource/**/*.*"
-    cs.dependency 'EMSpeed/Core'
-    cs.dependency 'EMSpeed/UI'
-  end
+#  s.subspec 'ThemeManager' do |cs|
+#    cs.source_files  = "Theme/**/*.{h,m,c,swift}"
+#    cs.resources     = "UI/resource/**/*.*"
+#    cs.resources     = "Theme/resource/**/*.*"
+#    cs.dependency 'EMSpeed/Core'
+#    cs.dependency 'EMSpeed/UI'
+#  end
 
 
   # s.public_header_files = "Classes/**/*.h"
