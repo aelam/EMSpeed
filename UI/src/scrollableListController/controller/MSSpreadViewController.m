@@ -247,7 +247,7 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
 
 - (void)reloadPages:(MSSpreadModel *)model
 {
-    if (self.autoDisplayEmptyView && [self.spreadModel isEmpty]) {
+    if (self.autoDisplayEmptyView && [model isEmpty]) {
         [self.view addSubview:self.emptyView];
         self.emptyView.hidden = NO;
     }
@@ -266,6 +266,8 @@ NSString *const MSSpreadModelCellHighlightedNotification = @"MSSpreadModelCellHi
         
         [_titleTableView reloadData];
         [_contentTableView reloadData];
+        
+        _spreadModel = model;
     }
 }
 
