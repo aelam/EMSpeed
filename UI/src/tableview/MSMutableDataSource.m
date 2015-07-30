@@ -143,10 +143,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *items = [_items objectAtIndex:section];
-    NSUInteger count = [items count];
+    if (section >=0 && section < [_items count])
+    {
+        NSArray *items = [_items objectAtIndex:section];
+        
+        NSUInteger count = [items count];
+        
+        return count;
+    }
     
-    return count;
+    return 0;
 }
 
 - (NSUInteger)numberOfItemsAtSection:(NSUInteger)section
