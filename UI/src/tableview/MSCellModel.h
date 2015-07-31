@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 //@synthesize Class;
 //@synthesize reuseIdentify;
 //@synthesize height;
@@ -64,4 +65,9 @@
 - (void)parseItem:(id)item;
 
 @end
+
+@interface MSCellModel : NSObject <MSCellModel>
+
+@end
+
 
