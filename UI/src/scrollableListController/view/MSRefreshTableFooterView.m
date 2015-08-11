@@ -108,21 +108,23 @@
 }
 
 - (void)MSRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
-    [self performSelector:@selector(finishedLoading:) withObject:scrollView afterDelay:.5f];
+    CGFloat height = MAX(scrollView.contentSize.height, scrollView.frame.size.height);
+    self.frame = CGRectMake(0.0f, height, self.frame.size.width, MSRefreshTableHeaderView_HEIGHT);
+//    [self performSelector:@selector(finishedLoading:) withObject:scrollView afterDelay:.5f];
     
+    [UIView animateWithDuration:.2f animations:^{
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        UIEdgeInsets e = scrollView.contentInset;
+        e.bottom = 0;
+        [scrollView setContentInset:e];
+    } completion:^(BOOL finished) {
+        [self setState:MSPullRefreshNormal];
+    }];
 }
 
 
 - (void)finishedLoading:(UIScrollView *)scrollView {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:.2f];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    UIEdgeInsets e = scrollView.contentInset;
-    e.bottom = 0;
-    [scrollView setContentInset:e];
-    [UIView commitAnimations];
-    
-    [self setState:MSPullRefreshNormal];
+
 }
 
 
