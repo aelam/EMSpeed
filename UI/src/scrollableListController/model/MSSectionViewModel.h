@@ -11,7 +11,7 @@
 @protocol MSSectionViewModel <NSObject>
 
 
-@property (nonatomic, assign) float height;
+@property (nonatomic, assign) CGFloat height;
 
 
 @property (nonatomic, strong) Class Class;

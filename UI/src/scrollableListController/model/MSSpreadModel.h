@@ -14,9 +14,9 @@
 
 @interface MSSpreadModel : MSHTTPRequestModel <MSSpreadProtocol>
 
-@property (nonatomic, assign) float titleWidth;
-@property (nonatomic, assign) float contentWidth;
-@property (nonatomic, assign) float headerHeight;
+@property (nonatomic, assign) CGFloat titleWidth;
+@property (nonatomic, assign) CGFloat contentWidth;
+@property (nonatomic, assign) CGFloat headerHeight;
 
 @property (nonatomic, strong) NSString *URL;
 @property (nonatomic, strong) NSString *nextURL;
@@ -31,7 +31,7 @@
 @property (nonatomic, strong) id<MSSectionViewModel> contentHeaderItem;
 
 
-- (float)cellHeightAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)cellHeightAtIndexPath:(NSIndexPath *)indexPath;
 
 
 // overwrite
