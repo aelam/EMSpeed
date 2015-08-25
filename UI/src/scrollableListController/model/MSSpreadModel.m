@@ -47,7 +47,7 @@
     // subclass overwrite
 }
 
-- (float)cellHeightAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)cellHeightAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MSCellModel> item = [self.titleDataSource itemAtIndex:indexPath.row];
     if (item.height > 0) {
@@ -57,7 +57,7 @@
     return kDefaultCellHeight;
 }
 
-- (float)headerHeight
+- (CGFloat)headerHeight
 {
     id<MSCellModel> item = self.titleHeaderItem;
     if (item && item.height > 0) {
@@ -90,13 +90,13 @@
     _task = [self GET:self.URL
                 param:parameters
                 block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
-        BOOL flag = NO;
-        if (success) {
-            flag = [self parseFirstPageResponse:response];
-        }
-        block(response, success && flag);
-        [_tasks removeObject:task];
-    }];
+                    BOOL flag = NO;
+                    if (success) {
+                        flag = [self parseFirstPageResponse:response];
+                    }
+                    block(response, success && flag);
+                    [_tasks removeObject:task];
+                }];
     
     [_tasks addObject:_task];
 }
@@ -179,7 +179,7 @@
 
 - (BOOL)isEmpty
 {
-   return (self.titleDataSource == nil && self.contentDataSource == nil) || ([self.titleDataSource isEmpty] && [self.contentDataSource isEmpty]);
+    return (self.titleDataSource == nil && self.contentDataSource == nil) || ([self.titleDataSource isEmpty] && [self.contentDataSource isEmpty]);
 }
 
 - (NSDictionary *)parameters
