@@ -92,6 +92,7 @@ const CGFloat kMMCellDefaultHeight = 44;
     if ( [self isViewLoaded] && nil == self.view.window)
     {
         _tableView = nil;
+        self.view = nil;
     }
     [super didReceiveMemoryWarning];
 }
