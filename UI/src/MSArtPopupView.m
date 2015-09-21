@@ -39,6 +39,7 @@
 
 - (void)dealloc
 {
+    self.actionDelegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -134,7 +135,6 @@
 {
     [_contentView removeFromSuperview];
     [_overlayView removeFromSuperview];
-    [self removeFromSuperview];
     
     if ([_parentView isKindOfClass:[UIScrollView class]]) {
         ((UIScrollView *)_parentView).scrollEnabled = _isParentViewScrollEnabled;
@@ -146,6 +146,7 @@
         [self.actionDelegate MSArtPopupViewDidDismissed:self];
     }
     self.actionDelegate = nil;
+    [self removeFromSuperview];
 }
 
 - (void)setupFrameInView:(UIView *)view
