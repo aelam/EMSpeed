@@ -12,4 +12,5 @@
 #import "MSCoreMetrics.h"
 #import "MSCoreFunction.h"
 #import "MSCoreSDKAvailability.h"
+#import "MSUUID.h"
 #import "MSCoreFileManager.h"
