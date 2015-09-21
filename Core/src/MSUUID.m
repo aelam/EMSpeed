@@ -8,6 +8,7 @@
 
 #import "MSUUID.h"
 #import "SFHFKeychainUtils.h"
+#import "MSCoreFunction.h"
 
 NSString *kKeychainUUIDItemIdentifier  = @"UUID";
 NSString *kKeyChainUUIDAccessGroup = nil;
