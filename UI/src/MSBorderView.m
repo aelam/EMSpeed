@@ -39,6 +39,9 @@
 
 - (void)drawRect:(CGRect)rect {
     
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGFillRect(ctx, rect, self.backgroundColor);
+    
     if (self.border == MSBorderStyleNone) {
         return;
     }
