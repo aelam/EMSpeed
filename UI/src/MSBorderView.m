@@ -11,6 +11,15 @@
 
 #define kDefaultBorderColor RGB(0xe5, 0xe5, 0xe5)
 
+void _CGFillRect(CGContextRef context,CGRect rt,UIColor *color)
+{
+    CGContextSetAllowsAntialiasing(context,NO);
+    CGContextSetStrokeColorWithColor(context,color.CGColor);
+    CGContextSetFillColorWithColor(context,color.CGColor);
+    CGContextAddRect(context,rt);
+    CGContextDrawPath(context,kCGPathFill);
+}
+
 @implementation MSBorderView
 
 
@@ -40,7 +49,7 @@
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGFillRect(ctx, rect, self.backgroundColor);
+    _CGFillRect(ctx, rect, self.backgroundColor);
     
     if (self.border == MSBorderStyleNone) {
         return;
@@ -49,7 +58,6 @@
     rect = UIEdgeInsetsInsetRect(rect, self.contentInsets);
     
     // Drawing code
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
     if (self.border & MSBorderStyleLeft)
     {
         CGContextMoveToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));
@@ -80,3 +88,4 @@
 
 
 @end
+
