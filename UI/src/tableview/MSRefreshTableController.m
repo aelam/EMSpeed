@@ -140,4 +140,11 @@
     [self.tableView.footer endRefreshing];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    self.refreshWhenFirstViewDidAppear = YES;
+}
+
+
 @end
