@@ -70,6 +70,12 @@
         class = [UITableViewCell class];
     }
     
+    if (![item isRegisterByClass]) {
+        [tableView registerNib:[UINib nibWithNibName:NSStringFromClass(class) bundle:nil] forCellReuseIdentifier:reuseIdentifier];
+    } else {
+        [tableView registerClass:class forCellReuseIdentifier:reuseIdentifier];
+    }
+    
     if (reuseIdentifier)
     {
         id cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];

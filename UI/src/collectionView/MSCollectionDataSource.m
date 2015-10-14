@@ -64,6 +64,35 @@
 {
     id<MSCollectionCellModel> item = [self itemAtIndexPath:indexPath];
     Class class = item.Class;
+
+//    id<MSCellModel> item = [self itemAtIndexPath:indexPath];
+//    Class class = item.Class;
+    if (!class) {
+        class = [UICollectionViewCell class];
+    }
+    
+    NSString *reuseIdentifier = NSStringFromClass(class);
+    
+    if ([item respondsToSelector:@selector(shouldAppendCellModelToReuseIdentifier)] &&
+        [item shouldAppendCellModelToReuseIdentifier]) {
+        reuseIdentifier = [NSString stringWithFormat:@"%@.%@",reuseIdentifier,NSStringFromClass(item.class)];
+    }
+    
+    if (![item isRegisterByClass]) {
+        [collectionView registerNib:[UINib nibWithNibName:NSStringFromClass(class) bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    } else {
+        [collectionView registerClass:class forCellWithReuseIdentifier:reuseIdentifier];
+    }
+    
+    NSLog(@"==========================================");
+    NSLog(@"item:            %@", item);
+    NSLog(@"reuseIdentifier: %@", reuseIdentifier);
+    NSLog(@"cellClass:       %@", class);
+    NSLog(@"Load from Nib? : %d", ![item isRegisterByClass]);
+    NSLog(@"item height :    %f", [item height]);
+    NSLog(@"==========================================");
+
+    
     
     if (class != NULL)
     {

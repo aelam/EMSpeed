@@ -14,7 +14,6 @@ const CGFloat kMMCellDefaultHeight = 44;
 
 
 @implementation MSTableController
-@synthesize tableView = _tableView;
 
 - (instancetype)init
 {
@@ -36,7 +35,7 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (void)loadView {
     [super loadView];
     if (self.tableView) {
-        [self tableViewDidRegisterTableViewCell];
+//        [self tableViewDidRegisterTableViewCell];
     }
 }
 

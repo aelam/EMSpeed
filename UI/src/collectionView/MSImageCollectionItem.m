@@ -32,7 +32,7 @@
     return self;
 }
 
-- (float)calculateHeight
+- (CGFloat)calculateHeight
 {
     return self.height;
 }
