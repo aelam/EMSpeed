@@ -1,107 +1,126 @@
+#
+# Be sure to run `pod lib lint EMSpeed.podspec' to ensure this is a
+# valid spec before submitting.
+#
+# Any lines starting with a # are optional, but their use is encouraged
+# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
+#
 
 Pod::Spec.new do |s|
+  s.name             = "EMSpeed"
+  s.version          = "0.2.0"
+  s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.name         = "EMSpeed"
-  s.version      = "0.0.1"
-  s.summary      = "A fast convenient Library for emoney projects"
+  s.description      = <<-DESC
+                        EMSpeed Collections with Foundation, UIKit.
+                        基础框架
+                       DESC
 
-  s.description  = <<-DESC
-                   A longer description of EMSpeed in Markdown format.
+  s.homepage         = "http://ph.benemind.com/diffusion/EMSPEED/emspeed"
+  s.license          = 'MIT'
+  s.author           = { "Emoney" => "ios@emoney.com" }
+  s.source           = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git", :tag => s.version.to_s }
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
+  s.platform     = :ios, '7.0'
+  s.requires_arc = true
+  s.frameworks = 'UIKit', 'CoreGraphics'
 
-  s.homepage     = "https://github.com/emoneycn/emspeed.git"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.source_files = "EMSpeed/Speed.h"
 
-  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.license      = { :type => "MIT", :file => "LICENSE" }
-
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.author             = { "Emoney" => "ios@emoney.com" }
-
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.platform     = :ios, "7.0"
-
-  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git"}
-
-
-  s.subspec 'Core' do |cs|
-    cs.source_files  = "Core/**/*.{h,m,c,swift}"
-    cs.resources     = "Core/resource/**/*.*"
-    #cs.frameworks = "SomeFramework", "AnotherFramework"
+  s.subspec 'Core' do |ss|
+    ss.source_files  = "EMSpeed/Core/**/*.{h,m,c,swift}"
+    ss.dependency      "SFHFKeychainUtils"
   end
 
-  # ------------------------------------------------------------------------------
-
-  s.subspec 'Network' do |cs|
-    cs.source_files  = "Network/**/*.{h,m,c,swift}"
-    cs.resources     = "Network/resource/**/*.*"
-    cs.dependency 'EMSpeed/Core'
-    cs.dependency "AFNetworking", "~> 2.5.1"
+  s.subspec 'MSContext' do |ss|
+    ss.source_files  = "EMSpeed/MSContext/**/*.{h,m,c,swift}"
   end
 
-  # ------------------------------------------------------------------------------
+  s.subspec 'UIKit' do |ss|
+    ss.source_files = "EMSpeed/UIKit/MSUIKit.h"
 
-  s.subspec 'FontAwesome+iOS' do |cs|
-    cs.source_files  = "FontAwesome+iOS/**/*.{h,m,c,swift}"
-    cs.resources     = "FontAwesome+iOS/resource/**/*.*"
+    ss.subspec 'Core' do |sss|
+      sss.source_files = "EMSpeed/UIKit/Core/**/*.{h,m,c}"
+      sss.dependency     "EMSpeed/Core"
+    end
+
+    ss.subspec 'UIImages' do |sss|
+      sss.source_files = "EMSpeed/UIKit/UIImages/**/*.{h,m,c}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+    end
+
+    ss.subspec 'Animations' do |sss|
+      sss.source_files = "EMSpeed/UIKit/Animations/**/*.{h,m,c}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+    end
+
+    ss.subspec 'UIKitCollections' do |sss|
+      sss.source_files = "EMSpeed/UIKit/UIKitCollections/**/*.{h,m,c}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.dependency     "EMSpeed/UIKit/UIColors"
+      sss.dependency     "EMSpeed/MSContext"
+    end
+
+    ss.subspec 'WebImage' do |sss|
+      sss.source_files = "EMSpeed/UIKit/WebImage/**/*.{h,m,c}"
+      sss.dependency     "SDWebImage"
+      sss.dependency     "EMSpeed/UIKit/UIImages"
+    end
+
+    ss.subspec 'MultiPagingView' do |sss|
+      sss.source_files = "EMSpeed/UIKit/MultiPagingView/src/**/*.{h,m,c}"
+      sss.resources  = "EMSpeed/UIKit/MultiPagingView/resource/*"
+      sss.dependency     "EMSpeed/UIKit/WebImage"
+      sss.dependency     "EMSpeed/UIKit/UIKitCollections"
+    end
+
+    ss.subspec 'UIColors' do |sss|
+      sss.source_files = "EMSpeed/UIKit/UIColors/**/*.{h,m,c}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+    end
+
+    ss.subspec 'FontAwesome+iOS' do |sss|
+      sss.source_files = "EMSpeed/UIKit/FontAwesome+iOS/**/*.{h,m}"
+      sss.resources    = "EMSpeed/UIKit/FontAwesome+iOS/resource/**/*.*"
+    end
+
+    ss.subspec 'PopupView' do |sss|
+      sss.source_files = "EMSpeed/UIKit/PopupView/**/*.{h,m}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.dependency     "EMSpeed/UIKit/UIImages"
+      sss.dependency     "EMSpeed/MSContext"
+    end
+
+    ss.subspec 'CollectionModels' do |sss|
+      sss.source_files = "EMSpeed/UIKit/CollectionModels/**/*.{h,m}"
+      sss.dependency     "EMSpeed/UIKit/WebImage"
+      sss.dependency     "EMSpeed/Core"
+    end
+
+    ss.subspec 'TableModels' do |sss|
+      sss.source_files = "EMSpeed/UIKit/TableModels/**/*.{h,m}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.dependency     "MJRefresh"
+    end
+
+    ss.subspec 'StatusBar' do |sss|
+      sss.source_files = "EMSpeed/UIKit/StatusBar/**/*.{h,m}"
+      sss.dependency     "EMSpeed/UIKit/Core"
+    end
+
+    ss.subspec 'GuideView' do |sss|
+      sss.source_files = "EMSpeed/UIKit/GuideView/**/*.{h,m}"
+      sss.dependency     "EMSpeed/UIKit/Animations"
+      sss.dependency     "EMSpeed/UIKit/Core"
+    end
+
   end
 
-  s.subspec 'BDKNotifyHUD' do |cs|
-    cs.source_files  = "BDKNotifyHUD/**/*.{h,m,c,swift}"
-    cs.resources     = "BDKNotifyHUD/resource/**/*.*"
+  s.subspec 'Network' do |ss|
+    ss.source_files = "EMSpeed/Network/**/*.{h,m}"
+    ss.dependency     "EMSpeed/UIKit/Core"
+    ss.dependency     "AFNetworking"
   end
 
-  s.subspec 'MCSegmentedControl' do |cs|
-    cs.source_files  = "MCSegmentedControl/**/*.{h,m,c,swift}"
-    cs.resources     = "MCSegmentedControl/resource/**/*.*"
-  end
-
-  s.subspec 'StyledPageControl' do |cs|
-    cs.source_files  = "StyledPageControl/**/*.{h,m,c,swift}"
-    cs.resources     = "StyledPageControl/resource/**/*.*"
-  end
-
-  s.subspec 'MSContext' do |cs|
-    cs.source_files  = "MSContext/**/*.{h,m,c,swift}"
-    cs.resources     = "MSContext/resource/**/*.*"
-  end
-
-  # ------------------------------------------------------------------------------
-  s.subspec 'UI' do |cs|
-    cs.source_files  = "UI/**/*.{h,m,c,swift}"
-    cs.resources     = "UI/resource/**/*.*"
-    cs.dependency 'EMSpeed/Core'
-    cs.dependency 'EMSpeed/FontAwesome+iOS'
-    cs.dependency 'EMSpeed/MSContext'
-
-    cs.dependency 'EMSpeed/BDKNotifyHUD'
-    cs.dependency 'EMSpeed/MCSegmentedControl'
-    cs.dependency 'EMSpeed/StyledPageControl'
-
-    cs.dependency 'SDWebImage', '~> 3.7.2'
-    cs.dependency 'MJRefresh', '~> 2.0.1'
-
-  end
-
-#  s.subspec 'ThemeManager' do |cs|
-#    cs.source_files  = "Theme/**/*.{h,m,c,swift}"
-#    cs.resources     = "UI/resource/**/*.*"
-#    cs.resources     = "Theme/resource/**/*.*"
-#    cs.dependency 'EMSpeed/Core'
-#    cs.dependency 'EMSpeed/UI'
-#  end
-
-
-  # s.public_header_files = "Classes/**/*.h"
-
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
 
 end

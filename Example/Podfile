@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'EMSpeed_Example', :exclusive => true do
+  pod "EMSpeed", :path => "../"
+end
+
+target 'Today', :exclusive => true do
+    pod "EMSpeed/Network", :path => "../"
+end
+
+
+target 'EMSpeed_Tests', :exclusive => true do
+end
