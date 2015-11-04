@@ -18,4 +18,6 @@
 #import <EMSpeed/UIView-Geometry.h>
 #import <EMSpeed/UIDevice+IdentifierAddition.h>
 
+#import <EMSpeed/MSViewController.h>
+
 #endif /* MSUIKITCORE_H_ */
