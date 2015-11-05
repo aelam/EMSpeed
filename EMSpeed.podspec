@@ -92,7 +92,9 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec 'CollectionModels' do |sss|
-      sss.source_files = "EMSpeed/UIKit/CollectionModels/**/*.{h,m}"
+      sss.source_files = "EMSpeed/UIKit/CollectionModels/src/**/*.{h,m}"
+      sss.resources    = "EMSpeed/UIKit/CollectionModels/resource/**/*.*"
+
       sss.dependency     "EMSpeed/UIKit/WebImage"
       sss.dependency     "EMSpeed/Core"
     end
