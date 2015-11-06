@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, MSHorizontalPagingControlAlignment)
 
 @protocol MSHorizontalCollectionViewDelegate <NSObject>
 
+@optional
 - (void)MSHorizontalCollectionView:(MSHorizontalCollectionView *)collectionView
                        didTapModel:(id<MSCollectionCellModel>)model
                        atIndexPath:(NSIndexPath *)indexPath;
