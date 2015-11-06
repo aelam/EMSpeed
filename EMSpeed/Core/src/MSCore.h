@@ -36,4 +36,8 @@
 #import <EMSpeed/NSDictionary+Query.h>
 #import <EMSpeed/NSString+URLHelper.h>
 
+/* Timer */
+#import <EMSpeed/NSTimer+Pause.h>
+
+
 #endif /* MSCORE_H_ */
