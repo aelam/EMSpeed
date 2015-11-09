@@ -23,6 +23,9 @@
 #import <EMSpeed/NSDate+Formatter.h>
 #import <EMSpeed/NSDate+String.h>
 
+/* NSDateFormatter */
+#import <EMSpeed/NSDateFormatter+EMCommon.h>
+
 /* StringFormat */
 #import <EMSpeed/NSObject+StringFormat.h>
 
