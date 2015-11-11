@@ -26,6 +26,13 @@
         return;
     }
     
+    if (_sections==nil) {
+        _sections = [[[self sectionsClass] alloc] init];
+    }
+    if (_items==nil) {
+        _items = [[[self itemsClass] alloc] init];
+    }
+    
     [_sections addObject:section];
     [_items addObject:items];
 }
