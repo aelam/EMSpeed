@@ -17,6 +17,10 @@
 - (void)refreshHeaderDidRefresh:(MJRefreshHeader *)refreshHeader;
 
 @optional
+// 下拉刷新(动画) 在view will/did appear时候是否需要触发, animated是否需要动画
+- (BOOL)willRefreshHeaderWhenViewWillAppear:(BOOL *)animated;
+- (BOOL)willRefreshHeaderWhenViewDidAppear:(BOOL *)animated;
+
 // 底部上拉刷新触发时调用
 - (void)refreshFooterDidRefresh:(MJRefreshFooter *)refreshFooter;
 

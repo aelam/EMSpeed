@@ -50,14 +50,31 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // 兼容老版本逻辑
-    if (self.refreshWhenFirstViewDidAppear) {
-        self.refreshWhenFirstViewDidAppear = NO;
-        if ([self respondsToSelector:@selector(headerRefreshing)]) {
-            [self headerRefreshing];
+    
+    if ([self respondsToSelector:@selector(willRefreshHeaderWhenViewWillAppear:)]) {
+        BOOL animated = NO;
+        
+        if ([self willRefreshHeaderWhenViewWillAppear:&animated]) {
+            if (animated) {
+                [self beginHeaderRefreshing];
+            }
+            else {
+                if ([self respondsToSelector:@selector(refreshHeaderDidRefresh:)])
+                {
+                    [self refreshHeaderDidRefresh:_refreshHeader];
+                }
+            }
         }
     }
-    
+    else {
+        // 兼容老版本逻辑
+        if (self.refreshWhenFirstViewDidAppear) {
+            self.refreshWhenFirstViewDidAppear = NO;
+            if ([self respondsToSelector:@selector(headerRefreshing)]) {
+                [self headerRefreshing];
+            }
+        }
+    }
 }
 
 
@@ -65,11 +82,28 @@
 {
     [super viewDidAppear:animated];
     
-    // 兼容老版本逻辑
-    BOOL isPushBack = _numberOfControllersInStack > 0 && _numberOfControllersInStack - 1 == [self.navigationController.viewControllers count];
-    
-    if (isPushBack && self.refreshWhenPushBack) {
-        [self.refreshHeader beginRefreshing];
+    if ([self respondsToSelector:@selector(willRefreshHeaderWhenViewDidAppear:)]) {
+        BOOL animated = NO;
+        
+        if ([self willRefreshHeaderWhenViewDidAppear:&animated]) {
+            if (animated) {
+                [self beginHeaderRefreshing];
+            }
+            else {
+                if ([self respondsToSelector:@selector(refreshHeaderDidRefresh:)])
+                {
+                    [self refreshHeaderDidRefresh:_refreshHeader];
+                }
+            }
+        }
+    }
+    else {
+        // 兼容老版本逻辑
+        BOOL isPushBack = _numberOfControllersInStack > 0 && _numberOfControllersInStack - 1 == [self.navigationController.viewControllers count];
+        
+        if (isPushBack && self.refreshWhenPushBack) {
+            [self.refreshHeader beginRefreshing];
+        }
     }
 }
 
@@ -249,10 +283,13 @@
 
 - (MSRefreshFooterStatus)refreshFooterStatus
 {
-    if (self.refreshFooter.hidden) {
+    if (!_refreshFooter) {
+        return MSRefreshFooterStatusNoInit;
+    }
+    else if (_refreshFooter.hidden) {
         return MSRefreshFooterStatusHidden;
     }
-    else if (self.refreshFooter.state == MJRefreshStateNoMoreData) {
+    else if (_refreshFooter.state == MJRefreshStateNoMoreData) {
         return MJRefreshStateNoMoreData;
     }
     
