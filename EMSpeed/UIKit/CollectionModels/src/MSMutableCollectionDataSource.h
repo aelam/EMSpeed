@@ -10,8 +10,6 @@
 #import "MSCollectionDataSource.h"
 
 @interface MSMutableCollectionDataSource : MSCollectionDataSource {
-    NSMutableArray *_sections;
-    NSMutableArray *_items;
 }
 
 /**

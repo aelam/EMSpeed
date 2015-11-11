@@ -26,7 +26,9 @@
  */
 
 @interface MSCollectionDataSource : NSObject <UICollectionViewDataSource> {
-    
+@protected
+    NSMutableArray *_sections;
+    NSMutableArray *_items;
 }
 
 /**
