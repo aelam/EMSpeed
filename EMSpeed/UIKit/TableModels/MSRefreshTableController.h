@@ -9,46 +9,58 @@
 #import "MSTableController.h"
 #import "MJRefresh.h"
 
-@interface MSRefreshTableController : MSTableController {
-    BOOL _isBackFromPush;
+
+@protocol MSRefreshProtocol <NSObject>
+
+@required
+// 触发下拉刷新操作(动画)调用
+- (void)refreshHeaderDidRefresh:(MJRefreshHeader *)refreshHeader;
+
+@optional
+// 底部上拉刷新触发时调用
+- (void)refreshFooterDidRefresh:(MJRefreshFooter *)refreshFooter;
+
+// 自定义refresh header & footer
+- (MJRefreshHeader *)refreshHeaderOfTableView;
+- (MJRefreshFooter *)refreshFooterOfTableView;
+
+@end
+
+
+typedef enum : NSUInteger {
+    MSRefreshFooterStatusNoInit,      // 未初始化
+    MSRefreshFooterStatusIdle,        // 闲置状态, 等待下次上拉
+    MSRefreshFooterStatusNoMoreData,  // 没有更多
+    MSRefreshFooterStatusHidden,      // 隐藏
     
-    MJRefreshHeader *_refreshHeader;
-    MJRefreshFooter *_refreshFooter;
+} MSRefreshFooterStatus;
+
+
+@interface MSRefreshTableController : MSTableController <MSRefreshProtocol>
+{
+    
 }
 
-/**
- *  下拉刷新, 初始化时设置, 默认YES
- */
-@property (nonatomic, assign) BOOL enableRefreshHeader;
+@property (nonatomic, strong, readonly) MJRefreshHeader *refreshHeader;
+@property (nonatomic, strong, readonly) MJRefreshFooter *refreshFooter;
+
+- (void)beginHeaderRefreshing; // 手动调用 下拉刷新动作
+- (void)beginFooterRefreshing; // 上拉
+
+- (void)endHeaderRefreshing; // 结束刷新状态
+- (void)endFooterRefreshing;
+
+- (void)setRefreshFooterStatus:(MSRefreshFooterStatus)status; // 设置footer状态
+- (MSRefreshFooterStatus)refreshFooterStatus;
+
+// 兼容老版本
+@property (nonatomic, assign) BOOL enableRefreshHeader DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL enableRefreshFooter DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL refreshWhenFirstViewDidAppear DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL refreshWhenPushBack DEPRECATED_ATTRIBUTE;
 
 
-/**
- *  上拉刷新, 初始化时设置, 默认YES
- */
-@property (nonatomic, assign) BOOL enableRefreshFooter;
-
-
-/**
- *  当viewDidAppear显示时, 是否要刷新, 默认是YES
- */
-@property (nonatomic, assign) BOOL refreshWhenFirstViewDidAppear;
-
-
-/**
- *  从其他界面返回viewDidAppear时, 是否需要刷新, 默认是NO
- */
-@property (nonatomic, assign) BOOL refreshWhenPushBack;
-
-
-/**
- *  下拉刷新触发时调用, 子类实现即可
- */
-- (void)headerRefreshing;
-
-
-/**
- *  上拉刷新触发时调用, 子类实现即可
- */
-- (void)footerRefreshing;
+- (void)headerRefreshing DEPRECATED_ATTRIBUTE;
+- (void)footerRefreshing DEPRECATED_ATTRIBUTE;
 
 @end

@@ -8,143 +8,299 @@
 
 #import "MSRefreshTableController.h"
 
-@interface MSRefreshTableController ()
+@interface MSRefreshTableController () {
+    NSUInteger _numberOfControllersInStack;
+    
+    BOOL _refreshWhenFirstViewDidAppear;
+    BOOL _enableRefreshHeader;
+    BOOL _enableRefreshFooter;
+    
+}
+
+
+@property (nonatomic, strong, readwrite) MJRefreshHeader *refreshHeader;
+@property (nonatomic, strong, readwrite) MJRefreshFooter *refreshFooter;
 
 @end
 
 @implementation MSRefreshTableController
 
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _refreshWhenFirstViewDidAppear = YES;
         _enableRefreshHeader = YES;
         _enableRefreshFooter = YES;
-        self.refreshWhenFirstViewDidAppear = YES;
-        self.refreshWhenPushBack = NO;
-        _isBackFromPush = NO;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupRefresh];
+    
+    _numberOfControllersInStack = 0;
+    
+    [self loadHeaderRefresh];
+    
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.refreshWhenFirstViewDidAppear)
-    {
+    
+    // 兼容老版本逻辑
+    if (self.refreshWhenFirstViewDidAppear) {
         self.refreshWhenFirstViewDidAppear = NO;
-        [self headerRefreshing];
+        if ([self respondsToSelector:@selector(headerRefreshing)]) {
+            [self headerRefreshing];
+        }
     }
+    
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if ((_isBackFromPush && self.refreshWhenPushBack))
-    {
-        [self.tableView.header beginRefreshing];
+    
+    // 兼容老版本逻辑
+    BOOL isPushBack = _numberOfControllersInStack > 0 && _numberOfControllersInStack - 1 == [self.navigationController.viewControllers count];
+    
+    if (isPushBack && self.refreshWhenPushBack) {
+        [self.refreshHeader beginRefreshing];
     }
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    _isBackFromPush = YES;
+    _numberOfControllersInStack = [self.navigationController.viewControllers count];
 }
 
-/**
- *  集成刷新控件
- */
-- (void)setupRefresh
-{
-    __weak MSRefreshTableController* weakSelf = self;
-    
-    if (_enableRefreshHeader) {
-        
-        _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-            [weakSelf headerRefreshing];
-        }];
-        self.tableView.header = _refreshHeader;
-    }
-    else{
-        self.tableView.header = nil;
-    }
-    
-    if (_enableRefreshFooter) {
-        _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            [weakSelf footerRefreshing];
-        }];
-        self.tableView.footer = _refreshFooter;
-    }
-    else{
-        self.tableView.footer = nil;
-    }
-}
-
-- (void)setEnableRefreshHeader:(BOOL)enableRefreshHeader
-{
-    __weak MSRefreshTableController* weakSelf = self;
-    
-    _enableRefreshHeader = enableRefreshHeader;
-    
-    if (self.isViewLoaded) {
-        if (_enableRefreshHeader) {
-            
-            _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-                [weakSelf headerRefreshing];
-            }];
-            self.tableView.header = _refreshHeader;
-        }
-        else {
-            self.tableView.header = nil;
-        }
-    }
-}
-
-- (void)setEnableRefreshFooter:(BOOL)enableRefreshFooter
-{
-    __weak MSRefreshTableController* weakSelf = self;
-    
-    _enableRefreshFooter = enableRefreshFooter;
-    
-    if (self.isViewLoaded) {
-        if (_enableRefreshFooter) {
-            _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                [weakSelf footerRefreshing];
-            }];
-            self.tableView.footer = _refreshFooter;
-        }
-        else {
-            self.tableView.footer = nil;
-        }
-    }
-}
-
-- (void)headerRefreshing
-{
-    // 子类实现
-    // 不要忘记调用
-    [self.tableView.header endRefreshing];
-}
-
-- (void)footerRefreshing
-{
-    // 子类实现
-    // 不要忘记调用
-    [self.tableView.footer endRefreshing];
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    self.refreshWhenFirstViewDidAppear = YES;
 }
 
+# pragma mark - Refresh Header
+
+
+- (BOOL)loadHeaderRefresh
+{
+    if ([self refreshHeader]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (MJRefreshHeader *)refreshHeader
+{
+    if (!_refreshHeader && _enableRefreshHeader) {
+        if ([self respondsToSelector:@selector(refreshHeaderOfTableView)]) {
+            _refreshHeader = [self refreshHeaderOfTableView];
+        }
+        
+        if (!_refreshHeader) {
+            _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:NULL];
+        }
+        
+        __weak __typeof(self)weakSelf = self;
+
+        _refreshHeader.refreshingBlock = ^(){
+            if ([weakSelf respondsToSelector:@selector(refreshHeaderDidRefresh:)])
+            {
+                [weakSelf refreshHeaderDidRefresh:_refreshHeader];
+            }
+            else if ([weakSelf respondsToSelector:@selector(headerRefreshing)]) {
+                [weakSelf headerRefreshing];
+            }
+        };
+    }
+    
+    if (_tableView.header != _refreshHeader) {
+        _tableView.header = _refreshHeader;
+    }
+    
+    return _refreshHeader;
+}
+
+- (void)beginHeaderRefreshing
+{
+    [self.refreshHeader beginRefreshing];
+}
+
+
+- (MJRefreshHeader *)refreshHeaderOfTableView
+{
+    return _refreshHeader;
+}
+
+
+- (void)setRefreshHeaderHidden:(BOOL)refreshHeaderHidden
+{
+    self.tableView.header.hidden = refreshHeaderHidden;
+}
+
+
+- (BOOL)refreshHeaderHidden
+{
+    return (self.tableView.header && self.tableView.header.hidden);
+}
+
+
+- (void)endHeaderRefreshing
+{
+    [self.refreshHeader endRefreshing];
+}
+
+
+# pragma mark - Refresh Footer
+
+- (BOOL)loadFooterRefresh
+{
+    if ([self refreshFooter]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (MJRefreshFooter *)refreshFooter
+{
+    if (!_refreshFooter && _enableRefreshFooter){
+        if ([self respondsToSelector:@selector(refreshFooterOfTableView)]) {
+            _refreshFooter = [self refreshFooterOfTableView];
+        }
+        
+        if (!_refreshFooter) {
+            _refreshFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:NULL];
+        }
+        
+        __weak __typeof(self)weakSelf = self;
+
+        _refreshFooter.refreshingBlock = ^(){
+            if ([weakSelf respondsToSelector:@selector(refreshFooterDidRefresh:)])
+            {
+                [weakSelf refreshFooterDidRefresh:_refreshFooter];
+            }
+            else if ([weakSelf respondsToSelector:@selector(footerRefreshing)]) {
+                [weakSelf footerRefreshing];
+            }
+        };
+    }
+    
+    if (_tableView.footer != _refreshFooter) {
+        _tableView.footer = _refreshFooter;
+    }
+    
+    return _refreshFooter;
+}
+
+
+- (void)beginFooterRefreshing
+{
+    [self.refreshFooter beginRefreshing];
+}
+
+
+- (MJRefreshFooter *)refreshFooterOfTableView
+{
+    return _refreshFooter; // 
+}
+
+
+- (BOOL)refreshFooterHidden
+{
+    return (self.tableView.footer && self.tableView.footer.hidden);
+}
+
+
+- (void)endFooterRefreshing
+{
+    [self.refreshFooter endRefreshing];
+}
+
+
+- (void)setRefreshFooterStatus:(MSRefreshFooterStatus)status
+{
+    if (status == MSRefreshFooterStatusIdle) {
+        self.refreshFooter.hidden = NO;
+        [self.refreshFooter resetNoMoreData];
+    }
+    else if (status == MSRefreshFooterStatusNoMoreData) {
+        self.refreshFooter.hidden = NO;
+        [self.refreshFooter noticeNoMoreData];
+    }
+    else if (status == MSRefreshFooterStatusHidden) {
+        [self.refreshFooter setHidden:YES];
+    }
+    else if (status == MSRefreshFooterStatusNoInit) {
+        _tableView.footer = nil;
+        _refreshFooter = nil;
+    }
+}
+
+- (MSRefreshFooterStatus)refreshFooterStatus
+{
+    if (self.refreshFooter.hidden) {
+        return MSRefreshFooterStatusHidden;
+    }
+    else if (self.refreshFooter.state == MJRefreshStateNoMoreData) {
+        return MJRefreshStateNoMoreData;
+    }
+    
+    return MSRefreshFooterStatusIdle;
+}
+
+
+# pragma mark - DEPRECATED
+
+-(void)setEnableRefreshHeader:(BOOL)enable
+{
+    _enableRefreshHeader = enable;
+    
+    if (_enableRefreshHeader) {
+        [self refreshHeader];
+    }
+    else {
+        _refreshHeader = nil;
+        if (_tableView) {
+            _tableView.header = nil;
+        }
+    }
+}
+
+- (void)setEnableRefreshFooter:(BOOL)enable
+{
+    _enableRefreshFooter = enable;
+    
+    if (_enableRefreshFooter) {
+        [self refreshFooter];
+    }
+    else {
+        _refreshFooter = nil;
+        if (_tableView) {
+            _tableView.footer = nil;
+        }
+    }
+}
+
+
+- (void)headerRefreshing
+{
+    // do noting
+}
+
+- (void)footerRefreshing
+{
+    // do noting
+}
 
 @end
