@@ -420,7 +420,7 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
         }
     }
     
-    if (result && [result performSelector:@selector(clearBeforeReuse)]) {
+    if (result && [result respondsToSelector:@selector(clearBeforeReuse)]) {
         [result clearBeforeReuse];
     }
     
