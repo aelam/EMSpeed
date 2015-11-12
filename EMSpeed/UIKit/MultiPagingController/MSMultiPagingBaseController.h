@@ -95,6 +95,8 @@ static const NSInteger kMultiPageControllerLoopSizeMax;
 - (void)requestDatasource; // 发包操作, 滑动停下后当前页面会调用到
 - (BOOL)loadCacheData; // 读取缓存操作, 滑动停下后当前页面会调用到
 
+- (void)clearBeforeReuse; // 重用前清理数据
+
 @optional
 /**
  pageViewDidEndDecelerating

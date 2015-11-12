@@ -419,6 +419,11 @@ static const NSInteger kMultiPageControllerLoopSizeMax = 512;
             break;
         }
     }
+    
+    if (result && [result performSelector:@selector(clearBeforeReuse)]) {
+        [result clearBeforeReuse];
+    }
+    
     return result;
 }
 
