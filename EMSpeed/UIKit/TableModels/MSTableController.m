@@ -75,6 +75,7 @@ const CGFloat kMMCellDefaultHeight = 44;
         self.emptyView.hidden = NO;
     }
     else{
+        [_emptyView removeFromSuperview];
         _emptyView.hidden = YES;
     }
     
@@ -129,7 +130,7 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (UIView *)emptyView
 {
     if (_emptyView == nil) {
-        _emptyView = [[MSTableEmptyView alloc] initWithFrame:_tableView.frame];
+        _emptyView = [[MSTableEmptyView alloc] initWithFrame:_tableView.bounds];
     }
     
     return _emptyView;
@@ -144,6 +145,12 @@ const CGFloat kMMCellDefaultHeight = 44;
 - (BOOL)isEmptyDatasource
 {
     return [self.dataSource isEmpty];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    _emptyView.frame = _tableView.bounds;
 }
 
 @end
