@@ -12,7 +12,7 @@
 
 - (instancetype)initWithItems:(NSArray *)aItems sections:(NSArray *)aSections
 {
-    NSAssert((aItems && aSections && [aItems count]==[aSections count]), nil);
+    NSAssert((aItems && aSections && [aItems count]==[aSections count]), @"Sections and items shouldn't be null");
     
     self = [super init];
     if (self) {
@@ -128,6 +128,29 @@
 
 
 # pragma mark - Setter & Getter
+- (NSIndexPath *)indexPathOfItem:(id<MSCollectionCellModel>)cellModel {
+    NSInteger section = -1;
+    NSInteger row = -1;
+    NSIndexPath *indexPath = nil;
+    
+    for(int s = 0 ; s < [_items count]; s++) {
+        NSArray *arr = [_items objectAtIndex:s];
+        for(int r = 0 ; r < [arr count]; r++) {
+            id<MSCollectionCellModel>item = arr[r];
+            if (item == cellModel) {
+                section = s;
+                row  = r;
+                break;
+            }
+        }
+    }
+    
+    if (section != -1 && row != -1) {
+        return [NSIndexPath indexPathForRow:row inSection:section];
+    } else {
+        return nil;
+    }
+}
 
 - (id<MSCollectionCellModel>)itemAtIndexPath:(NSIndexPath *)indexPath
 {

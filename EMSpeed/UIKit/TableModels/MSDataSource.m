@@ -124,6 +124,29 @@
 }
 
 # pragma mark - Setter & Getter
+- (NSIndexPath *)indexPathOfItem:(id<MSCellModel>)cellModel {
+    NSInteger section = -1;
+    NSInteger row = -1;
+    NSIndexPath *indexPath = nil;
+    
+    for(int s = 0 ; s < [_items count]; s++) {
+        NSArray *arr = [_items objectAtIndex:s];
+        for(int r = 0 ; r < [arr count]; r++) {
+            id<MSCellModel>item = arr[r];
+            if (item == cellModel) {
+                section = s;
+                row  = r;
+                break;
+            }
+        }
+    }
+    
+    if (section != -1 && row != -1) {
+        return [NSIndexPath indexPathForRow:row inSection:section];
+    } else {
+        return nil;
+    }
+}
 
 - (id<MSCellModel>)itemAtIndexPath:(NSIndexPath *)indexPath
 {

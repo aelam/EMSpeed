@@ -24,3 +24,20 @@
 }
 
 @end
+
+@implementation NSString  (URLAppendQueries)
+
+- (NSString *)stringByAppendingParameters:(NSDictionary *)parameters {
+    NSString *newString = self;
+    if (parameters) {
+        NSString *query = [parameters ms_query];
+        if ([newString rangeOfString:@"?"].length > 0) {
+            newString = [newString stringByAppendingFormat:@"&%@", query];
+        } else {
+            newString = [newString stringByAppendingFormat:@"?%@", query];
+        }
+    }
+    return newString;
+}
+
+@end

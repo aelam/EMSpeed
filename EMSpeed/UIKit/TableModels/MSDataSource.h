@@ -114,6 +114,8 @@
 - (NSUInteger)numberOfItemsAtSection:(NSUInteger)section;
 
 
+- (NSIndexPath *)indexPathOfItem:(id<MSCellModel>)cellModel;
+
 /**
  *  给tableview 注册cell的identifier
  */

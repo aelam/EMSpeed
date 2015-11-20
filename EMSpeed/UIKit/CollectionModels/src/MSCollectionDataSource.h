@@ -84,6 +84,7 @@
 - (NSArray *)itemsAtSectionWithTitle:(NSString *)title;
 
 
+- (NSIndexPath *)indexPathOfItem:(id<MSCollectionCellModel>)cellModel;
 
 
 // 取某个EMBaseItem

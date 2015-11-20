@@ -13,3 +13,10 @@
 - (NSString *)ms_query;
 
 @end
+
+
+@interface NSString  (URLAppendQueries)
+
+- (NSString *)stringByAppendingParameters:(NSDictionary *)parameters;
+
+@end
