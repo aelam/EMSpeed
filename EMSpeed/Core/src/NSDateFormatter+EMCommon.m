@@ -64,5 +64,32 @@
     return fmt;
 }
 
++ (instancetype)ms_hourMinuteFormatter{ // "13:39"
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        NSTimeZone *timezone = [NSTimeZone localTimeZone];
+        //[NSTimeZone timeZoneForSecondsFromGMT:8 * 3600];//直接指定时区
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"HH:mm";
+    });
+    return fmt;
+}
+
++ (instancetype)ms_monthDayFormatter{ // "13:39"
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        NSTimeZone *timezone = [NSTimeZone localTimeZone];
+        //[NSTimeZone timeZoneForSecondsFromGMT:8 * 3600];//直接指定时区
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"MM-dd";
+    });
+    return fmt;
+}
 
 @end

@@ -18,4 +18,9 @@
 
 + (instancetype)ms_timeFormatter; // "13:39:09"
 
++ (instancetype)ms_hourMinuteFormatter; // "13:39"
+
++ (instancetype)ms_monthDayFormatter; // "06-29"
+
+
 @end
