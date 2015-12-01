@@ -36,8 +36,12 @@
 #import <EMSpeed/NSString+URLEncoding.h>
 #import <EMSpeed/NSString+Utility.h>
 #import <EMSpeed/NSString+BASE64.h>
-#import <EMSpeed/NSDictionary+Query.h>
 #import <EMSpeed/NSString+URLHelper.h>
+
+/* NSDictionary */
+#import <EMSpeed/NSDictionary+Query.h>
+#import <EMSpeed/NSDictionary+JSONString.h>
+
 
 /* Timer */
 #import <EMSpeed/NSTimer+Pause.h>
