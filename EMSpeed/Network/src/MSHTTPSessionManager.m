@@ -67,13 +67,22 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
                 headerFields:(NSDictionary *)headerFields
                      success:(void (^)(NSURLSessionTask *task, id responseObject))success
                      failure:(void (^)(NSURLSessionTask *task, NSError *error))failure {
+    
+//    return nil;
+    
     NSError *serializationError = nil;
     
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
 
+    int uploadLen = 0;
+    int downloadLen = 0;
+    
     NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
     if (self.defaultParameters) {
         [newParameters addEntriesFromDictionary:self.defaultParameters];
+    
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:newParameters];
+        uploadLen = [data length];
     }
     
     NSMutableURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:URLString parameters:newParameters error:&serializationError];
@@ -96,6 +105,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu"
             dispatch_async(manager.completionQueue ?: dispatch_get_main_queue(), ^{
+                [self failureRequest:serializationError];
                 failure(nil, serializationError);
             });
 #pragma clang diagnostic pop
@@ -109,10 +119,20 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
         if (error) {
             if (failure) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:MSHTTPSessionManagerTaskDidFailedNotification object:dataTask];
+                [self failureRequest:error];
                 failure(dataTask, error);
             }
         } else {
             if (success) {
+                
+                NSData *data = [NSKeyedArchiver archivedDataWithRootObject:newParameters];
+                int downloadLen = [data length];
+
+                if (self.errorHandler && [self.errorHandler respondsToSelector:@selector(handleRequestFlowData:downLoadLen:uploadLen:)]) {
+                    [self.errorHandler handleRequestFlowData:URLString
+                                                 downLoadLen:downloadLen
+                                                   uploadLen:uploadLen];
+                }
                 success(dataTask, responseObject);
             }
         }
@@ -122,6 +142,16 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     return dataTask;
 }
 
+- (void)failureRequest:(NSError *)error
+{
+    if (error.code == NSUserCancelledError) {
+        return;
+    }
+    
+    if (self.errorHandler && [self.errorHandler respondsToSelector:@selector(handleRequestError:)]) {
+        [self.errorHandler handleRequestError:error];
+    }
+}
 
 
 @end

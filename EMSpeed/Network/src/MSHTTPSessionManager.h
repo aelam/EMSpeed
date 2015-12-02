@@ -15,7 +15,19 @@
 extern NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
 
 
+@protocol MSHTTPErrorHandler <NSObject>
+
+- (void)handleRequestError:(NSError *)error;
+
+- (void)handleRequestFlowData:(NSString *)URL
+                  downLoadLen:(int)download
+                    uploadLen:(int)upload;
+@end
+
 @interface MSHTTPSessionManager : AFHTTPSessionManager
+
+@property (nonatomic, strong) id <MSHTTPErrorHandler>errorHandler;
+
 
 + (MSHTTPSessionManager *)sharedManager;
 

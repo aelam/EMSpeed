@@ -57,7 +57,10 @@
         block(response, task, success);
         [self.tasks removeObject:task];
     }];
-    [self.tasks addObject:task];
+    
+    if (task) {
+        [self.tasks addObject:task];
+    }
 
     return task;
 }
@@ -74,7 +77,10 @@
         block(response, task, success);
         [self.tasks removeObject:task];
     }];
-    [self.tasks addObject:task];
+    
+    if (task) {
+        [self.tasks addObject:task];
+    }
     
     return task;
 }
