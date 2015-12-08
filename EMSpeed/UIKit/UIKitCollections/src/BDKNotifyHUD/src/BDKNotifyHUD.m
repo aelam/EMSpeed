@@ -219,8 +219,14 @@
 
 - (void)recalculateHeight {
     CGRect frame = self.backgroundView.frame;
+    frame.size.width = CGRectGetMaxX(self.textLabel.frame) + kBDKNotifyHUDDefaultPadding;
     frame.size.height = CGRectGetMaxY(self.textLabel.frame) + kBDKNotifyHUDDefaultPadding;
     self.backgroundView.frame = frame;
+
+    frame = _textLabel.frame;
+    frame.origin.x = floorf((self.backgroundView.frame.size.width - _textLabel.frame.size.width) / 2);
+    _textLabel.frame = frame;
+
 }
 
 + (void)showNotifHUDWithImage:(UIImage *)image
