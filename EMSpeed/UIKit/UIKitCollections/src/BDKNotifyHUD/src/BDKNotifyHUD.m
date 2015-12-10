@@ -222,10 +222,11 @@
     frame.size.width = CGRectGetMaxX(self.textLabel.frame) + kBDKNotifyHUDDefaultPadding;
     frame.size.height = CGRectGetMaxY(self.textLabel.frame) + kBDKNotifyHUDDefaultPadding;
     self.backgroundView.frame = frame;
-
+    self.backgroundView.center = CGPointMake(CGRectGetWidth(self.frame)/2.0, self.backgroundView.center.y);
     frame = _textLabel.frame;
     frame.origin.x = floorf((self.backgroundView.frame.size.width - _textLabel.frame.size.width) / 2);
     _textLabel.frame = frame;
+    _textLabel.center = CGPointMake(self.backgroundView.center.x, _textLabel.center.y);
 
 }
 
