@@ -30,7 +30,6 @@
 #import <EMSpeed/NSObject+StringFormat.h>
 
 #import <EMSpeed/MSKeyChain.h>
-#import <EMSpeed/MSUUID.h>
 
 /* String */
 #import <EMSpeed/NSString+URLEncoding.h>
