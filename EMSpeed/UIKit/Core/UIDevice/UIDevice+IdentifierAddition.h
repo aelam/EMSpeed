@@ -11,7 +11,6 @@
 
 @interface UIDevice (IdentifierAddition)
 
-- (NSString *) macaddress;
 
 /*
  * @method uniqueGlobalDeviceIdentifier

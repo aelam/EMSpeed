@@ -16,6 +16,8 @@
 #import <EMSpeed/MSCoreSDKAvailability.h>
 #import <EMSpeed/UIView+AutoLayout.h>
 #import <EMSpeed/UIView-Geometry.h>
+
+#import <EMSpeed/MSUUID.h>
 #import <EMSpeed/UIDevice+IdentifierAddition.h>
 
 #import <EMSpeed/MSViewController.h>

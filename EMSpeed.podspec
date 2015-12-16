@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |ss|
     ss.source_files  = "EMSpeed/Core/**/*.{h,m,c,swift}"
-    ss.dependency      "SFHFKeychainUtils"
+    ss.frameworks    = "Security"
   end
 
   s.subspec 'MSContext' do |ss|

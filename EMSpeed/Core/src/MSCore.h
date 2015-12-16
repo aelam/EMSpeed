@@ -29,7 +29,7 @@
 /* StringFormat */
 #import <EMSpeed/NSObject+StringFormat.h>
 
-
+#import <EMSpeed/MSKeyChain.h>
 #import <EMSpeed/MSUUID.h>
 
 /* String */

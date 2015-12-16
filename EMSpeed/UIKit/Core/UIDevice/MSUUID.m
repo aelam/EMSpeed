@@ -7,7 +7,7 @@
 //
 
 #import "MSUUID.h"
-#import "SFHFKeychainUtils.h"
+#import "MSKeychain.h"
 
 NSString *kKeychainUUIDItemIdentifier  = @"UUID";
 NSString *kKeyChainUUIDAccessGroup = nil;
@@ -46,12 +46,12 @@ NSString *kKeyChainUUIDAccessGroup = nil;
 
 + (NSString*)getEMUUIDFromKeyChain
 {
-    return [SFHFKeychainUtils getPasswordForUsername:kKeychainUUIDItemIdentifier andServiceName:kKeyChainUUIDAccessGroup error:nil];
+    return [MSKeychain getPasswordForUsername:kKeychainUUIDItemIdentifier andServiceName:kKeyChainUUIDAccessGroup error:nil];
 }
 
 + (BOOL)setEMUUIDToKeyChain:(NSString*)udid
 {
-    return  [SFHFKeychainUtils storeUsername:kKeychainUUIDItemIdentifier
+    return  [MSKeychain storeUsername:kKeychainUUIDItemIdentifier
                                  andPassword:udid
                               forServiceName:kKeyChainUUIDAccessGroup
                               updateExisting:NO
@@ -60,7 +60,7 @@ NSString *kKeyChainUUIDAccessGroup = nil;
 
 + (BOOL)removeUDIDFromKeyChain
 {
-    return  [SFHFKeychainUtils deleteItemForUsername:kKeychainUUIDItemIdentifier andServiceName:kKeyChainUUIDAccessGroup error:nil];
+    return  [MSKeychain deleteItemForUsername:kKeychainUUIDItemIdentifier andServiceName:kKeyChainUUIDAccessGroup error:nil];
 }
 
 @end
