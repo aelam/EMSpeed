@@ -131,8 +131,7 @@
 - (NSIndexPath *)indexPathOfItem:(id<MSCollectionCellModel>)cellModel {
     NSInteger section = -1;
     NSInteger row = -1;
-    NSIndexPath *indexPath = nil;
-    
+
     for(int s = 0 ; s < [_items count]; s++) {
         NSArray *arr = [_items objectAtIndex:s];
         for(int r = 0 ; r < [arr count]; r++) {

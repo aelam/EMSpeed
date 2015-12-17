@@ -67,6 +67,8 @@
         }
     }
     else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         // 兼容老版本逻辑
         if (self.refreshWhenFirstViewDidAppear) {
             self.refreshWhenFirstViewDidAppear = NO;
@@ -74,6 +76,7 @@
                 [self headerRefreshing];
             }
         }
+#pragma clang diagnostic pop
     }
 }
 
@@ -101,9 +104,12 @@
         // 兼容老版本逻辑
         BOOL isPushBack = _numberOfControllersInStack > 0 && _numberOfControllersInStack - 1 == [self.navigationController.viewControllers count];
         
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if (isPushBack && self.refreshWhenPushBack) {
             [self.refreshHeader beginRefreshing];
         }
+#pragma clang diagnostic pop
     }
 }
 
@@ -120,9 +126,12 @@
     [super didReceiveMemoryWarning];
 }
 
+
+- (void)refreshHeaderDidRefresh:(MJRefreshHeader *)refreshHeader {
+    
+}
+
 # pragma mark - Refresh Header
-
-
 - (BOOL)loadHeaderRefresh
 {
     if ([self refreshHeader]) {
@@ -146,19 +155,22 @@
         
         __weak __typeof(self)weakSelf = self;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         _refreshHeader.refreshingBlock = ^(){
             if ([weakSelf respondsToSelector:@selector(refreshHeaderDidRefresh:)])
             {
-                [weakSelf refreshHeaderDidRefresh:_refreshHeader];
+                [weakSelf refreshHeaderDidRefresh:weakSelf.refreshHeader];
             }
             else if ([weakSelf respondsToSelector:@selector(headerRefreshing)]) {
                 [weakSelf headerRefreshing];
             }
         };
+#pragma clang diagnostic pop
     }
     
-    if (_tableView.header != _refreshHeader) {
-        _tableView.header = _refreshHeader;
+    if (_tableView.mj_header != _refreshHeader) {
+        _tableView.mj_header = _refreshHeader;
     }
     
     return _refreshHeader;
@@ -178,13 +190,13 @@
 
 - (void)setRefreshHeaderHidden:(BOOL)refreshHeaderHidden
 {
-    self.tableView.header.hidden = refreshHeaderHidden;
+    self.tableView.mj_header.hidden = refreshHeaderHidden;
 }
 
 
 - (BOOL)refreshHeaderHidden
 {
-    return (self.tableView.header && self.tableView.header.hidden);
+    return (self.tableView.mj_header && self.tableView.mj_header.hidden);
 }
 
 
@@ -222,16 +234,19 @@
         _refreshFooter.refreshingBlock = ^(){
             if ([weakSelf respondsToSelector:@selector(refreshFooterDidRefresh:)])
             {
-                [weakSelf refreshFooterDidRefresh:_refreshFooter];
+                [weakSelf refreshFooterDidRefresh:weakSelf.refreshFooter];
             }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             else if ([weakSelf respondsToSelector:@selector(footerRefreshing)]) {
                 [weakSelf footerRefreshing];
             }
+#pragma clang diagnostic pop
         };
     }
     
-    if (_tableView.footer != _refreshFooter) {
-        _tableView.footer = _refreshFooter;
+    if (_tableView.mj_footer != _refreshFooter) {
+        _tableView.mj_footer = _refreshFooter;
     }
     
     return _refreshFooter;
@@ -252,7 +267,7 @@
 
 - (BOOL)refreshFooterHidden
 {
-    return (self.tableView.footer && self.tableView.footer.hidden);
+    return (self.tableView.mj_footer && self.tableView.mj_footer.hidden);
 }
 
 
@@ -270,13 +285,13 @@
     }
     else if (status == MSRefreshFooterStatusNoMoreData) {
         self.refreshFooter.hidden = NO;
-        [self.refreshFooter noticeNoMoreData];
+        [self.refreshFooter endRefreshingWithNoMoreData];
     }
     else if (status == MSRefreshFooterStatusHidden) {
         [self.refreshFooter setHidden:YES];
     }
     else if (status == MSRefreshFooterStatusNoInit) {
-        _tableView.footer = nil;
+        _tableView.mj_footer = nil;
         _refreshFooter = nil;
     }
 }
@@ -290,7 +305,7 @@
         return MSRefreshFooterStatusHidden;
     }
     else if (_refreshFooter.state == MJRefreshStateNoMoreData) {
-        return MJRefreshStateNoMoreData;
+        return MSRefreshFooterStatusNoMoreData;
     }
     
     return MSRefreshFooterStatusIdle;

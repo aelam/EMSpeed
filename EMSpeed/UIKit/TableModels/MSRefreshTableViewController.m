@@ -66,7 +66,7 @@
     [super viewDidAppear:animated];
     if ((_isBackFromPush && self.refreshWhenPushBack))
     {
-        [self.tableView.header beginRefreshing];
+        [self.tableView.mj_header beginRefreshing];
     }
 }
 
@@ -89,20 +89,20 @@
         _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
-        self.tableView.header = _refreshHeader;
+        self.tableView.mj_header = _refreshHeader;
     }
     else{
-        self.tableView.header = nil;
+        self.tableView.mj_header = nil;
     }
     
     if (_enableRefreshFooter) {
         _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
-        self.tableView.footer = _refreshFooter;
+        self.tableView.mj_footer = _refreshFooter;
     }
     else{
-        self.tableView.footer = nil;
+        self.tableView.mj_footer = nil;
     }
 }
 
@@ -118,10 +118,10 @@
             _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
                 [weakSelf headerRefreshing];
             }];
-            self.tableView.header = _refreshHeader;
+            self.tableView.mj_header = _refreshHeader;
         }
         else {
-            self.tableView.header = nil;
+            self.tableView.mj_header = nil;
         }
     }
 }
@@ -137,10 +137,10 @@
             _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                 [weakSelf footerRefreshing];
             }];
-            self.tableView.footer = _refreshFooter;
+            self.tableView.mj_footer = _refreshFooter;
         }
         else {
-            self.tableView.footer = nil;
+            self.tableView.mj_footer = nil;
         }
     }
 }
@@ -150,14 +150,14 @@
 {
     // 子类实现
     // 不要忘记调用
-    [self.tableView.header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)footerRefreshing
 {
     // 子类实现
     // 不要忘记调用
-    [self.tableView.footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 }
 
 

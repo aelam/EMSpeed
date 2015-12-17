@@ -20,8 +20,8 @@ extern NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
 - (void)handleRequestError:(NSError *)error;
 
 - (void)handleRequestFlowData:(NSString *)URL
-                  downLoadLen:(int)download
-                    uploadLen:(int)upload;
+                  downLoadLen:(NSUInteger)download
+                    uploadLen:(NSUInteger)upload;
 @end
 
 @interface MSHTTPSessionManager : AFHTTPSessionManager

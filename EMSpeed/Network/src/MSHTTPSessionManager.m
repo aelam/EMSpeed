@@ -76,8 +76,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
 
-    int uploadLen = 0;
-    int downloadLen = 0;
+    NSUInteger uploadLen = 0;
     
     NSMutableDictionary *newParameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
     if (self.defaultParameters) {
@@ -128,7 +127,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
             if (success) {
                 
                 NSData *data = [NSKeyedArchiver archivedDataWithRootObject:newParameters];
-                int downloadLen = [data length];
+                NSUInteger downloadLen = [data length];
 
                 if (self.errorHandler && [self.errorHandler respondsToSelector:@selector(handleRequestFlowData:downLoadLen:uploadLen:)]) {
                     [self.errorHandler handleRequestFlowData:URLString
