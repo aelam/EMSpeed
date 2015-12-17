@@ -168,11 +168,12 @@
         };
 #pragma clang diagnostic pop
     }
-    
-    if (_tableView.mj_header != _refreshHeader) {
-        _tableView.mj_header = _refreshHeader;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if (_tableView.header != _refreshHeader) {
+        _tableView.header = _refreshHeader;
     }
-    
+#pragma clang diagnostic pop
     return _refreshHeader;
 }
 
@@ -190,13 +191,19 @@
 
 - (void)setRefreshHeaderHidden:(BOOL)refreshHeaderHidden
 {
-    self.tableView.mj_header.hidden = refreshHeaderHidden;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    self.tableView.header.hidden = refreshHeaderHidden;
+#pragma clang diagnostic pop
 }
 
 
 - (BOOL)refreshHeaderHidden
 {
-    return (self.tableView.mj_header && self.tableView.mj_header.hidden);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    return (self.tableView.header && self.tableView.header.hidden);
+#pragma clang diagnostic pop
 }
 
 
@@ -244,11 +251,12 @@
 #pragma clang diagnostic pop
         };
     }
-    
-    if (_tableView.mj_footer != _refreshFooter) {
-        _tableView.mj_footer = _refreshFooter;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    if (_tableView.footer != _refreshFooter) {
+        _tableView.footer = _refreshFooter;
     }
-    
+#pragma clang diagnostic pop
     return _refreshFooter;
 }
 
@@ -267,7 +275,10 @@
 
 - (BOOL)refreshFooterHidden
 {
-    return (self.tableView.mj_footer && self.tableView.mj_footer.hidden);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    return (self.tableView.footer && self.tableView.footer.hidden);
+#pragma clang diagnostic pop
 }
 
 
@@ -291,8 +302,11 @@
         [self.refreshFooter setHidden:YES];
     }
     else if (status == MSRefreshFooterStatusNoInit) {
-        _tableView.mj_footer = nil;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        _tableView.footer = nil;
         _refreshFooter = nil;
+#pragma clang diagnostic pop
     }
 }
 

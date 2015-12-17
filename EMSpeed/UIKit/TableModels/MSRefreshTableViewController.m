@@ -66,7 +66,10 @@
     [super viewDidAppear:animated];
     if ((_isBackFromPush && self.refreshWhenPushBack))
     {
-        [self.tableView.mj_header beginRefreshing];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [self.tableView.header beginRefreshing];
+#pragma clang diagnostic pop
     }
 }
 
@@ -82,6 +85,8 @@
  */
 - (void)setupRefresh
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     __weak MSRefreshTableViewController* weakSelf = self;
     
     if (_enableRefreshHeader) {
@@ -89,25 +94,29 @@
         _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
-        self.tableView.mj_header = _refreshHeader;
+        self.tableView.header = _refreshHeader;
     }
     else{
-        self.tableView.mj_header = nil;
+        self.tableView.header = nil;
     }
     
     if (_enableRefreshFooter) {
         _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
-        self.tableView.mj_footer = _refreshFooter;
+        self.tableView.footer = _refreshFooter;
     }
     else{
-        self.tableView.mj_footer = nil;
+        self.tableView.footer = nil;
     }
+#pragma clang diagnostic pop
+
 }
 
 - (void)setEnableRefreshHeader:(BOOL)enableRefreshHeader
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     __weak MSRefreshTableViewController* weakSelf = self;
     
     _enableRefreshHeader = enableRefreshHeader;
@@ -118,16 +127,19 @@
             _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
                 [weakSelf headerRefreshing];
             }];
-            self.tableView.mj_header = _refreshHeader;
+            self.tableView.header = _refreshHeader;
         }
         else {
-            self.tableView.mj_header = nil;
+            self.tableView.header = nil;
         }
     }
+#pragma clang diagnostic pop
 }
 
 - (void)setEnableRefreshFooter:(BOOL)enableRefreshFooter
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     __weak MSRefreshTableViewController* weakSelf = self;
     
     _enableRefreshFooter = enableRefreshFooter;
@@ -137,12 +149,13 @@
             _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                 [weakSelf footerRefreshing];
             }];
-            self.tableView.mj_footer = _refreshFooter;
+            self.tableView.footer = _refreshFooter;
         }
         else {
-            self.tableView.mj_footer = nil;
+            self.tableView.footer = nil;
         }
     }
+#pragma clang diagnostic pop
 }
 
 
@@ -150,14 +163,20 @@
 {
     // 子类实现
     // 不要忘记调用
-    [self.tableView.mj_header endRefreshing];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.tableView.header endRefreshing];
+#pragma clang diagnostic pop
 }
 
 - (void)footerRefreshing
 {
     // 子类实现
     // 不要忘记调用
-    [self.tableView.mj_header endRefreshing];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [self.tableView.header endRefreshing];
+#pragma clang diagnostic pop
 }
 
 
