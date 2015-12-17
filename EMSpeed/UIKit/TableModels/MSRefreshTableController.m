@@ -296,7 +296,10 @@
     }
     else if (status == MSRefreshFooterStatusNoMoreData) {
         self.refreshFooter.hidden = NO;
-        [self.refreshFooter endRefreshingWithNoMoreData];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [self.refreshFooter noticeNoMoreData];
+#pragma clang diagnostic pop
     }
     else if (status == MSRefreshFooterStatusHidden) {
         [self.refreshFooter setHidden:YES];
