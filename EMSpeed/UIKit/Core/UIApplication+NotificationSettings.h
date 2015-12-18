@@ -1,5 +1,5 @@
 //
-//  UIApplication+NotificationTypes.h
+//  UIApplication+NotificationSettings.h
 //  Pods
 //
 //  Created by ryan on 15/12/18.

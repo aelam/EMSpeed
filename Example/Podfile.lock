@@ -1,75 +1,75 @@
 PODS:
-  - AFNetworking (3.0.2):
-    - AFNetworking/NSURLSession (= 3.0.2)
-    - AFNetworking/Reachability (= 3.0.2)
-    - AFNetworking/Security (= 3.0.2)
-    - AFNetworking/Serialization (= 3.0.2)
-    - AFNetworking/UIKit (= 3.0.2)
-  - AFNetworking/NSURLSession (3.0.2):
+  - AFNetworking (3.0.3):
+    - AFNetworking/NSURLSession (= 3.0.3)
+    - AFNetworking/Reachability (= 3.0.3)
+    - AFNetworking/Security (= 3.0.3)
+    - AFNetworking/Serialization (= 3.0.3)
+    - AFNetworking/UIKit (= 3.0.3)
+  - AFNetworking/NSURLSession (3.0.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.2)
-  - AFNetworking/Security (3.0.2)
-  - AFNetworking/Serialization (3.0.2)
-  - AFNetworking/UIKit (3.0.2):
+  - AFNetworking/Reachability (3.0.3)
+  - AFNetworking/Security (3.0.3)
+  - AFNetworking/Serialization (3.0.3)
+  - AFNetworking/UIKit (3.0.3):
     - AFNetworking/NSURLSession
-  - EMSpeed (0.2.0):
-    - EMSpeed/Core (= 0.2.0)
-    - EMSpeed/MSContext (= 0.2.0)
-    - EMSpeed/Network (= 0.2.0)
-    - EMSpeed/UIKit (= 0.2.0)
-  - EMSpeed/Core (0.2.0)
-  - EMSpeed/MSContext (0.2.0)
-  - EMSpeed/Network (0.2.0):
+  - EMSpeed (0.2.2):
+    - EMSpeed/Core (= 0.2.2)
+    - EMSpeed/MSContext (= 0.2.2)
+    - EMSpeed/Network (= 0.2.2)
+    - EMSpeed/UIKit (= 0.2.2)
+  - EMSpeed/Core (0.2.2)
+  - EMSpeed/MSContext (0.2.2)
+  - EMSpeed/Network (0.2.2):
     - AFNetworking
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit (0.2.0):
-    - EMSpeed/UIKit/Animations (= 0.2.0)
-    - EMSpeed/UIKit/CollectionModels (= 0.2.0)
-    - EMSpeed/UIKit/Core (= 0.2.0)
-    - EMSpeed/UIKit/FontAwesome+iOS (= 0.2.0)
-    - EMSpeed/UIKit/GuideView (= 0.2.0)
-    - EMSpeed/UIKit/MultiPagingView (= 0.2.0)
-    - EMSpeed/UIKit/PopupView (= 0.2.0)
-    - EMSpeed/UIKit/StatusBar (= 0.2.0)
-    - EMSpeed/UIKit/TableModels (= 0.2.0)
-    - EMSpeed/UIKit/UIColors (= 0.2.0)
-    - EMSpeed/UIKit/UIImages (= 0.2.0)
-    - EMSpeed/UIKit/UIKitCollections (= 0.2.0)
-    - EMSpeed/UIKit/WebImage (= 0.2.0)
-  - EMSpeed/UIKit/Animations (0.2.0):
+  - EMSpeed/UIKit (0.2.2):
+    - EMSpeed/UIKit/Animations (= 0.2.2)
+    - EMSpeed/UIKit/CollectionModels (= 0.2.2)
+    - EMSpeed/UIKit/Core (= 0.2.2)
+    - EMSpeed/UIKit/FontAwesome+iOS (= 0.2.2)
+    - EMSpeed/UIKit/GuideView (= 0.2.2)
+    - EMSpeed/UIKit/MultiPagingView (= 0.2.2)
+    - EMSpeed/UIKit/PopupView (= 0.2.2)
+    - EMSpeed/UIKit/StatusBar (= 0.2.2)
+    - EMSpeed/UIKit/TableModels (= 0.2.2)
+    - EMSpeed/UIKit/UIColors (= 0.2.2)
+    - EMSpeed/UIKit/UIImages (= 0.2.2)
+    - EMSpeed/UIKit/UIKitCollections (= 0.2.2)
+    - EMSpeed/UIKit/WebImage (= 0.2.2)
+  - EMSpeed/UIKit/Animations (0.2.2):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/CollectionModels (0.2.0):
+  - EMSpeed/UIKit/CollectionModels (0.2.2):
     - EMSpeed/Core
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/Core (0.2.0):
+  - EMSpeed/UIKit/Core (0.2.2):
     - EMSpeed/Core
-  - EMSpeed/UIKit/FontAwesome+iOS (0.2.0)
-  - EMSpeed/UIKit/GuideView (0.2.0):
+  - EMSpeed/UIKit/FontAwesome+iOS (0.2.2)
+  - EMSpeed/UIKit/GuideView (0.2.2):
     - EMSpeed/UIKit/Animations
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/MultiPagingView (0.2.0):
+  - EMSpeed/UIKit/MultiPagingView (0.2.2):
     - EMSpeed/UIKit/UIKitCollections
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/PopupView (0.2.0):
+  - EMSpeed/UIKit/PopupView (0.2.2):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIImages
-  - EMSpeed/UIKit/StatusBar (0.2.0):
+  - EMSpeed/UIKit/StatusBar (0.2.2):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/TableModels (0.2.0):
+  - EMSpeed/UIKit/TableModels (0.2.2):
     - EMSpeed/UIKit/Core
     - MJRefresh
-  - EMSpeed/UIKit/UIColors (0.2.0):
+  - EMSpeed/UIKit/UIColors (0.2.2):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIImages (0.2.0):
+  - EMSpeed/UIKit/UIImages (0.2.2):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIKitCollections (0.2.0):
+  - EMSpeed/UIKit/UIKitCollections (0.2.2):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIColors
-  - EMSpeed/UIKit/WebImage (0.2.0):
+  - EMSpeed/UIKit/WebImage (0.2.2):
     - EMSpeed/UIKit/UIImages
     - SDWebImage
   - MJRefresh (3.0.7)
@@ -86,8 +86,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  AFNetworking: 2f30b7db399a405b12b24e049c654f108fc8c54d
-  EMSpeed: 8b2cc2f9c2f39f135855b02bef15a8e4f187faac
+  AFNetworking: ba06eb9f27de596808c0acc09e1c920cb1d17ab4
+  EMSpeed: 75b60df80a1e25d10f4fe5a6b70d5984bcbd45d8
   MJRefresh: f3e1228ec3d38c7ba5208d58032631a52f39f495
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 

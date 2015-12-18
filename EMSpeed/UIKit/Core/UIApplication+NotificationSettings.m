@@ -1,12 +1,12 @@
 //
-//  UIApplication+NotificationTypes.m
+//  UIApplication+NotificationSettings.m
 //  Pods
 //
 //  Created by ryan on 15/12/18.
 //
 //
 
-#import "UIApplication+NotificationTypes.h"
+#import "UIApplication+NotificationSettings.h"
 
 @implementation UIApplication (NotificationSettings)
 

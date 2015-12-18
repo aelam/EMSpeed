@@ -22,4 +22,6 @@
 
 #import <EMSpeed/MSViewController.h>
 
+#import <EMSpeed/UIApplication+NotificationSettings.h>
+
 #endif /* MSUIKITCORE_H_ */
