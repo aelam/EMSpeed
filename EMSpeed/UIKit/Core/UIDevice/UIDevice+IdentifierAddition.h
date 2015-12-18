@@ -11,6 +11,7 @@
 
 @interface UIDevice (IdentifierAddition)
 
+- (NSString *)macaddress __deprecated;
 
 /*
  * @method uniqueGlobalDeviceIdentifier

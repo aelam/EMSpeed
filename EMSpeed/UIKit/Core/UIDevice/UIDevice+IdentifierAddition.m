@@ -15,7 +15,7 @@
 
 @interface UIDevice(Private)
 
-- (NSString *) macaddress;
+- (NSString *)macaddress;
 
 @end
 
