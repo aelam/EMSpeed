@@ -13,11 +13,11 @@
 - (NSUInteger)EMNotificationSettingTypes
 {
     NSUInteger types;
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
-        types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+    if ([self respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        types = [self currentUserNotificationSettings].types;
     }
     else {
-        types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        types = [self enabledRemoteNotificationTypes];
     }
     return types;
 }
