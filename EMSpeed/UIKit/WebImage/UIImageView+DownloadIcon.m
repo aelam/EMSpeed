@@ -8,21 +8,20 @@
 
 #import "UIImageView+DownloadIcon.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#include <objc/runtime.h>
-#import "UIImage+Utility.h"
+#import <objc/runtime.h>
 
 static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 
+static char UIImageViewPreContentMode;
+
 @implementation UIImageView (DownloadIcon)
 
-#define UIImageViewPreContentMode @"preContentMode"
-
-- (int)preContentMode
+- (NSInteger)preContentMode
 {
-    NSNumber *number = objc_getAssociatedObject(self, UIImageViewPreContentMode);
+    NSNumber *number = objc_getAssociatedObject(self, &UIImageViewPreContentMode);
     if (number)
     {
-        return [number intValue];
+        return [number integerValue];
     }
     else
     {
@@ -32,7 +31,7 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
 
 - (void)setPreContentMode:(UIViewContentMode)mode
 {
-    objc_setAssociatedObject(self, UIImageViewPreContentMode, [NSNumber numberWithInteger:mode], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &UIImageViewPreContentMode, [NSNumber numberWithInteger:mode], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
@@ -94,9 +93,6 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
                        }];
     }
 }
-
-#define kPlaceHolderMaxSize CGSizeMake(100,70)
-
 
 - (void)ms_setImageWithURL:(NSURL *)url localCache:(BOOL)localCache
 {
@@ -162,7 +158,7 @@ static NSInteger kUIImageViewActivityIndicatorTag = 888888;
     }
 }
 
-- (void)em_setIconWithEmmptyIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder
+- (void)ms_setIconWithEmptyIcon:(NSString*)icon urlString:(NSString *)urlString placeHolderImage:(UIImage *)placeHolder
 {
     if ([icon length] > 0)
     {

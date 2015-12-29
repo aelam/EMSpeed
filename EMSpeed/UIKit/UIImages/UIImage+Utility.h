@@ -20,7 +20,7 @@
 /**
  * 剪切出一个rect
  */
-- (UIImage *)ms_clipWithRect:(CGRect) rect;
+- (UIImage *)ms_clipWithRect:(CGRect)rect;
 
 
 /**
@@ -41,7 +41,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)ms_resizedImageByMagick: (NSString *) spec;
+- (UIImage *)ms_resizedImageByMagick:(NSString *)spec;
 
 
 /**
@@ -51,7 +51,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)ms_resizedImageByWidth:  (NSUInteger) width;
+- (UIImage *)ms_resizedImageByWidth:(NSUInteger)width;
 
 
 /**
@@ -61,7 +61,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)ms_resizedImageByHeight: (NSUInteger) height;
+- (UIImage *)ms_resizedImageByHeight:(NSUInteger)height;
 
 
 /**
@@ -71,7 +71,7 @@
  *
  *  @return 图片
  */
-- (UIImage *)ms_resizedImageWithMaximumSize: (CGSize) size;
+- (UIImage *)ms_resizedImageWithMaximumSize:(CGSize)size;
 
 
 /**
@@ -81,6 +81,6 @@
  *
  *  @return 图片
  */
-- (UIImage *)ms_resizedImageWithMinimumSize: (CGSize) size;
+- (UIImage *)ms_resizedImageWithMinimumSize:(CGSize)size;
 
 @end
