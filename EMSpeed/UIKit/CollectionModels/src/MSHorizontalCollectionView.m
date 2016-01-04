@@ -25,8 +25,17 @@
     
     if (self) {
         [self initUI];
+        [self initConfig];
     }
     
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initConfig];
+    }
     return self;
 }
 
@@ -44,9 +53,11 @@
     _collectionView.pagingEnabled = YES;
     _collectionView.delegate = self;
     [self addSubview:_collectionView];
-    
+
+}
+
+- (void)initConfig {
     _enablePageControl = YES;
-    
     self.pageControlEdgeInsets = UIEdgeInsetsMake(0, 10, 10, 10);
     self.alignment = MSHorizontalPagingControlAlignmentLeft;
 }
