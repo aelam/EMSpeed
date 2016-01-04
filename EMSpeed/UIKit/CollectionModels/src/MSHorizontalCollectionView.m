@@ -24,25 +24,32 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        UICollectionViewFlowLayout *flowLayout= [[UICollectionViewFlowLayout alloc]init];
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.minimumLineSpacing = 0;
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
-        _collectionView.pagingEnabled = YES;
-        _collectionView.delegate = self;
-        [self addSubview:_collectionView];
-        
-        _enablePageControl = YES;
-        
-        self.pageControlEdgeInsets = UIEdgeInsetsMake(0, 10, 10, 10);
-        self.alignment = MSHorizontalPagingControlAlignmentLeft;
-        
+        [self initUI];
     }
     
     return self;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initUI];
+}
+
+- (void)initUI {
+    UICollectionViewFlowLayout *flowLayout= [[UICollectionViewFlowLayout alloc]init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.minimumLineSpacing = 0;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
+    _collectionView.pagingEnabled = YES;
+    _collectionView.delegate = self;
+    [self addSubview:_collectionView];
+    
+    _enablePageControl = YES;
+    
+    self.pageControlEdgeInsets = UIEdgeInsetsMake(0, 10, 10, 10);
+    self.alignment = MSHorizontalPagingControlAlignmentLeft;
+}
 
 - (UIPageControl *)pageControl
 {
