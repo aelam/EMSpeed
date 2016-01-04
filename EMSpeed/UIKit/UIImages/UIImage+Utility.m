@@ -10,7 +10,7 @@
 
 @implementation UIImage(Utility)
 
-- (UIImage *)ms_clipWithRect:(CGRect) rect
+- (UIImage *)ms_clipWithRect:(CGRect)rect
 {
     rect.size.height = rect.size.height * [self scale];
     rect.size.width = rect.size.width * [self scale];
@@ -87,7 +87,7 @@
 
 
 
-- (UIImage *) ms_resizedImageByMagick: (NSString *) spec
+- (UIImage *)ms_resizedImageByMagick:(NSString *)spec
 {
     
     if([spec hasSuffix:@"!"]) {
@@ -126,7 +126,7 @@
                                                           [[widthAndHeight objectAtIndex: 1] longLongValue])];
 }
 
-- (CGImageRef) newCGImageWithCorrectOrientation
+- (CGImageRef)newCGImageWithCorrectOrientation
 {
     if (self.imageOrientation == UIImageOrientationDown) {
         //retaining because caller expects to own the reference
@@ -153,7 +153,7 @@
 }
 
 
-- (UIImage *) ms_resizedImageByWidth:  (NSUInteger) width
+- (UIImage *)ms_resizedImageByWidth:(NSUInteger)width
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -163,7 +163,7 @@
     return [self ms_drawImageInBounds: CGRectMake(0, 0, width, round(original_height * ratio))];
 }
 
-- (UIImage *) ms_resizedImageByHeight:  (NSUInteger) height
+- (UIImage *)ms_resizedImageByHeight:(NSUInteger)height
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -173,7 +173,7 @@
     return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * ratio), height)];
 }
 
-- (UIImage *) ms_resizedImageWithMinimumSize: (CGSize) size
+- (UIImage *)ms_resizedImageWithMinimumSize:(CGSize)size
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -185,7 +185,7 @@
     return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
 }
 
-- (UIImage *) ms_resizedImageWithMaximumSize: (CGSize) size
+- (UIImage *)ms_resizedImageWithMaximumSize:(CGSize)size
 {
     CGImageRef imgRef = [self newCGImageWithCorrectOrientation];
     CGFloat original_width  = CGImageGetWidth(imgRef);
@@ -197,7 +197,7 @@
     return [self ms_drawImageInBounds: CGRectMake(0, 0, round(original_width * scale_ratio), round(original_height * scale_ratio))];
 }
 
-- (UIImage *) ms_drawImageInBounds: (CGRect) bounds
+- (UIImage *)ms_drawImageInBounds:(CGRect)bounds
 {
     //UIGraphicsBeginImageContext(bounds.size);
     UIGraphicsBeginImageContextWithOptions(bounds.size, NO, [UIScreen mainScreen].scale);
@@ -207,7 +207,7 @@
     return resizedImage;
 }
 
-- (UIImage*) ms_croppedImageWithRect: (CGRect) rect {
+- (UIImage*)ms_croppedImageWithRect:(CGRect)rect{
     
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();

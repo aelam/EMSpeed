@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-//@synthesize Class;
-//@synthesize reuseIdentify;
-//@synthesize height;
-//@synthesize isRegisterByClass;
-
-
 /**
  *  cell的viewmodel, 一个cell对应一个cellModel
  */

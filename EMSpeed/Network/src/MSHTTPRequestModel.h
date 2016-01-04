@@ -10,22 +10,28 @@
 
 @class MSHTTPResponse;
 
+@protocol MSHTTPRequestModel <NSObject>
+
+- (void)cancelTasks;
+
+@end
+
 /**
  *  HTTP请求的Model, 具有收发包功能,
  */
-@interface MSHTTPRequestModel : NSObject {
+@interface MSHTTPRequestModel : NSObject <MSHTTPRequestModel>{
     NSMutableArray *_tasks;
 }
 
 @property (nonatomic, strong, getter=getTasks) NSMutableArray *tasks;
 
 - (NSURLSessionTask *)GET:(NSString *)URLString
-                        param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
+                    param:(NSDictionary *)param
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
 - (NSURLSessionTask *)POST:(NSString *)URLString
-                         param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
+                     param:(NSDictionary *)param
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
 /**
  *  解析HTTP请求返回的对象, 如果是标准格式下, 子类只需要实现这个方法就可以了, 所有数据已保存在EMHTTResponse的responseData或originData中
