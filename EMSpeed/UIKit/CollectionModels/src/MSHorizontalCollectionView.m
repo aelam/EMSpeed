@@ -25,7 +25,7 @@
     
     if (self) {
         [self initUI];
-        [self initConfig];
+        [self setConfig];
     }
     
     return self;
@@ -34,7 +34,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self initConfig];
+        [self setConfig];
     }
     return self;
 }
@@ -56,7 +56,7 @@
 
 }
 
-- (void)initConfig {
+- (void)setConfig {
     _enablePageControl = YES;
     self.pageControlEdgeInsets = UIEdgeInsetsMake(0, 10, 10, 10);
     self.alignment = MSHorizontalPagingControlAlignmentLeft;
