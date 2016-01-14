@@ -34,15 +34,15 @@ NSString *MSBundleIdenfiter()
 
 NSString* MSAppDisplayName()
 {
-    CFStringRef displayName = CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), CFSTR("CFBundleDisplayName")) ?: CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), CFSTR("CFBundleName")) ?: CFSTR("Unknown");
-    
-    return (__bridge NSString *)displayName;
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *displayName = infoDictionary[@"CFBundleDisplayName"];
+    return displayName;
 }
 
 
 NSString* MSAppVersion()
 {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *versionValue = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *versionValue = infoDictionary[@"CFBundleShortVersionString"];
     return versionValue ? (NSString *)versionValue :  @"1.0.0";
 }

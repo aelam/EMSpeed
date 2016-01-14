@@ -29,13 +29,8 @@
 // Courtesy of FreeBSD hackers email list
 // Accidentally munged during previous update. Fixed thanks to erica sadun & mlamb.
 //只提示接口 不做版本！
-- (NSString *) macaddress
+- (NSString *)macaddress
 {
-//    if ([EMAPP app].IOSVersion >= 7.0)
-//    {
-//        return @"";
-//    }
-//    else
     {
         int                 mib[6];
         size_t              len;
@@ -85,8 +80,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark Public Methods
-
-- (NSString *) uniqueGlobalDeviceIdentifier{
+- (NSString *)uniqueGlobalDeviceIdentifier {
     float OSVersion = [[UIDevice currentDevice].systemVersion floatValue];
     if (OSVersion >= 7.0)
     {

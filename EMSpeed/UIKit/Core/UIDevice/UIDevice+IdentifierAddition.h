@@ -21,6 +21,6 @@
  * It generates a hash from the MAC-address only.
  */
 
-- (NSString *) uniqueGlobalDeviceIdentifier;
+- (NSString *)uniqueGlobalDeviceIdentifier;
 
 @end

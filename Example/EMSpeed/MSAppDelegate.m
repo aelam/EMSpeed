@@ -8,12 +8,27 @@
 
 #import "MSAppDelegate.h"
 #import <EMSpeed/Speed.h>
+#import "UIApplication+AppVersion.h"
+
+@implementation UIApplication (A)
+
++ (void)load {
+}
+
+@end;
 
 @implementation MSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    NSLog(@"%zd",[UIApplication sharedApplication].appVersion.majorVersion);
+    NSLog(@"%zd",[UIApplication sharedApplication].appVersion.minorVersion);
+    NSLog(@"%zd",[UIApplication sharedApplication].appVersion.patchVersion);
+
+    NSLog(@"%zd",[UIApplication sharedApplication].majorVersion);
+    NSLog(@"%zd",[UIApplication sharedApplication].minorVersion);
+    NSLog(@"%zd",[UIApplication sharedApplication].patchVersion);
+
     return YES;
 }
 

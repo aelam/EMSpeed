@@ -57,14 +57,17 @@ typedef enum : NSUInteger {
 - (void)setRefreshFooterStatus:(MSRefreshFooterStatus)status; // 设置footer状态
 - (MSRefreshFooterStatus)refreshFooterStatus;
 
+
+// TODO 这里的过期提示此版本注释掉了 等后面重新设计好再开启
+// @Ryan
 // 兼容老版本
-@property (nonatomic, assign) BOOL enableRefreshHeader DEPRECATED_ATTRIBUTE;
-@property (nonatomic, assign) BOOL enableRefreshFooter DEPRECATED_ATTRIBUTE;
-@property (nonatomic, assign) BOOL refreshWhenFirstViewDidAppear DEPRECATED_ATTRIBUTE;
-@property (nonatomic, assign) BOOL refreshWhenPushBack DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL enableRefreshHeader; //DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL enableRefreshFooter; //DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL refreshWhenFirstViewDidAppear; //DEPRECATED_ATTRIBUTE;
+@property (nonatomic, assign) BOOL refreshWhenPushBack; //DEPRECATED_ATTRIBUTE;
 
 
-- (void)headerRefreshing DEPRECATED_ATTRIBUTE;
-- (void)footerRefreshing DEPRECATED_ATTRIBUTE;
+- (void)headerRefreshing; //DEPRECATED_ATTRIBUTE;
+- (void)footerRefreshing; //DEPRECATED_ATTRIBUTE;
 
 @end
