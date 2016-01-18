@@ -97,7 +97,11 @@
     [UIView animateWithDuration:speed animations:^{
         [self setCurrentOpacity:self.destinationOpacity];
     } completion:^(BOOL finished) {
-        if (finished) [self fadeAfter:duration speed:speed completion:completion];
+        if (finished)
+            [self fadeAfter:duration speed:speed completion:completion];
+        else{
+            [self removeFromSuperview];
+        }
     }];
 }
 
