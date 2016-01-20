@@ -19,12 +19,8 @@
 /* Runtime */
 #import <EMSpeed/NSObject+Reflect.h>
 
-/* NSDate */
-#import <EMSpeed/NSDate+Formatter.h>
-#import <EMSpeed/NSDate+String.h>
-
 /* NSDateFormatter */
-#import <EMSpeed/NSDateFormatter+EMCommon.h>
+#import <EMSpeed/NSDateFormatter+MS.h>
 
 /* StringFormat */
 #import <EMSpeed/NSObject+StringFormat.h>

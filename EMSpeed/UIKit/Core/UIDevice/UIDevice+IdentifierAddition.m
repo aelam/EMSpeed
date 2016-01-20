@@ -11,7 +11,7 @@
 #include <sys/sysctl.h>
 #include <net/if.h>
 #include <net/if_dl.h>
-#import <EMSpeed/MSUUID.h>
+#import "MSUUID.h"
 
 @interface UIDevice(Private)
 
