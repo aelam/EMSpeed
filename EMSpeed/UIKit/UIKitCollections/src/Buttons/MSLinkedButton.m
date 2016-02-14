@@ -3,25 +3,14 @@
 //  EMStock
 //
 //  Created by flora deng on 1/10/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Emoney.cn. All rights reserved.
 //
 
 #import "MSLinkedButton.h"
 #import "MSContext.h"
 
 @implementation MSLinkedButton
-@synthesize url = _url;
 
--(instancetype)initWithFrame:(CGRect)frame
-{
-	return [super initWithFrame:frame];
-}
-
-
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
 
 - (void)setUrl:(NSString *)aUrl
 {

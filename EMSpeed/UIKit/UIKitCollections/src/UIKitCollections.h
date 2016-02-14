@@ -23,6 +23,7 @@
 #import <EMSpeed/MSArrowButton.h>
 #import <EMSpeed/MSLinkedButton.h>
 #import <EMSpeed/MSRoundButton.h>
+#import <EMSpeed/MSUnderlineButton.h>
 
 // Messages
 #import <EMSpeed/MSArrowButton.h>

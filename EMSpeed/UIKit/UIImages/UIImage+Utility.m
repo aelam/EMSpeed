@@ -3,7 +3,7 @@
 //  EMStock
 //
 //  Created by flora deng on 3/13/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Emoney.cn. All rights reserved.
 //
 
 #import "UIImage+Utility.h"
