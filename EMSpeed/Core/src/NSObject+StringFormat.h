@@ -1,6 +1,6 @@
 //
 //  NSObject+StringFormat.h
-//  EMStock
+//  EMSpeed
 //
 //  Created by zhangzhiyao on 14-10-20.
 //  Copyright (c) 2014年 flora. All rights reserved.

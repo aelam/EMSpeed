@@ -1,6 +1,6 @@
 //
 //  NSDateFormatter+EMCommon.m
-//  EMStock
+//  EMSpeed
 //
 //  Created by Ryan Wang on 4/25/15.
 //  Copyright (c) 2015 flora. All rights reserved.

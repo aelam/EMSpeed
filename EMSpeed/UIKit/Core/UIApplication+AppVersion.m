@@ -1,6 +1,6 @@
 //
 //  UIApplication+AppVersion.m
-//  Pods
+//  EMSpeed
 //
 //  Created by ryan on 16/1/14.
 //

@@ -1,6 +1,6 @@
 //
 //  EMCommonFunction.m
-//  EMStock
+//  EMSpeed
 //
 //  Created by flora on 14-9-10.
 //  Copyright (c) 2014年 flora. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  UIImage+capture.h
-//  EMStock
+//  EMSpeed
 //
 //  Created by flora deng on 3/13/12.
 //  Copyright (c) 2012 Emoney.cn. All rights reserved.

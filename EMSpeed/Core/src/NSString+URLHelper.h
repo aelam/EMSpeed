@@ -1,6 +1,6 @@
 //
 //  NSString+URLHelper.h
-//  Pods
+//  EMSpeed
 //
 //  Created by ryan on 15/10/30.
 //
@@ -23,7 +23,8 @@
  *
  *  @return 字典
  */
-- (NSDictionary *)ms_toResponseDictionary;
+- (NSDictionary *)ms_toResponseDictionary  __deprecated_msg("Use `ms_toParameters`");;
+- (NSDictionary *)ms_toParameters;
 
 
 /**

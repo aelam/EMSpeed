@@ -1,6 +1,6 @@
 //
 //  MSCollectionDataSource.m
-//  EMStock
+//  EMSpeed
 //
 //  Created by Mac mini 2012 on 15-2-13.
 //  Copyright (c) 2015年 flora. All rights reserved.

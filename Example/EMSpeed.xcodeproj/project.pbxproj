@@ -23,11 +23,10 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		93D81466B1D5D983C52FE0E6 /* libPods-EMSpeed_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC39FB26C387C23663E2505 /* libPods-EMSpeed_Example.a */; };
-		9464C6ED1BDDCD51004C2129 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9464C6EC1BDDCD51004C2129 /* NotificationCenter.framework */; settings = {ASSET_TAGS = (); }; };
+		9464C6ED1BDDCD51004C2129 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9464C6EC1BDDCD51004C2129 /* NotificationCenter.framework */; };
 		9464C6F11BDDCD51004C2129 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9464C6F01BDDCD51004C2129 /* TodayViewController.m */; };
 		9464C6F41BDDCD51004C2129 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9464C6F21BDDCD51004C2129 /* MainInterface.storyboard */; };
 		9464C6F81BDDCD51004C2129 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9464C6EB1BDDCD51004C2129 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B7B0B74965FCEB8BB059DD74 /* Pods_EMSpeed_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B68780D01131CD1FEDB1FB50 /* Pods_EMSpeed_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		00AF62DAC287354F3AC1551F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		33C22DE7D021719F7EE625F3 /* Pods-EMSpeed_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMSpeed_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EMSpeed_Tests/Pods-EMSpeed_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5C3C9C31A222E7802B7EBB5E /* Pods-Today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* EMSpeed_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMSpeed_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,8 +93,6 @@
 		9464C6F51BDDCD51004C2129 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C853752F0754922D4E90F8E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AC916474B37E50F16BC34851 /* Pods-Today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.release.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.release.xcconfig"; sourceTree = "<group>"; };
-		B68780D01131CD1FEDB1FB50 /* Pods_EMSpeed_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMSpeed_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7A0A10FEAE101EE54CE7492 /* Pods-EMSpeed_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMSpeed_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EMSpeed_Tests/Pods-EMSpeed_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D0BDBD7F2317A15EFCDA0F60 /* libPods-Today.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Today.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E129FD5289BD3789E37EB3B2 /* Pods-EMSpeed_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMSpeed_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EMSpeed_Example/Pods-EMSpeed_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FDC39FB26C387C23663E2505 /* libPods-EMSpeed_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EMSpeed_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +117,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				B7B0B74965FCEB8BB059DD74 /* Pods_EMSpeed_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +162,6 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				B68780D01131CD1FEDB1FB50 /* Pods_EMSpeed_Tests.framework */,
 				FDC39FB26C387C23663E2505 /* libPods-EMSpeed_Example.a */,
 				9464C6EC1BDDCD51004C2129 /* NotificationCenter.framework */,
 				D0BDBD7F2317A15EFCDA0F60 /* libPods-Today.a */,
@@ -235,8 +229,6 @@
 			children = (
 				E129FD5289BD3789E37EB3B2 /* Pods-EMSpeed_Example.debug.xcconfig */,
 				7E17C4D804B235EBC9C7C4D1 /* Pods-EMSpeed_Example.release.xcconfig */,
-				B7A0A10FEAE101EE54CE7492 /* Pods-EMSpeed_Tests.debug.xcconfig */,
-				33C22DE7D021719F7EE625F3 /* Pods-EMSpeed_Tests.release.xcconfig */,
 				AC916474B37E50F16BC34851 /* Pods-Today.release.xcconfig */,
 				5C3C9C31A222E7802B7EBB5E /* Pods-Today.debug.xcconfig */,
 			);
@@ -646,7 +638,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33C22DE7D021719F7EE625F3 /* Pods-EMSpeed_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -761,7 +752,6 @@
 		};
 		94979FC91BDA0EEA00406E7B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7A0A10FEAE101EE54CE7492 /* Pods-EMSpeed_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

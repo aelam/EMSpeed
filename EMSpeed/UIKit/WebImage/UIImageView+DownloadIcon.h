@@ -1,6 +1,6 @@
 //
 //  UIImageView+DownloadIcon.h
-//  EMStock
+//  EMSpeed
 //
 //  Created by flora on 14-10-12.
 //  Copyright (c) 2014年 flora. All rights reserved.

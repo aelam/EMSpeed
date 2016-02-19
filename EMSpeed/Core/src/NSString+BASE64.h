@@ -1,6 +1,6 @@
 //
 //  NSString+BASE64.h
-//  Eggorder
+//  EMSpeed
 //
 //  Created by ryan on 10/26/14.
 //  Copyright (c) 2014 TapPal. All rights reserved.

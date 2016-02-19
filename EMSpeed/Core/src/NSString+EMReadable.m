@@ -1,6 +1,6 @@
 //
 //  NSString+EMReadableMoney.m
-//  EMStock
+//  EMSpeed
 //
 //  Created by ryan on 15/8/5.
 //  Copyright (c) 2015年 flora. All rights reserved.

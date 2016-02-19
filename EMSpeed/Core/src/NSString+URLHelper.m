@@ -1,6 +1,6 @@
 //
 //  NSString+URLHelper.m
-//  Pods
+//  EMSpeed
 //
 //  Created by ryan on 15/10/30.
 //
@@ -15,8 +15,11 @@
     return [self stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
 }
 
-- (NSDictionary *)ms_toResponseDictionary
-{
+- (NSDictionary *)ms_toResponseDictionary {
+    return [self ms_toParameters];
+}
+
+- (NSDictionary *)ms_toParameters {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSArray *arr1 = [self componentsSeparatedByString:@"&"];
     
@@ -32,6 +35,7 @@
     }
     return dict;
 }
+
 
 - (BOOL)ms_isValidateURL
 {

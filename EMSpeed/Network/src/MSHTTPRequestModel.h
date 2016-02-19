@@ -1,6 +1,6 @@
 //
-//  EMStockWebModel.h
-//  EMStock
+//  EMSpeedWebModel.h
+//  EMSpeed
 //
 //  Created by Mac mini 2012 on 14-9-19.
 //  Copyright (c) 2014年 flora. All rights reserved.

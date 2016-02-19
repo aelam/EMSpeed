@@ -1,6 +1,6 @@
 //
 //  NSDictionary+EMString.m
-//  EMStock
+//  EMSpeed
 //
 //  Created by Lyy on 15/11/26.
 //  Copyright © 2015年 flora. All rights reserved.

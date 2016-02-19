@@ -1,6 +1,6 @@
 //
 //  UIApplication+NotificationSettings.h
-//  Pods
+//  EMSpeed
 //
 //  Created by ryan on 15/12/18.
 //

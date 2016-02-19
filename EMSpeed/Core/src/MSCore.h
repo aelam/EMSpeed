@@ -1,6 +1,6 @@
 //
 //  MSCore.h
-//  EMStock
+//  EMSpeed
 //
 //  Created by flora on 14-9-12.
 //  Copyright (c) 2014年 flora. All rights reserved.
@@ -30,7 +30,6 @@
 /* String */
 #import <EMSpeed/NSString+URLEncoding.h>
 #import <EMSpeed/NSString+Utility.h>
-#import <EMSpeed/NSString+BASE64.h>
 #import <EMSpeed/NSString+URLHelper.h>
 
 /* NSDictionary */
@@ -40,6 +39,11 @@
 
 /* Timer */
 #import <EMSpeed/NSTimer+Pause.h>
+
+/* Crypto */
+// TODO make a isolate subspec 
+#import <EMSpeed/NSString+BASE64.h>
+#import <EMSpeed/RSA.h>
 
 
 #endif /* MSCORE_H_ */
