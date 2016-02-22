@@ -14,15 +14,6 @@
 
 @synthesize tasks = _tasks;
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    
-    return self;
-}
-
 - (void)dealloc
 {
     [self cancelTasks];
@@ -47,12 +38,17 @@
 }
 
 - (NSURLSessionTask *)GET:(NSString *)URLString
-                        param:(NSDictionary *)param
-                        block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+                    param:(NSDictionary *)param
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
-    NSURLSessionTask *task = [manager GET:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+    NSMutableDictionary *newParameters = [param mutableCopy];
+    if (self.defaultParameters) {
+        [newParameters addEntriesFromDictionary:self.defaultParameters];
+    }
+    
+    NSURLSessionTask *task = [manager GET:URLString param:newParameters block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         [self parseHTTPResponse:response URL:URLString];
         block(response, task, success);
         [self.tasks removeObject:task];
@@ -61,17 +57,22 @@
     if (task) {
         [self.tasks addObject:task];
     }
-
+    
     return task;
 }
 
 
 - (NSURLSessionTask *)POST:(NSString *)URLString
-                         param:(NSDictionary *)param
-                         block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+                     param:(NSDictionary *)param
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
+    NSMutableDictionary *newParameters = [param mutableCopy];
+    if (self.defaultParameters) {
+        [newParameters addEntriesFromDictionary:self.defaultParameters];
+    }
+
     NSURLSessionTask *task = [manager POST:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         [self parseHTTPResponse:response URL:URLString];
         block(response, task, success);
@@ -93,7 +94,7 @@
                      failure:(void (^)(NSURLSessionTask *task, NSError *error))failure
 {
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
-
+    
     return [manager method:method URLString:URLString parameters:parameters headerFields:headerFields success:success failure:failure];
 }
 

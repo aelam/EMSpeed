@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.2.5"
+  s.version          = "0.2.6"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
-  s.frameworks = 'UIKit', 'CoreGraphics'
+  s.frameworks = 'Foundation', 'CoreGraphics'
 
   s.source_files = "EMSpeed/Speed.h"
 

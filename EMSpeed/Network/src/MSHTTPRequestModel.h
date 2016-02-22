@@ -24,6 +24,7 @@
 }
 
 @property (nonatomic, strong, getter=getTasks) NSMutableArray *tasks;
+@property (nonatomic, strong) NSDictionary *defaultParameters;
 
 - (NSURLSessionTask *)GET:(NSString *)URLString
                     param:(NSDictionary *)param
@@ -43,24 +44,6 @@
  */
 - (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString;
-
-
-
-
-
-/**
- *  设置网络管理的类, 默认是 AFHTTPSessionManager, 也可支持AFHTTPSessionManager的子类, 例如EMNetworkManager
- *
- *  @param networkManagerClass 网络管理的类
- */
-//+ (void)setNetworkManager:(AFHTTPRequestOperationManager *)manager;
-
-/**
- *  当前使用的网络管理的类
- *
- *  @return 当前使用的网络管理的类, AFHTTPSessionManager或者它的子类
- */
-//+ (AFHTTPSessionManager *)networkManager;
 
 /**
  *  取消请求任务
