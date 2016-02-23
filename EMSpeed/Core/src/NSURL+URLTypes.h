@@ -11,6 +11,12 @@
 @interface NSURL (URLTypes)
 
 /**
+ *  判断HOST是否含有apple.com
+ *  @return YES/NO
+ */
+- (BOOL)isAppleURL;
+
+/**
  *  tel://100086
  *
  *  @return YES/NO
