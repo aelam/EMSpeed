@@ -41,7 +41,7 @@
                     param:(NSDictionary *)param
                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    return [self GET:URLString param:param block:block];
+    return [self GET:URLString parameters:param headerFields:nil block:block];
 }
 
 
@@ -49,7 +49,7 @@
                      param:(NSDictionary *)param
                      block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    return [self POST:URLString param:param block:block];
+    return [self POST:URLString parameters:param headerFields:nil block:block];
 }
 
 
