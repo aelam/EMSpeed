@@ -41,6 +41,23 @@
                     param:(NSDictionary *)param
                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
+    return [self GET:URLString param:param block:block];
+}
+
+
+- (NSURLSessionTask *)POST:(NSString *)URLString
+                     param:(NSDictionary *)param
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+{
+    return [self POST:URLString param:param block:block];
+}
+
+
+- (NSURLSessionTask *)GET:(NSString *)URLString
+               parameters:(NSDictionary *)param
+             headerFields:(NSDictionary *)headers
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+{
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
     NSMutableDictionary *newParameters = [param mutableCopy];
@@ -48,7 +65,7 @@
         [newParameters addEntriesFromDictionary:self.defaultParameters];
     }
     
-    NSURLSessionTask *task = [manager GET:URLString param:newParameters block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+    NSURLSessionTask *task = [manager GET:URLString parameters:newParameters headerFields:headers block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         [self parseHTTPResponse:response URL:URLString];
         block(response, task, success);
         [self.tasks removeObject:task];
@@ -63,8 +80,9 @@
 
 
 - (NSURLSessionTask *)POST:(NSString *)URLString
-                     param:(NSDictionary *)param
-                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+                parameters:(NSDictionary *)param
+              headerFields:(NSDictionary *)headers
+                     block:(void (^)(MSHTTPResponse *, NSURLSessionTask *, BOOL))block
 {
     MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
     
@@ -72,8 +90,8 @@
     if (self.defaultParameters) {
         [newParameters addEntriesFromDictionary:self.defaultParameters];
     }
-
-    NSURLSessionTask *task = [manager POST:URLString param:param block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
+    
+    NSURLSessionTask *task = [manager POST:URLString parameters:newParameters headerFields:headers block:^(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success) {
         [self parseHTTPResponse:response URL:URLString];
         block(response, task, success);
         [self.tasks removeObject:task];
@@ -85,19 +103,6 @@
     
     return task;
 }
-
-- (NSURLSessionTask *)method:(NSString *)method
-                   URLString:(NSString *)URLString
-                  parameters:(NSDictionary *)parameters
-                headerFields:(NSDictionary *)headerFields
-                     success:(void (^)(NSURLSessionTask *task, id responseObject))success
-                     failure:(void (^)(NSURLSessionTask *task, NSError *error))failure
-{
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
-    
-    return [manager method:method URLString:URLString parameters:parameters headerFields:headerFields success:success failure:failure];
-}
-
 
 - (BOOL)parseHTTPResponse:(MSHTTPResponse *)response
                       URL:(NSString *)URLString{

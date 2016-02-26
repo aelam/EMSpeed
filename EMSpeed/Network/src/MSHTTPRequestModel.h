@@ -34,6 +34,17 @@
                      param:(NSDictionary *)param
                      block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
+
+- (NSURLSessionTask *)GET:(NSString *)URLString
+               parameters:(NSDictionary *)param
+             headerFields:(NSDictionary *)headers
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
+
+- (NSURLSessionTask *)POST:(NSString *)URLString
+                parameters:(NSDictionary *)param
+              headerFields:(NSDictionary *)headers
+                     block:(void (^)(MSHTTPResponse *, NSURLSessionTask *, BOOL))block;
+
 /**
  *  解析HTTP请求返回的对象, 如果是标准格式下, 子类只需要实现这个方法就可以了, 所有数据已保存在EMHTTResponse的responseData或originData中
  *
