@@ -1,5 +1,5 @@
 //
-//  EMCommonFunction.m
+//  MSUIKitCoreFunction.m
 //  EMSpeed
 //
 //  Created by flora on 14-9-10.
