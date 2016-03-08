@@ -33,17 +33,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
                     param:(NSDictionary *)param
                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    NSURLSessionTask *task = [self method:@"GET" URLString:URLString parameters:param headerFields:nil success:^(NSURLSessionTask *task, id responseObject) {
-        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
-        block(response, task, YES);
-    } failure:^(NSURLSessionTask *task, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:MSHTTPSessionManagerTaskDidFailedNotification object:task];
-        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
-        block(response, task, NO);
-    }];
-    
-    
-    return task;
+    return [self GET:URLString parameters:param headerFields:nil block:block];
 }
 
 
@@ -51,7 +41,31 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
                      param:(NSDictionary *)param
                      block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
 {
-    NSURLSessionTask *task = [self method:@"POST" URLString:URLString parameters:param headerFields:nil success:^(NSURLSessionTask *task, id responseObject) {
+    return [self POST:URLString parameters:param headerFields:nil block:block];
+}
+
+
+- (NSURLSessionTask *)GET:(NSString *)URLString
+               parameters:(NSDictionary *)param
+             headerFields:(NSDictionary *)headers
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block {
+    NSURLSessionTask *task = [self method:@"GET" URLString:URLString parameters:param headerFields:headers success:^(NSURLSessionTask *task, id responseObject) {
+        MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
+        block(response, task, YES);
+    } failure:^(NSURLSessionTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:MSHTTPSessionManagerTaskDidFailedNotification object:task];
+        MSHTTPResponse *response = [MSHTTPResponse responseWithError:error];
+        block(response, task, NO);
+    }];
+    return task;
+}
+
+- (NSURLSessionTask *)POST:(NSString *)URLString
+                parameters:(NSDictionary *)param
+              headerFields:(NSDictionary *)headers
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block
+{
+    NSURLSessionTask *task = [self method:@"POST" URLString:URLString parameters:param headerFields:headers success:^(NSURLSessionTask *task, id responseObject) {
         MSHTTPResponse *response = [MSHTTPResponse responseWithObject:responseObject];
         block(response, task, YES);
     } failure:^(NSURLSessionTask *task, NSError *error) {
@@ -70,11 +84,9 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
                      success:(void (^)(NSURLSessionTask *task, id responseObject))success
                      failure:(void (^)(NSURLSessionTask *task, NSError *error))failure {
     
-//    return nil;
-    
     NSError *serializationError = nil;
     
-    MSHTTPSessionManager *manager = [MSHTTPSessionManager sharedManager];
+    MSHTTPSessionManager *manager = self;
 
     NSUInteger uploadLen = 0;
     

@@ -37,10 +37,21 @@ extern NSString * const MSHTTPSessionManagerTaskDidFailedNotification;
 
 - (NSURLSessionTask *)GET:(NSString *)URLString
                     param:(NSDictionary *)param
-                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
+                    block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block __deprecated;
 
 - (NSURLSessionTask *)POST:(NSString *)URLString
                      param:(NSDictionary *)param
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block __deprecated;
+
+- (NSURLSessionTask *)GET:(NSString *)URLString
+                parameters:(NSDictionary *)param
+              headerFields:(NSDictionary *)headers
+                     block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
+
+
+- (NSURLSessionTask *)POST:(NSString *)URLString
+                parameters:(NSDictionary *)param
+              headerFields:(NSDictionary *)headers
                      block:(void (^)(MSHTTPResponse *response, NSURLSessionTask *task, BOOL success))block;
 
 
