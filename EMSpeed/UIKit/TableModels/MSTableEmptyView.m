@@ -38,6 +38,13 @@
     return self;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    _textlabel.frame = self.bounds;
+    _iconImageView.center = CGPointMake(CGRectGetMidX(_textlabel.frame), CGRectGetMidY(_textlabel.frame) - 20 - _iconImageView.frame.size.height/2);
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
