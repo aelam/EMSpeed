@@ -49,7 +49,9 @@
  *
  *  @return 正确或错误
  */
-- (BOOL)ms_isPureNumandCharacters;
+- (BOOL)ms_isPureNumber;
+
+- (BOOL)ms_isPureNumandCharacters __deprecated_msg("use `-ms_isPureNumber`");
 
 
 /**

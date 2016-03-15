@@ -57,8 +57,11 @@
     return [emailTest evaluateWithObject:self];
 }
 
+- (BOOL)ms_isPureNumandCharacters {
+    return [self ms_isPureNumber];
+}
 
-- (BOOL)ms_isPureNumandCharacters
+- (BOOL)ms_isPureNumber;
 {
     if([self length] > 0)
     {
@@ -73,7 +76,7 @@
 
 - (BOOL)ms_isPhoneNumber
 {
-    return (11 == [self length]) ? [self ms_isPureNumandCharacters] : NO;
+    return (11 == [self length]) ? [self ms_isPureNumber] : NO;
 }
 
 
