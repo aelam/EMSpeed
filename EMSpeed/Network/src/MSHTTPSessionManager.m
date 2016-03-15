@@ -23,6 +23,12 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
             config.timeoutIntervalForRequest = 15;
             __manager = [[MSHTTPSessionManager alloc] initWithSessionConfiguration:config];
             __manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
+            
+            if ([__manager.responseSerializer isKindOfClass:[AFJSONResponseSerializer class]])
+            {
+                AFJSONResponseSerializer *serializer = (AFJSONResponseSerializer *)__manager.responseSerializer;
+                serializer.removesKeysWithNullValues = YES;
+            }
         }
     }
     return __manager;
