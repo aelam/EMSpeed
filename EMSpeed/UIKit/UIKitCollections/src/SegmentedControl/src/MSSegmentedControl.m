@@ -72,7 +72,9 @@
 
 - (void)insertSegmentWithTitle:(NSString *)title atIndex:(NSUInteger)segment animated:(BOOL)animated
 {
-    [_items insertObject:title atIndex:segment];
+    if (title) {
+        [_items insertObject:title atIndex:segment];
+    }
     if (animated)
     {
         
@@ -81,7 +83,9 @@
 
 - (void)insertSegmentWithObject:(MSTextSegmentCellObject *)object  atIndex:(NSUInteger)segment animated:(BOOL)animated
 {
-    [_items insertObject:object atIndex:segment];
+    if (object) {
+        [_items insertObject:object atIndex:segment];
+    }
     if(animated)
     {
         
@@ -115,32 +119,45 @@
 
 - (void)setTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment
 {
-    [_items replaceObjectAtIndex:segment withObject:title];
+    if (segment < _items.count && title) {
+        [_items replaceObjectAtIndex:segment withObject:title];
+    }
     
-    UILabel<MSSegmentCell> *cell = [_segments objectAtIndex:segment];
-    cell.text = [_items objectAtIndex:segment];
-    
-    [cell setNeedsDisplay];
+    if (segment < _items.count) {
+        UILabel<MSSegmentCell> *cell = [_segments objectAtIndex:segment];
+        cell.text = [_items objectAtIndex:segment];
+        [cell setNeedsDisplay];
+    }
 }
 
 - (NSString *)titleForSegmentAtIndex:(NSUInteger)segment
 {
-    return [_items objectAtIndex:segment];
+    if (segment < _items.count) {
+        return [_items objectAtIndex:segment];
+    }
+    return @"";
 }
 
 - (NSString *)titleForSegmentAtCurrentIndex
 {
-    return [_items objectAtIndex:_selectedSegmentIndex];
+    if (_selectedSegmentIndex < _items.count) {
+        return [_items objectAtIndex:_selectedSegmentIndex];
+    }
+    return @"";
 }
 
 - (void)setSegmentObject:(id)object forSegmentAtIndex:(NSUInteger)segment
 {
-    [_items replaceObjectAtIndex:segment withObject:object];
+    if (segment < _items.count && object) {
+        [_items replaceObjectAtIndex:segment withObject:object];
+    }
 }
 
 - (instancetype)segmentObjectForSegmentAtIndex:(NSUInteger)segment
 {
-    return [_items objectAtIndex:segment];
+    if (segment < _items.count) {
+        return [_items objectAtIndex:segment];
+    }
 }
 
 - (void)setFont:(UIFont *)font
