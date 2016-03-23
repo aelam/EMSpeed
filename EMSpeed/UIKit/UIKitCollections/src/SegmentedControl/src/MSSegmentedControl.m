@@ -158,6 +158,7 @@
     if (segment < _items.count) {
         return [_items objectAtIndex:segment];
     }
+    return nil;
 }
 
 - (void)setFont:(UIFont *)font
