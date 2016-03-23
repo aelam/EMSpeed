@@ -187,4 +187,11 @@ static NSString *CellID = @"ControllerCell";
          [self.navigationView setSelectedItemIndex:index];
     }
 }
+
+- (UIViewController *)currentController
+{
+    if (_selectedIndex < [self.viewControllers count]) {
+        return self.viewControllers[_selectedIndex];
+    }
+}
 @end

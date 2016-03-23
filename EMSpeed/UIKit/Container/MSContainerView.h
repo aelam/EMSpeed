@@ -42,4 +42,11 @@
  */
 - (void)navigationToIndex:(NSInteger)index;
 
+/**
+ *  获取当前显示的controller
+ *
+ *  @return
+ */
+- (UIViewController *)currentController;
+
 @end
