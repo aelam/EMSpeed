@@ -61,7 +61,7 @@ enum {
 - (NSString *)titleForSegmentAtCurrentIndex;
 
 - (void)setSegmentObject:(id)object forSegmentAtIndex:(NSUInteger)segment;       // can only have image or title, not both. must be 0..#segments - 1 (or ignored). default is nil
-- (instancetype)segmentObjectForSegmentAtIndex:(NSUInteger)segment;
+- (id)segmentObjectForSegmentAtIndex:(NSUInteger)segment;
 
 - (void)setWidth:(CGFloat)width forSegmentAtIndex:(NSUInteger)segment;         // set to 0.0 width to autosize. default is 0.0
 - (CGFloat)widthForSegmentAtIndex:(NSUInteger)segment;

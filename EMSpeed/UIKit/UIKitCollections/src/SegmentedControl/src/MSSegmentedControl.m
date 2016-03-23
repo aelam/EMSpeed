@@ -153,7 +153,7 @@
     }
 }
 
-- (instancetype)segmentObjectForSegmentAtIndex:(NSUInteger)segment
+- (id)segmentObjectForSegmentAtIndex:(NSUInteger)segment
 {
     if (segment < _items.count) {
         return [_items objectAtIndex:segment];
