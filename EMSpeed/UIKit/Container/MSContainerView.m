@@ -138,7 +138,7 @@ static NSString *CellID = @"ControllerCell";
         }];
 
         [self navigationView].items = arrM.copy;
-        [self navigationView].selectedItemIndex = 2;
+        [self navigationView].selectedItemIndex = 0;
     }
     return self;
 }
@@ -193,5 +193,6 @@ static NSString *CellID = @"ControllerCell";
     if (_selectedIndex < [self.viewControllers count]) {
         return self.viewControllers[_selectedIndex];
     }
+    return nil;
 }
 @end
