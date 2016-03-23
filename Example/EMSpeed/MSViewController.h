@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface MMSViewController : UIViewController
+@interface MMSViewController : UITableViewController
 
 @end

@@ -115,7 +115,9 @@ Pod::Spec.new do |s|
       sss.dependency     "EMSpeed/UIKit/Animations"
       sss.dependency     "EMSpeed/UIKit/Core"
     end
-
+    ss.subspec 'Container' do |sss|
+      sss.source_files = "EMSpeed/UIKit/Container/**/*.{h,m}"
+    end
   end
 
   s.subspec 'Network' do |ss|

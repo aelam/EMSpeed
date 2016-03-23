@@ -27,6 +27,7 @@
 		9464C6F11BDDCD51004C2129 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9464C6F01BDDCD51004C2129 /* TodayViewController.m */; };
 		9464C6F41BDDCD51004C2129 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9464C6F21BDDCD51004C2129 /* MainInterface.storyboard */; };
 		9464C6F81BDDCD51004C2129 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9464C6EB1BDDCD51004C2129 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D4E3CC391CA27868002801FA /* MSExampleContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E3CC381CA27868002801FA /* MSExampleContainerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,8 @@
 		9C853752F0754922D4E90F8E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AC916474B37E50F16BC34851 /* Pods-Today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.release.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.release.xcconfig"; sourceTree = "<group>"; };
 		D0BDBD7F2317A15EFCDA0F60 /* libPods-Today.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Today.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4E3CC371CA27868002801FA /* MSExampleContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSExampleContainerViewController.h; sourceTree = "<group>"; };
+		D4E3CC381CA27868002801FA /* MSExampleContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSExampleContainerViewController.m; sourceTree = "<group>"; };
 		E129FD5289BD3789E37EB3B2 /* Pods-EMSpeed_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMSpeed_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EMSpeed_Example/Pods-EMSpeed_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FDC39FB26C387C23663E2505 /* libPods-EMSpeed_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EMSpeed_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -179,6 +182,8 @@
 				6003F5A6195388D20070C39A /* MSViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				D4E3CC371CA27868002801FA /* MSExampleContainerViewController.h */,
+				D4E3CC381CA27868002801FA /* MSExampleContainerViewController.m */,
 			);
 			name = "Example for EMSpeed";
 			path = EMSpeed;
@@ -523,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* MSAppDelegate.m in Sources */,
+				D4E3CC391CA27868002801FA /* MSExampleContainerViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* MSViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);

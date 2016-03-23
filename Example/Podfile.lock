@@ -27,6 +27,7 @@ PODS:
   - EMSpeed/UIKit (0.2.13):
     - EMSpeed/UIKit/Animations (= 0.2.13)
     - EMSpeed/UIKit/CollectionModels (= 0.2.13)
+    - EMSpeed/UIKit/Container (= 0.2.13)
     - EMSpeed/UIKit/Core (= 0.2.13)
     - EMSpeed/UIKit/FontAwesome+iOS (= 0.2.13)
     - EMSpeed/UIKit/GuideView (= 0.2.13)
@@ -43,6 +44,7 @@ PODS:
   - EMSpeed/UIKit/CollectionModels (0.2.13):
     - EMSpeed/Core
     - EMSpeed/UIKit/WebImage
+  - EMSpeed/UIKit/Container (0.2.13)
   - EMSpeed/UIKit/Core (0.2.13):
     - EMSpeed/Core
   - EMSpeed/UIKit/FontAwesome+iOS (0.2.13)
@@ -87,7 +89,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  EMSpeed: 3520f422d8f995568111a1a625b2d3e800fd9cbe
+  EMSpeed: 34984f2486d40315f2550c198d2e513a99a5901f
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
