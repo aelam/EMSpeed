@@ -76,12 +76,12 @@ static NSString *CellID = @"ControllerCell";
 {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-
+    
     _navigationView.frame = CGRectMake(0, 0, width, 40);
     self.collectionView.frame = CGRectMake(0, _navigationView.frame.size.height, width, height - _navigationView.frame.size.height);
-
+    
     self.flowLayout.itemSize = self.collectionView.bounds.size;
-
+    
 }
 
 #pragma mark - init
@@ -109,7 +109,7 @@ static NSString *CellID = @"ControllerCell";
         [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CellID];
         collectionView.delegate = self;
         collectionView.dataSource = self;
-        collectionView.backgroundColor = [UIColor whiteColor];
+        collectionView.backgroundColor = [UIColor clearColor];
         collectionView.showsHorizontalScrollIndicator = NO;
         [self addSubview:collectionView];
         self.collectionView.scrollsToTop = NO;
@@ -128,15 +128,15 @@ static NSString *CellID = @"ControllerCell";
         
         [self addSubview:view];
         
-       _navigationView = view;
+        _navigationView = view;
         
         self.viewControllers = viewControllers;
         __block NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:viewControllers.count];
         [viewControllers enumerateObjectsUsingBlock:^(UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
+            
             [arrM addObject:obj.title ? : @""];
         }];
-
+        
         [self navigationView].items = arrM.copy;
         [self navigationView].selectedItemIndex = 0;
     }
@@ -164,7 +164,7 @@ static NSString *CellID = @"ControllerCell";
         collectionView.showsHorizontalScrollIndicator = NO;
         [self addSubview:collectionView];
         self.collectionView.scrollsToTop = NO;
-
+        
         //添加导航view
         typeof(self) __weak weakObj= self;
         MSNavigationView *view = [MSNavigationView navigationViewWithItems:nil itemClick:^(NSInteger selectedIndex) {
@@ -184,7 +184,7 @@ static NSString *CellID = @"ControllerCell";
 - (void)navigationToIndex:(NSInteger)index
 {
     if (index < [self.viewControllers count]) {
-         [self.navigationView setSelectedItemIndex:index];
+        [self.navigationView setSelectedItemIndex:index];
     }
 }
 
