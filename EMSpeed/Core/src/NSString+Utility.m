@@ -144,6 +144,14 @@
     return (__bridge NSString *)string;
 }
 
+- (BOOL)includeString:(NSString *)string {
+    NSRange range = [self rangeOfString:string];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    return NO;
+}
+
 @end
 
 

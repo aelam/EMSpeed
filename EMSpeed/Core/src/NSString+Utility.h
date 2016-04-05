@@ -95,8 +95,14 @@
  */
 + (NSString *)ms_generateUUID;
 
-
-
+/**
+ *  判断字符串是否存在某个字符串中
+ *  为了兼容iOS 8以前版本，iOS8之后可以用containsString方法
+ *  @param string 要判断的字符串
+ *
+ *  @return YES:存在，NO：不存在
+ */
+- (BOOL)includeString:(NSString *)string;
 
 @end
 
