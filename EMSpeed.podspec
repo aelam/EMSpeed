@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.2.16"
+  s.version          = "0.2.17"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -117,6 +117,8 @@ Pod::Spec.new do |s|
     end
     ss.subspec 'Container' do |sss|
       sss.source_files = "EMSpeed/UIKit/Container/**/*.{h,m}"
+      sss.resources    = "EMSpeed/UIKit/Container/resource/*.*"
+
     end
   end
 

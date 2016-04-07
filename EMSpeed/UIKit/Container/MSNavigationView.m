@@ -68,7 +68,7 @@
     
     self.selectedItem = sender;
     
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 2, self.selectedItem.frame.size.width-2*kMargin, 2);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
 }
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex{
@@ -174,7 +174,8 @@
         [self.layer addSublayer:_bottomBorderLayer];
         
         _selectLayer = [CALayer layer];
-        _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
+        _selectLayer.contents = (id)[UIImage imageNamed:@"info_xuanzhongerji.png"].CGImage;
+//        _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
         [_scrollView.layer addSublayer:_selectLayer];
     }
     return self;
@@ -197,7 +198,7 @@
         [btn setTitleColor:_selectedTextColor forState:UIControlStateSelected];
         [btn setTitleColor:_selectedTextColor forState:UIControlStateHighlighted];
     }
-    _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
+//    _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
 }
 
 @end
