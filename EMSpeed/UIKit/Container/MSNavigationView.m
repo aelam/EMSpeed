@@ -125,7 +125,7 @@
     }
     
     _scrollView.contentSize = CGSizeMake(itemX + kMargin, itemHeight);
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 2, self.selectedItem.frame.size.width-2*kMargin, 2);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
 }
 
 - (void)setItems:(NSArray<NSString *> *)items{
@@ -140,7 +140,7 @@
         [item setTitleColor:self.normalTextColor forState:UIControlStateNormal];
         [item setTitleColor:self.selectedTextColor forState:UIControlStateSelected];
         [item setTitleColor:self.selectedTextColor forState:UIControlStateHighlighted];
-        item.titleLabel.font = [UIFont systemFontOfSize:17];
+        item.titleLabel.font = [UIFont systemFontOfSize:16];
         item.titleLabel.textAlignment = NSTextAlignmentCenter;
         [item addTarget:self action:@selector(itemClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.btns addObject:item];

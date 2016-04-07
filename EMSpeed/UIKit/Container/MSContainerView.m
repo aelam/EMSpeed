@@ -77,7 +77,7 @@ static NSString *CellID = @"ControllerCell";
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     
-    _navigationView.frame = CGRectMake(0, 0, width, 40);
+    _navigationView.frame = CGRectMake(0, 0, width, 35);
     self.collectionView.frame = CGRectMake(0, _navigationView.frame.size.height, width, height - _navigationView.frame.size.height);
     
     self.flowLayout.itemSize = self.collectionView.bounds.size;
