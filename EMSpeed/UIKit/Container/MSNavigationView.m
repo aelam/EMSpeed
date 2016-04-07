@@ -45,8 +45,8 @@
     //更改字体大小
     [UIView animateWithDuration:0.5 animations:^{
         
-        sender.titleLabel.font = [UIFont systemFontOfSize:17];
-        self.selectedItem.titleLabel.font = [UIFont systemFontOfSize:17];
+        sender.titleLabel.font = [UIFont systemFontOfSize:16];
+        self.selectedItem.titleLabel.font = [UIFont systemFontOfSize:16];
     }];
     
     //判断位置
