@@ -6,7 +6,7 @@
 //
 //一个带有menu支持点击切换，左右滑动切换controller的容器类
 
-#import "MSViewController.h"
+#import <EMSpeed/MSViewController.h>
 #import "MSNavigationView.h"
 
 @interface MSContainerViewController : MSViewController
