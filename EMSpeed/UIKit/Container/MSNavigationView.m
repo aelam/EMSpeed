@@ -140,6 +140,8 @@
         scrollWidth = _scrollView.frame.size.width;
     }
     
+    scrollWidth = MAX(scrollWidth, _scrollView.frame.size.width);//最新的容器宽度
+    
     _scrollView.contentSize = CGSizeMake(scrollWidth, itemHeight);
     _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
 }

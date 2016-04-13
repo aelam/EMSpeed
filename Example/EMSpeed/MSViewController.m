@@ -9,7 +9,7 @@
 #import "MSViewController.h"
 #import <EMSpeed/MSContext.h>
 #import "MSExampleContainerViewController.h"
-
+#import "MSExampleContainerViewController2.h"
 @interface MMSViewController ()
 {
     NSArray *_titles;
@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    _titles = [NSArray arrayWithObject:@"ContainerView"];
+    _titles = [NSArray arrayWithObjects:@"ContainerView",@"MSExampleContainerViewController2",nil];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableviewcell"];
 }
 
@@ -47,8 +47,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MSExampleContainerViewController *controller = [[MSExampleContainerViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+    if (indexPath.row == 0)
+    {
+        MSExampleContainerViewController *controller = [[MSExampleContainerViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        MSExampleContainerViewController2 *controller = [[MSExampleContainerViewController2 alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 
