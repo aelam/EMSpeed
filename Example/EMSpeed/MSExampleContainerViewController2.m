@@ -10,28 +10,30 @@
 
 @implementation MSExampleContainerViewController2
 
-- (void)viewDidLoad
+- (id)init
 {
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-    }
-    //设置新闻控制器
-    NSArray *titles = [NSArray arrayWithObjects:@"con1",@"con2",@"con3",@"con4",@"controller5", nil];
-    NSMutableArray *vcs = [NSMutableArray array];
-    
-    for (NSString *title in titles) {
+    self = [super init];
+    if (self) {
+        if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        {
+            self.edgesForExtendedLayout = UIRectEdgeNone;
+            self.extendedLayoutIncludesOpaqueBars = NO;
+        }
+        //设置新闻控制器
+        NSArray *titles = [NSArray arrayWithObjects:@"con1",@"con2",@"con3",@"con4",@"controller5", nil];
+        NSMutableArray *vcs = [NSMutableArray array];
         
-        MSExampleTestViewController2 *newVC = [[MSExampleTestViewController2 alloc] init];
-        newVC.title = title;
-        [vcs addObject:newVC];
+        for (NSString *title in titles) {
+            
+            MSExampleTestViewController2 *newVC = [[MSExampleTestViewController2 alloc] init];
+            newVC.title = title;
+            [vcs addObject:newVC];
+        }
+        
+        self.viewControllers = vcs;
+        self.selectedIndex = 3;
     }
-    
-    self.viewControllers = vcs;
-    self.selectedIndex = 3;
-    [super viewDidLoad];
-    
+    return self;
 }
 
 @end

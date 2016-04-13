@@ -199,5 +199,23 @@ static NSString *CellID = @"ControllerCell";
     [self.currentController endAppearanceTransition];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Add code to clean up any of your own resources that are no longer necessary.
+    if ([self isViewLoaded] && self.view.window == nil)
+    {
+        // Add code to preserve data stored in the views that might be
+        // needed later.
+        // Add code to clean up other strong references to the view in
+        // the view hierarchy.
+        self.collectionView = nil;
+        _navigationView = nil;
+        self.flowLayout = nil;
+        self.view = nil;
+    }
+}
+
+
 @end
 
