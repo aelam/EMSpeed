@@ -124,7 +124,23 @@
         itemX += item.frame.size.width;
     }
     
-    _scrollView.contentSize = CGSizeMake(itemX + kMargin, itemHeight);
+    CGFloat scrollWidth = itemX + kMargin;
+    
+    if (self.aligment == MSNavigatorViewAligmentAdjust && scrollWidth <= _scrollView.frame.size.width)
+    {//两边对齐，重新分布
+        CGFloat interval = (_scrollView.frame.size.width  - scrollWidth) / (2.0 * self.btns.count);
+        CGFloat itemX = interval;
+        for (NSInteger i=0; i<self.btns.count; i++) {
+            
+            UIButton *item = self.btns[i];
+            item.frame = CGRectMake(itemX, 0, item.frame.size.width, itemHeight);
+            itemX += (item.frame.size.width + 2 * interval);
+        }
+        
+        scrollWidth = _scrollView.frame.size.width;
+    }
+    
+    _scrollView.contentSize = CGSizeMake(scrollWidth, itemHeight);
     _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
 }
 

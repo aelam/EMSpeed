@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, MSNavigatorViewAligment) {
+    MSNavigatorViewAligmentLeft,//靠左
+    MSNavigatorViewAligmentAdjust,//仅在不滚动的情况下有效
+};
+
 typedef void (^itemClick)(NSInteger selectedIndex);
 
 @protocol MSNavigatorView <NSObject>
@@ -29,6 +34,7 @@ typedef void (^itemClick)(NSInteger selectedIndex);
 @property (assign, nonatomic) NSInteger selectedItemIndex;
 
 @property (strong, nonatomic) NSArray<NSString *> *items;
+@property (assign, nonatomic) MSNavigatorViewAligment aligment;//default is MSNavigatorViewAligmentLeft
 
 + (instancetype)navigationViewWithItems:(NSArray<NSString *> *)items itemClick:(itemClick)itemClick;
 
