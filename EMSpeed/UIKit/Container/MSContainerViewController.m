@@ -139,7 +139,7 @@ static NSString *CellID = @"ControllerCell";
         _selectedIndex = selectedIndex;
         CGFloat offsetX = weakObj.view.bounds.size.width * selectedIndex;
         weakObj.collectionView.contentOffset = CGPointMake(offsetX, 0);
-        
+        [weakObj didChangeToSelectControllerAtIndex:selectedIndex];
     }];
     view.backgroundColor = [UIColor whiteColor];
     
@@ -216,6 +216,10 @@ static NSString *CellID = @"ControllerCell";
     }
 }
 
+- (void)didChangeToSelectControllerAtIndex:(NSInteger)index
+{
+    
+}
 
 @end
 

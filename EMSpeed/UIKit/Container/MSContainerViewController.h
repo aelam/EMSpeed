@@ -21,4 +21,6 @@
 
 @property (assign, nonatomic) NSInteger selectedIndex;
 
+- (void)didChangeToSelectControllerAtIndex:(NSInteger)index;
+
 @end
