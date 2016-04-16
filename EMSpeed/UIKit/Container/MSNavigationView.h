@@ -30,6 +30,7 @@ typedef void (^itemClick)(NSInteger selectedIndex);
 
 @property (nonatomic, strong) UIColor *normalTextColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
+@property (nonatomic, strong) UIColor *borderColor;//边框线颜色
 
 @property (assign, nonatomic) NSInteger selectedItemIndex;
 

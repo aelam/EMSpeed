@@ -178,7 +178,8 @@
         self.backgroundColor = [UIColor whiteColor];
         self.normalTextColor = [UIColor darkGrayColor];
         self.selectedTextColor = [UIColor blackColor];
-        
+        self.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:.4];
+ 
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -188,7 +189,7 @@
         [self addSubview:_scrollView];
         
         _bottomBorderLayer = [CALayer layer];
-        _bottomBorderLayer.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:.4].CGColor;
+        _bottomBorderLayer.backgroundColor = self.borderColor.CGColor;
         [self.layer addSublayer:_bottomBorderLayer];
         
         _selectLayer = [CALayer layer];
@@ -217,6 +218,12 @@
         [btn setTitleColor:_selectedTextColor forState:UIControlStateHighlighted];
     }
 //    _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor
+{
+    _borderColor = borderColor;
+    _bottomBorderLayer.backgroundColor = self.borderColor.CGColor;
 }
 
 @end
