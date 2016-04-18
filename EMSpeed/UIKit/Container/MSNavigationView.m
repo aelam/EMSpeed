@@ -68,7 +68,7 @@
     
     self.selectedItem = sender;
     
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 7, self.selectedItem.frame.size.width-2*kMargin, 7);
 }
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex{
@@ -143,7 +143,7 @@
     scrollWidth = MAX(scrollWidth, _scrollView.frame.size.width);//最新的容器宽度
     
     _scrollView.contentSize = CGSizeMake(scrollWidth, itemHeight);
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 5, self.selectedItem.frame.size.width-2*kMargin, 5);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 7, self.selectedItem.frame.size.width-2*kMargin, 7);
 }
 
 - (void)setItems:(NSArray<NSString *> *)items{
@@ -179,7 +179,11 @@
         self.normalTextColor = [UIColor darkGrayColor];
         self.selectedTextColor = [UIColor blackColor];
         self.borderColor = [[UIColor lightGrayColor] colorWithAlphaComponent:.4];
- 
+        
+        _bottomBorderLayer = [CALayer layer];
+        _bottomBorderLayer.backgroundColor = self.borderColor.CGColor;
+        [self.layer addSublayer:_bottomBorderLayer];
+        
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.showsVerticalScrollIndicator = NO;
@@ -187,11 +191,7 @@
         ////禁用滚动到最顶部的属性
         _scrollView.scrollsToTop = NO;
         [self addSubview:_scrollView];
-        
-        _bottomBorderLayer = [CALayer layer];
-        _bottomBorderLayer.backgroundColor = self.borderColor.CGColor;
-        [self.layer addSublayer:_bottomBorderLayer];
-        
+ 
         _selectLayer = [CALayer layer];
         _selectLayer.contents = (id)[UIImage imageNamed:@"info_xuanzhongerji.png"].CGImage;
 //        _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
