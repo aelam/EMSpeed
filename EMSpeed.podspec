@@ -128,5 +128,12 @@ Pod::Spec.new do |s|
     ss.dependency     "AFNetworking"
   end
 
+s.subspec 'Network2.0' do |ss|
+ss.source_files = "EMSpeed/Network2.0/**/*.{h,m}"
+ss.dependency     "EMSpeed/UIKit/Core"
+ss.dependency     "AFNetworking"
+ss.dependency     "PINCache"
+ss.dependency     "JSONModel"
 
+end
 end
