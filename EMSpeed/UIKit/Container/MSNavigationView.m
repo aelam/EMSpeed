@@ -10,6 +10,8 @@
 #define kItemW 70
 #define kMargin 10
 
+#define kSelectLayerHeight 3
+
 @interface MSNavigationView ()
 {
     UIScrollView *_scrollView;
@@ -68,7 +70,7 @@
     
     self.selectedItem = sender;
     
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 7, self.selectedItem.frame.size.width-2*kMargin, 7);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - kSelectLayerHeight, self.selectedItem.frame.size.width-2*kMargin, kSelectLayerHeight);
 }
 
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex{
@@ -143,7 +145,7 @@
     scrollWidth = MAX(scrollWidth, _scrollView.frame.size.width);//最新的容器宽度
     
     _scrollView.contentSize = CGSizeMake(scrollWidth, itemHeight);
-    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - 7, self.selectedItem.frame.size.width-2*kMargin, 7);
+    _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - kSelectLayerHeight, self.selectedItem.frame.size.width-2*kMargin, kSelectLayerHeight);
 }
 
 - (void)setItems:(NSArray<NSString *> *)items{
@@ -193,8 +195,8 @@
         [self addSubview:_scrollView];
  
         _selectLayer = [CALayer layer];
-        _selectLayer.contents = (id)[UIImage imageNamed:@"info_xuanzhongerji.png"].CGImage;
-//        _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
+        //        _selectLayer.contents = (id)[UIImage imageNamed:@"info_xuanzhongerji.png"].CGImage;
+        _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
         [_scrollView.layer addSublayer:_selectLayer];
     }
     return self;
@@ -217,7 +219,7 @@
         [btn setTitleColor:_selectedTextColor forState:UIControlStateSelected];
         [btn setTitleColor:_selectedTextColor forState:UIControlStateHighlighted];
     }
-//    _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
+    _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
 }
 
 - (void)setBorderColor:(UIColor *)borderColor
