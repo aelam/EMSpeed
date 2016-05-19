@@ -41,7 +41,6 @@
                                  URLString:URLString
                                 parameters:parameters
                               headerFields:headerFields
-                                  progress:nil
                                 completion:completeBlock];
 }
 
@@ -50,20 +49,18 @@
                            headerFields:(nullable id)headerFields
                              completion:(nullable MSJSONObjectBlock)completeBlock
 {
-   return  [self __dataTaskWithHTTPMethod:@"POST"
-                         URLString:URLString
-                        parameters:parameters
-                      headerFields:headerFields
-                          progress:nil
-                               completion:completeBlock];
-
+    return  [self __dataTaskWithHTTPMethod:@"POST"
+                                 URLString:URLString
+                                parameters:parameters
+                              headerFields:headerFields
+                                completion:completeBlock];
+    
 }
 
 - (NSURLSessionDataTask *)__dataTaskWithHTTPMethod:(NSString *)method
                                          URLString:(NSString *)URLString
                                         parameters:(id)parameters
                                       headerFields:(nullable id)headerFields
-                                          progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
                                         completion:(nullable MSJSONObjectBlock)completeBlock
 {
     NSURL *url = [NSURL URLWithString:URLString relativeToURL:self.baseURL];
@@ -99,7 +96,7 @@
         {
             [weakSelf __successRequest:URLString parameters:parameters json:json];
         }
-
+        
         if (completeBlock)
         {
             completeBlock(json, error);
@@ -107,7 +104,7 @@
     };
     
     
-    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:method URLString:[url absoluteString] parameters:parameters constructingBodyWithBlock:nil error:&serializationError];
+    NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:&serializationError];
     if (serializationError) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu"
@@ -124,7 +121,7 @@
         [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
     }
     
-    __block NSURLSessionDataTask *task = [self uploadTaskWithStreamedRequest:request progress:uploadProgress completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+    __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request  completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         completionHandler(responseObject,response,error);
     }];
     
