@@ -69,6 +69,9 @@
     else
     {
         class = [UITableViewCell class];
+        if (reuseIdentifier == nil) {
+            reuseIdentifier = @"UITableViewCell";
+        }
     }
     
     if (![item isRegisterByClass]) {
