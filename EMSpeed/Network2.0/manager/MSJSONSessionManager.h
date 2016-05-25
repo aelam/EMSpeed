@@ -16,7 +16,7 @@
  *  @param jsonModel 数据对象，
  *  @param err       错误信息
  */
-typedef void (^MSJSONModelBlock)( id jsonModel, JSONModelError*  err);
+typedef void (^MSJSONModelBlock)(__nullable id jsonModel, JSONModelError* _Nullable  err);
 
 typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable  err);
 
