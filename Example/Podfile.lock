@@ -84,9 +84,9 @@ PODS:
   - JSONModel (1.2.0)
   - MJRefresh (3.1.0)
   - PINCache (2.2.2)
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - EMSpeed (from `../`)
@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
 COCOAPODS: 0.39.0

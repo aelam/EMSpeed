@@ -13,8 +13,6 @@
 
 @property (strong, nonatomic) NSArray *viewControllers;
 
-@property (assign, nonatomic) NSInteger selectedIndex;
-
 @property (weak, nonatomic) UICollectionView *collectionView;
 
 @property (weak, nonatomic) UICollectionViewFlowLayout *flowLayout;
@@ -55,20 +53,12 @@ static NSString *CellID = @"ControllerCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     NSInteger index = scrollView.contentOffset.x / self.bounds.size.width;
-    
     _navigationView.selectedItemIndex = index;
+    _selectedIndex = index;
+    [self didSelectControllerAtIndex:_selectedIndex];
+
 }
 
-#pragma mark - setting
-
-- (void)setSelectedIndex:(NSInteger)selectedIndex{
-    
-    _selectedIndex = selectedIndex;
-    
-    CGFloat offsetX = self.bounds.size.width * selectedIndex;
-    
-    self.collectionView.contentOffset = CGPointMake(offsetX, 0);
-}
 
 #pragma mark - view
 
@@ -169,7 +159,9 @@ static NSString *CellID = @"ControllerCell";
         typeof(self) __weak weakObj= self;
         MSNavigationView *view = [MSNavigationView navigationViewWithItems:nil itemClick:^(NSInteger selectedIndex) {
             
-            [weakObj setSelectedIndex:selectedIndex];
+            _selectedIndex = selectedIndex;
+            [self updateCollectViewSelection];
+            [weakObj didSelectControllerAtIndex:selectedIndex];
         }];
         view.backgroundColor = [UIColor whiteColor];
         
@@ -181,12 +173,6 @@ static NSString *CellID = @"ControllerCell";
     return self;
 }
 
-- (void)navigationToIndex:(NSInteger)index
-{
-    if (index < [self.viewControllers count]) {
-        [self.navigationView setSelectedItemIndex:index];
-    }
-}
 
 - (UIViewController *)currentController
 {
@@ -195,4 +181,39 @@ static NSString *CellID = @"ControllerCell";
     }
     return nil;
 }
+
+#pragma mark -
+#pragma mark selection
+#pragma mark - setting
+
+- (void)setSelectedIndex:(NSInteger)selectedIndex{
+    
+    _selectedIndex = selectedIndex;
+    
+    if (self.navigationView &&
+        selectedIndex < [self.viewControllers count])
+    {
+        //选中navigationViewControl
+        [self.navigationView setSelectedItemIndex:selectedIndex];
+        //滚动collectionView
+        [self updateCollectViewSelection];
+    }
+}
+/**
+ *  更新CollectionView的显示状态
+ */
+- (void)updateCollectViewSelection
+{
+    if (_selectedIndex >= 0)
+    {
+        CGFloat offsetX = self.bounds.size.width * _selectedIndex;
+        self.collectionView.contentOffset = CGPointMake(offsetX, 0);
+    }
+}
+
+- (void)didSelectControllerAtIndex:(NSInteger)index
+{
+    
+}
+
 @end

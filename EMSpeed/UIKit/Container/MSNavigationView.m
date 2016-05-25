@@ -34,16 +34,26 @@
 
 - (void)itemClick:(UIButton *)sender {
     
+    //navigationView 组件的选中处理
+    //1注册事件通知
+    
     if ([sender isEqual:self.selectedItem]) return;
     
-    self.selectedItem.selected = NO;
-    sender.selected = YES;
-   
+    [self selectItem:sender];
+    
     if (self.itemClickBlock) {
         
         self.itemClickBlock(sender.tag);
     }
+}
 
+- (void)selectItem:(UIButton *)sender
+{
+    if ([sender isEqual:self.selectedItem]) return;
+    
+    self.selectedItem.selected = NO;
+    sender.selected = YES;
+    
     //更改字体大小
     [UIView animateWithDuration:0.5 animations:^{
         
@@ -66,20 +76,18 @@
         
         self.contentOffset = CGPointMake(offsetX, 0);
     }
-
     
     self.selectedItem = sender;
     
     _selectLayer.frame = CGRectMake(self.selectedItem.frame.origin.x+kMargin, self.frame.size.height - kSelectLayerHeight, self.selectedItem.frame.size.width-2*kMargin, kSelectLayerHeight);
 }
 
+
 - (void)setSelectedItemIndex:(NSInteger)selectedItemIndex{
     
-    _selectedItemIndex = selectedItemIndex;
-    
+    _selectedItemIndex = selectedItemIndex;    
     UIButton *item = self.btns[selectedItemIndex];
-    
-    [self itemClick:item];
+    [self selectItem:item];
 }
 
 

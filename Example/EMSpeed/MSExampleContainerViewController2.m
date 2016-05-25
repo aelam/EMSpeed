@@ -21,13 +21,16 @@
         }
         //设置新闻控制器
         NSArray *titles = [NSArray arrayWithObjects:@"con1",@"con2",@"con3",@"con4",@"controller5", nil];
+        NSArray *colors = [NSArray arrayWithObjects:[UIColor redColor],[UIColor greenColor],[UIColor orangeColor],[UIColor purpleColor],[UIColor yellowColor], nil];
         NSMutableArray *vcs = [NSMutableArray array];
-        
+        NSInteger index = 0;
         for (NSString *title in titles) {
             
             MSExampleTestViewController2 *newVC = [[MSExampleTestViewController2 alloc] init];
             newVC.title = title;
+            newVC.view.backgroundColor = colors[index];
             [vcs addObject:newVC];
+            index++;
         }
         
         self.viewControllers = vcs;

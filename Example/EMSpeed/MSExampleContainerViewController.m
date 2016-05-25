@@ -37,7 +37,7 @@
     containView.navigationView.selectedTextColor = [UIColor colorWithRed:70/255.0f green:144/255.0f blue:239/255.0f alpha:1];
     containView.navigationView.backgroundColor = [UIColor colorWithRed:248/255.0f green:248/255.0f blue:248/255.0f alpha:1];
 //    [_menu setSelectedColor:[UIColor colorWithRed:70/255.0f green:144/255.0f blue:239/255.0f alpha:1]];
-    [containView navigationToIndex:4];
+    [containView setSelectedIndex:4];
     containView.frame = self.view.bounds;
     [self.view addSubview:containView];
     containView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;

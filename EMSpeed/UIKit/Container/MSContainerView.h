@@ -15,6 +15,8 @@
 }
 
 @property (nonatomic, strong, readonly) UIView<MSNavigatorView> *navigationView;
+@property (assign, nonatomic) NSInteger selectedIndex;
+
 
 /**
  *  
@@ -35,12 +37,6 @@
  */
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
 
-/**
- * 切换到指定位置栏目
- *
- *  @param index
- */
-- (void)navigationToIndex:(NSInteger)index;
 
 /**
  *  获取当前显示的controller

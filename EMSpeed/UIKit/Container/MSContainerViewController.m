@@ -51,6 +51,8 @@ static NSString *CellID = @"ControllerCell";
     NSInteger index = scrollView.contentOffset.x / self.view.bounds.size.width;
     
     _navigationView.selectedItemIndex = index;
+    _selectedIndex = index;
+    [self didSelectControllerAtIndex:_selectedIndex];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +71,10 @@ static NSString *CellID = @"ControllerCell";
     if (self.navigationView &&
         selectedIndex < [self.viewControllers count])
     {
+        //选中navigationViewControl
         [self.navigationView setSelectedItemIndex:selectedIndex];
+        //滚动collectionView
+        [self updateCollectViewSelection];
     }
 }
 
@@ -137,9 +142,8 @@ static NSString *CellID = @"ControllerCell";
     MSNavigationView *view = [MSNavigationView navigationViewWithItems:nil itemClick:^(NSInteger selectedIndex) {
         
         _selectedIndex = selectedIndex;
-        CGFloat offsetX = weakObj.view.bounds.size.width * selectedIndex;
-        weakObj.collectionView.contentOffset = CGPointMake(offsetX, 0);
-        [weakObj didChangeToSelectControllerAtIndex:selectedIndex];
+        [self updateCollectViewSelection];
+        [weakObj didSelectControllerAtIndex:selectedIndex];
     }];
     view.backgroundColor = [UIColor whiteColor];
     
@@ -185,6 +189,7 @@ static NSString *CellID = @"ControllerCell";
 {
     [super viewDidAppear:animated];
     [self.currentController endAppearanceTransition];
+    [self updateCollectViewSelection];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -216,9 +221,24 @@ static NSString *CellID = @"ControllerCell";
     }
 }
 
-- (void)didChangeToSelectControllerAtIndex:(NSInteger)index
+#pragma mark -
+#pragma mark selection
+
+/**
+ *  更新CollectionView的显示状态
+ */
+- (void)updateCollectViewSelection
 {
-    
+    if (_selectedIndex >= 0)
+    {
+        CGFloat offsetX = self.view.bounds.size.width * _selectedIndex;
+        self.collectionView.contentOffset = CGPointMake(offsetX, 0);
+    }
+}
+
+- (void)didSelectControllerAtIndex:(NSInteger)index
+{
+    NSLog(@"ContainerViewController didSelectControllerAtIndex %ld",index);
 }
 
 @end
