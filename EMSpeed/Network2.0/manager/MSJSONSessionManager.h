@@ -7,8 +7,16 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-#import <JSONModel/JSONModelError.h>
 #import "MSHTTPSessionDebugHandler.h"
+#import <JSONModel/JSONModel.h>
+
+/**
+ *  json解析为数据对象后的回调
+ *
+ *  @param jsonModel 数据对象，
+ *  @param err       错误信息
+ */
+typedef void (^MSJSONModelBlock)( id jsonModel, JSONModelError*  err);
 
 typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable  err);
 
@@ -28,5 +36,21 @@ typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable 
                            headerFields:(nullable id)headerFields
                              completion:(nullable MSJSONObjectBlock)completeBlock;
 
+
+@end
+
+@interface MSJSONSessionManager(JSONModel)
+
+- (nullable NSURLSessionDataTask *)JM_GET:(nonnull NSString *)URLString
+                               parameters:(nullable id)parameters
+                             headerFields:(nullable id)headerFields
+                           JSONModelClass:(nonnull Class)jsonModelClass
+                               completion:(nullable MSJSONModelBlock)completeBlock;
+
+- (nullable NSURLSessionDataTask *)JM_POST:(nonnull NSString *)URLString
+                                parameters:(nullable id)parameters
+                              headerFields:(nullable id)headerFields
+                            JSONModelClass:(nonnull Class)jsonModelClass
+                                completion:(nullable MSJSONModelBlock)completeBlock;
 
 @end

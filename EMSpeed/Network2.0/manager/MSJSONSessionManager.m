@@ -164,3 +164,58 @@
 
 
 @end
+
+
+@implementation  MSJSONSessionManager(JSONModel)
+
+- (nullable NSURLSessionDataTask *)JM_GET:(nonnull NSString *)URLString
+                               parameters:(nullable id)parameters
+                             headerFields:(nullable id)headerFields
+                           JSONModelClass:(nonnull Class)jsonModelClass
+                               completion:(nullable MSJSONModelBlock)completeBlock
+{
+    return [self GET:URLString
+          parameters:parameters
+        headerFields:headerFields
+          completion:^(id  _Nullable json, JSONModelError * _Nullable err) {
+              NSObject *jsonModel = nil;
+              if (err == nil)
+              {
+                  if (jsonModelClass)
+                  {
+                      jsonModel = [[jsonModelClass alloc] initWithDictionary:json error:&err];
+                  }
+              }
+              
+              if (completeBlock) {
+                  completeBlock(jsonModel,err);
+              }
+          }];
+}
+
+- (nullable NSURLSessionDataTask *)JM_POST:(nonnull NSString *)URLString
+                                parameters:(nullable id)parameters
+                              headerFields:(nullable id)headerFields
+                            JSONModelClass:(nonnull Class)jsonModelClass
+                                completion:(nullable MSJSONModelBlock)completeBlock
+{
+    return  [self POST:URLString
+            parameters:parameters
+          headerFields:headerFields
+            completion:^(id  _Nullable json, JSONModelError * _Nullable err) {
+                NSObject *jsonModel = nil;
+                if (err == nil)
+                {
+                    if (jsonModelClass)
+                    {
+                        jsonModel = [[jsonModelClass alloc] initWithDictionary:json error:&err];
+                    }
+                }
+                
+                if (completeBlock) {
+                    completeBlock(jsonModel,err);
+                }
+            }];
+}
+
+@end
