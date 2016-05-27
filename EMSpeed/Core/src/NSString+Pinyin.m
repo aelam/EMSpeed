@@ -3,14 +3,32 @@
 
 @implementation NSString(Pinyin)
 
+/**
+ *  把两个字符串src、rep 位于index位置的字符替换一下
+ *
+ *  @param src   字符串1
+ *  @param rep   字符串2
+ *  @param index 需要转换的字符位置
+ */
 + (void)swap:(NSMutableString*)src replace:(NSMutableString*)rep index:(int)index
 {
-    NSRange range = NSMakeRange(index, 1);
-    NSString* temp = [src substringWithRange:range];
-    [src replaceCharactersInRange:range withString:[rep substringWithRange:range]];
-    [rep replaceCharactersInRange:range withString:temp];
+    if (index < src.length && index < rep.length)
+    {
+        NSRange range = NSMakeRange(index, 1);
+        NSString* temp = [src substringWithRange:range];
+        [src replaceCharactersInRange:range withString:[rep substringWithRange:range]];
+        [rep replaceCharactersInRange:range withString:temp];
+    }
 }
 
+/**
+ *
+ *
+ *  @param dest <#dest description#>
+ *  @param ori  <#ori description#>
+ *  @param rep  <#rep description#>
+ *  @param len  <#len description#>
+ */
 + (void)perm:(NSMutableString*)dest original:(NSMutableString*)ori replace:(NSMutableString*)rep length:(int)len
 {
 //    NSLog(@"call perm...\n");
@@ -41,6 +59,13 @@
     return NO;
 }
 
+/**
+ *  特殊的多音字处理
+ *
+ *  @param i 位置
+ *
+ *  @return 字符串位于i的文字的拼音首字母
+ */
 - (unichar)dyzAtIndex:(NSUInteger)i
 {
     unichar firstLetter = 0;
@@ -95,7 +120,12 @@
 //    return pinyin;
 //}
 
-- (NSString *)ms_pinyinFirstLetterArray 
+/**
+ *
+ *
+ *  @return <#return value description#>
+ */
+- (NSString *)ms_pinyinFirstLetterArray
 {
     NSMutableString *result = [NSMutableString string];
     NSMutableString *pinyin = [NSMutableString string];

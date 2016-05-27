@@ -40,6 +40,26 @@
 #pragma mark -
 #pragma mark Data Source methods
 
+- (void)tableView:(UITableView *)tableView registerClass:(Class)cellClass forCellReuseIdentifier:(nonnull NSString *)identifier userNib:(BOOL)useNib
+{
+    if (useNib)
+    {
+        UINib *nib = [UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil];
+        if (nib)
+        {
+            [tableView registerNib:nib forCellReuseIdentifier:identifier];
+        }
+        else
+        {
+            [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
+        }
+    }
+    else
+    {
+        [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [_sections count] ? [_sections count] : 1;
@@ -59,57 +79,54 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MSCellModel> item = [self itemAtIndexPath:indexPath];
+    
+    BOOL useXIB = [item isRegisterByClass] ? NO : YES;
     NSString *reuseIdentifier = item.reuseIdentify;
-    Class class = item.Class;
+    Class cellClass = item.Class;
     
-    if(class)
+    if (item && cellClass)
     {
-        reuseIdentifier = NSStringFromClass(class);
-    }
-    else
-    {
-        class = [UITableViewCell class];
-        if (reuseIdentifier == nil) {
-            reuseIdentifier = @"UITableViewCell";
-        }
-    }
-    
-    if (![item isRegisterByClass]) {
-        [tableView registerNib:[UINib nibWithNibName:NSStringFromClass(class) bundle:nil] forCellReuseIdentifier:reuseIdentifier];
-    } else {
-        [tableView registerClass:class forCellReuseIdentifier:reuseIdentifier];
-    }
-    
-    if (reuseIdentifier)
-    {
-        id cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        
-        if (cell == nil)
+        if (reuseIdentifier == nil || reuseIdentifier.length == 0)
         {
-            cell = [[class alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+            reuseIdentifier = NSStringFromClass(cellClass);
         }
-
-        if ([cell respondsToSelector:@selector(update:indexPath:)]) {
-            [cell update:item indexPath:indexPath];
-        }
-        else if ([cell respondsToSelector:@selector(update:)]) {
-            [cell update:item];
-        }
-        
-        if ([cell isKindOfClass:[UITableViewCell class]]) {
-            UITableViewCell *aCell = cell;
-            if ([aCell respondsToSelector:@selector(setLayoutMargins:)]) {
-                aCell.layoutMargins = UIEdgeInsetsZero;
-                aCell.preservesSuperviewLayoutMargins = NO;
-            }
-        }
-        
-        return cell;
     }
     else
-    {
-        return [[UITableViewCell alloc] initWithFrame:CGRectZero];
+    {//异常兼容
+        cellClass = [UITableViewCell class];
+        reuseIdentifier = @"UITableViewCell";
     }
+    //注册 cell 、identifier
+    [self tableView:tableView registerClass:cellClass forCellReuseIdentifier:reuseIdentifier userNib:useXIB];
+    
+    //生成cell
+    id cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+    }
+    
+    //默认配置，todo 后期要去掉，不应该在这里做配置
+    if ([cell isKindOfClass:[UITableViewCell class]])
+    {
+        UITableViewCell *aCell = cell;
+        if ([aCell respondsToSelector:@selector(setLayoutMargins:)])
+        {
+            aCell.layoutMargins = UIEdgeInsetsZero;
+            aCell.preservesSuperviewLayoutMargins = NO;
+        }
+    }
+    
+    //更新cell的数据
+    if ([cell respondsToSelector:@selector(update:indexPath:)]) {
+        [cell update:item indexPath:indexPath];
+    }
+    else if ([cell respondsToSelector:@selector(update:)]) {
+        [cell update:item];
+    }
+    
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
