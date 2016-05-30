@@ -81,15 +81,12 @@
     id<MSCellModel> item = [self itemAtIndexPath:indexPath];
     
     BOOL useXIB = [item isRegisterByClass] ? NO : YES;
-    NSString *reuseIdentifier = item.reuseIdentify;
+    NSString *reuseIdentifier = @"UITableViewCell";
     Class cellClass = item.Class;
     
     if (item && cellClass)
     {
-        if (reuseIdentifier == nil || reuseIdentifier.length == 0)
-        {
-            reuseIdentifier = NSStringFromClass(cellClass);
-        }
+        reuseIdentifier = NSStringFromClass(cellClass);
     }
     else
     {//异常兼容
