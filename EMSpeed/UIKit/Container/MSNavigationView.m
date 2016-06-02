@@ -236,4 +236,10 @@
     _bottomBorderLayer.backgroundColor = self.borderColor.CGColor;
 }
 
+- (void)dealloc
+{
+    self.itemClickBlock = nil;
+}
+
+
 @end

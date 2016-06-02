@@ -21,6 +21,13 @@
 
 @property (assign, nonatomic) NSInteger selectedIndex;
 
+/**
+ *  之类复写的时候需要调用复类的方法
+ *
+ *  @param index 
+ */
+- (void)willSelectControllerAtIndex:(NSInteger)index;
+
 - (void)didSelectControllerAtIndex:(NSInteger)index;
 
 @end

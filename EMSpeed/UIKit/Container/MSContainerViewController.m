@@ -141,8 +141,7 @@ static NSString *CellID = @"ControllerCell";
     typeof(self) __weak weakObj= self;
     MSNavigationView *view = [MSNavigationView navigationViewWithItems:nil itemClick:^(NSInteger selectedIndex) {
         
-        _selectedIndex = selectedIndex;
-        [self updateCollectViewSelection];
+        [weakObj willSelectControllerAtIndex];
         [weakObj didSelectControllerAtIndex:selectedIndex];
     }];
     view.backgroundColor = [UIColor whiteColor];
@@ -234,6 +233,12 @@ static NSString *CellID = @"ControllerCell";
         CGFloat offsetX = self.view.bounds.size.width * _selectedIndex;
         self.collectionView.contentOffset = CGPointMake(offsetX, 0);
     }
+}
+
+- (void)willSelectControllerAtIndex:(NSInteger)index
+{
+    _selectedIndex = index;
+    [self updateCollectViewSelection];
 }
 
 - (void)didSelectControllerAtIndex:(NSInteger)index
