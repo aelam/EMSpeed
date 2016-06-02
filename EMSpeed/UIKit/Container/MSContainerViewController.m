@@ -141,7 +141,7 @@ static NSString *CellID = @"ControllerCell";
     typeof(self) __weak weakObj= self;
     MSNavigationView *view = [MSNavigationView navigationViewWithItems:nil itemClick:^(NSInteger selectedIndex) {
         
-        [weakObj willSelectControllerAtIndex];
+        [weakObj willSelectControllerAtIndex:selectedIndex];
         [weakObj didSelectControllerAtIndex:selectedIndex];
     }];
     view.backgroundColor = [UIColor whiteColor];
