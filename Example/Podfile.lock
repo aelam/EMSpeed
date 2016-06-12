@@ -14,79 +14,79 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - EMSpeed (0.2.23):
-    - EMSpeed/Core (= 0.2.23)
-    - EMSpeed/MSContext (= 0.2.23)
-    - EMSpeed/Network (= 0.2.23)
-    - EMSpeed/Network2.0 (= 0.2.23)
-    - EMSpeed/UIKit (= 0.2.23)
-  - EMSpeed/Core (0.2.23)
-  - EMSpeed/MSContext (0.2.23)
-  - EMSpeed/Network (0.2.23):
+  - EMSpeed (0.2.24):
+    - EMSpeed/Core (= 0.2.24)
+    - EMSpeed/MSContext (= 0.2.24)
+    - EMSpeed/Network (= 0.2.24)
+    - EMSpeed/Network2.0 (= 0.2.24)
+    - EMSpeed/UIKit (= 0.2.24)
+  - EMSpeed/Core (0.2.24)
+  - EMSpeed/MSContext (0.2.24)
+  - EMSpeed/Network (0.2.24):
     - AFNetworking
     - EMSpeed/UIKit/Core
-  - EMSpeed/Network2.0 (0.2.23):
+  - EMSpeed/Network2.0 (0.2.24):
     - AFNetworking
     - EMSpeed/UIKit/Core
     - JSONModel
     - PINCache
-  - EMSpeed/UIKit (0.2.23):
-    - EMSpeed/UIKit/Animations (= 0.2.23)
-    - EMSpeed/UIKit/CollectionModels (= 0.2.23)
-    - EMSpeed/UIKit/Container (= 0.2.23)
-    - EMSpeed/UIKit/Core (= 0.2.23)
-    - EMSpeed/UIKit/FontAwesome+iOS (= 0.2.23)
-    - EMSpeed/UIKit/GuideView (= 0.2.23)
-    - EMSpeed/UIKit/MultiPagingView (= 0.2.23)
-    - EMSpeed/UIKit/PopupView (= 0.2.23)
-    - EMSpeed/UIKit/StatusBar (= 0.2.23)
-    - EMSpeed/UIKit/TableModels (= 0.2.23)
-    - EMSpeed/UIKit/UIColors (= 0.2.23)
-    - EMSpeed/UIKit/UIImages (= 0.2.23)
-    - EMSpeed/UIKit/UIKitCollections (= 0.2.23)
-    - EMSpeed/UIKit/WebImage (= 0.2.23)
-  - EMSpeed/UIKit/Animations (0.2.23):
+  - EMSpeed/UIKit (0.2.24):
+    - EMSpeed/UIKit/Animations (= 0.2.24)
+    - EMSpeed/UIKit/CollectionModels (= 0.2.24)
+    - EMSpeed/UIKit/Container (= 0.2.24)
+    - EMSpeed/UIKit/Core (= 0.2.24)
+    - EMSpeed/UIKit/FontAwesome+iOS (= 0.2.24)
+    - EMSpeed/UIKit/GuideView (= 0.2.24)
+    - EMSpeed/UIKit/MultiPagingView (= 0.2.24)
+    - EMSpeed/UIKit/PopupView (= 0.2.24)
+    - EMSpeed/UIKit/StatusBar (= 0.2.24)
+    - EMSpeed/UIKit/TableModels (= 0.2.24)
+    - EMSpeed/UIKit/UIColors (= 0.2.24)
+    - EMSpeed/UIKit/UIImages (= 0.2.24)
+    - EMSpeed/UIKit/UIKitCollections (= 0.2.24)
+    - EMSpeed/UIKit/WebImage (= 0.2.24)
+  - EMSpeed/UIKit/Animations (0.2.24):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/CollectionModels (0.2.23):
+  - EMSpeed/UIKit/CollectionModels (0.2.24):
     - EMSpeed/Core
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/Container (0.2.23):
+  - EMSpeed/UIKit/Container (0.2.24):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/Core (0.2.23):
+  - EMSpeed/UIKit/Core (0.2.24):
     - EMSpeed/Core
-  - EMSpeed/UIKit/FontAwesome+iOS (0.2.23)
-  - EMSpeed/UIKit/GuideView (0.2.23):
+  - EMSpeed/UIKit/FontAwesome+iOS (0.2.24)
+  - EMSpeed/UIKit/GuideView (0.2.24):
     - EMSpeed/UIKit/Animations
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/MultiPagingView (0.2.23):
+  - EMSpeed/UIKit/MultiPagingView (0.2.24):
     - EMSpeed/UIKit/UIKitCollections
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/PopupView (0.2.23):
+  - EMSpeed/UIKit/PopupView (0.2.24):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIImages
-  - EMSpeed/UIKit/StatusBar (0.2.23):
+  - EMSpeed/UIKit/StatusBar (0.2.24):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/TableModels (0.2.23):
+  - EMSpeed/UIKit/TableModels (0.2.24):
     - EMSpeed/UIKit/Core
     - MJRefresh
-  - EMSpeed/UIKit/UIColors (0.2.23):
+  - EMSpeed/UIKit/UIColors (0.2.24):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIImages (0.2.23):
+  - EMSpeed/UIKit/UIImages (0.2.24):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIKitCollections (0.2.23):
+  - EMSpeed/UIKit/UIKitCollections (0.2.24):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIColors
-  - EMSpeed/UIKit/WebImage (0.2.23):
+  - EMSpeed/UIKit/WebImage (0.2.24):
     - EMSpeed/UIKit/UIImages
     - SDWebImage
   - JSONModel (1.2.0)
-  - MJRefresh (3.1.0)
+  - MJRefresh (3.1.1)
   - PINCache (2.2.2)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
 
 DEPENDENCIES:
   - EMSpeed (from `../`)
@@ -98,10 +98,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  EMSpeed: 86311f86e36240b61d43ca47cc84e10ed2c0f140
+  EMSpeed: b8e5571f0c617255e141e0ead5a553afedd0122a
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  MJRefresh: 70a47c5543b567cdaf70ead5a6e99ce820652eb9
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
 COCOAPODS: 0.39.0

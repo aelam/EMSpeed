@@ -40,25 +40,6 @@
 #pragma mark -
 #pragma mark Data Source methods
 
-- (void)tableView:(UITableView *)tableView registerClass:(Class)cellClass forCellReuseIdentifier:(nonnull NSString *)identifier userNib:(BOOL)useNib
-{
-    if (useNib)
-    {
-        UINib *nib = [UINib nibWithNibName:NSStringFromClass(cellClass) bundle:nil];
-        if (nib)
-        {
-            [tableView registerNib:nib forCellReuseIdentifier:identifier];
-        }
-        else
-        {
-            [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
-        }
-    }
-    else
-    {
-        [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
-    }
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -78,31 +59,10 @@
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id<MSCellModel> item = [self itemAtIndexPath:indexPath];
-    
-    BOOL useXIB = [item isRegisterByClass] ? NO : YES;
-    NSString *reuseIdentifier = @"UITableViewCell";
-    Class cellClass = item.Class;
-    
-    if (item && cellClass)
-    {
-        reuseIdentifier = NSStringFromClass(cellClass);
-    }
-    else
-    {//异常兼容
-        cellClass = [UITableViewCell class];
-        reuseIdentifier = @"UITableViewCell";
-    }
-    //注册 cell 、identifier
-    [self tableView:tableView registerClass:cellClass forCellReuseIdentifier:reuseIdentifier userNib:useXIB];
+    id<MSCellModel> cm = [self itemAtIndexPath:indexPath];
     
     //生成cell
-    id cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    
-    if (cell == nil)
-    {
-        cell = [[cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-    }
+    id cell = (id)[MSCellFactory tableView:tableView cellForRowAtIndexPath:indexPath withCellModel:cm];
     
     //默认配置，todo 后期要去掉，不应该在这里做配置
     if ([cell isKindOfClass:[UITableViewCell class]])
@@ -113,14 +73,6 @@
             aCell.layoutMargins = UIEdgeInsetsZero;
             aCell.preservesSuperviewLayoutMargins = NO;
         }
-    }
-    
-    //更新cell的数据
-    if ([cell respondsToSelector:@selector(update:indexPath:)]) {
-        [cell update:item indexPath:indexPath];
-    }
-    else if ([cell respondsToSelector:@selector(update:)]) {
-        [cell update:item];
     }
     
     return cell;
@@ -238,36 +190,6 @@
     return 0;
 }
 
-#if 0
-- (void)registerCellForView:(UIView *)view
-{
-    if ([view isKindOfClass:[UITableView class]]) {
-        UITableView *tableView = (UITableView *)view;
-        
-        NSMutableDictionary *mdict = [NSMutableDictionary dictionary];// 用作去重复
-        
-        for (int i=0; i<[_items count]; i++) {
-            NSArray *array = [_items objectAtIndex:i];
-            for (int j=0; j<[array count]; j++) {
-                id<MSCellModel> model = [array objectAtIndex:j];
-                NSString *reuseIdentify = model.reuseIdentify;
-                Class cls = NSClassFromString(reuseIdentify);
-                
-                if (![mdict objectForKey:reuseIdentify]) {
-                    if (model.isRegisterByClass) {
-                        [tableView registerClass:cls forCellReuseIdentifier:reuseIdentify];
-                    }
-                    else{
-                        [tableView registerNib:[UINib nibWithNibName:reuseIdentify bundle:[NSBundle mainBundle]] forCellReuseIdentifier:reuseIdentify];
-                    }
-                    
-                    [mdict setObject:[NSNumber numberWithBool:YES] forKey:reuseIdentify];
-                }
-            }
-        }
-    }
-}
-#endif
 
 - (BOOL)isEmpty
 {

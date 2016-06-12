@@ -59,4 +59,3 @@
 
 @end
 
-extern const CGFloat kMMCellDefaultHeight;

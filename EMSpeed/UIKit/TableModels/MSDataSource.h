@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSCellModel.h"
-#import "MSCellUpdating.h"
+#import "MSCellFactory.h"
 
 /**
  *  tableview的数据
@@ -115,13 +114,6 @@
 
 
 - (NSIndexPath *)indexPathOfItem:(id<MSCellModel>)cellModel;
-
-/**
- *  给tableview 注册cell的identifier
- */
-#if 0
-- (void)registerCellForView:(UIView *)view;
-#endif
 
 /**
  *  是否空的数据

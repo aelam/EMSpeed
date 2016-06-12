@@ -10,7 +10,6 @@
 #import "MSMutableDataSource.h"
 #import "MSTableEmptyView.h"
 
-const CGFloat kMMCellDefaultHeight = 44;
 
 
 @implementation MSTableController
