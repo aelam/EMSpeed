@@ -155,31 +155,31 @@
 }
 
 
-- (void)setRefreshFooterStatus:(MSRefreshFooterStatus)status
+- (void)setRefreshFooterStatus:(MSRefreshFooterStatus2)status
 {
-    if (status == MSRefreshFooterStatusIdle) {
+    if (status == MSRefreshFooterStatus2Idle) {
         self.refreshFooter.hidden = NO;
         [self.refreshFooter resetNoMoreData];
     }
-    else if (status == MSRefreshFooterStatusNoMoreData) {
+    else if (status == MSRefreshFooterStatus2NoMoreData) {
         self.refreshFooter.hidden = NO;
         [self.refreshFooter endRefreshingWithNoMoreData];
     }
-    else if (status == MSRefreshFooterStatusHidden) {
+    else if (status == MSRefreshFooterStatus2Hidden) {
         [self.refreshFooter setHidden:YES];
     }
 }
 
-- (MSRefreshFooterStatus)refreshFooterStatus
+- (MSRefreshFooterStatus2)refreshFooterStatus
 {
     if (_refreshFooter.hidden) {
-        return MSRefreshFooterStatusHidden;
+        return MSRefreshFooterStatus2Hidden;
     }
     else if (_refreshFooter.state == MJRefreshStateNoMoreData) {
-        return MSRefreshFooterStatusNoMoreData;
+        return MSRefreshFooterStatus2NoMoreData;
     }
     
-    return MSRefreshFooterStatusIdle;
+    return MSRefreshFooterStatus2Idle;
 }
 
 @end

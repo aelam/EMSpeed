@@ -36,11 +36,11 @@
 @end
 
 typedef enum : NSUInteger {
-    MSRefreshFooterStatusIdle,        // 闲置状态, 等待下次上拉
-    MSRefreshFooterStatusNoMoreData,  // 没有更多
-    MSRefreshFooterStatusHidden,      // 隐藏
+    MSRefreshFooterStatus2Idle,        // 闲置状态, 等待下次上拉
+    MSRefreshFooterStatus2NoMoreData,  // 没有更多
+    MSRefreshFooterStatus2Hidden,      // 隐藏
     
-} MSRefreshFooterStatus;
+} MSRefreshFooterStatus2;
 
 
 @interface MSRefreshTableViewController2 : MSTableViewController2 <MSRefreshProtocol2>
@@ -60,8 +60,8 @@ typedef enum : NSUInteger {
 - (void)beginFooterRefreshing; // 上拉 有动画
 - (void)endFooterRefreshing;
 
-- (void)setRefreshFooterStatus:(MSRefreshFooterStatus)status; // 设置footer状态
-- (MSRefreshFooterStatus)refreshFooterStatus;
+- (void)setRefreshFooterStatus:(MSRefreshFooterStatus2)status; // 设置footer状态
+- (MSRefreshFooterStatus2)refreshFooterStatus;
 
 
 @end
