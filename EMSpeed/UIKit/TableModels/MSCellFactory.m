@@ -62,9 +62,19 @@
 {
     CGFloat height = tableView.rowHeight;
     Class cellClass = nil;
-    if ([model respondsToSelector:@selector(Class)]) {
+    
+    if ([model respondsToSelector:@selector(cellNib)])
+    {
+        cellClass = model.cellNib.class;
+    }
+    else if ([model respondsToSelector:@selector(cellClass)])
+    {
+        cellClass = [model cellClass];
+    }
+    else if ([model respondsToSelector:@selector(Class)]) {
         cellClass = [model Class];
     }
+    
     if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
         CGFloat cellHeight = [cellClass heightForObject:model
                                             atIndexPath:indexPath tableView:tableView];
