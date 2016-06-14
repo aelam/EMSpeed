@@ -9,12 +9,7 @@
 #import "MSRefreshTableViewController2.h"
 
 
-@interface MSRefreshTableViewController2 () {
-    NSUInteger _numberOfControllersInStack;
-    
-    
-}
-
+@interface MSRefreshTableViewController2 ()
 
 @property (nonatomic, strong, readwrite) MJRefreshHeader *refreshHeader;
 @property (nonatomic, strong, readwrite) MJRefreshFooter *refreshFooter;
@@ -36,8 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _numberOfControllersInStack = 0;
-    
     //初始化refreshHeader
     [self refreshHeader];
 }
@@ -57,6 +50,11 @@
     [self headerRefreshingWhenViewDidAppear:animated];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
 - (void)headerRefreshingWhenViewWillAppear:(BOOL)animated
 {
     //[self beginHeaderRefreshing]; 刷新有下拉动画
@@ -67,12 +65,6 @@
 {
    // [self beginHeaderRefreshing];刷新有下拉动画
 //    [self refreshHeaderDidRefresh:self.refreshHeader]; //刷新没有下啦动画
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    _numberOfControllersInStack = [self.navigationController.viewControllers count];
 }
 
 - (void)didReceiveMemoryWarning

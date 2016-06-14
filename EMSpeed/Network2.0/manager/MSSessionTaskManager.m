@@ -36,7 +36,7 @@
 - (NSMutableArray *)_tasksForKey:(NSString *)key
 {
     NSMutableArray *tasks = _tasks[key];
-    if (tasks == nil) {
+    if (tasks == nil && key && key.length) {
         _tasks[key] = [NSMutableArray array];
         tasks = _tasks[key];
     }
