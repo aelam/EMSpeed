@@ -144,10 +144,10 @@
                           object:(id)cellModel {
     UITableViewCell* cell = nil;
     
-    NSString* identifier = NSStringFromClass([cellModel class]);
+    NSString* identifier = NSStringFromClass([cellModel Class]);
     [tableView registerNib:cellNib forCellReuseIdentifier:identifier];
     
-    cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     //Allow the cell to configure itself with the object's information.
     //更新cell的数据
