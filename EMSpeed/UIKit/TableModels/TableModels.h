@@ -9,8 +9,7 @@
 #ifndef TABLEMODELS_H
 #define TABLEMODELS_H
 
-#import <EMSpeed/MSCellModel.h>
-#import <EMSpeed/MSCellUpdating.h>
+#import <EMSpeed/MSCellFactory.h>
 
 #import <EMSpeed/MSDataSource.h>
 #import <EMSpeed/MSMutableDataSource.h>

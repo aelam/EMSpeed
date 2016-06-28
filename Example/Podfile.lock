@@ -82,7 +82,7 @@ PODS:
     - EMSpeed/UIKit/UIImages
     - SDWebImage
   - JSONModel (1.2.0)
-  - MJRefresh (3.1.1)
+  - MJRefresh (3.1.9)
   - PINCache (2.2.2)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
@@ -100,7 +100,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   EMSpeed: b8e5571f0c617255e141e0ead5a553afedd0122a
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
-  MJRefresh: 70a47c5543b567cdaf70ead5a6e99ce820652eb9
+  MJRefresh: c5f1f1653e5a1b932c90f78074f2bc86f3f9bd5e
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
 
