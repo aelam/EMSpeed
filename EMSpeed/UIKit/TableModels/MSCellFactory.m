@@ -118,6 +118,7 @@
     UITableViewCell* cell = nil;
     
     NSString* identifier = NSStringFromClass(cellClass);
+    [tableView registerClass:cellClass forCellReuseIdentifier:identifier];
     
     cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
