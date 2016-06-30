@@ -170,8 +170,8 @@
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    if (_tableView.header != _refreshHeader) {
-        _tableView.header = _refreshHeader;
+    if (_tableView.mj_header != _refreshHeader) {
+        _tableView.mj_header = _refreshHeader;
     }
 #pragma clang diagnostic pop
     return _refreshHeader;
@@ -193,7 +193,7 @@
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    self.tableView.header.hidden = refreshHeaderHidden;
+    self.tableView.mj_header.hidden = refreshHeaderHidden;
 #pragma clang diagnostic pop
 }
 
@@ -202,7 +202,7 @@
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    return (self.tableView.header && self.tableView.header.hidden);
+    return (self.tableView.mj_header && self.tableView.mj_header.hidden);
 #pragma clang diagnostic pop
 }
 
@@ -253,8 +253,8 @@
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    if (_tableView.footer != _refreshFooter) {
-        _tableView.footer = _refreshFooter;
+    if (_tableView.mj_footer != _refreshFooter) {
+        _tableView.mj_footer = _refreshFooter;
     }
 #pragma clang diagnostic pop
     return _refreshFooter;
@@ -277,7 +277,7 @@
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    return (self.tableView.footer && self.tableView.footer.hidden);
+    return (self.tableView.mj_footer && self.tableView.mj_footer.hidden);
 #pragma clang diagnostic pop
 }
 
@@ -307,7 +307,7 @@
     else if (status == MSRefreshFooterStatusNoInit) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _tableView.footer = nil;
+        _tableView.mj_footer = nil;
         _refreshFooter = nil;
 #pragma clang diagnostic pop
     }
@@ -341,7 +341,7 @@
     else {
         _refreshHeader = nil;
         if (_tableView) {
-            _tableView.header = nil;
+            _tableView.mj_header = nil;
         }
     }
 }
@@ -356,7 +356,7 @@
     else {
         _refreshFooter = nil;
         if (_tableView) {
-            _tableView.footer = nil;
+            _tableView.mj_footer = nil;
         }
     }
 }

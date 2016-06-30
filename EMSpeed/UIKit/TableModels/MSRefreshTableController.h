@@ -7,8 +7,7 @@
 //
 
 #import "MSTableController.h"
-#import "MJRefresh.h"
-
+#import <MJRefresh/MJRefresh.h>
 
 @protocol MSRefreshProtocol <NSObject>
 
