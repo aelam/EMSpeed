@@ -243,7 +243,7 @@ static NSString *CellID = @"ControllerCell";
 
 - (void)didSelectControllerAtIndex:(NSInteger)index
 {
-    NSLog(@"ContainerViewController didSelectControllerAtIndex %d",index);
+    NSLog(@"ContainerViewController didSelectControllerAtIndex %zd",index);
 }
 
 @end

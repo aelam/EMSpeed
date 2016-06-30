@@ -17,7 +17,10 @@
         types = [self currentUserNotificationSettings].types;
     }
     else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         types = [self enabledRemoteNotificationTypes];
+#pragma clang diagnostic pop
     }
     return types;
 }

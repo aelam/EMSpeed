@@ -68,7 +68,7 @@
     {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        [self.tableView.header beginRefreshing];
+        [self.tableView.mj_header beginRefreshing];
 #pragma clang diagnostic pop
     }
 }
@@ -94,20 +94,20 @@
         _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             [weakSelf headerRefreshing];
         }];
-        self.tableView.header = _refreshHeader;
+        self.tableView.mj_header = _refreshHeader;
     }
     else{
-        self.tableView.header = nil;
+        self.tableView.mj_header = nil;
     }
     
     if (_enableRefreshFooter) {
         _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [weakSelf footerRefreshing];
         }];
-        self.tableView.footer = _refreshFooter;
+        self.tableView.mj_footer = _refreshFooter;
     }
     else{
-        self.tableView.footer = nil;
+        self.tableView.mj_footer = nil;
     }
 #pragma clang diagnostic pop
 
@@ -127,10 +127,10 @@
             _refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
                 [weakSelf headerRefreshing];
             }];
-            self.tableView.header = _refreshHeader;
+            self.tableView.mj_header = _refreshHeader;
         }
         else {
-            self.tableView.header = nil;
+            self.tableView.mj_header = nil;
         }
     }
 #pragma clang diagnostic pop
@@ -149,10 +149,10 @@
             _refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                 [weakSelf footerRefreshing];
             }];
-            self.tableView.footer = _refreshFooter;
+            self.tableView.mj_footer = _refreshFooter;
         }
         else {
-            self.tableView.footer = nil;
+            self.tableView.mj_footer = nil;
         }
     }
 #pragma clang diagnostic pop
@@ -165,7 +165,7 @@
     // 不要忘记调用
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self.tableView.header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 #pragma clang diagnostic pop
 }
 
@@ -175,7 +175,7 @@
     // 不要忘记调用
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [self.tableView.header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 #pragma clang diagnostic pop
 }
 
