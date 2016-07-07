@@ -136,18 +136,23 @@
     
     CGFloat scrollWidth = itemX + kMargin;
     
-    if (self.aligment == MSNavigatorViewAligmentAdjust && scrollWidth <= _scrollView.frame.size.width)
+    if (self.aligment == MSNavigatorViewAligmentAdjust)
     {//两边对齐，重新分布
-        CGFloat interval = (_scrollView.frame.size.width  - scrollWidth) / (2.0 * self.btns.count);
-        CGFloat itemX = interval;
-        for (NSInteger i=0; i<self.btns.count; i++) {
+        if (scrollWidth <= _scrollView.frame.size.width)
+        {
+            scrollWidth -=  2 * kMargin;
+            CGFloat interval = (_scrollView.frame.size.width  - scrollWidth) / (2.0 * self.btns.count);
+            CGFloat itemX = interval;
             
-            UIButton *item = self.btns[i];
-            item.frame = CGRectMake(itemX, 0, item.frame.size.width, itemHeight);
-            itemX += (item.frame.size.width + 2 * interval);
+            for (NSInteger i=0; i<self.btns.count; i++) {
+                
+                UIButton *item = self.btns[i];
+                item.frame = CGRectMake(itemX, 0, item.frame.size.width, itemHeight);
+                itemX += (item.frame.size.width + 2 * interval);
+            }
+            
+            scrollWidth = _scrollView.frame.size.width;
         }
-        
-        scrollWidth = _scrollView.frame.size.width;
     }
     
     scrollWidth = MAX(scrollWidth, _scrollView.frame.size.width);//最新的容器宽度
