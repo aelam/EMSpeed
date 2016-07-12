@@ -65,7 +65,7 @@
     
     if ([model respondsToSelector:@selector(cellNib)])
     {
-        cellClass = model.cellNib.class;
+        cellClass = [model cellClass];
     }
     else if ([model respondsToSelector:@selector(cellClass)])
     {
@@ -145,7 +145,7 @@
                           object:(id)cellModel {
     UITableViewCell* cell = nil;
     
-    NSString* identifier = NSStringFromClass([cellModel Class]);
+    NSString* identifier = NSStringFromClass([cellModel class]);
     [tableView registerNib:cellNib forCellReuseIdentifier:identifier];
     
     cell = [tableView dequeueReusableCellWithIdentifier:identifier];
