@@ -63,11 +63,7 @@
     CGFloat height = tableView.rowHeight;
     Class cellClass = nil;
     
-    if ([model respondsToSelector:@selector(cellNib)])
-    {
-        cellClass = [model cellClass];
-    }
-    else if ([model respondsToSelector:@selector(cellClass)])
+    if ([model respondsToSelector:@selector(cellClass)])
     {
         cellClass = [model cellClass];
     }
