@@ -175,7 +175,23 @@
     
     if (nib)
     {
-        return [self cellWithNib:nib tableView:tableView indexPath:indexPath object:cellModel];
+        UITableViewCell* cell = nil;
+        
+        NSString* identifier = NSStringFromClass([cellModel Class]);
+        [tableView registerNib:nib forCellReuseIdentifier:identifier];
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        //Allow the cell to configure itself with the object's information.
+        //更新cell的数据
+        if ([cell respondsToSelector:@selector(update:indexPath:)]) {
+            [(UITableViewCell<MSCellUpdating> *)cell update:cellModel indexPath:indexPath];
+        }
+        else if ([cell respondsToSelector:@selector(update:)]) {
+            [(UITableViewCell<MSCellUpdating> *)cell update:cellModel];
+        }
+        
+        return cell;
     }
     else
     {
