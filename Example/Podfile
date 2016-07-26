@@ -4,16 +4,19 @@ inhibit_all_warnings!
 
 target 'EMSpeed_Example' do
   pod "EMSpeed", :path => "../"
+
   
-  target 'EMSpeed_Tests' do
-      
-  end
-  
-  target 'Today' do
-      inherit!:search_paths
-#      pod "EMSpeed/Network", :path => "../"
-  end
-  
+end
+
+target 'EMSpeed_Tests' do
+    
+end
+
+target 'Today' do
+    # inherit!:search_paths
+    #      pod "EMSpeed/Network", :path => "../"
+    pod "EMSpeed", :path => "../"
+
 end
 
 

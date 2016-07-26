@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E107B0B6FB5C5EF88106348 /* libPods-Today.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07923BCBE3F94701E92FFAE5 /* libPods-Today.a */; };
+		5892CFA89D2FA39A1A069A16 /* libPods-EMSpeed_Example-Today.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93EB65CCAD97E051EEEDDF19 /* libPods-EMSpeed_Example-Today.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -93,6 +94,7 @@
 		67E57D1DD460312CEB3A046B /* EMSpeed.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EMSpeed.podspec; path = ../EMSpeed.podspec; sourceTree = "<group>"; };
 		86C2CD91FAFABD44AF04B1FA /* Pods-EMSpeed_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMSpeed_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-EMSpeed_Example/Pods-EMSpeed_Example.release.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		93EB65CCAD97E051EEEDDF19 /* libPods-EMSpeed_Example-Today.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EMSpeed_Example-Today.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9464C6EB1BDDCD51004C2129 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9464C6EC1BDDCD51004C2129 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		9464C6EF1BDDCD51004C2129 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			files = (
 				9464C6ED1BDDCD51004C2129 /* NotificationCenter.framework in Frameworks */,
 				2E107B0B6FB5C5EF88106348 /* libPods-Today.a in Frameworks */,
+				5892CFA89D2FA39A1A069A16 /* libPods-EMSpeed_Example-Today.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +193,7 @@
 				3DA0C1679C513378803209A7 /* libPods-EMSpeed_Example.a */,
 				2905D0CF27062D4C80DC9284 /* libPods-EMSpeed_Example-EMSpeed_Tests.a */,
 				07923BCBE3F94701E92FFAE5 /* libPods-Today.a */,
+				93EB65CCAD97E051EEEDDF19 /* libPods-EMSpeed_Example-Today.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,6 +282,7 @@
 				9464C6FC1BDDCD52004C2129 /* Embed App Extensions */,
 				28165C1C441B61365CF0D7CD /* [CP] Embed Pods Frameworks */,
 				8D7CF2C0BA04A018929D1519 /* [CP] Copy Pods Resources */,
+				EA260F8C8046337B973CD5BF /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,6 +319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9464C6FB1BDDCD52004C2129 /* Build configuration list for PBXNativeTarget "Today" */;
 			buildPhases = (
+				AC81E4010BE30501DB847822 /* Check Pods Manifest.lock */,
 				3106B4FCEFC2549C245458DB /* [CP] Check Pods Manifest.lock */,
 				9464C6E71BDDCD51004C2129 /* Sources */,
 				9464C6E81BDDCD51004C2129 /* Frameworks */,
@@ -488,6 +494,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EMSpeed_Example/Pods-EMSpeed_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AC81E4010BE30501DB847822 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B6854CC18154E06F511F601A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,6 +522,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EMSpeed_Example-EMSpeed_Tests/Pods-EMSpeed_Example-EMSpeed_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA260F8C8046337B973CD5BF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EMSpeed_Example/Pods-EMSpeed_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC63CA75EE2947F90591B895 /* [CP] Embed Pods Frameworks */ = {
