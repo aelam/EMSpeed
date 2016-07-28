@@ -23,6 +23,7 @@ typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable 
 @interface MSJSONSessionManager : AFHTTPSessionManager
 
 @property (nonatomic, strong) __nullable id <MSHTTPSessionDebugHandler> debugHandler;
+@property (nonatomic, strong) NSDictionary *defaultHeaders;   // 附加授权信息
 
 + (nonnull instancetype)sharedManager;
 

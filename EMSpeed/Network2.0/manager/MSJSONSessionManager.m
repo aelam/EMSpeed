@@ -121,6 +121,14 @@
         [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
     }
     
+    
+    if (self.defaultHeaders) {
+        for (NSString *key in [self.defaultHeaders allKeys])
+        {
+            [request setValue:[self.defaultHeaders objectForKey:key] forHTTPHeaderField:key];
+        }
+    }
+    
     __block NSURLSessionDataTask *task = [self dataTaskWithRequest:request  completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         completionHandler(responseObject,response,error);
     }];
