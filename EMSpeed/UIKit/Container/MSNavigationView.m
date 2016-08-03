@@ -20,8 +20,6 @@
 
 @property (strong, nonatomic) CALayer * selectLayer;
 
-@property (strong, nonatomic) NSMutableArray *btns;
-
 @property (weak, nonatomic) UIButton *selectedItem;
 
 @property (copy, nonatomic) itemClick itemClickBlock;

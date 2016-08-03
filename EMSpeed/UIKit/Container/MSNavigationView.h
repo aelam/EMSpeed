@@ -21,13 +21,14 @@ typedef void (^itemClick)(NSInteger selectedIndex);
 @property (strong, nonatomic) NSArray *items;
 @property (nonatomic, strong) UIColor *normalTextColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
+@property (strong, nonatomic) NSMutableArray *btns;
 
 + (instancetype)navigationViewWithItems:(NSArray<NSString *> *)items itemClick:(itemClick)itemClick;
 
 @end
 
 @interface MSNavigationView : UIView<MSNavigatorView>
-
+@property (strong, nonatomic) NSMutableArray *btns;
 @property (nonatomic, strong) UIColor *normalTextColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
 @property (nonatomic, strong) UIColor *borderColor;//边框线颜色
