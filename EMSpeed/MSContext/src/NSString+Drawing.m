@@ -65,10 +65,15 @@
         paragraph.lineSpacing = lineHeight;
     }
     
-    NSDictionary *attribute = [NSDictionary dictionaryWithObjectsAndKeys:
-                               color,NSForegroundColorAttributeName,
-                               font,NSFontAttributeName,
-                               paragraph,NSParagraphStyleAttributeName,nil];
+    NSMutableDictionary *attribute = [NSMutableDictionary dictionaryWithObjectsAndKeys:paragraph,NSParagraphStyleAttributeName,nil];
+    if (color) {
+        attribute[NSForegroundColorAttributeName] = color;
+    }
+    if (font) {
+        attribute[NSFontAttributeName] = font;
+    }
+    
+    
     [self drawInRect:rect withAttributes:attribute];
 }
 
@@ -85,9 +90,14 @@
              withFont:(UIFont *)font
                 color:(UIColor *)color
 {
-    NSDictionary *attribute = [NSDictionary dictionaryWithObjectsAndKeys:
-                               color,NSForegroundColorAttributeName,
-                               font,NSFontAttributeName,nil];
+    NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
+    if (color) {
+        attribute[NSForegroundColorAttributeName] = color;
+    }
+    if (font) {
+        attribute[NSFontAttributeName] = font;
+    }
+    
     [self drawInRect:rect withAttributes:attribute];
 }
 
