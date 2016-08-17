@@ -117,6 +117,8 @@
 - (void)layoutSubviews{
     
     [super layoutSubviews];
+    
+    CGFloat itemMinWidth = (self.aligment == MSNavigatorViewAligmentAdjust)? (self.frame.size.width - self.maxCount * kMargin) / self.maxCount : kItemW;
     CGFloat itemHeight = self.frame.size.height - 0.5;
     _scrollView.frame = self.bounds;
     _bottomBorderLayer.frame = CGRectMake(0, itemHeight, self.frame.size.width, 0.5);
@@ -127,7 +129,7 @@
         UIButton *item = self.btns[i];
         [item sizeToFit];
         CGFloat width = item.frame.size.width + 2 * kMargin;
-        width = MAX(width, kItemW);
+        width = MAX(width, itemMinWidth);
         item.frame = CGRectMake(itemX, 0, width, itemHeight);
         itemX += item.frame.size.width;
     }
@@ -209,6 +211,7 @@
         //        _selectLayer.contents = (id)[UIImage imageNamed:@"info_xuanzhongerji.png"].CGImage;
         _selectLayer.backgroundColor = self.selectedTextColor.CGColor;
         [_scrollView.layer addSublayer:_selectLayer];
+        self.maxCount = 5;
     }
     return self;
 }
