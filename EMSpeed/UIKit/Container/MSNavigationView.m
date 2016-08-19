@@ -118,7 +118,7 @@
     
     [super layoutSubviews];
     
-    CGFloat itemMinWidth = (self.aligment == MSNavigatorViewAligmentAdjust)? (self.frame.size.width - self.maxCount * kMargin) / self.maxCount : kItemW;
+    CGFloat itemMinWidth = (self.aligment == MSNavigatorViewAligmentAdjust)? (self.frame.size.width - 4 * kMargin) / self.maxCount : kItemW;
     CGFloat itemHeight = self.frame.size.height - 0.5;
     _scrollView.frame = self.bounds;
     _bottomBorderLayer.frame = CGRectMake(0, itemHeight, self.frame.size.width, 0.5);
