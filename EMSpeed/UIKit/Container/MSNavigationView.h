@@ -37,7 +37,8 @@ typedef void (^itemClick)(NSInteger selectedIndex);
 
 @property (strong, nonatomic) NSArray<NSString *> *items;
 @property (assign, nonatomic) MSNavigatorViewAligment aligment;//default is MSNavigatorViewAligmentLeft
-@property (nonatomic, assign) NSInteger maxCount;//MSNavigatorViewAligmentAdjust 时有效
+@property (nonatomic, assign) NSInteger maxCount;//MSNavigatorViewAligmentAdjust 时有效 default is 5
+@property (copy, nonatomic) itemClick itemClickBlock;
 
 + (instancetype)navigationViewWithItems:(NSArray<NSString *> *)items itemClick:(itemClick)itemClick;
 

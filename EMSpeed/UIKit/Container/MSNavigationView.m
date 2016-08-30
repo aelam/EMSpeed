@@ -22,8 +22,6 @@
 
 @property (weak, nonatomic) UIButton *selectedItem;
 
-@property (copy, nonatomic) itemClick itemClickBlock;
-
 @end
 
 @implementation MSNavigationView
