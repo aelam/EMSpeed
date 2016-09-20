@@ -106,11 +106,6 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     
     NSMutableURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:URLString parameters:newParameters error:&serializationError];
     
-    for (NSString *key in [headerFields allKeys])
-    {
-        [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
-    }
-    
     if (self.defaultHeaders) {
         for (NSString *key in [self.defaultHeaders allKeys])
         {
@@ -118,6 +113,10 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
         }
     }
     
+    for (NSString *key in [headerFields allKeys])
+    {
+        [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
+    }
     
     if (serializationError) {
         if (failure) {

@@ -117,7 +117,7 @@ static NSString *CellID = @"ControllerCell";
     
     _navigationView.frame = CGRectMake(0, 0, width, 35);
     
-    self.flowLayout.itemSize = self.collectionView.bounds.size;
+    self.flowLayout.itemSize = CGSizeMake(width, height - _navigationView.frame.size.height);
     self.collectionView.frame = CGRectMake(0, _navigationView.frame.size.height, width, height - _navigationView.frame.size.height);
 }
 
