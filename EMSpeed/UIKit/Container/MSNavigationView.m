@@ -14,7 +14,6 @@
 
 @interface MSNavigationView ()
 {
-    UIScrollView *_scrollView;
     CALayer *_bottomBorderLayer;
 }
 

@@ -28,6 +28,7 @@ typedef void (^itemClick)(NSInteger selectedIndex);
 @end
 
 @interface MSNavigationView : UIView<MSNavigatorView>
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *btns;
 @property (nonatomic, strong) UIColor *normalTextColor;
 @property (nonatomic, strong) UIColor *selectedTextColor;
