@@ -18,7 +18,7 @@
     dispatch_once(&onceQueue, ^{
         mSJSONSessionManager = [[self alloc] init];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        config.timeoutIntervalForRequest = 15;
+        config.timeoutIntervalForRequest = 30;
         mSJSONSessionManager = [[MSJSONSessionManager alloc] initWithSessionConfiguration:config];
         mSJSONSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
         

@@ -20,7 +20,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     {
         if (__manager == nil) {
             NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-            config.timeoutIntervalForRequest = 15;
+            config.timeoutIntervalForRequest = 30;
             __manager = [[MSHTTPSessionManager alloc] initWithSessionConfiguration:config];
             __manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
             
