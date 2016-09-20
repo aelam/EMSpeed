@@ -150,6 +150,7 @@
 {
     [super viewDidLayoutSubviews];
     _emptyView.frame = _tableView.bounds;
+    [_emptyView setNeedsLayout];
 }
 
 @end
