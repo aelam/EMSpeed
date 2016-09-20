@@ -20,7 +20,7 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     {
         if (__manager == nil) {
             NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-            config.timeoutIntervalForRequest = 15;
+            config.timeoutIntervalForRequest = 30;
             __manager = [[MSHTTPSessionManager alloc] initWithSessionConfiguration:config];
             __manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
             
@@ -106,11 +106,6 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     
     NSMutableURLRequest *request = [manager.requestSerializer requestWithMethod:method URLString:URLString parameters:newParameters error:&serializationError];
     
-    for (NSString *key in [headerFields allKeys])
-    {
-        [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
-    }
-    
     if (self.defaultHeaders) {
         for (NSString *key in [self.defaultHeaders allKeys])
         {
@@ -118,6 +113,10 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
         }
     }
     
+    for (NSString *key in [headerFields allKeys])
+    {
+        [request setValue:[headerFields objectForKey:key] forHTTPHeaderField:key];
+    }
     
     if (serializationError) {
         if (failure) {

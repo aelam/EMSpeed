@@ -14,15 +14,12 @@
 
 @interface MSNavigationView ()
 {
-    UIScrollView *_scrollView;
     CALayer *_bottomBorderLayer;
 }
 
 @property (strong, nonatomic) CALayer * selectLayer;
 
 @property (weak, nonatomic) UIButton *selectedItem;
-
-@property (copy, nonatomic) itemClick itemClickBlock;
 
 @end
 

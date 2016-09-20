@@ -7,7 +7,7 @@
 //
 
 #import "MSContainerViewController.h"
-
+#import <MSUIKitCore.h>
 
 @interface MSContainerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -36,9 +36,15 @@ static NSString *CellID = @"ControllerCell";
     [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     UIViewController *viewContorller = self.viewControllers[indexPath.item];
     UIView *view = [self.viewControllers[indexPath.item] view];
-    [viewContorller beginAppearanceTransition:YES animated:YES];
+    if (MSOSVersion() < 8)
+    {
+        [viewContorller beginAppearanceTransition:YES animated:YES];
+    }
     [cell.contentView addSubview:view];
-    [viewContorller endAppearanceTransition];
+    if (MSOSVersion() < 8)
+    {
+        [viewContorller endAppearanceTransition];
+    }
     view.frame = cell.bounds;
     
     return cell;
@@ -53,6 +59,13 @@ static NSString *CellID = @"ControllerCell";
     _navigationView.selectedItemIndex = index;
     _selectedIndex = index;
     [self didSelectControllerAtIndex:_selectedIndex];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *viewContorller = self.viewControllers[indexPath.item];
+    [viewContorller beginAppearanceTransition:YES animated:YES];
+    [viewContorller endAppearanceTransition];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -103,10 +116,9 @@ static NSString *CellID = @"ControllerCell";
     CGFloat height = self.view.bounds.size.height;
     
     _navigationView.frame = CGRectMake(0, 0, width, 35);
+    
+    self.flowLayout.itemSize = CGSizeMake(width, height - _navigationView.frame.size.height);
     self.collectionView.frame = CGRectMake(0, _navigationView.frame.size.height, width, height - _navigationView.frame.size.height);
-    
-    self.flowLayout.itemSize = self.collectionView.bounds.size;
-    
 }
 
 - (void)viewDidLoad
