@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
-  s.ios.deployment_target = '7.0'
   s.requires_arc = true
   s.frameworks = 'Foundation', 'CoreGraphics'
 
