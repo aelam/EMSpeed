@@ -199,6 +199,31 @@
        [self.delegate radioControl:self didClickRadio:sender];
 }
 
+- (void)setSelectedIndex:(NSInteger)selectedIndex
+{
+    _selectedIndex = selectedIndex;
+    
+    if (selectedIndex < 0 || selectedIndex > _radios.count - 1) {
+        return;
+    }
+    
+    if (_isSelectedRadios.count != _radios.count ) return;
+    
+    for (int i = 0 ;i <_isSelectedRadios.count ;i++ ) {
+        MSRadioButton *candidateBT = [_radios objectAtIndex:i];
+        if ( i == _selectedIndex) {
+            [_isSelectedRadios replaceObjectAtIndex:_selectedIndex withObject:[NSNumber numberWithBool:YES]];
+            candidateBT.isSelected = YES;
+        }
+        else{
+            [_isSelectedRadios replaceObjectAtIndex:_selectedIndex withObject:[NSNumber numberWithBool:NO]];
+            candidateBT.isSelected = NO;
+            
+        }
+    }
+    
+}
+
 - (void)setOnImage:(UIImage *)onImage
 {
     if (onImage) {
