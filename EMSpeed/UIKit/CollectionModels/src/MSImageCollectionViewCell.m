@@ -41,7 +41,7 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 

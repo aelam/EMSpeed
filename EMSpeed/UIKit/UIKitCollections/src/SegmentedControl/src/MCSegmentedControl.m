@@ -25,6 +25,8 @@
 #pragma mark Object life cycle
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
 	NSMutableArray *ar = [NSMutableArray arrayWithCapacity:self.numberOfSegments];
 
 	for (int i = 0; i < self.numberOfSegments; i++) {

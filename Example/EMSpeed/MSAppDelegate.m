@@ -7,8 +7,7 @@
 //
 
 #import "MSAppDelegate.h"
-#import <EMSpeed/Speed.h>
-#import "UIApplication+AppVersion.h"
+#import <EMSpeed/MSUIKitCore.h>
 
 @implementation UIApplication (A)
 

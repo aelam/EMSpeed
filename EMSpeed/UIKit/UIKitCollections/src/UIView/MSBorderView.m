@@ -36,6 +36,7 @@ void _CGFillRect(CGContextRef context,CGRect rt,UIColor *color)
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     self.backgroundColor = [UIColor clearColor];
     self.borderColor = kDefaultBorderColor;
     self.border = MSBorderStyleAll;

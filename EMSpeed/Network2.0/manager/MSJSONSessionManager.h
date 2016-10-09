@@ -10,6 +10,8 @@
 #import "MSHTTPSessionDebugHandler.h"
 #import <JSONModel/JSONModel.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  json解析为数据对象后的回调
  *
@@ -27,10 +29,11 @@ typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable 
 
 @interface MSJSONSessionManager : AFHTTPSessionManager
 
+
 @property (nonatomic, strong) __nullable id <MSHTTPSessionDebugHandler> debugHandler;//可在回调中处理异常信息、数据回调处理
 @property (nonatomic, strong) NSDictionary *defaultHeaders;   //外部可设置通用的认证参数（header）
-
 + (nonnull instancetype)sharedManager;
+
 
 - (nullable NSURLSessionDataTask *)GET:(nonnull NSString *)URLString
                             parameters:(nullable id)parameters
@@ -63,3 +66,5 @@ typedef void (^MSJSONObjectBlock)(__nullable id json, JSONModelError* _Nullable 
                                 completion:(nullable MSJSONModelBlock)completeBlock;
 
 @end
+
+NS_ASSUME_NONNULL_END
