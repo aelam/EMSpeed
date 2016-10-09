@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.3.1"
+  s.version          = "0.3.2"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -13,21 +13,22 @@ Pod::Spec.new do |s|
   s.author           = { "Emoney" => "ios@emoney.com" }
   s.source           = { :git => "http://ph.benemind.com/diffusion/EMSPEED/emspeed.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '7.0'
-  s.requires_arc = true
-  s.frameworks = 'Foundation', 'CoreGraphics'
+  s.platform         = :ios, '7.0'
+  s.requires_arc     = true
+  s.frameworks       = 'Foundation', 'CoreGraphics'
 
   s.public_header_files = 'EMSpeed/Speed.h'
-  s.source_files = "EMSpeed/Speed.h"
+  s.source_files        = "EMSpeed/Speed.h"
 
   s.subspec 'Core' do |ss|
-    ss.public_header_files = "EMSpeed/Core/**/*.h"
-    ss.source_files  = "EMSpeed/Core/**/*.{h,m,c,swift}"
-    ss.frameworks    = "Security"
+    ss.public_header_files  = "EMSpeed/Core/**/*.h"
+    ss.source_files         = "EMSpeed/Core/**/*.{h,m,c,swift}"
+    ss.frameworks           = "Security"
   end
 
   s.subspec 'MSContext' do |ss|
-    ss.source_files  = "EMSpeed/MSContext/**/*.{h,m,c,swift}"
+    ss.public_header_files  = "EMSpeed/MSContext/**/*.h"
+    ss.source_files         = "EMSpeed/MSContext/**/*.{h,m,c,swift}"
   end
 
   s.subspec 'UIKit' do |ss|
@@ -82,55 +83,64 @@ Pod::Spec.new do |s|
     end
 
     ss.subspec 'FontAwesome+iOS' do |sss|
-      sss.source_files = "EMSpeed/UIKit/FontAwesome+iOS/**/*.h"
-      sss.source_files = "EMSpeed/UIKit/FontAwesome+iOS/**/*.{h,m}"
-      sss.resources    = "EMSpeed/UIKit/FontAwesome+iOS/resource/**/*.*"
+      sss.public_header_files   = "EMSpeed/UIKit/FontAwesome+iOS/**/*.h"
+      sss.source_files          = "EMSpeed/UIKit/FontAwesome+iOS/**/*.{h,m}"
+      sss.resources             = "EMSpeed/UIKit/FontAwesome+iOS/resource/**/*.*"
     end
 
     ss.subspec 'PopupView' do |sss|
-      sss.source_files = "EMSpeed/UIKit/PopupView/**/*.{h,m}"
-      sss.dependency     "EMSpeed/UIKit/Core"
-      sss.dependency     "EMSpeed/UIKit/UIImages"
-      sss.dependency     "EMSpeed/MSContext"
+      sss.public_header_files   = "EMSpeed/UIKit/PopupView/**/*.h"
+      sss.source_files          = "EMSpeed/UIKit/PopupView/**/*.{h,m}"
+      sss.dependency            "EMSpeed/UIKit/Core"
+      sss.dependency            "EMSpeed/UIKit/UIImages"
+      sss.dependency            "EMSpeed/MSContext"
     end
 
     ss.subspec 'CollectionModels' do |sss|
-      sss.source_files = "EMSpeed/UIKit/CollectionModels/src/**/*.{h,m}"
-      sss.resources    = "EMSpeed/UIKit/CollectionModels/resource/**/*.*"
-      sss.dependency     "EMSpeed/UIKit/WebImage"
-      sss.dependency     "EMSpeed/Core"
+      sss.public_header_files = "EMSpeed/UIKit/CollectionModels/src/**/*.h"
+      sss.source_files        = "EMSpeed/UIKit/CollectionModels/src/**/*.{h,m}"
+      sss.resources           = "EMSpeed/UIKit/CollectionModels/resource/**/*.*"
+      sss.dependency          "EMSpeed/UIKit/WebImage"
+      sss.dependency          "EMSpeed/Core"
     end
 
     ss.subspec 'TableModels' do |sss|
+      sss.public_header_files = "EMSpeed/UIKit/TableModels/**/*.h"
       sss.source_files = "EMSpeed/UIKit/TableModels/**/*.{h,m}"
       sss.dependency     "EMSpeed/UIKit/Core"
       sss.dependency     "MJRefresh"
     end
 
     ss.subspec 'StatusBar' do |sss|
-      sss.source_files = "EMSpeed/UIKit/StatusBar/**/*.{h,m}"
-      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.public_header_files = "EMSpeed/UIKit/StatusBar/**/*.h"
+      sss.source_files        = "EMSpeed/UIKit/StatusBar/**/*.{h,m}"
+      sss.dependency          "EMSpeed/UIKit/Core"
     end
 
     ss.subspec 'GuideView' do |sss|
-      sss.source_files = "EMSpeed/UIKit/GuideView/**/*.{h,m}"
-      sss.dependency     "EMSpeed/UIKit/Animations"
-      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.public_header_files   = "EMSpeed/UIKit/GuideView/**/*.h"
+      sss.source_files          = "EMSpeed/UIKit/GuideView/**/*.{h,m}"
+      sss.dependency            "EMSpeed/UIKit/Animations"
+      sss.dependency            "EMSpeed/UIKit/Core"
     end
+
     ss.subspec 'Container' do |sss|
-      sss.source_files = "EMSpeed/UIKit/Container/**/*.{h,m}"
-      sss.resources    = "EMSpeed/UIKit/Container/resource/*.*"
-      sss.dependency     "EMSpeed/UIKit/Core"
+      sss.public_header_files   = "EMSpeed/UIKit/Container/**/*.h"
+      sss.source_files          = "EMSpeed/UIKit/Container/**/*.{h,m}"
+      sss.resources             = "EMSpeed/UIKit/Container/resource/*.*"
+      sss.dependency            "EMSpeed/UIKit/Core"
     end
   end
 
   s.subspec 'Network' do |ss|
-    ss.source_files = "EMSpeed/Network/**/*.{h,m}"
-    ss.dependency     "EMSpeed/UIKit/Core"
-    ss.dependency     "AFNetworking"
+    ss.public_header_files   = "EMSpeed/Network/**/*.h"
+    ss.source_files          = "EMSpeed/Network/**/*.{h,m}"
+    ss.dependency           "EMSpeed/UIKit/Core"
+    ss.dependency           "AFNetworking"
   end
 
   s.subspec 'Network2.0' do |ss|
+    ss.public_header_files   = "EMSpeed/Network2.0/**/*.h"
     ss.source_files = "EMSpeed/Network2.0/**/*.{h,m}"
     ss.dependency     "EMSpeed/UIKit/Core"
     ss.dependency     "AFNetworking"
