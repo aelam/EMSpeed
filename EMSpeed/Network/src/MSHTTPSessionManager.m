@@ -8,6 +8,7 @@
 
 #import "MSHTTPSessionManager.h"
 #import "MSHTTPResponse.h"
+#import "MSURLProtocol.h"
 
 NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.emstock.task.failed";
 
@@ -20,6 +21,12 @@ NSString * const MSHTTPSessionManagerTaskDidFailedNotification = @"com.emoneyet.
     {
         if (__manager == nil) {
             NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+            
+            BOOL isAddCustomProtocol = [[NSUserDefaults standardUserDefaults] boolForKey:kMSURLPROTOCOLFORSERVERADDRESSKEY];
+            if (isAddCustomProtocol) {
+                config.protocolClasses = @[[MSURLProtocol class]];
+            }
+            
             config.timeoutIntervalForRequest = 30;
             __manager = [[MSHTTPSessionManager alloc] initWithSessionConfiguration:config];
             __manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];

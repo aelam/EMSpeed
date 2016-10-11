@@ -7,6 +7,7 @@
 //
 
 #import "MSJSONSessionManager.h"
+#import "MSURLProtocol.h"
 
 @implementation MSJSONSessionManager
 
@@ -18,6 +19,12 @@
     dispatch_once(&onceQueue, ^{
         mSJSONSessionManager = [[self alloc] init];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        BOOL isAddCustomProtocol = [[NSUserDefaults standardUserDefaults] boolForKey:kMSURLPROTOCOLFORSERVERADDRESSKEY];
+        if (isAddCustomProtocol) {
+            config.protocolClasses = @[[MSURLProtocol class]];
+        }
+        
         config.timeoutIntervalForRequest = 30;
         mSJSONSessionManager = [[MSJSONSessionManager alloc] initWithSessionConfiguration:config];
         mSJSONSessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", @"application/octet-stream", nil];
