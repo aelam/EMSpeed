@@ -30,16 +30,16 @@ static id<MSURLProtocolURLMapping> ms_urlMapping;
     ms_urlMapping = URLMapping;
 }
 
-+ (NSURLRequest *)modifiedRequestWithOriginalRequest:(NSURLRequest *)request {
++ (NSMutableURLRequest *)modifiedRequestWithOriginalRequest:(NSURLRequest *)request {
     NSURL *requestURL = request.URL;
     
     NSString *newHost = [ms_urlMapping newHostForOriginalURLHost:requestURL.host];
     
     if (!newHost) {
-        return request;
+        return (NSMutableURLRequest *)request;
     }
     
-    NSMutableURLRequest *modifiedRequest = request.mutableCopy;
+    NSMutableURLRequest *modifiedRequest = [request mutableCopy];
     modifiedRequest.URL = [NSURL URLWithString:[requestURL.absoluteString stringByReplacingOccurrencesOfString:requestURL.host withString:newHost]];
     
     return modifiedRequest;
@@ -112,14 +112,14 @@ static id<MSURLProtocolURLMapping> ms_urlMapping;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
-    NSMutableURLRequest * mutableRequest = request.mutableCopy;
+    NSMutableURLRequest * mutableRequest = (NSMutableURLRequest *)request.mutableCopy;
     NSMutableURLRequest * newRequest = [self modifiedRequestWithOriginalRequest:mutableRequest];
     return newRequest;
 }
 
 - (void)startLoading {
 //    if ([AFNetworkReachabilityManager sharedManager].reachable) {
-        NSMutableURLRequest * newRequest = [self request].mutableCopy;
+        NSMutableURLRequest * newRequest = (NSMutableURLRequest *)[self request].mutableCopy;
         //标示该request已经处理过了，防止无限循环
         [NSURLProtocol setProperty:@YES forKey:URLProtocolHandledKey inRequest:newRequest];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
