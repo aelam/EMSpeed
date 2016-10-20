@@ -9,7 +9,7 @@
 #import "MSRefreshTableHeaderView.h"
 #import "MSContext.h"
 #import "MSUIKitCore.h"
-
+#import <Masonry.h>
 
 @interface MSRefreshTableHeaderView (Private)
 - (void)setState:(MSPullRefreshState)aState;
@@ -271,30 +271,55 @@
     {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.backgroundColor = RGB(0xff, 0xff, 0xff);
-
+        
+        UIStackView *stackView = [UIStackView new];
+        stackView.axis = UILayoutConstraintAxisHorizontal;
+        stackView.alignment = UIStackViewAlignmentCenter;
+        [self addSubview:stackView];
+        
         _animtedImageView = [[UIImageView alloc] init];
         _animtedImageView.contentMode = UIViewContentModeCenter;
-        _animtedImageView.frame = CGRectMake(MSAdjustedWH(80.0f), frame.size.height - 45, 48.0f, 30);
+        _animtedImageView.frame = CGRectMake(MSAdjustedWH(60.0f), frame.size.height - 45, 48.0f, 30);
         [_animtedImageView setAnimationImages:images];
         _animtedImageView.animationDuration = .5f;
-        [self addSubview:_animtedImageView];
+        [stackView addArrangedSubview:_animtedImageView];
         _animtedImageView.image = [images firstObject];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_animtedImageView.frame) + 10, frame.size.height - 40.0f, self.frame.size.width, 20.0f)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_animtedImageView.frame) + 10, frame.size.height - 45.0f, self.frame.size.width, 20.0f)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         label.font = [UIFont boldSystemFontOfSize:13.0f];
         label.textColor = [UIColor grayColor];
-//        label.shadowColor = shadowColor;//[UIColor colorWithWhite:0.9f alpha:1.0f];
+        //        label.shadowColor = shadowColor;//[UIColor colorWithWhite:0.9f alpha:1.0f];
         label.shadowOffset = CGSizeMake(0.0f, 1.0f);
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:label];
+        [stackView addArrangedSubview:label];
         _statusLabel=label;
         
         [self setState:MSPullRefreshNormal];
+        
+        [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(frame.size.height - 45);
+            make.centerX.mas_equalTo(self);
+        }];
+        
+        [_statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_greaterThanOrEqualTo(100);
+        }];
     }
     
     return self;
+    
+}
+
+- (UIImageView *)arrowImage
+{
+    return nil;
+}
+
+- (UIActivityIndicatorView *)activityView
+{
+    return nil;
     
 }
 
