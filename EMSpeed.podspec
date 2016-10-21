@@ -59,6 +59,7 @@ Pod::Spec.new do |s|
       sss.dependency          "EMSpeed/UIKit/Core"
       sss.dependency          "EMSpeed/UIKit/UIColors"
       sss.dependency          "EMSpeed/MSContext"
+      sss.dependency          "Masonry"
     end
 
     ss.subspec 'WebImage' do |sss|

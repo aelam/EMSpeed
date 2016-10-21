@@ -50,6 +50,8 @@
         [self addSubview:label];
         _statusLabel=label;
         
+        self.needsActivityView = YES;
+        self.needsArrowImage = nil;
     }
     
     return self;
@@ -58,7 +60,7 @@
 #pragma mark - 懒加载
 - (UIImageView *)arrowImage
 {
-    if (!_arrowImage) {
+    if (!_arrowImage && self.needsArrowImage) {
         UIImageView *arrowImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:MSUIResName(@"refreshHeader_arrow")]];
         [self addSubview:_arrowImage = arrowImage];
     }
@@ -67,7 +69,7 @@
 
 - (UIActivityIndicatorView *)activityView
 {
-    if (!_activityView) {
+    if (!_activityView && self.needsActivityView) {
         UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         activityView.bounds = self.arrowImage.bounds;
         [self addSubview:_activityView = activityView];
@@ -306,20 +308,11 @@
         [_statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_greaterThanOrEqualTo(100);
         }];
+        self.needsArrowImage = NO;
+        self.needsActivityView = NO;
     }
     
     return self;
-    
-}
-
-- (UIImageView *)arrowImage
-{
-    return nil;
-}
-
-- (UIActivityIndicatorView *)activityView
-{
-    return nil;
     
 }
 

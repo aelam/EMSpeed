@@ -49,6 +49,9 @@ NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropri
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, strong) UILabel *lastUpdatedLabel;
 @property (nonatomic, strong) UILabel *statusLabel;
+@property (nonatomic, assign) BOOL needsArrowImage;//default is yes 是否需要显示箭头的图片
+@property (nonatomic, assign) BOOL needsActivityView;//default is yes 是否需要转圈加载的图片
+
 
 
 - (id)initWithFrame:(CGRect)frame;
