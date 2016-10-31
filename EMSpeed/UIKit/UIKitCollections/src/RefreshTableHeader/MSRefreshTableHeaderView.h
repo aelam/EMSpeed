@@ -53,9 +53,6 @@ NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropri
 @property (nonatomic, assign) BOOL needsActivityView;//default is yes 是否需要转圈加载的图片
 
 
-
-- (id)initWithFrame:(CGRect)frame;
-
 - (void)refreshLastUpdatedDate;
 - (void)MSRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)MSRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
@@ -71,8 +68,7 @@ NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropri
     UIImageView *_animtedImageView;
 }
 
-- (id)initWithFrame:(CGRect)frame
-             images:(NSArray *)images;
+- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images;
 
 @end
 

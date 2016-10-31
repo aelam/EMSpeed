@@ -9,16 +9,17 @@
 #import "MSRefreshTableHeaderView.h"
 #import "MSContext.h"
 #import "MSUIKitCore.h"
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 
 @interface MSRefreshTableHeaderView (Private)
 - (void)setState:(MSPullRefreshState)aState;
 @end
 
 @implementation MSRefreshTableHeaderView
+
 @synthesize lastUpdatedLabel = _lastUpdatedLabel;
 @synthesize statusLabel = _statusLabel;
-@synthesize delegate=_delegate;
+@synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -37,7 +38,7 @@
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
-        _lastUpdatedLabel=label;
+        _lastUpdatedLabel = label;
         
         label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 50.0f, self.frame.size.width, 20.0f)];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -48,10 +49,10 @@
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
-        _statusLabel=label;
+        _statusLabel = label;
         
         self.needsActivityView = YES;
-        self.needsArrowImage = nil;
+        self.needsArrowImage = NO;
     }
     
     return self;
@@ -250,11 +251,10 @@
 
 - (void)dealloc {
     
-    _delegate=nil;
+    _delegate = nil;
     _statusLabel = nil;
     _lastUpdatedLabel = nil;
 }
-
 
 @end
 
@@ -263,10 +263,9 @@
 @implementation MSAnimatedImagesRefreshTableHeaderView
 
 
-- (id)initWithFrame:(CGRect)frame
-             images:(NSArray *)images
+- (instancetype)initWithFrame:(CGRect)frame images:(NSArray *)images
 {
-    assert(images && [images count]>0);
+    assert(images && [images count] > 0);
     
     self = [super initWithFrame:frame];
     if(self)
