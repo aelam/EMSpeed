@@ -83,13 +83,13 @@
     } else {
         [collectionView registerClass:class forCellWithReuseIdentifier:reuseIdentifier];
     }
-    
-    NSLog(@"==========================================");
-    NSLog(@"item:            %@", item);
-    NSLog(@"reuseIdentifier: %@", reuseIdentifier);
-    NSLog(@"cellClass:       %@", class);
-    NSLog(@"Load from Nib? : %d", ![item isRegisterByClass]);
-    NSLog(@"==========================================");
+//    
+//    NSLog(@"==========================================");
+//    NSLog(@"item:            %@", item);
+//    NSLog(@"reuseIdentifier: %@", reuseIdentifier);
+//    NSLog(@"cellClass:       %@", class);
+//    NSLog(@"Load from Nib? : %d", ![item isRegisterByClass]);
+//    NSLog(@"==========================================");
 
     
     
