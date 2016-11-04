@@ -17,7 +17,6 @@
     static MSJSONSessionManager *mSJSONSessionManager = nil;
     
     dispatch_once(&onceQueue, ^{
-        mSJSONSessionManager = [[self alloc] init];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         
         BOOL isAddCustomProtocol = [[NSUserDefaults standardUserDefaults] boolForKey:kMSURLPROTOCOLFORSERVERADDRESSKEY];
