@@ -10,6 +10,9 @@
 #import <EMSpeed/MSContext.h>
 #import "MSExampleContainerViewController.h"
 #import "MSExampleContainerViewController2.h"
+
+#import "MSNetworkJSONViewController.h"
+
 @interface MMSViewController ()
 {
     NSArray *_titles;
@@ -23,7 +26,7 @@
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view, typically from a nib.
-    _titles = [NSArray arrayWithObjects:@"ContainerView",@"MSExampleContainerViewController2",nil];
+    _titles = [NSArray arrayWithObjects:@"ContainerView",@"MSExampleContainerViewController2",@"JSON 数据请求",nil];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableviewcell"];
 }
 
@@ -52,11 +55,20 @@
         MSExampleContainerViewController *controller = [[MSExampleContainerViewController alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
     }
-    else
+    else if (indexPath.row == 1)
     {
         MSExampleContainerViewController2 *controller = [[MSExampleContainerViewController2 alloc] init];
         [self.navigationController pushViewController:controller animated:YES];
     }
+    else if (indexPath.row == 2)
+    {
+        
+        MSNetworkJSONViewController *controller = [[MSNetworkJSONViewController alloc] initWithNibName:@"MSNetworkJSONViewController" bundle:nil];
+
+        [self.navigationController pushViewController:controller animated:YES];
+
+    }
+
 }
 
 

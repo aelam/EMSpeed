@@ -28,6 +28,15 @@
  */
 + (UIImage *)ms_imageWithColor:(UIColor *)color;
 
+/**
+ *  给图片添加前景色：染色 改变tintColor  不同于背景色
+ *
+ *  @param color 颜色
+ *
+ *  @return image
+ */
+- (UIImage *)ms_tintedImageWithColor:(UIColor *)tintColor;
+
 
 /**
  *  width	Width given, height automagically selected to preserve aspect ratio.

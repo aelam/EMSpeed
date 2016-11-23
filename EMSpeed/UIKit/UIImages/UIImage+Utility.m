@@ -84,7 +84,23 @@
     return image;
 }
 
-
+- (UIImage *)ms_tintedImageWithColor:(UIColor *)tintColor
+{
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGRect rect = (CGRect){ CGPointZero, self.size };
+    CGContextSetBlendMode(context, kCGBlendModeNormal);
+    [self drawInRect:rect];
+    
+    CGContextSetBlendMode(context, kCGBlendModeSourceIn);
+    [tintColor setFill];
+    CGContextFillRect(context, rect);
+    
+    UIImage *image  = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 
 - (UIImage *)ms_resizedImageByMagick:(NSString *)spec

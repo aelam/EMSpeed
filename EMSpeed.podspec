@@ -149,4 +149,10 @@ Pod::Spec.new do |s|
     ss.dependency     "JSONModel"
   end
 
+  s.subspec 'PINCache+MS' do |ss|
+    ss.public_header_files   = "EMSpeed/PINCache+MS/*.h"
+    ss.source_files = "EMSpeed/PINCache+MS/*.{h,m}"
+    ss.dependency     "PINCache"
+  end
+
 end

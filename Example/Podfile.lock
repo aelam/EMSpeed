@@ -14,72 +14,75 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - EMSpeed (0.3.3):
-    - EMSpeed/Core (= 0.3.3)
-    - EMSpeed/MSContext (= 0.3.3)
-    - EMSpeed/Network (= 0.3.3)
-    - EMSpeed/Network2.0 (= 0.3.3)
-    - EMSpeed/UIKit (= 0.3.3)
-  - EMSpeed/Core (0.3.3)
-  - EMSpeed/MSContext (0.3.3)
-  - EMSpeed/Network (0.3.3):
+  - EMSpeed (0.3.4):
+    - EMSpeed/Core (= 0.3.4)
+    - EMSpeed/MSContext (= 0.3.4)
+    - EMSpeed/Network (= 0.3.4)
+    - EMSpeed/Network2.0 (= 0.3.4)
+    - EMSpeed/PINCache+MS (= 0.3.4)
+    - EMSpeed/UIKit (= 0.3.4)
+  - EMSpeed/Core (0.3.4)
+  - EMSpeed/MSContext (0.3.4)
+  - EMSpeed/Network (0.3.4):
     - AFNetworking
     - EMSpeed/UIKit/Core
-  - EMSpeed/Network2.0 (0.3.3):
+  - EMSpeed/Network2.0 (0.3.4):
     - AFNetworking
     - EMSpeed/UIKit/Core
     - JSONModel
     - PINCache
-  - EMSpeed/UIKit (0.3.3):
-    - EMSpeed/UIKit/Animations (= 0.3.3)
-    - EMSpeed/UIKit/CollectionModels (= 0.3.3)
-    - EMSpeed/UIKit/Container (= 0.3.3)
-    - EMSpeed/UIKit/Core (= 0.3.3)
-    - EMSpeed/UIKit/FontAwesome+iOS (= 0.3.3)
-    - EMSpeed/UIKit/GuideView (= 0.3.3)
-    - EMSpeed/UIKit/MultiPagingView (= 0.3.3)
-    - EMSpeed/UIKit/PopupView (= 0.3.3)
-    - EMSpeed/UIKit/StatusBar (= 0.3.3)
-    - EMSpeed/UIKit/TableModels (= 0.3.3)
-    - EMSpeed/UIKit/UIColors (= 0.3.3)
-    - EMSpeed/UIKit/UIImages (= 0.3.3)
-    - EMSpeed/UIKit/UIKitCollections (= 0.3.3)
-    - EMSpeed/UIKit/WebImage (= 0.3.3)
-  - EMSpeed/UIKit/Animations (0.3.3):
+  - EMSpeed/PINCache+MS (0.3.4):
+    - PINCache
+  - EMSpeed/UIKit (0.3.4):
+    - EMSpeed/UIKit/Animations (= 0.3.4)
+    - EMSpeed/UIKit/CollectionModels (= 0.3.4)
+    - EMSpeed/UIKit/Container (= 0.3.4)
+    - EMSpeed/UIKit/Core (= 0.3.4)
+    - EMSpeed/UIKit/FontAwesome+iOS (= 0.3.4)
+    - EMSpeed/UIKit/GuideView (= 0.3.4)
+    - EMSpeed/UIKit/MultiPagingView (= 0.3.4)
+    - EMSpeed/UIKit/PopupView (= 0.3.4)
+    - EMSpeed/UIKit/StatusBar (= 0.3.4)
+    - EMSpeed/UIKit/TableModels (= 0.3.4)
+    - EMSpeed/UIKit/UIColors (= 0.3.4)
+    - EMSpeed/UIKit/UIImages (= 0.3.4)
+    - EMSpeed/UIKit/UIKitCollections (= 0.3.4)
+    - EMSpeed/UIKit/WebImage (= 0.3.4)
+  - EMSpeed/UIKit/Animations (0.3.4):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/CollectionModels (0.3.3):
+  - EMSpeed/UIKit/CollectionModels (0.3.4):
     - EMSpeed/Core
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/Container (0.3.3):
+  - EMSpeed/UIKit/Container (0.3.4):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/Core (0.3.3):
+  - EMSpeed/UIKit/Core (0.3.4):
     - EMSpeed/Core
-  - EMSpeed/UIKit/FontAwesome+iOS (0.3.3)
-  - EMSpeed/UIKit/GuideView (0.3.3):
+  - EMSpeed/UIKit/FontAwesome+iOS (0.3.4)
+  - EMSpeed/UIKit/GuideView (0.3.4):
     - EMSpeed/UIKit/Animations
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/MultiPagingView (0.3.3):
+  - EMSpeed/UIKit/MultiPagingView (0.3.4):
     - EMSpeed/UIKit/UIKitCollections
     - EMSpeed/UIKit/WebImage
-  - EMSpeed/UIKit/PopupView (0.3.3):
+  - EMSpeed/UIKit/PopupView (0.3.4):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIImages
-  - EMSpeed/UIKit/StatusBar (0.3.3):
+  - EMSpeed/UIKit/StatusBar (0.3.4):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/TableModels (0.3.3):
+  - EMSpeed/UIKit/TableModels (0.3.4):
     - EMSpeed/UIKit/Core
     - MJRefresh
-  - EMSpeed/UIKit/UIColors (0.3.3):
+  - EMSpeed/UIKit/UIColors (0.3.4):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIImages (0.3.3):
+  - EMSpeed/UIKit/UIImages (0.3.4):
     - EMSpeed/UIKit/Core
-  - EMSpeed/UIKit/UIKitCollections (0.3.3):
+  - EMSpeed/UIKit/UIKitCollections (0.3.4):
     - EMSpeed/MSContext
     - EMSpeed/UIKit/Core
     - EMSpeed/UIKit/UIColors
     - Masonry
-  - EMSpeed/UIKit/WebImage (0.3.3):
+  - EMSpeed/UIKit/WebImage (0.3.4):
     - EMSpeed/UIKit/UIImages
     - SDWebImage
   - JSONModel (1.7.0)
@@ -95,15 +98,17 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   EMSpeed:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  EMSpeed: 399c0bda65bdd2ec30aa9664cec532371fae057f
+  EMSpeed: 7e00395c5c514844b8912adb9abf4021142c06a3
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 2de211579536dc5379e4f91d73c2f95ce9e74db9
+
+COCOAPODS: 1.1.1
