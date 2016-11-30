@@ -7,7 +7,7 @@
 //
 
 #import "MSStoryboardTableController.h"
-#import "MJRefresh.h"
+#import <MJRefresh/MJRefresh.h>
 
 /**
  *  同MSRefreshTableController, 主要用于storyboard
