@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.3.4"
+  s.version          = "0.4.0"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -67,14 +67,6 @@ Pod::Spec.new do |s|
       sss.source_files        = "EMSpeed/UIKit/WebImage/**/*.{h,m,c}"
       sss.dependency          "SDWebImage"
       sss.dependency          "EMSpeed/UIKit/UIImages"
-    end
-
-    ss.subspec 'MultiPagingView' do |sss|
-      sss.public_header_files = "EMSpeed/UIKit/MultiPagingView/src/**/*.h"
-      sss.source_files        = "EMSpeed/UIKit/MultiPagingView/src/**/*.{h,m,c}"
-      sss.resources           = "EMSpeed/UIKit/MultiPagingView/resource/*"
-      sss.dependency          "EMSpeed/UIKit/WebImage"
-      sss.dependency          "EMSpeed/UIKit/UIKitCollections"
     end
 
     ss.subspec 'UIColors' do |sss|

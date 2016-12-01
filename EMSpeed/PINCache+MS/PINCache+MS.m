@@ -80,7 +80,6 @@ static NSInteger const MSPINCacheArrayMaxCount = 1000;
 
 - (id)objectForKey:(NSString *)key defaultObject:(id (^)())defaultObject
 {
-    NSString *localPath = nil;
     id obj =  [self objectForKey:key];
     if (obj == nil && defaultObject)
     {
