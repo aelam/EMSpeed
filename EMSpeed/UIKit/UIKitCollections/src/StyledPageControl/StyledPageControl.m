@@ -37,11 +37,6 @@
 
 
 @implementation StyledPageControl
-@synthesize _numberOfPages, _currentPage, hidesForSinglePage;
-@synthesize coreNormalColor, coreSelectedColor;
-@synthesize strokeNormalColor, strokeSelectedColor;
-@synthesize _pageControlStyle, _strokeWidth, diameter, gapWidth;
-@synthesize thumbImage, selectedThumbImage;
 
 #define COLOR_GRAY [UIColor colorWithRed:180.f/255.f green:180.f/255.f blue:180.f/255.f alpha:1]
 #define COLOR_GRAYISHBLUE [UIColor colorWithRed:140.f/255.f green:140.f/255.f blue:140.f/255.f alpha:1]
@@ -53,10 +48,10 @@
         // Initialization code
         [self setBackgroundColor:[UIColor clearColor]];
         
-        self._strokeWidth = 1;
+        self.strokeWidth = 1;
         self.gapWidth = 5;
         self.diameter = 5;
-        self._pageControlStyle = PageControlStyleDefault;
+        self.pageControlStyle = PageControlStyleDefault;
         
 //        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapped:)];
 //        [self addGestureRecognizer:tapGestureRecognizer];
@@ -100,7 +95,7 @@
     if (self.coreSelectedColor) _coreSelectedColor = self.coreSelectedColor;
     else
     {
-        if (self._pageControlStyle==PageControlStyleStrokedCircle || self._pageControlStyle==PageControlStyleWithPageNumber)
+        if (self.pageControlStyle==PageControlStyleStrokedCircle || self.pageControlStyle==PageControlStyleWithPageNumber)
         {
             _coreSelectedColor = COLOR_GRAYISHBLUE;
         }
@@ -113,7 +108,7 @@
     if (self.strokeNormalColor) _strokeNormalColor = self.strokeNormalColor;
     else 
     {
-        if (self._pageControlStyle==PageControlStyleDefault && self.coreNormalColor)
+        if (self.pageControlStyle==PageControlStyleDefault && self.coreNormalColor)
         {
             _strokeNormalColor = self.coreNormalColor;
         }
@@ -127,11 +122,11 @@
     if (self.strokeSelectedColor) _strokeSelectedColor = self.strokeSelectedColor;
     else
     {
-        if (self._pageControlStyle==PageControlStyleStrokedCircle || self._pageControlStyle==PageControlStyleWithPageNumber)
+        if (self.pageControlStyle==PageControlStyleStrokedCircle || self.pageControlStyle==PageControlStyleWithPageNumber)
         {
             _strokeSelectedColor = COLOR_GRAYISHBLUE;
         }
-        else if (self._pageControlStyle==PageControlStyleDefault && self.coreSelectedColor)
+        else if (self.pageControlStyle==PageControlStyleDefault && self.coreSelectedColor)
         {
             _strokeSelectedColor = self.coreSelectedColor;
         }
@@ -142,7 +137,7 @@
     }
     
     // Drawing code
-    if (hidesForSinglePage && self._numberOfPages==1)
+    if (_hidesForSinglePage && self._numberOfPages==1)
 	{
 		return;
 	}
@@ -150,7 +145,7 @@
 	CGContextRef myContext = UIGraphicsGetCurrentContext();
 	
 	int gap = self.gapWidth;
-    float _diameter = self.diameter - 2*self._strokeWidth;
+    float _diameter = self.diameter - 2*self.strokeWidth;
     
     if (self.pageControlStyle==PageControlStyleThumb)
     {
@@ -195,9 +190,9 @@
 	{
 		int x = (self.frame.size.width-total_width)/2 + i*(_diameter+gap);
 
-        if (self._pageControlStyle==PageControlStyleDefault)
+        if (self.pageControlStyle==PageControlStyleDefault)
         {
-            if (i==_currentPage)
+            if (i==self.currentPage)
             {
                 CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
@@ -212,10 +207,10 @@
                 CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
             }
         }
-        else if (self._pageControlStyle==PageControlStyleStrokedCircle)
+        else if (self.pageControlStyle==PageControlStyleStrokedCircle)
         {
-            CGContextSetLineWidth(myContext, self._strokeWidth);
-            if (i==_currentPage)
+            CGContextSetLineWidth(myContext, self.strokeWidth);
+            if (i==self.currentPage)
             {
                 CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
@@ -228,10 +223,10 @@
                 CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
             }
         }
-        else if (self._pageControlStyle==PageControlStyleWithPageNumber)
+        else if (self.pageControlStyle==PageControlStyleWithPageNumber)
         {
-            CGContextSetLineWidth(myContext, self._strokeWidth);
-            if (i==_currentPage)
+            CGContextSetLineWidth(myContext, self.strokeWidth);
+            if (i==self.currentPage)
             {
                 int _currentPageDiameter = _diameter*1.6;
                 x = (self.frame.size.width-total_width)/2 + i*(_diameter+gap) - (_currentPageDiameter-_diameter)/2;
@@ -253,21 +248,21 @@
                 CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
             }
         }
-        else if (self._pageControlStyle==PageControlStylePressed1 || self._pageControlStyle==PageControlStylePressed2)
+        else if (self.pageControlStyle==PageControlStylePressed1 || self.pageControlStyle==PageControlStylePressed2)
         {
-            if (self._pageControlStyle==PageControlStylePressed1)
+            if (self.pageControlStyle==PageControlStylePressed1)
             {
                 CGContextSetFillColorWithColor(myContext, [[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2-1,_diameter,_diameter));
             }
-            else if (self._pageControlStyle==PageControlStylePressed2)
+            else if (self.pageControlStyle==PageControlStylePressed2)
             {
                 CGContextSetFillColorWithColor(myContext, [[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1] CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2+1,_diameter,_diameter));
             }
             
             
-            if (i==_currentPage)
+            if (i==self.currentPage)
             {
                 CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
@@ -286,7 +281,7 @@
         {
             if (self.thumbImage && self.selectedThumbImage)
             {
-                if (i==_currentPage)
+                if (i==self.currentPage)
                 {
                     [self.selectedThumbImage drawInRect:CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter)];
                 }
@@ -309,26 +304,16 @@
     
 }
 
-- (PageControlStyle)pageControlStyle
-{
-    return self._pageControlStyle;
-}
-
 - (void)setPageControlStyle:(PageControlStyle)style
 {
-    self._pageControlStyle = style;
+    _pageControlStyle = style;
     [self setNeedsDisplay];
 }
 
 - (void)setCurrentPage:(int)page
 {
-    self._currentPage = page;
+    _currentPage = page;
     [self setNeedsDisplay];
-}
-
-- (int)currentPage
-{
-    return self._currentPage;
 }
 
 - (void)setNumberOfPages:(int)numOfPages

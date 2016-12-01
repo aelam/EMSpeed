@@ -32,11 +32,6 @@
 #import <EMSpeed/GuideView.h>
 #endif
 
-#if __has_include(<EMSpeed/MultiPaging.h>)
-#import <EMSpeed/MultiPaging.h>
-#endif
-
-
 #if __has_include(<EMSpeed/PopupView.h>)
 #import <EMSpeed/PopupView.h>
 #endif

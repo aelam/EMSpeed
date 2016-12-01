@@ -46,27 +46,15 @@ typedef NS_ENUM(NSUInteger, PageControlStyle)
 };
 
 @interface StyledPageControl : UIControl {
-    int _currentPage, _numberOfPages;
-    BOOL hidesForSinglePage;
-    UIColor *coreNormalColor, *coreSelectedColor;
-    UIColor *strokeNormalColor, *strokeSelectedColor;
-    PageControlStyle _pageControlStyle;
-    int _strokeWidth, diameter, gapWidth;
+
 }
 
 @property (nonatomic, strong)  UIColor *coreNormalColor, *coreSelectedColor;
 @property (nonatomic, strong)  UIColor *strokeNormalColor, *strokeSelectedColor;
-@property (nonatomic, assign) int _currentPage, _numberOfPages;
+@property (nonatomic, assign) int currentPage, _numberOfPages;
 @property (nonatomic, assign) BOOL hidesForSinglePage;
-@property (nonatomic, assign) PageControlStyle _pageControlStyle;
-@property (nonatomic, assign) int _strokeWidth, diameter, gapWidth;
+@property (nonatomic, assign) PageControlStyle pageControlStyle;
+@property (nonatomic, assign) int strokeWidth, diameter, gapWidth;
 @property (nonatomic, strong)  UIImage *thumbImage, *selectedThumbImage;
-
-- (void)setCurrentPage:(int)page;
-- (int)currentPage;
-- (void)setNumberOfPages:(int)numOfPages;
-- (int)numberOfPages;
-- (PageControlStyle)pageControlStyle;
-- (void)setPageControlStyle:(PageControlStyle)style;
 
 @end
