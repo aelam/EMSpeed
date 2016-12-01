@@ -87,52 +87,52 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    UIColor *_coreNormalColor, *_coreSelectedColor, *_strokeNormalColor, *_strokeSelectedColor;
+    UIColor *acoreNormalColor, *acoreSelectedColor, *astrokeNormalColor, *astrokeSelectedColor;
     
-    if (self.coreNormalColor) _coreNormalColor = self.coreNormalColor;
-    else _coreNormalColor = COLOR_GRAYISHBLUE;
+    if (self.coreNormalColor) acoreNormalColor = self.coreNormalColor;
+    else acoreNormalColor = COLOR_GRAYISHBLUE;
     
-    if (self.coreSelectedColor) _coreSelectedColor = self.coreSelectedColor;
+    if (self.coreSelectedColor) acoreSelectedColor = self.coreSelectedColor;
     else
     {
         if (self.pageControlStyle==PageControlStyleStrokedCircle || self.pageControlStyle==PageControlStyleWithPageNumber)
         {
-            _coreSelectedColor = COLOR_GRAYISHBLUE;
+            acoreSelectedColor = COLOR_GRAYISHBLUE;
         }
         else
         {
-            _coreSelectedColor = COLOR_GRAY;
+            acoreSelectedColor = COLOR_GRAY;
         }
     }
     
-    if (self.strokeNormalColor) _strokeNormalColor = self.strokeNormalColor;
+    if (self.strokeNormalColor) astrokeNormalColor = self.strokeNormalColor;
     else 
     {
         if (self.pageControlStyle==PageControlStyleDefault && self.coreNormalColor)
         {
-            _strokeNormalColor = self.coreNormalColor;
+            astrokeNormalColor = self.coreNormalColor;
         }
         else
         {
-            _strokeNormalColor = COLOR_GRAYISHBLUE;
+            astrokeNormalColor = COLOR_GRAYISHBLUE;
         }
         
     }
     
-    if (self.strokeSelectedColor) _strokeSelectedColor = self.strokeSelectedColor;
+    if (self.strokeSelectedColor) astrokeSelectedColor = self.strokeSelectedColor;
     else
     {
         if (self.pageControlStyle==PageControlStyleStrokedCircle || self.pageControlStyle==PageControlStyleWithPageNumber)
         {
-            _strokeSelectedColor = COLOR_GRAYISHBLUE;
+            astrokeSelectedColor = COLOR_GRAYISHBLUE;
         }
         else if (self.pageControlStyle==PageControlStyleDefault && self.coreSelectedColor)
         {
-            _strokeSelectedColor = self.coreSelectedColor;
+            astrokeSelectedColor = self.coreSelectedColor;
         }
         else
         {
-            _strokeSelectedColor = COLOR_GRAY;
+            astrokeSelectedColor = COLOR_GRAY;
         }
     }
     
@@ -145,40 +145,40 @@
 	CGContextRef myContext = UIGraphicsGetCurrentContext();
 	
 	int gap = self.gapWidth;
-    float _diameter = self.diameter - 2*self.strokeWidth;
+    float adiameter = self.diameter - 2*self.strokeWidth;
     
     if (self.pageControlStyle==PageControlStyleThumb)
     {
         if (self.thumbImage && self.selectedThumbImage)
         {
-            _diameter = self.thumbImage.size.width;
+            adiameter = self.thumbImage.size.width;
         }
     }
 	
-	int total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+	int total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
 	
 	if (total_width>self.frame.size.width)
 	{
 		while (total_width>self.frame.size.width)
 		{
-			_diameter -= 2;
-			gap = _diameter + 2;
+			adiameter -= 2;
+			gap = adiameter + 2;
 			while (total_width>self.frame.size.width) 
 			{
 				gap -= 1;
-				total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+				total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
 				
 				if (gap==2)
 				{
 					break;
-//					total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+//					total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
 				}
 			}
 			
-			if (_diameter==2)
+			if (adiameter==2)
 			{
 				break;
-//				total_width = self._numberOfPages*_diameter + (self._numberOfPages-1)*gap;
+//				total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
 			}
 		}
 		
@@ -188,23 +188,23 @@
 	int i;
 	for (i=0; i<self._numberOfPages; i++)
 	{
-		int x = (self.frame.size.width-total_width)/2 + i*(_diameter+gap);
+		int x = (self.frame.size.width-total_width)/2 + i*(adiameter+gap);
 
         if (self.pageControlStyle==PageControlStyleDefault)
         {
             if (i==self.currentPage)
             {
-                CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeSelectedColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetFillColorWithColor(myContext, [acoreSelectedColor CGColor]);
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeSelectedColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
             else
             {
-                CGContextSetFillColorWithColor(myContext, [_coreNormalColor CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeNormalColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetFillColorWithColor(myContext, [acoreNormalColor CGColor]);
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeNormalColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
         }
         else if (self.pageControlStyle==PageControlStyleStrokedCircle)
@@ -212,15 +212,15 @@
             CGContextSetLineWidth(myContext, self.strokeWidth);
             if (i==self.currentPage)
             {
-                CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeSelectedColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetFillColorWithColor(myContext, [acoreSelectedColor CGColor]);
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeSelectedColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
             else
             {
-                CGContextSetStrokeColorWithColor(myContext, [_strokeNormalColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeNormalColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
         }
         else if (self.pageControlStyle==PageControlStyleWithPageNumber)
@@ -228,11 +228,11 @@
             CGContextSetLineWidth(myContext, self.strokeWidth);
             if (i==self.currentPage)
             {
-                int _currentPageDiameter = _diameter*1.6;
-                x = (self.frame.size.width-total_width)/2 + i*(_diameter+gap) - (_currentPageDiameter-_diameter)/2;
-                CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
+                int _currentPageDiameter = adiameter*1.6;
+                x = (self.frame.size.width-total_width)/2 + i*(adiameter+gap) - (_currentPageDiameter-adiameter)/2;
+                CGContextSetFillColorWithColor(myContext, [acoreSelectedColor CGColor]);
                 CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_currentPageDiameter)/2,_currentPageDiameter,_currentPageDiameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeSelectedColor CGColor]);
+                CGContextSetStrokeColorWithColor(myContext, [astrokeSelectedColor CGColor]);
                 CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_currentPageDiameter)/2,_currentPageDiameter,_currentPageDiameter));
             
                 NSString *pageNumber = [NSString stringWithFormat:@"%i", i+1];
@@ -244,8 +244,8 @@
             }
             else
             {
-                CGContextSetStrokeColorWithColor(myContext, [_strokeNormalColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeNormalColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
         }
         else if (self.pageControlStyle==PageControlStylePressed1 || self.pageControlStyle==PageControlStylePressed2)
@@ -253,28 +253,28 @@
             if (self.pageControlStyle==PageControlStylePressed1)
             {
                 CGContextSetFillColorWithColor(myContext, [[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2-1,_diameter,_diameter));
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2-1,adiameter,adiameter));
             }
             else if (self.pageControlStyle==PageControlStylePressed2)
             {
                 CGContextSetFillColorWithColor(myContext, [[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1] CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2+1,_diameter,_diameter));
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2+1,adiameter,adiameter));
             }
             
             
             if (i==self.currentPage)
             {
-                CGContextSetFillColorWithColor(myContext, [_coreSelectedColor CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeSelectedColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetFillColorWithColor(myContext, [acoreSelectedColor CGColor]);
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeSelectedColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
             else
             {
-                CGContextSetFillColorWithColor(myContext, [_coreNormalColor CGColor]);
-                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
-                CGContextSetStrokeColorWithColor(myContext, [_strokeNormalColor CGColor]);
-                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter));
+                CGContextSetFillColorWithColor(myContext, [acoreNormalColor CGColor]);
+                CGContextFillEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
+                CGContextSetStrokeColorWithColor(myContext, [astrokeNormalColor CGColor]);
+                CGContextStrokeEllipseInRect(myContext, CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter));
             }
         }
         else if (self.pageControlStyle==PageControlStyleThumb)
@@ -283,11 +283,11 @@
             {
                 if (i==self.currentPage)
                 {
-                    [self.selectedThumbImage drawInRect:CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter)];
+                    [self.selectedThumbImage drawInRect:CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter)];
                 }
                 else
                 {
-                    [self.thumbImage drawInRect:CGRectMake(x,(self.frame.size.height-_diameter)/2,_diameter,_diameter)];
+                    [self.thumbImage drawInRect:CGRectMake(x,(self.frame.size.height-adiameter)/2,adiameter,adiameter)];
                 }
             }
         }
