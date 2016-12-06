@@ -1,10 +1,5 @@
 # EMSpeed
 
-[![CI Status](http://img.shields.io/travis/Ryan Wang/EMSpeed.svg?style=flat)](https://travis-ci.org/Ryan Wang/EMSpeed)
-[![Version](https://img.shields.io/cocoapods/v/EMSpeed.svg?style=flat)](http://cocoapods.org/pods/EMSpeed)
-[![License](https://img.shields.io/cocoapods/l/EMSpeed.svg?style=flat)](http://cocoapods.org/pods/EMSpeed)
-[![Platform](https://img.shields.io/cocoapods/p/EMSpeed.svg?style=flat)](http://cocoapods.org/pods/EMSpeed)
-
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -27,3 +22,17 @@ Ryan Wang, wanglun02@gmail.com
 ## License
 
 EMSpeed is available under the MIT license. See the LICENSE file for more info.
+
+
+## ChangeLog
+
+
+
+### 0.4.3
+
+    * 增加 +[NSBundle speedBundle] 获取当前bundle
+    * FontAwesome字体自动加载 !!在项目中UIAppFonts配置了字体加载的地方需要移除 
+    
+
+### 0.4.2
+    

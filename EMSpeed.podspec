@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.4.2"
+  s.version          = "0.4.3"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -79,6 +79,8 @@ Pod::Spec.new do |s|
       sss.public_header_files   = "EMSpeed/UIKit/FontAwesome+iOS/**/*.h"
       sss.source_files          = "EMSpeed/UIKit/FontAwesome+iOS/**/*.{h,m}"
       sss.resources             = "EMSpeed/UIKit/FontAwesome+iOS/resource/**/*.*"
+      sss.frameworks            = "CoreText"
+      sss.dependency            "EMSpeed/Core"
     end
 
     ss.subspec 'PopupView' do |sss|

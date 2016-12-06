@@ -13,6 +13,9 @@
 #import <EMSpeed/MSCoreDefines.h>
 #import <EMSpeed/MSCoreMacros.h>
 
+/* bundle access */
+#import <EMSpeed/NSBundle+Speed.h>
+
 /* file access */
 #import <EMSpeed/MSCoreFileManager.h>
 
