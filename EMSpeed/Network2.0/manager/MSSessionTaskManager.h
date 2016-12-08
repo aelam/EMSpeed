@@ -16,9 +16,11 @@
 
 + (id)sharedManager;
 
+//全局的任务管理
 - (void)addGlobalTask:(NSURLSessionTask *)task;
 - (void)cancelGlobalTask:(NSURLSessionTask *)task;
 
+//某一个分组的任务管理
 - (void)addTask:(NSURLSessionTask *)task forGroup:(NSString *)group;
 - (void)cancelTask:(NSURLSessionTask *)task forGroup:(NSString *)group;
 - (void)cancelTask:(NSURLSessionTask *)task;

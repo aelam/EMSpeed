@@ -137,7 +137,7 @@
     }
     
     // Drawing code
-    if (_hidesForSinglePage && self._numberOfPages==1)
+    if (_hidesForSinglePage && self.numberOfPages==1)
 	{
 		return;
 	}
@@ -155,7 +155,7 @@
         }
     }
 	
-	int total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
+	int total_width = self.numberOfPages*adiameter + (self.numberOfPages-1)*gap;
 	
 	if (total_width>self.frame.size.width)
 	{
@@ -166,7 +166,7 @@
 			while (total_width>self.frame.size.width) 
 			{
 				gap -= 1;
-				total_width = self._numberOfPages*adiameter + (self._numberOfPages-1)*gap;
+				total_width = self.numberOfPages*adiameter + (self.numberOfPages-1)*gap;
 				
 				if (gap==2)
 				{
@@ -186,7 +186,7 @@
 	}
 	
 	int i;
-	for (i=0; i<self._numberOfPages; i++)
+	for (i=0; i<self.numberOfPages; i++)
 	{
 		int x = (self.frame.size.width-total_width)/2 + i*(adiameter+gap);
 
@@ -318,14 +318,8 @@
 
 - (void)setNumberOfPages:(int)numOfPages
 {
-    self._numberOfPages = numOfPages;
+    _numberOfPages = numOfPages;
     [self setNeedsDisplay];
 }
-
-- (int)numberOfPages
-{
-    return self._numberOfPages;
-}
-
 
 @end

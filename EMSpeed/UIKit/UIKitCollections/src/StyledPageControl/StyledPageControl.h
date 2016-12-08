@@ -51,7 +51,7 @@ typedef NS_ENUM(NSUInteger, PageControlStyle)
 
 @property (nonatomic, strong)  UIColor *coreNormalColor, *coreSelectedColor;
 @property (nonatomic, strong)  UIColor *strokeNormalColor, *strokeSelectedColor;
-@property (nonatomic, assign) int currentPage, _numberOfPages;
+@property (nonatomic, assign) int currentPage, numberOfPages;
 @property (nonatomic, assign) BOOL hidesForSinglePage;
 @property (nonatomic, assign) PageControlStyle pageControlStyle;
 @property (nonatomic, assign) int strokeWidth, diameter, gapWidth;
