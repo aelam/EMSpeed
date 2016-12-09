@@ -138,12 +138,19 @@
 + (UITableViewCell *)cellWithNib:(UINib *)cellNib
                        tableView:(UITableView *)tableView
                        indexPath:(NSIndexPath *)indexPath
-                          object:(id)cellModel {
+                          object:(NSObject<MSCellModel> *)cellModel {
     UITableViewCell* cell = nil;
+    NSString* identifier = nil;
     
-    NSString* identifier = NSStringFromClass([cellModel class]);
+    if ([cellModel respondsToSelector:@selector(reuseIdentify)]) {
+        identifier = cellModel.reuseIdentify;
+    }
+    else
+    {
+        identifier = NSStringFromClass([cellModel class]);
+    }
+    
     [tableView registerNib:cellNib forCellReuseIdentifier:identifier];
-    
     cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     //Allow the cell to configure itself with the object's information.
