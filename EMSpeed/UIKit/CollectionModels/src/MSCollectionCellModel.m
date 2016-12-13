@@ -11,9 +11,10 @@
 @implementation MSCollectionCellModel
 
 @synthesize layoutSize;
-@synthesize Class;
+@synthesize Class = _Class;
 @synthesize reuseIdentify;
 @synthesize isRegisterByClass;
+@synthesize cellClass;
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -24,6 +25,11 @@
     }
     
     return self;
+}
+
+- (void)setClass:(Class)Class {
+    _Class = Class;
+    self.cellClass = Class;
 }
 
 

@@ -22,10 +22,14 @@
 
 
 /**
- *  cellmodel对应的cell的类
+ *  cellmodel对应的cell的类,请使用cellClass属性设置
  */
 @property (nonatomic, strong) Class Class;
 
+/**
+ *  cellmodel对应的cell的类，兼容swift
+ */
+@property (nonatomic, strong) Class cellClass;
 
 /**
  *  cell的重用名
