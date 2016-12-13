@@ -63,7 +63,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MSCollectionCellModel> item = [self itemAtIndexPath:indexPath];
-    Class class = item.Class;
+    Class class = item.cellClass ?: item.Class;
 
 //    id<MSCellModel> item = [self itemAtIndexPath:indexPath];
 //    Class class = item.Class;

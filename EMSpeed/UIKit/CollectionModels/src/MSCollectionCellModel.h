@@ -24,7 +24,7 @@
 /**
  *  cellmodel对应的cell的类,请使用cellClass属性设置
  */
-@property (nonatomic, strong) Class Class;
+@property (nonatomic, strong) Class Class; __deprecated;
 
 /**
  *  cellmodel对应的cell的类，兼容swift

@@ -11,7 +11,7 @@
 @implementation MSCollectionCellModel
 
 @synthesize layoutSize;
-@synthesize Class = _Class;
+@synthesize Class;
 @synthesize reuseIdentify;
 @synthesize isRegisterByClass;
 @synthesize cellClass;
@@ -26,11 +26,5 @@
     
     return self;
 }
-
-- (void)setClass:(Class)Class {
-    _Class = Class;
-    self.cellClass = Class;
-}
-
 
 @end
