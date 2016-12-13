@@ -63,10 +63,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id<MSCollectionCellModel> item = [self itemAtIndexPath:indexPath];
-    Class class = item.cellClass ?: item.Class;
+    Class class;
+    if ([item respondsToSelector:@selector(cellClass)]) {
+        class = item.cellClass;
+    } else if ([item respondsToSelector:@selector(Class)]){
+        class = item.Class;
+    }
 
-//    id<MSCellModel> item = [self itemAtIndexPath:indexPath];
-//    Class class = item.Class;
     if (!class) {
         class = [UICollectionViewCell class];
     }
