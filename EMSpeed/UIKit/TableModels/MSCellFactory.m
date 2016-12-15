@@ -143,7 +143,7 @@
     NSString* identifier = nil;
     
     if ([cellModel respondsToSelector:@selector(reuseIdentify)]) {
-        identifier = cellModel.reuseIdentify;
+        identifier = cellModel.reuseIdentify ?: NSStringFromClass([cellModel class]);
     }
     else
     {
