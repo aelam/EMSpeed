@@ -24,7 +24,7 @@
 /**
  *  cellmodel对应的cell的类,请使用cellClass属性设置
  */
-@property (nonatomic, strong) Class Class; __deprecated;
+@property (nonatomic, strong) Class Class; //__deprecated;
 
 /**
  *  cellmodel对应的cell的类，兼容swift
@@ -48,6 +48,16 @@
 @end
 
 @interface MSCollectionCellModel : NSObject <MSCollectionCellModel>
+
+@property (nonatomic, assign) CGSize layoutSize;
+
+@property (nonatomic, strong) Class Class; //__deprecated;
+
+@property (nonatomic, strong) Class cellClass;
+
+@property (nonatomic, strong) NSString *reuseIdentify; //#__deprecated;
+
+@property (nonatomic, assign) BOOL isRegisterByClass;
 
 @end
 
