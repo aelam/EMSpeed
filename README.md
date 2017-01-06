@@ -27,6 +27,9 @@ EMSpeed is available under the MIT license. See the LICENSE file for more info.
 ## ChangeLog
 
 
+### 0.4.4-beta.5
+   
+    * 增加UIView+Layout 等宽排列方法
 
 ### 0.4.3
 

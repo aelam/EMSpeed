@@ -26,6 +26,7 @@
 
 /* UIView */
 #import <EMSpeed/UIView+AutoLayout.h>
+#import <EMSpeed/UIView+Layout.h>
 #import <EMSpeed/UIView-Geometry.h>
 #import <EMSpeed/UIView+RoundCorner.h>
 

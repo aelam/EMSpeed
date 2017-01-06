@@ -57,5 +57,6 @@
 
 // UIView
 #import <EMSpeed/MSBorderView.h>
+#import <EMSpeed/UIView+Layout.h>
 
 #endif /* UIKITCOLLECTIONS_H */

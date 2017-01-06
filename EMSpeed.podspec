@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.4.4-beta.3"
+  s.version          = "0.4.4-beta.5"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC
@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
       sss.public_header_files = "EMSpeed/UIKit/Core/**/*.h"
       sss.source_files        = "EMSpeed/UIKit/Core/**/*.{h,m,c}"
       sss.dependency          "EMSpeed/Core"
+      sss.dependency          "Masonry"
     end
 
     ss.subspec 'UIImages' do |sss|
@@ -59,7 +60,6 @@ Pod::Spec.new do |s|
       sss.dependency          "EMSpeed/UIKit/Core"
       sss.dependency          "EMSpeed/UIKit/UIColors"
       sss.dependency          "EMSpeed/MSContext"
-      sss.dependency          "Masonry"
     end
 
     ss.subspec 'WebImage' do |sss|
