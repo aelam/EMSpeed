@@ -18,6 +18,7 @@
 @property(nullable, nonatomic, assign,readonly) __kindof UIViewController *currentController;
 
 @property (nullable,nonatomic, strong, readonly) UIView<MSNavigatorView> *navigationView;
+@property (weak, nonatomic) UICollectionView *collectionView;
 
 @property (assign, nonatomic) NSInteger selectedIndex;
 

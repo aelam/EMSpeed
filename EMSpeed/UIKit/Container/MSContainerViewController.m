@@ -11,8 +11,6 @@
 
 @interface MSContainerViewController ()<UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (weak, nonatomic) UICollectionView *collectionView;
-
 @property (weak, nonatomic) UICollectionViewFlowLayout *flowLayout;
 
 @end
