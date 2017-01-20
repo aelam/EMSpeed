@@ -44,9 +44,6 @@
 + (void)makeEqualWidthViews:(NSArray <UIView *>*)views inView:(UIView *)containerView topMargin:(CGFloat)tMargin  bottomMargin:(CGFloat)bMargin LRMargin:(CGFloat)lMargin padding:(CGFloat)padding;
 
 
-/**
- *  使用 UIEdgeInsets UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
- */
 
 /**
  *   在父view布局一组等宽高的子view3(默认1行)
@@ -61,7 +58,7 @@
 
 
 /**
- 使用 UIEdgeInsets UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
+  在父view布局一组等宽高的子view4(多行、多列）
 
  @param views         一组子view
  @param containerView 父view
@@ -72,4 +69,16 @@
  */
 + (void)makeEqualWidthViews:(NSArray <UIView *>*)views inView:(UIView *)containerView edgeInsets:(UIEdgeInsets)edgeInsets padding:(CGFloat)padding lines:(NSUInteger)lines columns:(NSUInteger)columns;
 
+/**
+  在父view布局一组等宽高的子view5(多行、多列）
+
+ @param views         一组子view
+ @param containerView 父view
+ @param edgeInsets    上下左右的的的Margin
+ @param hPadding      子view 与 子view 的水平内间距
+ @param vPadding      子view 与 子view 的垂直内间距
+ @param lines         多少行
+ @param columns       多少列
+ */
++ (void)makeEqualWidthViews:(NSArray <UIView *>*)views inView:(UIView *)containerView edgeInsets:(UIEdgeInsets)edgeInsets hPadding:(CGFloat)hPadding vPadding:(CGFloat)vPadding  lines:(NSUInteger)lines columns:(NSUInteger)columns;
 @end

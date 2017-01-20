@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "EMSpeed"
-  s.version          = "0.4.4-beta.5"
+  s.version          = "0.4.5"
   s.summary          = "EMSpeed Collections with Foundation, UIKit."
 
   s.description      = <<-DESC

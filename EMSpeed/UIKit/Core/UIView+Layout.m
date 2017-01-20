@@ -100,7 +100,7 @@
     
 }
 
-#pragma mark   在父view布局一组等宽高的子view2
+#pragma mark   在父view布局一组等宽高的子view3
 
 + (void)makeEqualWidthViews:(NSArray<UIView *> *)views inView:(UIView *)containerView edgeInsets:(UIEdgeInsets)edgeInsets padding:(CGFloat)padding
 {
@@ -130,7 +130,7 @@
     }];
 }
 
-#pragma mark   在父view布局一组等宽高的子view2
+#pragma mark   在父view布局一组等宽高的子view4
 + (void)makeEqualWidthViews:(NSArray<UIView *> *)views inView:(UIView *)containerView edgeInsets:(UIEdgeInsets)edgeInsets padding:(CGFloat)padding lines:(NSUInteger)lines columns:(NSUInteger)columns
 {
     NSMutableArray *viewsArray = [NSMutableArray arrayWithArray:views];
@@ -144,8 +144,8 @@
     UIView *lastView;
     CGFloat heightMulti = 1.0/lines;
     CGFloat widthMulti = 1.0/columns;
-    CGFloat heightOffset = edgeInsets.top + (-edgeInsets.bottom)+ (lines - 1) * padding;
-    CGFloat widthOffset = edgeInsets.left + (-edgeInsets.right) + (columns - 1) * padding;
+    CGFloat heightOffset = (CGFloat)(edgeInsets.top + (edgeInsets.bottom)+ (lines - 1) * padding)/(CGFloat)lines;
+    CGFloat widthOffset = (CGFloat)(edgeInsets.left + (edgeInsets.right) + (columns - 1) * padding)/(CGFloat)columns;
     for (NSUInteger i = 0; i < lines;i++)
     {
         NSUInteger loc = i * columns;
@@ -169,12 +169,12 @@
                 {
                     [view mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.top.equalTo(containerView.mas_top).offset(edgeInsets.top);
-                        make.height.equalTo(containerView.mas_height).offset(heightOffset).multipliedBy(heightMulti);
+                        make.height.equalTo(containerView.mas_height).multipliedBy(heightMulti).offset(-heightOffset);
                         make.left.equalTo(containerView.mas_left).offset(edgeInsets.left);
-                        make.width.equalTo(containerView.mas_width).offset(widthOffset).multipliedBy(widthMulti);
+                        make.width.equalTo(containerView.mas_width).multipliedBy(widthMulti).offset(-widthOffset);
                     }];
                 }
-
+                
             } else
             {
                 if (j == 0)
@@ -199,4 +199,73 @@
         }
     }
 }
+
+#pragma mark   在父view布局一组等宽高的子view5
+
++ (void)makeEqualWidthViews:(NSArray <UIView *>*)views inView:(UIView *)containerView edgeInsets:(UIEdgeInsets)edgeInsets hPadding:(CGFloat)hPadding vPadding:(CGFloat)vPadding  lines:(NSUInteger)lines columns:(NSUInteger)columns;
+{
+    NSMutableArray *viewsArray = [NSMutableArray arrayWithArray:views];
+    
+    NSAssert((views.count >= lines * columns), @"UIView + Layout: value of (lines *columns) must bigger than value of (views.count)");
+    
+    UIView *lastView;
+    CGFloat heightMulti = 1.0/lines;
+    CGFloat widthMulti = 1.0/columns;
+    CGFloat heightOffset = (CGFloat)(edgeInsets.top + (edgeInsets.bottom)+ (lines - 1) * vPadding)/(CGFloat)lines;
+    CGFloat widthOffset = (CGFloat)(edgeInsets.left + (edgeInsets.right) + (columns - 1) * hPadding)/(CGFloat)columns;
+    for (NSUInteger i = 0; i < lines;i++)
+    {
+        NSUInteger loc = i * columns;
+        NSArray<UIView *> *lineViews = [viewsArray subarrayWithRange:NSMakeRange(loc,columns)];
+        
+        for (UIView * view in lineViews)
+        {
+            [containerView addSubview:view];
+            NSUInteger j = [lineViews indexOfObject:view];
+            if (i == 0)
+            {
+                if (lastView)
+                {
+                    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(lastView);
+                        make.height.equalTo(lastView.mas_height);
+                        make.left.equalTo(lastView.mas_right).offset(hPadding);
+                        make.width.equalTo(lastView.mas_width);
+                    }];
+                }else
+                {
+                    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(containerView.mas_top).offset(edgeInsets.top);
+                        make.height.equalTo(containerView.mas_height).multipliedBy(heightMulti).offset(-heightOffset);
+                        make.left.equalTo(containerView.mas_left).offset(edgeInsets.left);
+                        make.width.equalTo(containerView.mas_width).multipliedBy(widthMulti).offset(-widthOffset);
+                    }];
+                }
+                
+            } else
+            {
+                if (j == 0)
+                {
+                    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(lastView.mas_bottom).offset(vPadding);
+                        make.height.equalTo(lastView.mas_height);
+                        make.left.equalTo(containerView.mas_left).offset(edgeInsets.left);
+                        make.width.equalTo(lastView.mas_width);
+                    }];
+                }else
+                {
+                    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(lastView.mas_top);
+                        make.height.equalTo(lastView.mas_height);
+                        make.left.equalTo(lastView.mas_right).offset(hPadding);
+                        make.width.equalTo(lastView.mas_width);
+                    }];
+                }
+            }
+            lastView = view;
+        }
+    }
+}
+
+
 @end
