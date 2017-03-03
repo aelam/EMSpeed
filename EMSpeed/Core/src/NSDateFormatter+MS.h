@@ -24,5 +24,12 @@
 
 + (instancetype)ms_monthDayFormatter; // "06-29"
 
++ (instancetype)em_shortPointDateFormatter; //2016.10.10
+
++ (instancetype)em_zhMonthDayFormatter; //10月10日
+
++ (instancetype)em_longSlashDateFormatter; //2016/10/10 10:10:10
+
++ (instancetype)ms_serverDateFormatter_T; //"2015-06-29T17:12:46"
 
 @end

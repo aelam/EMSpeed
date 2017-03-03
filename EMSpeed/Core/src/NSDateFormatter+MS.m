@@ -107,4 +107,60 @@
     return fmt;
 }
 
+//yyyy/MM/dd HH:mm:ssm
++ (instancetype)em_longSlashDateFormatter{ // "13:39"
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        NSTimeZone *timezone = [NSTimeZone localTimeZone];
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"yyyy/MM/dd HH:mm:ss";
+    });
+    return fmt;
+}
+
+
++ (instancetype)em_zhMonthDayFormatter
+{
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        NSTimeZone *timezone = [NSTimeZone localTimeZone];
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"MM月dd日";
+    });
+    return fmt;
+}
+
++ (instancetype)em_shortPointDateFormatter
+{
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+        NSTimeZone *timezone = [NSTimeZone localTimeZone];
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"yyyy.MM.dd";
+    });
+    return fmt;
+}
+
++ (instancetype)ms_serverDateFormatter_T {
+    // "2015-06-29T17:12:46"
+    static NSDateFormatter* fmt = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        fmt = [[NSDateFormatter alloc] init];
+        NSTimeZone *timezone = [NSTimeZone timeZoneForSecondsFromGMT:8 * 3600];//直接指定时区
+        fmt.timeZone = timezone;
+        fmt.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+    });
+    return fmt;
+}
+
 @end
