@@ -10,6 +10,9 @@
 
 @interface NSDate (TimeAgo)
 
+//2016-12-22T05:47:14.X***X格式的字符串，分割成2016-12-22T05:47:14，在转成date
++ (NSDate *)ms_serverTDateFromString:(NSString *)string;
+
 /**
  *  日期处理
  *  1小时以内，返回多少分钟前，

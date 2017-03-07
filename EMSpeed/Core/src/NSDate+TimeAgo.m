@@ -11,6 +11,22 @@
 
 @implementation NSDate (TimeAgo)
 
++ (NSDate *)ms_serverTDateFromString:(NSString *)string {
+    if (!string) {
+        return nil;
+    }
+    
+    NSArray *components = [string componentsSeparatedByString:@"."];
+    if (!components) {
+        return [[NSDateFormatter ms_serverDateFormatter_T] dateFromString:string];
+    }
+    
+    if (components.count > 0) {
+        return [[NSDateFormatter ms_serverDateFormatter_T] dateFromString:[components firstObject]];
+    }
+}
+
+
 - (NSString *)ms_minuteTimeAgo
 {
     
