@@ -24,6 +24,7 @@
     if (components.count > 0) {
         return [[NSDateFormatter ms_serverDateFormatter_T] dateFromString:[components firstObject]];
     }
+    return nil;
 }
 
 
