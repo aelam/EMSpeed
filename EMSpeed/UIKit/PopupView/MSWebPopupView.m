@@ -119,7 +119,12 @@ const CGFloat kWebPopupButtonBottomOffset   = 10.0f;
         [self.contentWebView setScalesPageToFit:NO];
         self.contentWebView.delegate = self;
         [self.myScrollView addSubview:self.contentWebView];
-        [self.contentWebView loadHTMLString:content baseURL:nil];
+        
+        if ([content hasPrefix:@"http"] || [content hasPrefix:@"https"] ) {
+            [self.contentWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:content]]];
+        } else {
+            [self.contentWebView loadHTMLString:content baseURL:nil];
+        }
         
         CGRect leftBtnFrame = CGRectZero;
         CGRect rightBtnFrame = CGRectZero;
