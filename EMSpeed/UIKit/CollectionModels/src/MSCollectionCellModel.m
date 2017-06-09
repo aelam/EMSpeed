@@ -11,7 +11,6 @@
 @implementation MSCollectionCellModel
 
 @synthesize layoutSize;
-@synthesize Class;
 @synthesize reuseIdentify;
 @synthesize isRegisterByClass;
 @synthesize cellClass;
@@ -20,11 +19,19 @@
     if (self = [super init]) {
         self.layoutSize = CGSizeMake(100, 100);
         self.reuseIdentify = NSStringFromClass([self class]);
-        self.Class = [UICollectionViewCell class];
+        self.cellClass = [UICollectionViewCell class];
         self.isRegisterByClass = YES;
     }
     
     return self;
+}
+
+- (Class)Class {
+    return self.cellClass;
+}
+
+- (void)setClass:(Class)aClass {
+    self.cellClass = aClass;
 }
 
 @end
