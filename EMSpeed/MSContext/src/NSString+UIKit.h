@@ -15,7 +15,7 @@
  *  根据字体和尺寸, 计算字符串尺寸
  *
  *  @param font  字体大小
- *  @param asize 容器最大尺寸
+ *  @param maxSize 容器最大尺寸
  *
  *  @return 尺寸
  */
@@ -26,7 +26,7 @@
  *  根据字体和尺寸, 计算字符串高度
  *
  *  @param font  字体大小
- *  @param asize 容器最大尺寸
+ *  @param maxSize 容器最大尺寸
  *
  *  @return 字符串高度
  */
@@ -37,7 +37,7 @@
  *  根据字体和尺寸, 计算字符串宽度
  *
  *  @param font  字体大小
- *  @param asize 容器最大尺寸
+ *  @param maxSize 容器最大尺寸
  *
  *  @return 字符串宽度
  */

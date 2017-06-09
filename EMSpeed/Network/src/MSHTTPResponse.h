@@ -33,8 +33,7 @@ enum {MSHTTPResponseStatusOK = 0};
  *  创建HTTP响应对象
  *
  *  @param object JSON数据, 格式可能是数组或字典
- *
- *  @return 
+ *  @return 实例
  */
 + (instancetype)responseWithObject:(id)object;
 + (instancetype)responseWithError:(NSError *)error;

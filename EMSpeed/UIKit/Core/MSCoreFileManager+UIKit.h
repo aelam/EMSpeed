@@ -22,7 +22,7 @@ BOOL MSFileManagerSaveImage(NSString *filename, UIImage *image);
 /**
  *  读取图片
  *
- *  @param filePath 图片路径, 默认图片路径caches/pic/, 可以通过MSSetDefaultImageDirectory设置
+ *  @param filename 图片路径, 默认图片路径caches/pic/, 可以通过MSSetDefaultImageDirectory设置
  *
  *  @return 图片
  */

@@ -14,7 +14,7 @@
  *  属性反射
  *  当前对象有field中的属性时，设置对应的值
  *
- *  @param dataSource
+ *  @param dataSource NSObject
  *
  *  @return 是否成功
  */
@@ -25,7 +25,7 @@
  *  属性反射
  *  当前对象有field中的属性时，设置对应的值
  *
- *  @param dict 字典
+ *  @param dictionary 字典
  *
  *  @return 是否成功
  */
@@ -36,7 +36,7 @@
  *  属性反射
  *  当前对象有field中的属性时，设置对应的值
  *
- *  @param dataSource
+ *  @param dataSource NSDictionary
  *
  *  @return 是否成功
  */

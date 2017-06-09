@@ -25,7 +25,7 @@
 /**
  *  之类复写的时候需要调用复类的方法
  *
- *  @param index 
+ *  @param index 下标记
  */
 - (void)willSelectControllerAtIndex:(NSInteger)index;
 

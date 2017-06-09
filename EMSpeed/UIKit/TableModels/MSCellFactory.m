@@ -49,15 +49,6 @@
 
 @implementation MSCellFactory
 
-/**
- *
- *
- *  @param tableView
- *  @param indexPath
- *  @param model
- *
- *  @return
- */
 + (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath cellModel:(MSCellModel *)model
 {
     CGFloat height = tableView.rowHeight;

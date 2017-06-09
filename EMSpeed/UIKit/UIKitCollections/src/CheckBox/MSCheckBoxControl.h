@@ -20,7 +20,7 @@
  *  创建checkBox控制器
  *
  *  @param title      标题
- *  @param titleArray 按钮内容数组
+ *  @param titles 按钮内容数组
  *
  *  @return checkBox控制器
  */
@@ -31,7 +31,7 @@
 /**
  *  创建checkBox控制器
  *
- *  @param titleArray 按钮内容数组
+ *  @param titles 按钮内容数组
  *
  *  @return checkBox控制器
  */

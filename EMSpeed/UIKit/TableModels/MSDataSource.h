@@ -96,7 +96,7 @@
 /**
  *  根据index取某个item, section下标默认为0
  *
- *  @param indexPath 下标
+ *  @param index 下标
  *
  *  @return 某个实现MSCellModel 协议的item
  */

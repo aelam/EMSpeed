@@ -9,15 +9,12 @@
 #import <PINCache/PINCache.h>
 
 @interface PINCache(URLString)
-#pragma mark -
-#pragma mark cache
 
 /**
  *  获取url对应的缓存数据
  *
  *  @param URLString 数据请求
  *
- *  @return
  */
 + (id)ms_cacheObjectForURLString:(NSString *)URLString;
 

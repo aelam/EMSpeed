@@ -19,12 +19,10 @@
 
 
 /**
- *  
  *
- *  @param viewControllers
+ *  @param viewControllers 子视图
  *  @param navigationClass 导航条的类型
  *
- *  @return
  */
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers navigationClass:(Class<MSNavigatorView>)navigationClass;
 
@@ -33,15 +31,12 @@
  *
  *  @param viewControllers 显示的一组controller
  *
- *  @return
  */
 - (instancetype)initWithViewControllers:(NSArray *)viewControllers;
 
 
 /**
  *  获取当前显示的controller
- *
- *  @return
  */
 - (UIViewController *)currentController;
 

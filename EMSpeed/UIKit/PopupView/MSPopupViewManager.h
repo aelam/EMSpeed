@@ -41,7 +41,7 @@ NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropri
 /**
  *  出队列, 指定的popupview
  *
- *  @param popupView
+ *  @param popupView UIView
  *
  *  @return 是否成功标志
  */
@@ -71,7 +71,7 @@ NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropri
  *
  *  @return 该弹框是否在队列之中
  */
-- (BOOL)isInQueue:(UIView *)view;
+- (BOOL)isInQueue:(UIView *)popupView;
 
 
 /**

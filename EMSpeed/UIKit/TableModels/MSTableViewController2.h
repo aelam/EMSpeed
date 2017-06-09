@@ -43,8 +43,7 @@
 
 /**
  *  数据加载完成的时候，是否更新状态背景图
- * default is yes
- *  @return
+ *  @return default is yes
  */
 - (BOOL)shouldUpdateStatusViewWhenDataSourceLoaded;
 

@@ -43,7 +43,7 @@
 /**
  *  传入JSON数组, 返回对应的对象数组
  *
- *  @param array JSON数组
+ *  @param infos JSON数组
  *  @param options 预留
  *
  *  @return 对应的对象数组

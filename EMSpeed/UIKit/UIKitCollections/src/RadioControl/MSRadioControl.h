@@ -95,7 +95,7 @@ static NSInteger kRadioButtonTag = 100;
  *  初始化方法
  *
  *  @param title      标题
- *  @param titleArray 按钮内容数组
+ *  @param titles 按钮内容数组
  *
  *  @return raidoControl控件
  */

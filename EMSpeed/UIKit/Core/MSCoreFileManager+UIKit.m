@@ -6,8 +6,8 @@
 //
 //
 
-#import "MSCoreFileManager.h"
 #import "MSCoreFileManager+UIKit.h"
+#import "MSCoreFileManager.h"
 
 BOOL MSFileManagerSaveImage(NSString *filename, UIImage *image)
 {

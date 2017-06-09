@@ -31,7 +31,7 @@
 /**
  *  给图片添加前景色：染色 改变tintColor  不同于背景色
  *
- *  @param color 颜色
+ *  @param tintColor 颜色
  *
  *  @return image
  */
@@ -45,8 +45,6 @@
  *  widthxheight^	Minimum values of width and height given, aspect ratio preserved.
  *  widthxheight!	Exact dimensions, no aspect ratio preserved.
  *  widthxheight#	Crop to this exact dimensions.
- *
- *  @param 字符串
  *
  *  @return 图片
  */
@@ -66,7 +64,7 @@
 /**
  *  根据高度重新创建一个等比例的图片
  *
- *  @param width 高度
+ *  @param height 高度
  *
  *  @return 图片
  */
@@ -76,7 +74,7 @@
 /**
  *  根据size最长边, 重新创建一个等比例的图片
  *
- *  @param 高和宽尺寸
+ *  @param size 高和宽尺寸
  *
  *  @return 图片
  */
@@ -86,7 +84,7 @@
 /**
  *  根据size最短边, 重新创建一个等比例的图片
  *
- *  @param 高和宽尺寸
+ *  @param size 高和宽尺寸
  *
  *  @return 图片
  */

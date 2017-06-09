@@ -18,7 +18,7 @@
  *  1小时以内，返回多少分钟前，
  *  1天以内，返回10:10
  *  其他返回：04-25 13:39格式
- *  @return
+ *  @return NSString
  */
 - (NSString *)ms_minuteTimeAgo;
 
@@ -27,7 +27,7 @@
  *  1小时以内，返回多少分钟前，
  *  1天以内，返回多少小时前
  *  其他返回：04月25日 格式
- *  @return
+ *  @return NSString
  */
 - (NSString *)ms_hourTimeAgo;
 

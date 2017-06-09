@@ -9,6 +9,7 @@
 #import "PINCache+MS.h"
 
 @implementation PINCache(Document)
+
 static NSString * const MSPINDocumentSharedName = @"PINDocumentShared";
 
 + (instancetype)sharedDocument

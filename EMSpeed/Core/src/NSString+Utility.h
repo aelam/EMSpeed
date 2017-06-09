@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
 @interface NSString(Utility)
@@ -65,7 +65,7 @@
 /**
  *  将流量字符串转化, 流量值(byte), 转化为带K,M,G,T的字符串, 例如1204 -> 1KB
  *
- *  @param flowLen 流量值(byte)
+ *  @param length 流量值(byte)
  *
  *  @return 转换后的字符串
  */

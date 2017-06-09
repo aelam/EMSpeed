@@ -38,7 +38,6 @@ typedef void(^MSGuidScrollCompletion)(void);
  *
  *  @param items 实现EMGuideScrollModel协议的对象数组
  *
- *  @return
  */
 - (instancetype)initWithItems:(NSArray *)items;
 

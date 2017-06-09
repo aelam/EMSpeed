@@ -97,27 +97,7 @@
 
 @interface MSCellFactory : NSObject
 
-/**
- *
- *
- *  @param tableView
- *  @param indexPath
- *  @param model
- *
- *  @return
- */
 + (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath cellModel:(MSCellModel *)model;
-
-/**
- *
- *
- *  @param tableViewModel
- *  @param tableView
- *  @param indexPath
- *  @param object
- *
- *  @return
- */
 + (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withCellModel:(MSCellModel *)cellModel;
 
 @end

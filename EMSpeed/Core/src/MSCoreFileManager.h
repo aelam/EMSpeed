@@ -7,10 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-/**
- *  与文件管理相关的一些工具方法
- */
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -124,7 +120,7 @@ BOOL MSFileManagerRemoveDirectory(NSString *dir);
 /**
  *  删除文件
  *
- *  @param 文件路径
+ *  @param filePath 文件路径
  *
  *  @return 是否成功
  */
@@ -134,7 +130,7 @@ BOOL MSFileManagerRemoveFile(NSString *filePath);
 /**
  *  保存文件
  *
- *  @param file 文件路径
+ *  @param filePath 文件路径
  *  @param data 数据
  *
  *  @return 是否成功
@@ -192,7 +188,6 @@ NSData *MSFileManagerFileAtPath(NSString *filePath);
 /**
  *  根据bundle名+相对路径
  *
- *  @param bundle       bundle名称
  *  @param relativePath 相对路径
  *
  *  @return bundle名+相对路径
