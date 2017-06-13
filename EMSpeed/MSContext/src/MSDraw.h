@@ -44,22 +44,32 @@ extern "C" {
 #endif
 
     
-    /**
-     *  创建一个圆角矩形
-     *
-     *  @param topLeft     上左
-     *  @param topRight    上右
-     *  @param bottomLeft  下左
-     *  @param bottomRight 下右
-     *
-     *  @return 创建一个圆角矩形
-     */
-//UIRectRadius UIRectRadiusMake(CGFloat topLeft, CGFloat topRight, CGFloat bottomLeft, CGFloat bottomRight);
+    
+/**
+*  创建一个圆角矩形
+*
+*  @param topLeft     上左
+*  @param topRight    上右
+*  @param bottomLeft  下左
+*  @param bottomRight 下右
+*
+*  @return 创建一个圆角矩形
+*/
+UIKIT_STATIC_INLINE UIRectRadius UIRectRadiusMake(CGFloat topLeft, CGFloat topRight, CGFloat bottomLeft, CGFloat bottomRight) {
+    UIRectRadius radius = {topLeft, topRight, bottomLeft, bottomRight};
+    return radius;
+}
+    
     
     /**
      判断四个弧度是否相同
      */
-//BOOL UIRectRadiusEqualToRectRadius(UIRectRadius radius1, UIRectRadius radius2);
+UIKIT_STATIC_INLINE BOOL UIRectRadiusEqualToRectRadius(UIRectRadius radius1, UIRectRadius radius2) {
+    return (radius1.topLeft == radius2.topLeft &&
+            radius1.topRight == radius2.topRight &&
+            radius1.bottomLeft == radius2.bottomLeft &&
+            radius1.bottomRight == radius2.bottomRight);
+}
     
 
 CGRect Point2Rect(CGRect boundingRect, CGPoint point, int nAnchor,UIFont *font);
