@@ -93,6 +93,9 @@
 
 @interface MSCellModel : NSObject <MSCellModel>
 
+@property (nonatomic, strong) UINib *cellNib; //优先级高于cellClass
+@property (nonatomic, strong) Class cellClass;
+
 @end
 
 
