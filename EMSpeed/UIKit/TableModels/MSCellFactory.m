@@ -9,21 +9,35 @@
 #import "MSCellFactory.h"
 #import <UIKit/UIKit.h>
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
+
 @implementation MSCellModel
 
-@synthesize Class;
+@synthesize cellClass;
 @synthesize reuseIdentify;
 @synthesize height;
 @synthesize isRegisterByClass;
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.Class             = [UITableViewCell class];
+        self.cellClass         = [UITableViewCell class];
         self.height            = 44;
         self.isRegisterByClass = YES;
     }
     return self;
 }
+
+
+- (Class)Class {
+    return self.cellClass;
+}
+
+- (void)setClass:(Class)aClass {
+    self.cellClass = aClass;
+}
+
+
 //
 //- (CGFloat)calculateHeightForTableView:(UITableView *)tableView
 //{
@@ -59,7 +73,7 @@
         cellClass = [model cellClass];
     }
     else if ([model respondsToSelector:@selector(Class)]) {
-        cellClass = [model Class];
+        cellClass = [model performSelector:@selector(Class)];
     }
     
     if ([cellClass respondsToSelector:@selector(heightForObject:atIndexPath:tableView:)]) {
@@ -158,10 +172,11 @@
 
 + (UITableViewCell *)oldversion_tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath withCellModel:(MSCellModel *)cellModel
 {
+    
     Class cellClass = NULL;
     if ([cellModel respondsToSelector:@selector(Class)])
     {//兼容旧版本
-        cellClass = cellModel.Class;
+        cellClass = [cellModel Class];
     }
     
     UINib *nib = nil;

@@ -21,12 +21,6 @@
  */
 @property (nonatomic, assign) CGFloat height;//NS_DEPRECATED
 
-
-/**todo 待移除
- *  cellmodel对应的cell的类
- */
-@property (nonatomic, strong) Class Class;//NS_DEPRECATED
-
 /**
  *  cell的重用名
  */
@@ -38,6 +32,13 @@
 @property (nonatomic, assign) BOOL isRegisterByClass;//NS_DEPRECATED
 
 @optional
+
+
+/**todo 待移除
+ *  cellmodel对应的cell的类
+ */
+@property (nonatomic, strong) Class Class __deprecated;//NS_DEPRECATED
+
 
 /**todo 待移除
  *  计算cell的高度

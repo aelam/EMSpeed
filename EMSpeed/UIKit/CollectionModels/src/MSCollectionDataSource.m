@@ -8,6 +8,9 @@
 
 #import "MSCollectionDataSource.h"
 
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic ignored "-Wdeprecated-implementations"
+
 @implementation MSCollectionDataSource
 
 - (instancetype)initWithItems:(NSArray *)aItems sections:(NSArray *)aSections
@@ -65,9 +68,9 @@
     id<MSCollectionCellModel> item = [self itemAtIndexPath:indexPath];
     Class class;
     if ([item respondsToSelector:@selector(cellClass)]) {
-        class = item.cellClass;
+        class = [item cellClass];
     } else if ([item respondsToSelector:@selector(Class)]){
-        class = item.Class;
+        class = [item Class];
     }
 
     if (!class) {
