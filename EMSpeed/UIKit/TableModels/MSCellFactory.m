@@ -144,14 +144,18 @@
                        tableView:(UITableView *)tableView
                        indexPath:(NSIndexPath *)indexPath
                           object:(NSObject<MSCellModel> *)cellModel {
-    UITableViewCell* cell = nil;
-    NSString* identifier = nil;
+    UITableViewCell *cell = nil;
+    NSString *identifier = nil;
     
     if ([cellModel respondsToSelector:@selector(reuseIdentify)]) {
-        identifier = cellModel.reuseIdentify ?: NSStringFromClass([cellModel class]);
+        identifier = cellModel.reuseIdentify;
     }
-    else
-    {
+    
+    if (identifier == nil && [cellModel respondsToSelector:@selector(cellClass)]) {
+         identifier = NSStringFromClass([cellModel cellClass]);
+    }
+    
+    if (identifier == nil) {
         identifier = NSStringFromClass([cellModel class]);
     }
     
