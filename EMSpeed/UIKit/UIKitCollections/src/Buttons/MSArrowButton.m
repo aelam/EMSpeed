@@ -16,24 +16,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _direct = MSArrowDirectionDown;
-        _arrowPos =  MSArrowButtonPositionRight;
-        
-        self.arrowColor = [UIColor darkGrayColor];
-        self.arrowHighlightedColor = RGB(183, 183, 183);
-        
-        self.arrowShadowColor = [UIColor lightGrayColor];
-        self.arrowHighlightedShadowColor = [UIColor blackColor];
+        [self defaultSetting];
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     }
     
     return self;
 }
 
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-    
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self defaultSetting];
+    }
+    return self;
+}
+
+- (void)defaultSetting {
     _direct = MSArrowDirectionDown;
     _arrowPos =  MSArrowButtonPositionRight;
     
@@ -42,6 +40,11 @@
     
     self.arrowShadowColor = [UIColor lightGrayColor];
     self.arrowHighlightedShadowColor = [UIColor blackColor];
+}
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
 }
 
 - (void)layoutSubviews
@@ -54,7 +57,7 @@
 {
     [super drawRect:rect];
     CGContextRef context = UIGraphicsGetCurrentContext();
-
+    
     CGFloat begin_x = [self caculateArrowOriginFrame].x;
     CGFloat begin_y = [self caculateArrowOriginFrame].y;
     begin_x = ceilf(begin_x);
@@ -101,19 +104,19 @@
         }
         
         switch (_arrowPos) {
-            case  MSArrowButtonPositionLeft:
+                case  MSArrowButtonPositionLeft:
                 begin_x = CGRectGetMinX(titleFrame) - self.arrowSize.width - 4;
                 begin_y = self.bounds.size.height/2 - self.arrowSize.height/2;
                 break;
-            case  MSArrowButtonPositionRight:
+                case  MSArrowButtonPositionRight:
                 begin_x = CGRectGetMaxX(titleFrame) + 4;
                 begin_y = self.bounds.size.height/2 - self.arrowSize.height/2;
                 break;
-            case  MSArrowButtonPositionDown:
+                case  MSArrowButtonPositionDown:
                 begin_x = CGRectGetMidX(self.titleLabel.frame) - 0.5*self.arrowSize.width;
                 begin_y = (self.frame.size.height - self.arrowSize.height -3);
                 break;
-            case MSArrowButtonPositionCenter:
+                case MSArrowButtonPositionCenter:
                 begin_x = CGRectGetWidth(self.frame)/2 - self.arrowSize.width/2;
                 begin_y = self.bounds.size.height/2 - self.arrowSize.height/2;
                 break;
@@ -121,7 +124,7 @@
     }
     
     return CGPointMake(begin_x, begin_y);
-
+    
 }
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
@@ -143,3 +146,4 @@
 }
 
 @end
+
