@@ -114,9 +114,13 @@ static NSString *CellID = @"ControllerCell";
 {
     CGFloat width = self.view.bounds.size.width;
     CGFloat height = self.view.bounds.size.height;
-    
+    if([UIScreen mainScreen].bounds.size.height>=812)
+    {
+        //暂时先这样改，苹果X的特判，预警页面- 对self.flowLayout和self.collectionView的高度的修改；
+        //之前导航栏的高度时64，苹果X现在是88。
+        height=height-24;
+    }
     _navigationView.frame = CGRectMake(0, 0, width, 35);
-    
     self.flowLayout.itemSize = CGSizeMake(width, height - _navigationView.frame.size.height);
     self.collectionView.frame = CGRectMake(0, _navigationView.frame.size.height, width, height - _navigationView.frame.size.height);
 }

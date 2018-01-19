@@ -4,6 +4,7 @@ inhibit_all_warnings!
 
 target 'EMSpeed_Example' do
   pod "EMSpeed", :path => "../"
+  pod 'SDWebImage', '~> 3.7.1'
 
   
 end
